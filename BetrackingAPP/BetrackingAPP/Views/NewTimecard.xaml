@@ -6,7 +6,8 @@
             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
             xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
 			xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
-            x:Class="BetrackingAPP.Views.NewTimecard">
+            x:Class="BetrackingAPP.Views.NewTimecard"
+	>
 
 
 	<ContentPage.Content>
