@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BetrackingAPP.Views.Home"
+			 BackgroundColor="#f4f4f4">
+
+
+	<ScrollView>
+		<StackLayout x:Name="home1">
+			<Image Source="HomeBackground.jpg" Aspect="AspectFit" Margin="0,-50,0,0"/>
+
+			<Label Text="{Binding Greeting}"
+							   FontSize="25"
+							   TextColor="White"
+							   HeightRequest="200"
+							   HorizontalTextAlignment="Center"
+							   VerticalTextAlignment="Center"
+							   BackgroundColor="Transparent"
+                               Margin="0,-220,0,0"/>
+
+			<Grid Margin="0,30,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Image Source="notifications.png"
+                       HeightRequest="10"
+                       WidthRequest="10"/>
+				<Label Grid.Column="1"
+                       Text="Notifications"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Large"/>
+			</Grid>
+			<ListView
+			x:Name="HomepageList"
+			IsPullToRefreshEnabled="False" 
+			ItemsSource="{Binding Notifications}"
+			RowHeight="200"
+            Margin="0, 150, 0, 0"
+            BackgroundColor="#f4f4f4"
+            SeparatorVisibility="None">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Frame CornerRadius="1"
+							   Margin="10,5,10,0"
+							   BackgroundColor="White"
+                               HasShadow="False"
+                               BorderColor="#f4f4f4">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="30"/>
+										<RowDefinition Height="30"/>
+										<RowDefinition Height="30"/>
+									</Grid.RowDefinitions>
+
+									<Label Grid.Column="0" Grid.Row="0"
+                                           Text="{Binding Title}"
+                                           FontSize="Large"
+                                           HorizontalOptions="StartAndExpand"></Label>
+
+									<Label Grid.Row="1" 
+                                           Text="{Binding Message}"
+									       FontSize="Medium"
+                                           HorizontalOptions="StartAndExpand"></Label>
+									<Label Grid.Column="2"
+                                           Grid.Row="0"
+                                           Text="5 minutes ago"
+                                           FontSize="Micro"
+                                           HorizontalOptions="End"></Label>
+
+									<Label Grid.Column="2"
+                                           Text="{Binding cName}"
+                                           FontSize="Micro"></Label>
+
+								</Grid>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ScrollView>
+</ContentPage>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "977786555939",
+    "firebase_url": "https://betracking-93d74.firebaseio.com",
+    "project_id": "betracking-93d74",
+    "storage_bucket": "betracking-93d74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977786555939:android:cb615ae48366982d",
+        "android_client_info": {
+          "package_name": "com.companyname.BetrackingAPP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977786555939-7nj8bjm7nd1iceieic43e5990uhj952t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7o8LmE2W2WnV0rK0OWfMLEyXpipacBE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977786555939-7nj8bjm7nd1iceieic43e5990uhj952t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

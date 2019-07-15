@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="BetrackingAPP.Views.LoginPage">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style x:Key="Box1" TargetType="BoxView">
+				<Setter Property="BackgroundColor" Value="#77000000"/>
+				<Setter Property="IsVisible" Value="False"></Setter>
+			</Style>
+			<Style x:Key="Box2" TargetType="BoxView">
+				<Setter Property="BackgroundColor" Value="#77000000"/>
+				<Setter Property="IsVisible" Value="True"></Setter>
+			</Style>
+			<Style x:Key="Stack1" TargetType="BoxView">
+				<Setter Property="IsVisible" Value="False"></Setter>
+			</Style>
+			<Style x:Key="Stack2" TargetType="BoxView">
+				<Setter Property="IsVisible" Value="True"></Setter>
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<ScrollView BackgroundColor="White">
+		<!--<StackLayout x:Name="MasterLayout">
+			<StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
+				<Image x:Name="LoginIcon" Source="beTrackingLogo.png" Margin="0,41,0,-120"/>
+			</StackLayout>
+
+			<StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand">
+				<StackLayout.Padding>
+					<OnIdiom x:TypeArguments="Thickness">
+					</OnIdiom>
+				</StackLayout.Padding>
+
+				<StackLayout BackgroundColor="White"
+                             Padding="20">
+
+					<Image Source="user1.jpg" WidthRequest="80" HeightRequest="100"/>
+					<ActivityIndicator x:Name="ActivitySpinner" Color="red" IsRunning="True"/>
+					<Label x:Name="Lbl_Username" Text="Email" TextColor="#4e4e4e" FontSize="10"/>
+					<Entry x:Name="Entry_Username" Text="{Binding sn}"  Keyboard="Email" FontSize="11"/>
+					<Label x:Name="Lbl_Password" Text="Password" TextColor="#4e4e4e" FontSize="10" HeightRequest="30"/>
+					<Entry x:Name="Entry_Password" IsPassword="true" Text="{Binding hash}"  FontSize="11"/>
+					<Label x:Name="forgot_Password" Text="Forgot Password?" TextColor="LightBlue" FontSize="8" HorizontalOptions="Start"/>
+					<Button x:Name="Btn_Signin" 
+							Command="{Binding LoginCommand}"
+                            Text="Sign in" 
+                            TextColor="White"
+                            FontSize="14"
+                            BackgroundColor="#15212f"
+                            BorderRadius="2"
+                            />
+
+				</StackLayout>
+			</StackLayout>
+		</StackLayout>-->
+		<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="scr">
+			<StackLayout x:Name="loginMain" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+					BackgroundColor="White" Padding="20">
+				<!-- Place new controls here -->
+				<Image Source="user1.jpg" WidthRequest="80" HeightRequest="100"/>
+				<Label x:Name="Lbl_Username" Text="Email" TextColor="#4e4e4e" FontSize="10"/>
+				<Entry x:Name="Entry_Username" Text="{Binding sn}"  Keyboard="Email" FontSize="11"/>
+				<Label x:Name="Lbl_Password" Text="Password" TextColor="#4e4e4e" FontSize="10" HeightRequest="30"/>
+				<Entry x:Name="Entry_Password" IsPassword="true" Text="{Binding hash}"  FontSize="11"/>
+				<Label x:Name="forgot_Password" Text="Forgot Password?" TextColor="LightBlue" FontSize="8" HorizontalOptions="Start"/>
+				<Button x:Name="Btn_Signin" 
+							Command="{Binding LoginCommand}"
+                            Text="Sign in" 
+                            TextColor="White"
+                            FontSize="14"
+                            BackgroundColor="#15212f"
+                            BorderRadius="2"
+                            />
+			</StackLayout>
+
+			<!---->
+			<BoxView Style="{StaticResource Box1}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+				<BoxView.Triggers>
+					<DataTrigger TargetType="BoxView" Binding="{Binding HasPropertyValueChanged}" Value="true">
+						<Setter Property="Style" Value="{StaticResource Box2}" />
+					</DataTrigger>
+				</BoxView.Triggers>
+			</BoxView>
+			<StackLayout Style="{StaticResource Stack1}" x:Name="loginDisplays" IsVisible="{Binding HasPropertyValueChanged}" AbsoluteLayout.LayoutFlags="All" 
+					AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.5,0.3">
+				<ActivityIndicator IsRunning="True" Color ="#BBFFFFFF"
+					VerticalOptions="FillAndExpand"/>
+				<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"/>
+			<!---->
+				<StackLayout.Triggers>
+					<DataTrigger TargetType="StackLayout" Binding="{Binding HasPropertyValueChanged}" Value="true">
+						<Setter Property="Style" Value="{StaticResource Stack2}" />
+					</DataTrigger>
+				</StackLayout.Triggers>
+			</StackLayout>
+		</AbsoluteLayout>
+	</ScrollView>
+</ContentPage>

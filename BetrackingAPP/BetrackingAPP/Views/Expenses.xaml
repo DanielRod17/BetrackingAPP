@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+			 xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             mc:Ignorable="d"
+             x:Class="BetrackingAPP.Views.Expenses"
+			 BackgroundColor="#f4f4f4">
+
+	<Grid>
+		<StackLayout>
+			<StackLayout BackgroundColor="#f4f4f4">
+
+				<Label Text=""
+						   FontSize="30"
+						   TextColor="#f4c53f"
+						   HeightRequest="15"
+						   HorizontalTextAlignment="Center"
+						   VerticalTextAlignment="Center"/>
+				<Image Source="BETRACKING.png"
+                       HeightRequest="40"
+                       WidthRequest="80"/>
+			</StackLayout>
+			<StackLayout BackgroundColor="#15212f">
+				<Label Text="E X P E N S E S"
+						   FontSize="30"
+						   TextColor="White"
+						   HeightRequest="90"
+						   HorizontalTextAlignment="Center"
+						   VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<ListView
+				x:Name="TimecardsList"
+				ItemsSource="{Binding Reports}"
+				SelectedItem="{Binding ShowReportDetails}"
+				IsPullToRefreshEnabled="true" 
+				RowHeight="130"
+                SeparatorVisibility="None"
+                BackgroundColor="#f4f4f4">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell Appearing="ViewCell_Appearing">
+							<Frame CornerRadius="4"
+							   Margin="10"
+							   BackgroundColor="White"
+                               HasShadow="False"
+                               BorderColor="#e4e4e4">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="30"/>
+										<RowDefinition Height="30"/>
+									</Grid.RowDefinitions>
+									<Image Source="cart.png"
+                                           HorizontalOptions="Start"/>
+									<Label Grid.Column="2" 
+                                           Text="{Binding Name}"
+									       FontSize="Micro"
+                                           HorizontalOptions="StartAndExpand"/>
+									<Label Grid.Row="1"
+                                           Text="{Binding StatusName, StringFormat='Status: {0}'}"
+                                           FontSize="Micro"
+                                           HorizontalOptions="Start"/>
+									<Label Grid.Column="1"
+                                           Text="{Binding AssignmentName, StringFormat='Assignment: {0}'}"
+                                           Grid.Row="1"
+                                           FontSize="Micro"
+                                           HorizontalOptions="Start"/>
+									<Label Grid.Column="1"
+                                           Text="{Binding ExpensesQty, StringFormat='Expenses Qty: {0}'}"
+                                           FontSize="Micro"/>
+									<Label Grid.Row="1"
+                                           Grid.Column="2"
+                                           Text="{Binding FromDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                           FontSize="Micro"
+                                           HorizontalOptions="End"/>
+									<Label Grid.Row="2"
+                                           Grid.Column="2"
+                                           Text="{Binding ToDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                           FontSize="Micro"
+                                           HorizontalOptions="End"/>
+								</Grid>
+
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+
+		<Grid Opacity=".8" BackgroundColor="Black" IsVisible="false">
+			<ActivityIndicator IsRunning="false"
+				HorizontalOptions="Center">
+			</ActivityIndicator>
+		</Grid>
+	</Grid>
+</ContentPage>

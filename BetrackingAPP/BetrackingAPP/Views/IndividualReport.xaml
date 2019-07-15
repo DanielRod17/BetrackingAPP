@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BetrackingAPP.Views.IndividualReport"
+			 x:Name="Page">
+	<!--Pages can be added as references or inline-->
+	<ContentPage Title="Detail" x:Name="Detail">
+		<ScrollView>
+			<StackLayout x:Name="detailPanel">
+				<Label Text="{Binding Name}"/>
+				<Label Text="{Binding StatusName, StringFormat='Status: {0}'}"/>
+				<Label Text="{Binding ProjectName, StringFormat='Project: {0}'}"/>
+				<Label Text="{Binding FromDate, StringFormat='From: {0:dd/MM/yyyy}'}"/>
+				<Label Text="{Binding ToDate, StringFormat='To: {0:dd/MM/yyyy}'}"/>
+				<Label Text="{Binding BaggageExp, StringFormat='Baggage: ${0} USD'}"/>
+				<Label Text="{Binding AirfareExp, StringFormat='Airfare: ${0} USD'}"/>
+				<Label Text="{Binding CarRentalExp, StringFormat='Car Rental: ${0} USD'}"/>
+				<Label Text="{Binding LodgingExp, StringFormat='Lodging: ${0} USD'}"/>
+				<Label Text="{Binding ParkingExp, StringFormat='Parking: ${0} USD'}"/>
+				<Label Text="{Binding GasolineExp, StringFormat='Gasoline: ${0} USD'}"/>
+				<Label Text="{Binding MiscExp, StringFormat='Miscellaneous: ${0} USD'}"/>
+				<Label Text="{Binding MealsExp, StringFormat='Meals: ${0} USD'}"/>
+				<Label Text="{Binding ToolsExp, StringFormat='Tools Supplies: ${0} USD'}"/>
+				<Label Text="{Binding ChangeExp, StringFormat='Change Fees: ${0} USD'}"/>
+				<Label Text="{Binding TransportationExp, StringFormat='Transportation: {0} USD'}"/>
+				<Label Text="{Binding TollExp, StringFormat='Tolls: ${0} USD'}"/>
+				<Label Text="{Binding PerDiemExp, StringFormat='Per Diem: ${0} USD'}"/>
+				<Label Text="{Binding Billable, StringFormat='Billable: ${0} USD'}"/>
+				<Label Text="{Binding Refundable, StringFormat='Refundable: ${0} USD'}"/>
+				<Label Text="{Binding Total, StringFormat='Total: ${0} USD'}"/>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage>
+	<ContentPage Title="Expenses">
+		<ScrollView>
+			<StackLayout x:Name="ExpensesList">
+				<ListView
+					x:Name="TimecardsList"
+					ItemsSource="{Binding ExpensesList}"
+					IsPullToRefreshEnabled="true" 
+					RowHeight="180">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell >
+								<Frame CornerRadius="5"
+							   Margin="5"
+							   BackgroundColor="White">
+									<StackLayout>
+										<Label Text="{Binding CategoryName}"
+									   FontSize="Large"/>
+										<Label Text="{Binding ExpenseDate, StringFormat='Date: {0:dd/MM/yyyy}'}"/>
+										<Label Text="{Binding ValorFinal, StringFormat='Quantity: ${0} USD'}"/>
+										<Label IsVisible="{Binding MxOn}" Text="{Binding Quantity, StringFormat='Quantity: ${0} MXN'}"/>
+										<Label IsVisible="{Binding DescriptionOn}" Text="{Binding Name, StringFormat='Description: {0}'}"/>
+										<Label IsVisible="{Binding RefundableOn}" Text="Refundable"/>
+									</StackLayout>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage>
+	<ContentPage Title="Files">
+		<ScrollView>
+			<StackLayout x:Name="Files">
+				<ListView
+					x:Name="FilesList"
+					ItemsSource="{Binding FilesList}"
+					IsPullToRefreshEnabled="true" 
+					RowHeight="200">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell >
+								<Frame CornerRadius="5"
+							   Margin="5"
+							   BackgroundColor="White">
+									<StackLayout>
+										<Label Text="{Binding Name}"
+									   FontSize="Large"/>
+										<Label Text="{Binding Date, StringFormat='Date: {0}'}"/>
+										<Label Text="{Binding Size, StringFormat='Size: {0}'}"/>
+										<Button
+											Command="{Binding Path=BindingContext.DownloadCommand, Source={x:Reference Page}}"
+											CommandParameter="{Binding URL}"
+											IsVisible="{Binding HasPropertyValueChanged}" 
+											Text="Download" 
+											TextColor="White"
+											FontSize="14"
+											BackgroundColor="#15212f"
+											BorderRadius="2"
+											/>
+									</StackLayout>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage>
+</TabbedPage>
