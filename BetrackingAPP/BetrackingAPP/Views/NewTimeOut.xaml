@@ -12,7 +12,7 @@
 
 	<ContentPage.Content>
 		<ScrollView>
-			<StackLayout x:Name="TimecardContainer">
+			<StackLayout x:Name="TimeOutContainer">
 				<Label Text="{Binding Fecha_timecard}"
 							   FontSize="20"
 							   TextColor="White"
@@ -28,7 +28,7 @@
                                  WidthRequest="300"/>
 
 				<ListView
-					x:Name="TimecardsList"
+					x:Name="TimeOutList"
 					ItemsSource="{Binding Days}"
 					HasUnevenRows="True"
 					ItemTapped="TimecardsList_ItemTapped"
@@ -84,6 +84,8 @@
 											<Grid.RowDefinitions>
 												<RowDefinition Height="35"/>
 												<RowDefinition Height="35"/>
+												<RowDefinition Height="35"/>
+												<RowDefinition Height="35"/>
 											</Grid.RowDefinitions>
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="*"/>
@@ -94,15 +96,28 @@
 												<ColumnDefinition Width="*"/>
 												<ColumnDefinition Width="*"/>
 											</Grid.ColumnDefinitions>
-											<Label Text="Insert Hours" Grid.Row="0" Grid.Column="1"
+											<Button Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3"
+												Text="+ Break" 
+												TextColor="White"
+												FontSize="12"
+												BackgroundColor="#15212f"
+												BorderRadius="2"
+											/>		
+											<Label Text="Time In" Grid.Row="1" Grid.Column="1"
                                                    Grid.ColumnSpan="2"
                                                    HorizontalTextAlignment="Center" 
                                                    VerticalTextAlignment="Center"/>
-											<Entry Placeholder="Hours" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" 
-                                                   FontSize="Small" 
-												   Text="{Binding Valor}"
-                                                   Keyboard="Numeric"/>
-											<Entry Placeholder="Notes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" 
+											<TimePicker Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"
+												Time="08:00:00"
+												Format="T"/>
+											<Label Text="Time Out" Grid.Row="2" Grid.Column="1"
+                                                   Grid.ColumnSpan="2"
+                                                   HorizontalTextAlignment="Center" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2"
+												Time="17:00:00"
+												Format="T"/>
+											<Entry Placeholder="Notes" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" 
 												   Text="{Binding Nota}"
                                                    FontSize="Small"/>
 										</Grid>
