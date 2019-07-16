@@ -7,7 +7,7 @@
 			 xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
              mc:Ignorable="d"
 			 xmlns:local="clr-namespace:BetrackingAPP"
-			 x:Class="BetrackingAPP.Views.IndividualCard"
+			 x:Class="BetrackingAPP.Views.IndividualTimeInOut"
 			 BackgroundColor="#f4f4f4">
 	<!--Pages can be added as references or inline-->
 	<ContentPage Title="Detail" x:Name="Detail">

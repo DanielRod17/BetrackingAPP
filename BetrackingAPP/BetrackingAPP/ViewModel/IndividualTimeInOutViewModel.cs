@@ -15,7 +15,7 @@ using BetrackingAPP.Views;
 
 namespace BetrackingAPP.ViewModel
 {
-    public class IndividualCardViewModel : BaseViewModel, INotifyPropertyChanged
+    public class IndividualTimeInOutViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
         .Where(x => x.ToLower().StartsWith(text.ToLower()))
@@ -130,7 +130,8 @@ namespace BetrackingAPP.ViewModel
         private User usuario;
         private Timecard timecard;
         public ObservableCollection<Timecard> _info { get; set; }
-        public ObservableCollection<Timecard> Info {
+        public ObservableCollection<Timecard> Info
+        {
             get
             {
                 return _info;
@@ -143,7 +144,8 @@ namespace BetrackingAPP.ViewModel
             }
         }
         ObservableCollection<Actions> acciones = new ObservableCollection<Actions>();
-        public ObservableCollection<Actions> Actions {
+        public ObservableCollection<Actions> Actions
+        {
             get
             {
                 return acciones;
@@ -156,11 +158,11 @@ namespace BetrackingAPP.ViewModel
         }
 
         ObservableCollection<NewTimecardNormal> _dias;
-        public ObservableCollection<NewTimecardNormal> Days { get { return _dias;  } set { _dias = value; OnPropertyChanged(); } }
+        public ObservableCollection<NewTimecardNormal> Days { get { return _dias; } set { _dias = value; OnPropertyChanged(); } }
 
-        public IndividualCardViewModel(User usuarioFrom, Timecard timecardFrom, DateTime _dateSearch)
+        public IndividualTimeInOutViewModel(User usuarioFrom, Timecard timecardFrom, DateTime _dateSearch)
         {
-            
+
             usuario = usuarioFrom;
             User = usuario;
             timecard = timecardFrom;
@@ -328,7 +330,7 @@ namespace BetrackingAPP.ViewModel
                     new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 35 },
                     new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 35 },
                 };
-                
+
                 GetActions(Timecard[0]);
                 temp.RemoveAt(7);
                 Days = temp;

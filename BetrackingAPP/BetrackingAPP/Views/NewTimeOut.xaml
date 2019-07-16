@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+			xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+            xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
+			xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+            x:Class="BetrackingAPP.Views.NewTimeOut"
+	>
+
+
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout x:Name="TimecardContainer">
+				<Label Text="{Binding Fecha_timecard}"
+							   FontSize="20"
+							   TextColor="White"
+							   HeightRequest="100"
+							   HorizontalTextAlignment="Center"
+							   VerticalTextAlignment="Center"
+							   BackgroundColor="#15212f"/>
+				<xfx:XfxComboBox Placeholder="Select an Assignment"
+					             Text="{Binding AssignmentName}"
+					             ItemsSource="{Binding Assignments}"
+					             SortingAlgorithm="{Binding SortingAlgorithm}"
+                                 HorizontalTextAlignment="Center"
+                                 WidthRequest="300"/>
+
+				<ListView
+					x:Name="TimecardsList"
+					ItemsSource="{Binding Days}"
+					HasUnevenRows="True"
+					ItemTapped="TimecardsList_ItemTapped"
+					>
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Frame CornerRadius="5"
+									   Padding="0"
+									   Margin="1"
+									   BackgroundColor="White"
+                                       HasShadow="False">
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="35"/>
+											<RowDefinition Height="{Binding DisplayInputs}"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+										</Grid.ColumnDefinitions>
+										<Label TextColor="White" 
+                                               BackgroundColor="#15212f" 
+                                               Text="{Binding Numero}" 
+                                               Grid.Row="0" 
+                                               Grid.Column="0" 
+                                               Grid.ColumnSpan="1" 
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"
+                                               WidthRequest="40"/>
+										<Label Text="{Binding Day}" 
+                                               Grid.Row="0" 
+                                               Grid.Column="1"  
+                                               Grid.ColumnSpan="4" 
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               Margin="20,0,0,0"/>
+										<Label Text="{Binding Valor}" 
+                                               Grid.Row="0" 
+                                               Grid.Column="5" 
+                                               Grid.ColumnSpan="2" 
+                                               HorizontalTextAlignment="End"
+                                               VerticalTextAlignment="Center"
+                                               Margin="0,0,20,0"/>
+										<Grid  Grid.Row="1" 
+                                               Grid.Column="0" 
+                                               Grid.ColumnSpan="7">
+											<Grid.RowDefinitions>
+												<RowDefinition Height="35"/>
+												<RowDefinition Height="35"/>
+											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+											</Grid.ColumnDefinitions>
+											<Label Text="Insert Hours" Grid.Row="0" Grid.Column="1"
+                                                   Grid.ColumnSpan="2"
+                                                   HorizontalTextAlignment="Center" 
+                                                   VerticalTextAlignment="Center"/>
+											<Entry Placeholder="Hours" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" 
+                                                   FontSize="Small" 
+												   Text="{Binding Valor}"
+                                                   Keyboard="Numeric"/>
+											<Entry Placeholder="Notes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" 
+												   Text="{Binding Nota}"
+                                                   FontSize="Small"/>
+										</Grid>
+									</Grid>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<Button Margin="-20"
+					Text="Save" 
+					TextColor="White"
+					FontSize="14"
+					BackgroundColor="#15212f"
+					BorderRadius="2"
+				/>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

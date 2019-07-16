@@ -132,9 +132,20 @@ namespace BetrackingAPP.ViewModel
 
         public async void GoToTimecard(Timecard eu_timecard, User usuario)
         {
-            if (eu_timecard != null)
+            var bandera = 0;
+            for (var i = 0; i < usuario.Assignments.Length; i ++)
+            {
+                if (usuario.Assignments[i].Division == 5 || usuario.Assignments[i].Division == 2)
+                {
+                    bandera = 1;
+                }
+            }
+            if (eu_timecard != null && bandera == 1)
             {
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualCard(eu_timecard, usuario, _dateSearch));
+            }else if (eu_timecard != null && bandera == 0)
+            {
+                await App.Current.MainPage.Navigation.PushAsync(new IndividualTimeInOut(eu_timecard, usuario, _dateSearch));
             }
         }
 
@@ -146,8 +157,23 @@ namespace BetrackingAPP.ViewModel
 
         public async Task NavigateToNewTimecard()
         {
-            //await Application.Current.MainPage.Navigation.PushPopupAsync(new NewTimecard(Timecards, usuario, _dateSearch));
-            await Application.Current.MainPage.Navigation.PushAsync(new NewTimecard(Timecards, usuario, _dateSearch));
+            var bandera = 0;
+            for (var i = 0; i < usuario.Assignments.Length; i++)
+            {
+                if (usuario.Assignments[i].Division == 5 || usuario.Assignments[i].Division == 2)
+                {
+                    bandera = 1;
+                }
+            }
+            if (bandera == 1)
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new NewTimecard(Timecards, usuario, _dateSearch));
+            }
+            else
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new NewTimeOut(Timecards, usuario, _dateSearch));
+            }
+            
         }
         public Command SearchCommand { get; set; }
         public async void LoadTimecards(User usuario, DateTime dateSearch)

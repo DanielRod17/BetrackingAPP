@@ -12,8 +12,14 @@ namespace BetrackingAPP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IndividualCard : TabbedPage
     {
+        public User Usuario_Reload { get; set; }
+        public Timecard timecard_Reload { get; set; }
+        public DateTime date_reload { get; set; }
         public IndividualCard(Timecard eu_timecard = null, User usuario = null, DateTime _dateSearch = default)
         {
+            Usuario_Reload = usuario;
+            timecard_Reload = eu_timecard;
+            date_reload = _dateSearch;
             InitializeComponent();
             BarBackgroundColor = Color.White;
             BarTextColor = Color.Black;
@@ -184,6 +190,7 @@ namespace BetrackingAPP.Views
             //Actions List
             CrearUpdateButtons(eu_timecard, usuario, _dateSearch);
         }
+
 
         private async void SubmitTimecard(int ID, Button button)
         {
