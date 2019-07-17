@@ -328,9 +328,10 @@
                                  WidthRequest="300"/>
 				</Grid>
 				<ListView
-					x:Name="UpdatessList"
+					x:Name="TimeOutList"
 					ItemsSource="{Binding Days}"
 					HasUnevenRows="True"
+					ItemTapped="TimecardsList_ItemTapped"
 					>
 					<ListView.ItemTemplate>
 						<DataTemplate>
@@ -379,10 +380,19 @@
                                                Margin="0,0,20,0"/>
 										<Grid  Grid.Row="1" 
                                                Grid.Column="0" 
-                                               Grid.ColumnSpan="7">
+                                               Grid.ColumnSpan="7"
+											   ColumnSpacing="0">
 											<Grid.RowDefinitions>
 												<RowDefinition Height="35"/>
-												<RowDefinition Height="35"/>
+												<RowDefinition Height="45"/>
+												<RowDefinition Height="45"/>
+												<RowDefinition Height="{Binding Break1}"/>
+												<RowDefinition Height="{Binding Break1}"/>
+												<RowDefinition Height="{Binding Break2}"/>
+												<RowDefinition Height="{Binding Break2}"/>
+												<RowDefinition Height="{Binding Break3}"/>
+												<RowDefinition Height="{Binding Break3}"/>
+												<RowDefinition Height="45"/>
 											</Grid.RowDefinitions>
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="*"/>
@@ -392,16 +402,88 @@
 												<ColumnDefinition Width="*"/>
 												<ColumnDefinition Width="*"/>
 												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
 											</Grid.ColumnDefinitions>
-											<Label Text="Insert Hours" Grid.Row="0" Grid.Column="1"
-                                                   Grid.ColumnSpan="2"
-                                                   HorizontalTextAlignment="Center" 
+											<Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"
+												Text="- Break" 
+												TextColor="White"
+												FontSize="12"
+												BackgroundColor="#15212f"
+												BorderRadius="2"
+												Clicked="Remove_Break"/>
+											<Button Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="3"
+												Text="+ Break" 
+												TextColor="White"
+												FontSize="12"
+												BackgroundColor="#15212f"
+												BorderRadius="2"
+												Clicked="Agregar_Break"/>
+											<Label Text="Time In" Grid.Row="1" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
                                                    VerticalTextAlignment="Center"/>
-											<Entry Placeholder="Hours" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" 
-                                                   FontSize="Small" 
-												   Text="{Binding Valor}"
-                                                   Keyboard="Numeric"/>
-											<Entry Placeholder="Notes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" 
+											<TimePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
+												Time="{Binding TimeIn}"
+												Format="hh:mm"/>
+											<Label Text="Time Out" Grid.Row="2" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
+												Time="{Binding TimeOut}"
+												Format="hh:mm"/>
+
+											<!-- BREAK 1 -->
+											<Label Text="Break 1 Out" Grid.Row="3" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5"
+												Format="hh:mm"
+												Time="{Binding Break1Out}"/>
+											<Label Text="Break 1 In" Grid.Row="4" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"
+												Format="hh:mm"
+												Time="{Binding Break1In}"/>
+											<!-- BREAK 2 -->
+											<Label Text="Break 2 Out" Grid.Row="5" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5"
+												Format="hh:mm"
+												Time="{Binding Break2Out}"/>
+											<Label Text="Break 2 In" Grid.Row="6" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5"
+												Format="hh:mm"
+												Time="{Binding Break2In}"/>
+											<!-- BREAK 3 -->
+											<Label Text="Break 3 Out" Grid.Row="7" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="5"
+												Format="hh:mm"
+												Time="{Binding Break3Out}"
+												/>
+											<Label Text="Break 3 In" Grid.Row="8" Grid.Column="1"
+                                                   Grid.ColumnSpan="4"
+                                                   HorizontalTextAlignment="Start" 
+                                                   VerticalTextAlignment="Center"/>
+											<TimePicker Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="5"
+												Format="hh:mm"
+												Time="{Binding Break3In}"/>
+											<!-- -->
+											<Entry Placeholder="Notes" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" 
 												   Text="{Binding Nota}"
                                                    FontSize="Small"/>
 										</Grid>

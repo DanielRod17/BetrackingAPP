@@ -34,8 +34,20 @@ namespace BetrackingAPP.Views
         private void TimecardsList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var vm = BindingContext as NewTimeOutViewModel;
-            var day = e.Item as NewTimecardNormal;
+            var day = e.Item as NewTimeOutCard;
             vm.HideOrShowInputs(day);
+        }
+
+        async void Agregar_Break(object sender, EventArgs e)
+        {
+            var vm = BindingContext as NewTimeOutViewModel;
+            vm.AgregarBreak();
+        }
+
+        async void Remove_Break(object sender, EventArgs e)
+        {
+            var vm = BindingContext as NewTimeOutViewModel;
+            vm.QuitarBreak();
         }
     }
 }

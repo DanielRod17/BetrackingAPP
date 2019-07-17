@@ -118,6 +118,15 @@
 					FontSize="14"
 					BackgroundColor="#15212f"
 					BorderRadius="2"
+					Command="{Binding SaveTimecard}"
+				/>
+				<Button Margin="-20"
+					Text="Submit" 
+					TextColor="White"
+					FontSize="14"
+					BackgroundColor="#15212f"
+					BorderRadius="2"
+					Command="{Binding SubmitTimecard}"
 				/>
 			</StackLayout>
 		</ScrollView>

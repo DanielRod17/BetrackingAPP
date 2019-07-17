@@ -141,10 +141,43 @@ namespace BetrackingAPP.ViewModel
 
         public async Task SometerTimecard()
         {
-            foreach (NewTimecardNormal dia in Days)
+            HttpClient client = new HttpClient();
+
+            var yeison = JsonConvert.SerializeObject(Days);
+            var formContent = new FormUrlEncodedContent(new[]
             {
-                dia.Valor = 0.00m;
-                dia.Nota = "";
+                new KeyValuePair<string, string>("usuario", Usuario.Id.ToString()),
+                new KeyValuePair<string, string>("Assignment", AssignmentName),
+                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("g")),
+                 new KeyValuePair<string, string>("Submit", "1"),
+                new KeyValuePair<string, string>("info", yeison)
+            }); ;
+
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/SaveMX.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                if (responseData == "Timecard Submitted!")
+                {
+                    AssignmentName = "";
+
+                    foreach (NewTimecardNormal dia in Days)
+                    {
+                        dia.Valor = 0.00m;
+                        dia.Nota = "";
+                    }
+
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
         }
         public void GetAssignments(User usuario)
