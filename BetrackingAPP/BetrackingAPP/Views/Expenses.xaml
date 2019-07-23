@@ -30,6 +30,14 @@
 						   HeightRequest="90"
 						   HorizontalTextAlignment="Center"
 						   VerticalTextAlignment="Center"/>
+				<Button x:Name="Btn_Add" 
+                            Text="ADD +"
+							Command="{Binding NewReportCommand}"
+                            TextColor="White"
+                            FontSize="Small"
+                            BackgroundColor="#15212f"
+                            BorderRadius="2"
+                            />
 			</StackLayout>
 			<ListView
 				x:Name="TimecardsList"
@@ -101,3 +109,4 @@
 		</Grid>
 	</Grid>
 </ContentPage>
+

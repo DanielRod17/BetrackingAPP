@@ -20,7 +20,7 @@ namespace BetrackingAPP.ViewModel
     {
 
         //private INavigation Navigation;
-
+        public Command NewReportCommand { get; set; }
         private List<Reports> _reports;
         public List<Models.Reports> Reports
         {
@@ -36,8 +36,32 @@ namespace BetrackingAPP.ViewModel
         {
             usuario = usuarioFrom;
             GetTravels(usuario);
+            NewReportCommand = new Command(async () => await NavigateToNewReport());
         }
+        public async Task NavigateToNewReport()
+        {
+            var bandera = 0;
+            for (var i = 0; i < usuario.Assignments.Length; i++)
+            {
+                if (usuario.Assignments[i].Division == 5 || usuario.Assignments[i].Division == 2)
+                {
+                    bandera = 1;
+                }
+            }
+            if (usuario.Payroll == "142")
+            {
+                bandera = 1;
+            }
+            if (bandera == 1)
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new NewReportMX(usuario));
+            }
+            else
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new NewReportUS(usuario));
+            }
 
+        }
         public async void GetTravels(User usuario)
         {
 
@@ -80,7 +104,6 @@ namespace BetrackingAPP.ViewModel
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualReport(eu_report, usuario));
             }
         }
-
 
     }
 }

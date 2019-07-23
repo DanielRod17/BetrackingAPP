@@ -130,10 +130,56 @@ namespace BetrackingAPP.Models
             }
         }
         public string Nota { get; set; }
-        public int DisplayInputs { get; set; }
-        public int Break1 { get; set; }
-        public int Break2 { get; set; }
-        public int Break3 { get; set; }
+        private int _displayInputs;
+        public int DisplayInputs {
+            get
+            {
+                return _displayInputs;
+            }
+            set
+            {
+                _displayInputs = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _Break1 = 0;
+        public int Break1 {
+            get
+            {
+                return _Break1;
+            }
+            set
+            {
+                _Break1 = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _Break2 = 0;
+        public int Break2
+        {
+            get
+            {
+                return _Break2;
+            }
+            set
+            {
+                _Break2 = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _Break3 = 0;
+        public int Break3
+        {
+            get
+            {
+                return _Break3;
+            }
+            set
+            {
+                _Break3 = value;
+                OnPropertyChanged();
+            }
+        }
 
         public async void UpdateValor()
         {

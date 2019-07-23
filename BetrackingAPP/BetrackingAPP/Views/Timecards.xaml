@@ -28,11 +28,8 @@
 	</ContentPage.Resources>
 
 	<Grid>
-
 		<StackLayout>
-
 			<StackLayout BackgroundColor="#f4f4f4">
-
 				<Label Text=""
 						   FontSize="30"
 						   TextColor="#f4c53f"
@@ -85,17 +82,15 @@
 						   HorizontalTextAlignment="Center"
 						   VerticalTextAlignment="Center"/>
 			</StackLayout>
-
-
 			<ListView
 			x:Name="TimecardsList"
-			ItemsSource="{Binding Timecards}"
-			SelectedItem="{Binding ShowTimecardDetails}"
-			IsPullToRefreshEnabled="False" 
-			RowHeight="130"
-            Margin="0, 0, 0, 0"
-            BackgroundColor="#f4f4f4"
-            SeparatorVisibility="None">
+				ItemsSource="{Binding Timecards}"
+				SelectedItem="{Binding ShowTimecardDetails}"
+				IsPullToRefreshEnabled="False" 
+				RowHeight="130"
+				Margin="0, 0, 0, 0"
+				BackgroundColor="#f4f4f4"
+				SeparatorVisibility="None">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell Appearing="ViewCell_Appearing">

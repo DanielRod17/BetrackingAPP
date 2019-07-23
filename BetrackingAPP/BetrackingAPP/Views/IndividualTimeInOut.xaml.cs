@@ -26,6 +26,18 @@ namespace BetrackingAPP.Views
             BindingContext = new IndividualTimeInOutViewModel(usuario, eu_timecard, _dateSearch);
             CrearUpdateButtons(eu_timecard, usuario, _dateSearch);
         }
+        private async void ViewCell_Appearing(object sender, EventArgs e)
+        {
+            var cell = sender as ViewCell;
+            var view = cell.View;
+            view.TranslationX = -100;
+            view.Opacity = 0;
+            await Task.WhenAny<bool>
+            (
+                view.TranslateTo(0, 0, 250, Easing.SinIn),
+                view.FadeTo(1, 500, Easing.BounceIn)
+            );
+        }
         private void CrearUpdateButtons(Timecard eu_timecard, User usuario, DateTime fecha)
         {
             var Stack = this.FindByName<StackLayout>("UpdateList");
@@ -33,7 +45,7 @@ namespace BetrackingAPP.Views
             if (eu_timecard.Submitted == 0)
             {
                 var Button = new Button { Text = "Update", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
-                Button.Clicked += async delegate { UpdateTimecard(eu_timecard.ID, Button, eu_timecard.AssignmentID); };
+                Button.Clicked += delegate { UpdateTimecard(eu_timecard.ID, Button, eu_timecard.AssignmentID); };
                 Stack.Children.Add(Button);
             }
         }
@@ -44,13 +56,13 @@ namespace BetrackingAPP.Views
             vm.HideOrShowInputs(day);
         }
 
-        async void Agregar_Break(object sender, EventArgs e)
+        void Agregar_Break(object sender, EventArgs e)
         {
             var vm = BindingContext as IndividualTimeInOutViewModel;
             vm.AgregarBreak();
         }
 
-        async void Remove_Break(object sender, EventArgs e)
+        void Remove_Break(object sender, EventArgs e)
         {
             var vm = BindingContext as IndividualTimeInOutViewModel;
             vm.QuitarBreak();

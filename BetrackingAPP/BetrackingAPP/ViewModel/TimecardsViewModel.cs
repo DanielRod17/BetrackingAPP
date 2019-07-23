@@ -140,6 +140,10 @@ namespace BetrackingAPP.ViewModel
                     bandera = 1;
                 }
             }
+            if (usuario.Payroll == "142")
+            {
+                bandera = 1;
+            }
             if (eu_timecard != null && bandera == 1)
             {
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualCard(eu_timecard, usuario, _dateSearch));

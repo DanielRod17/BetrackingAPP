@@ -23,39 +23,6 @@
 	</ContentPage.Resources>
 
 	<ScrollView BackgroundColor="White">
-		<!--<StackLayout x:Name="MasterLayout">
-			<StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
-				<Image x:Name="LoginIcon" Source="beTrackingLogo.png" Margin="0,41,0,-120"/>
-			</StackLayout>
-
-			<StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand">
-				<StackLayout.Padding>
-					<OnIdiom x:TypeArguments="Thickness">
-					</OnIdiom>
-				</StackLayout.Padding>
-
-				<StackLayout BackgroundColor="White"
-                             Padding="20">
-
-					<Image Source="user1.jpg" WidthRequest="80" HeightRequest="100"/>
-					<ActivityIndicator x:Name="ActivitySpinner" Color="red" IsRunning="True"/>
-					<Label x:Name="Lbl_Username" Text="Email" TextColor="#4e4e4e" FontSize="10"/>
-					<Entry x:Name="Entry_Username" Text="{Binding sn}"  Keyboard="Email" FontSize="11"/>
-					<Label x:Name="Lbl_Password" Text="Password" TextColor="#4e4e4e" FontSize="10" HeightRequest="30"/>
-					<Entry x:Name="Entry_Password" IsPassword="true" Text="{Binding hash}"  FontSize="11"/>
-					<Label x:Name="forgot_Password" Text="Forgot Password?" TextColor="LightBlue" FontSize="8" HorizontalOptions="Start"/>
-					<Button x:Name="Btn_Signin" 
-							Command="{Binding LoginCommand}"
-                            Text="Sign in" 
-                            TextColor="White"
-                            FontSize="14"
-                            BackgroundColor="#15212f"
-                            BorderRadius="2"
-                            />
-
-				</StackLayout>
-			</StackLayout>
-		</StackLayout>-->
 		<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="scr">
 			<StackLayout x:Name="loginMain" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
 					BackgroundColor="White" Padding="20">
