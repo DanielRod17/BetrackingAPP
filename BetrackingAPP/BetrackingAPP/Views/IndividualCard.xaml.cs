@@ -183,7 +183,7 @@ namespace BetrackingAPP.Views
             if (eu_timecard.Submitted == 0)
             {
                 var Button = new Button { Text = "Submit", BackgroundColor = Color.FromHex("#15212f") , TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
-                Button.Clicked += async delegate { SubmitTimecard(eu_timecard.ID, Button); };
+                Button.Clicked += delegate { SubmitTimecard(eu_timecard.ID, Button); };
                 stackPanel.Children.Add(Button);
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,7 +192,7 @@ namespace BetrackingAPP.Views
         }
 
 
-        private async void SubmitTimecard(int ID, Button button)
+        private void SubmitTimecard(int ID, Button button)
         {
             var vm = BindingContext as IndividualCardViewModel;
             vm.SubmitTimecard(ID);
@@ -206,11 +206,11 @@ namespace BetrackingAPP.Views
             if (eu_timecard.Submitted == 0)
             {
                 var Button = new Button { Text = "Update", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
-                Button.Clicked += async delegate { UpdateTimecard(eu_timecard.ID, Button, eu_timecard.AssignmentID); };
+                Button.Clicked += delegate { UpdateTimecard(eu_timecard.ID, Button, eu_timecard.AssignmentID); };
                 Stack.Children.Add(Button);
             }
         }
-        private async void UpdateTimecard(int ID, Button button, int AssignmentID)
+        private void UpdateTimecard(int ID, Button button, int AssignmentID)
         {
             var vm = BindingContext as IndividualCardViewModel;
             vm.UpdateTimecard(ID, AssignmentID);

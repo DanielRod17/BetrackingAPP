@@ -68,7 +68,7 @@ namespace BetrackingAPP.Views
             vm.QuitarBreak();
         }
 
-        private async void UpdateTimecard(int ID, Button button, int AssignmentID)
+        private void UpdateTimecard(int ID, Button button, int AssignmentID)
         {
             var vm = BindingContext as IndividualTimeInOutViewModel;
             vm.UpdateTimecard(ID, AssignmentID);

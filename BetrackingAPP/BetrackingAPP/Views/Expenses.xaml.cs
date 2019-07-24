@@ -22,6 +22,10 @@ namespace BetrackingAPP.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            var pippo = this.FindByName<ListView>("ExpensesList");
+            pippo.SelectedItem = null;
+            var vm = BindingContext as ExpensesViewModel;
+            vm.GetTravels(vm.usuario);
         }
 
         private async void ViewCell_Appearing(object sender, EventArgs e)

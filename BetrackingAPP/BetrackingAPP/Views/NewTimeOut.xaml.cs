@@ -38,13 +38,13 @@ namespace BetrackingAPP.Views
             vm.HideOrShowInputs(day);
         }
 
-        async void Agregar_Break(object sender, EventArgs e)
+        void Agregar_Break(object sender, EventArgs e)
         {
             var vm = BindingContext as NewTimeOutViewModel;
             vm.AgregarBreak();
         }
 
-        async void Remove_Break(object sender, EventArgs e)
+        void Remove_Break(object sender, EventArgs e)
         {
             var vm = BindingContext as NewTimeOutViewModel;
             vm.QuitarBreak();

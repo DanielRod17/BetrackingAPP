@@ -8,7 +8,24 @@
              mc:Ignorable="d"
              x:Class="BetrackingAPP.Views.Expenses"
 			 BackgroundColor="#f4f4f4">
-
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style x:Key="Box1" TargetType="BoxView">
+				<Setter Property="BackgroundColor" Value="#77000000"/>
+				<Setter Property="IsVisible" Value="False"></Setter>
+			</Style>
+			<Style x:Key="Box2" TargetType="BoxView">
+				<Setter Property="BackgroundColor" Value="#77000000"/>
+				<Setter Property="IsVisible" Value="True"></Setter>
+			</Style>
+			<Style x:Key="Stack1" TargetType="BoxView">
+				<Setter Property="IsVisible" Value="False"></Setter>
+			</Style>
+			<Style x:Key="Stack2" TargetType="BoxView">
+				<Setter Property="IsVisible" Value="True"></Setter>
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
 	<Grid>
 		<StackLayout>
 			<StackLayout BackgroundColor="#f4f4f4">
@@ -40,7 +57,7 @@
                             />
 			</StackLayout>
 			<ListView
-				x:Name="TimecardsList"
+				x:Name="ExpensesList"
 				ItemsSource="{Binding Reports}"
 				SelectedItem="{Binding ShowReportDetails}"
 				IsPullToRefreshEnabled="true" 
@@ -101,12 +118,25 @@
 				</ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
-
-		<Grid Opacity=".8" BackgroundColor="Black" IsVisible="false">
-			<ActivityIndicator IsRunning="false"
-				HorizontalOptions="Center">
-			</ActivityIndicator>
-		</Grid>
+		<BoxView Style="{StaticResource Box1}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+			<BoxView.Triggers>
+				<DataTrigger TargetType="BoxView" Binding="{Binding HasPropertyValueChanged}" Value="true">
+					<Setter Property="Style" Value="{StaticResource Box2}" />
+				</DataTrigger>
+			</BoxView.Triggers>
+		</BoxView>
+		<StackLayout Style="{StaticResource Stack1}" x:Name="loginDisplays" IsVisible="{Binding HasPropertyValueChanged}" AbsoluteLayout.LayoutFlags="All" 
+				AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.5,0.3">
+			<ActivityIndicator IsRunning="True" Color ="#BBFFFFFF"
+				VerticalOptions="FillAndExpand"/>
+			<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"/>
+			<!---->
+		<StackLayout.Triggers>
+			<DataTrigger TargetType="StackLayout" Binding="{Binding HasPropertyValueChanged}" Value="true">
+				<Setter Property="Style" Value="{StaticResource Stack2}" />
+			</DataTrigger>
+		</StackLayout.Triggers>
+		</StackLayout>
 	</Grid>
 </ContentPage>
 

@@ -21,6 +21,16 @@ namespace BetrackingAPP.ViewModel
 
         //private INavigation Navigation;
         public Command NewReportCommand { get; set; }
+        private bool _happened;
+        public bool HasPropertyValueChanged
+        {
+            get => _happened;
+            set
+            {
+                _happened = value;
+                OnPropertyChanged();
+            }
+        }
         private List<Reports> _reports;
         public List<Models.Reports> Reports
         {
@@ -31,7 +41,7 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-        private User usuario { get; set; }
+        public User usuario { get; set; }
         public ExpensesViewModel(User usuarioFrom)
         {
             usuario = usuarioFrom;
@@ -104,6 +114,5 @@ namespace BetrackingAPP.ViewModel
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualReport(eu_report, usuario));
             }
         }
-
     }
 }

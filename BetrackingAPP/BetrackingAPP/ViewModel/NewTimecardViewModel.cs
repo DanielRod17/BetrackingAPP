@@ -65,7 +65,7 @@ namespace BetrackingAPP.ViewModel
             }
         }
 
-        public async void GoToDay(NewTimecardNormal eu_day)
+        public void GoToDay(NewTimecardNormal eu_day)
         {
             if (eu_day != null)
             {

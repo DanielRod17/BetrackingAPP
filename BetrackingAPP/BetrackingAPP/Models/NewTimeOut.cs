@@ -181,7 +181,7 @@ namespace BetrackingAPP.Models
             }
         }
 
-        public async void UpdateValor()
+        public void UpdateValor()
         {
             if (TimeOut < TimeIn)
             {

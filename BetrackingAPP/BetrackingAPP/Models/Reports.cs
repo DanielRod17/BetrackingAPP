@@ -38,13 +38,25 @@ namespace BetrackingAPP.Models
         public string Reason_Request { get; set; }
         public int Status { get; set; }
         public DateTime? FromDate { get; set; }
-        public DateTime? ToDate { get; set; }
+        public DateTime ToDate { get; set; }
         public string Emergency_Contact { get; set; }
         public string SalesForceID { get; set; }
         public string AssignmentName { get; set; }
         public int ExpensesQty { get; set; }
         public string StatusName { get; set; }
         public string ProjectName { get; set; }
+        public string city_from_name { get; set; }
+        public string state_from_name { get; set; }
+        public string country_from_name { get; set; }
+        public string city_to_name { get; set; }
+        public string state_to_name { get; set; }
+        public string country_to_name { get; set; }
+        public string rcity_from_name { get; set; }
+        public string rstate_from_name { get; set; }
+        public string rcountry_from_name { get; set; }
+        public string rcity_to_name { get; set; }
+        public string rstate_to_name { get; set; }
+        public string rcountry_to_name { get; set; }
         public Expense[] Expenses { get; set; }
 
         public File[] Files { get; set; }
