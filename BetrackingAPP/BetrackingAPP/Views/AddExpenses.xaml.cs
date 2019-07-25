@@ -18,5 +18,12 @@ namespace BetrackingAPP.Views
             NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new AddExpensesViewModel(reporte, usuario);
         }
+
+        private void Expense_Item_Tapped(object sender, ItemTappedEventArgs e)
+        {
+            var vm = BindingContext as AddExpensesViewModel;
+            var day = e.Item as ExpensesList;
+            vm.HideOrShowInputs(day);
+        }
     }
 }

@@ -1,15 +1,192 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.AddExpenses">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+    xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
+	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+	xmlns:local="clr-namespace:BetrackingAPP"
+	x:Class="BetrackingAPP.Views.AddExpenses"
+	>
+
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout x:Name="ExpensesContainer">
+				<ListView 
+					ItemsSource="{Binding ExpensesList}"
+					HasUnevenRows="True"
+					ItemTapped="Expense_Item_Tapped">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Frame CornerRadius="5"
+									   Padding="0"
+									   Margin="1"
+									   BackgroundColor="White"
+                                       HasShadow="False">
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="35"/>
+											<RowDefinition Height="{Binding DisplayAdd}"/>
+											<RowDefinition Height="{Binding DisplayInputs}"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+										</Grid.ColumnDefinitions>
+										<Label TextColor="White" 
+                                               BackgroundColor="#15212f" 
+                                               Text="{Binding TotalExpenses}" 
+                                               Grid.Row="0" 
+                                               Grid.Column="0" 
+                                               Grid.ColumnSpan="1" 
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"
+                                               WidthRequest="40"/>
+										<Label Text="{Binding NameCategory}" 
+                                               Grid.Row="0" 
+                                               Grid.Column="1"  
+                                               Grid.ColumnSpan="4" 
+                                               HorizontalTextAlignment="Start"
+                                               VerticalTextAlignment="Center"
+                                               Margin="20,0,0,0"/>
+										<Label Text="{Binding TotalMoney}" 
+                                               Grid.Row="0" 
+                                               Grid.Column="5" 
+                                               Grid.ColumnSpan="2" 
+                                               HorizontalTextAlignment="End"
+                                               VerticalTextAlignment="Center"
+                                               Margin="0,0,20,0"/>
+										<Button Text="+ ADD" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3"
+												TextColor="White"
+												BackgroundColor="#15212f"
+												Command="{Binding AddExpense}"
+												CommandParameter="{Binding}"/>
+										<ListView 
+											Grid.Row="2" 
+											Grid.Column="0" 
+											Grid.ColumnSpan="7"
+											ItemsSource="{Binding iExpenses}"
+											HasUnevenRows="True">
+											<ListView.ItemTemplate>
+												<DataTemplate>
+													<ViewCell>
+														<Frame CornerRadius="5"
+															Padding="0"
+															Margin="1"
+															BackgroundColor="White"
+															HasShadow="False">
+															<Grid 
+																   ColumnSpacing="0">
+																<Grid.RowDefinitions>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																	<RowDefinition Height="45"/>
+																</Grid.RowDefinitions>
+																<Grid.ColumnDefinitions>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																	<ColumnDefinition Width="*"/>
+																</Grid.ColumnDefinitions>
+																<Label Text="Category" Grid.Row="0" Grid.Column="1"
+																	   Grid.ColumnSpan="4"
+																	   HorizontalTextAlignment="Start" 
+																	   VerticalTextAlignment="Center"/>
+																<Picker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="5" 
+																	SelectedIndex="{Binding Category}" HorizontalOptions="FillAndExpand">	
+																	<Picker.Items>
+																		<x:String>Baggage Fees</x:String>
+																		<x:String>Airfare</x:String>
+																		<x:String>Car Rental</x:String>
+																		<x:String>Lodging</x:String>
+																		<x:String>Parking</x:String>
+																		<x:String>Gasoline</x:String>
+																		<x:String>Miscellaneous</x:String>
+																		<x:String>Meals</x:String>
+																		<x:String>Tools-Supplies</x:String>
+																		<x:String>Change Fees</x:String>
+																		<x:String>Transportation</x:String>
+																		<x:String>Toll</x:String>
+																		<x:String>Per Diem</x:String>
+																	</Picker.Items>
+																</Picker>
+																<Label Text="Expense Date" Grid.Row="1" Grid.Column="1"
+																	   Grid.ColumnSpan="4"
+																	   HorizontalTextAlignment="Start" 
+																	   VerticalTextAlignment="Center"/>
+																<DatePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="4"
+																	Date="{Binding ExpenseDate}"/>
+																<Label Text="Description" Grid.Row="2" Grid.Column="1"
+																	   Grid.ColumnSpan="4"
+																	   HorizontalTextAlignment="Start" 
+																	   VerticalTextAlignment="Center"/>
+																<Entry Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="4"
+																	Placeholder="Description"
+																	Text="{Binding Name}"/>
+																<Label Text="Quantity" Grid.Row="3" Grid.Column="1"
+																	   Grid.ColumnSpan="4"
+																	   HorizontalTextAlignment="Start" 
+																	   VerticalTextAlignment="Center"/>
+																<Entry Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="4"
+																	Placeholder="Quantity"
+																	Keyboard="Numeric"
+																	Text="{Binding Quantity}"/>
+																<!-- BREAK 2 -->
+																<Label Text="Currency" Grid.Row="4" Grid.Column="1"
+																	   Grid.ColumnSpan="4"
+																	   HorizontalTextAlignment="Start" 
+																	   VerticalTextAlignment="Center"/>
+																<Picker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="4" 
+																	SelectedIndex="{Binding Currency}" HorizontalOptions="FillAndExpand">
+																	<Picker.Items>
+																		<x:String>USD</x:String>
+																		<x:String>MXN</x:String>
+																	</Picker.Items>
+																</Picker>
+																<Label Text="Refundable" Grid.Row="5" Grid.Column="1"
+																	 Grid.ColumnSpan="4"
+																	 HorizontalTextAlignment="Start" 
+																	 VerticalTextAlignment="Center"/>
+																<CheckBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="4"  
+																	 IsChecked="{Binding RefundableOn}" />
+																<!-- BREAK 3 -->
+																<Button Text="DELETE" Grid.Row="6" Grid.Column="2"
+																	TextColor="White"
+																	BackgroundColor="#15212f"
+																	Grid.ColumnSpan="7"/>
+															</Grid>
+														</Frame>
+													</ViewCell>
+												</DataTemplate>
+											</ListView.ItemTemplate>
+										</ListView>
+									</Grid>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
 </ContentPage>
