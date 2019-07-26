@@ -774,7 +774,7 @@ namespace BetrackingAPP.ViewModel
             foreach (Expense expense_item in Expenses_List)
             {
                 expenses.Add(expense_item);
-                Valor_expense = expense_item.Quantity;
+                Valor_expense = decimal.Parse(expense_item.Quantity);
                 if (expense_item.Currency == 0)
                 {
                     Valor_expense = Valor_expense / expense_item.DOF;

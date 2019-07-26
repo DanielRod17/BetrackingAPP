@@ -19,10 +19,10 @@ namespace BetrackingAPP.Views
             BindingContext = new AddExpensesViewModel(reporte, usuario);
         }
 
-        private void Expense_Item_Tapped(object sender, ItemTappedEventArgs e)
+        private void Expense_Item_Tapped(object sender, EventArgs e)
         {
             var vm = BindingContext as AddExpensesViewModel;
-            var day = e.Item as ExpensesList;
+            var day = (sender as View).BindingContext as ExpensesList;
             vm.HideOrShowInputs(day);
         }
     }

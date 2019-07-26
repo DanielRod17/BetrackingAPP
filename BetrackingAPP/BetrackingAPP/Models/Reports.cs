@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace BetrackingAPP.Models
@@ -68,10 +70,43 @@ namespace BetrackingAPP.Models
         public int TravelID { get; set; }
         public int Category { get; set; }
         public string Name { get; set; }
-        public DateTime? SubmitDate { get; set; }
-        public DateTime? ExpenseDate { get; set; }
-        public decimal Quantity { get; set; }
-        public int Currency { get; set; }
+        public DateTime SubmitDate { get; set; }
+        public DateTime ExpenseDate { get; set; }
+        private string _quantity { get; set; }
+        public string Quantity
+        {
+            get
+            {
+                return _quantity;
+            }
+            set
+            {
+                _quantity = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _currency { get; set; }
+        public int Currency
+        {
+            get
+            {
+                return _currency;
+            }
+            set
+            {
+                _currency = value;
+                if (value == 0)
+                {
+                    CurrencyPicker = 1;
+                }
+                else
+                {
+                    CurrencyPicker = 0;
+                }
+                OnPropertyChanged();
+            }
+        }
+        public int CurrencyPicker { get; set; }
         public int Billable { get; set; }
         public int Refundable { get; set; }
         public string Attachments { get; set; }
@@ -82,6 +117,12 @@ namespace BetrackingAPP.Models
         public bool DescriptionOn { get; set; }
         public bool RefundableOn { get; set; }
         public bool MxOn { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public class File

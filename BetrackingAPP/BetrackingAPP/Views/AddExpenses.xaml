@@ -8,16 +8,21 @@
 	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
 	xmlns:local="clr-namespace:BetrackingAPP"
 	x:Class="BetrackingAPP.Views.AddExpenses"
-	>
+	x:Name="Page">
 
 	<ContentPage.Content>
 		<ScrollView>
-			<StackLayout x:Name="ExpensesContainer">
-				<ListView 
-					ItemsSource="{Binding ExpensesList}"
-					HasUnevenRows="True"
-					ItemTapped="Expense_Item_Tapped">
-					<ListView.ItemTemplate>
+		<StackLayout x:Name="ExpensesContainer">
+			<Label Text="{Binding ReportName}"
+				FontSize="20"
+				TextColor="White"
+				HeightRequest="100"
+				HorizontalTextAlignment="Center"
+				VerticalTextAlignment="Center"
+				BackgroundColor="#15212f"/>
+				<local:RepeaterView 
+					ItemsSource="{Binding ExpensesList}">
+					<local:RepeaterView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<Frame CornerRadius="5"
@@ -26,6 +31,9 @@
 									   BackgroundColor="White"
                                        HasShadow="False">
 									<Grid>
+										<Grid.GestureRecognizers>
+											<TapGestureRecognizer Tapped="Expense_Item_Tapped"/>
+										</Grid.GestureRecognizers>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="35"/>
 											<RowDefinition Height="{Binding DisplayAdd}"/>
@@ -66,8 +74,8 @@
 										<Button Text="+ ADD" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3"
 												TextColor="White"
 												BackgroundColor="#15212f"
-												Command="{Binding AddExpense}"
-												CommandParameter="{Binding}"/>
+												Command="{Binding Path=BindingContext.AddExpense, Source={x:Reference Page}}"
+												CommandParameter="{Binding ID}"/>
 										<ListView 
 											Grid.Row="2" 
 											Grid.Column="0" 
@@ -82,10 +90,8 @@
 															Margin="1"
 															BackgroundColor="White"
 															HasShadow="False">
-															<Grid 
-																   ColumnSpacing="0">
+															<Grid ColumnSpacing="0">
 																<Grid.RowDefinitions>
-																	<RowDefinition Height="45"/>
 																	<RowDefinition Height="45"/>
 																	<RowDefinition Height="45"/>
 																	<RowDefinition Height="45"/>
@@ -108,72 +114,53 @@
 																	<ColumnDefinition Width="*"/>
 																	<ColumnDefinition Width="*"/>
 																</Grid.ColumnDefinitions>
-																<Label Text="Category" Grid.Row="0" Grid.Column="1"
+																<Label Text="Expense Date" Grid.Row="0" Grid.Column="1"
 																	   Grid.ColumnSpan="4"
 																	   HorizontalTextAlignment="Start" 
 																	   VerticalTextAlignment="Center"/>
-																<Picker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="5" 
-																	SelectedIndex="{Binding Category}" HorizontalOptions="FillAndExpand">	
-																	<Picker.Items>
-																		<x:String>Baggage Fees</x:String>
-																		<x:String>Airfare</x:String>
-																		<x:String>Car Rental</x:String>
-																		<x:String>Lodging</x:String>
-																		<x:String>Parking</x:String>
-																		<x:String>Gasoline</x:String>
-																		<x:String>Miscellaneous</x:String>
-																		<x:String>Meals</x:String>
-																		<x:String>Tools-Supplies</x:String>
-																		<x:String>Change Fees</x:String>
-																		<x:String>Transportation</x:String>
-																		<x:String>Toll</x:String>
-																		<x:String>Per Diem</x:String>
-																	</Picker.Items>
-																</Picker>
-																<Label Text="Expense Date" Grid.Row="1" Grid.Column="1"
+																<DatePicker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4"
+																		MinimumDate="01/01/2019"
+																		Date="{Binding ExpenseDate}"/>
+																<Label Text="Description" Grid.Row="1" Grid.Column="1"
 																	   Grid.ColumnSpan="4"
 																	   HorizontalTextAlignment="Start" 
 																	   VerticalTextAlignment="Center"/>
-																<DatePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="4"
-																	Date="{Binding ExpenseDate}"/>
-																<Label Text="Description" Grid.Row="2" Grid.Column="1"
+																<Entry Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="4"
+																	Placeholder="Description"
+																	Text="{Binding Name}"/>
+																<Label Text="Quantity" Grid.Row="2" Grid.Column="1"
 																	   Grid.ColumnSpan="4"
 																	   HorizontalTextAlignment="Start" 
 																	   VerticalTextAlignment="Center"/>
 																<Entry Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="4"
-																	Placeholder="Description"
-																	Text="{Binding Name}"/>
-																<Label Text="Quantity" Grid.Row="3" Grid.Column="1"
-																	   Grid.ColumnSpan="4"
-																	   HorizontalTextAlignment="Start" 
-																	   VerticalTextAlignment="Center"/>
-																<Entry Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="4"
 																	Placeholder="Quantity"
 																	Keyboard="Numeric"
-																	Text="{Binding Quantity}"/>
+																	Text="{Binding Quantity, StringFormat='{0:F2}'}"/>
 																<!-- BREAK 2 -->
-																<Label Text="Currency" Grid.Row="4" Grid.Column="1"
+																<Label Text="Currency" Grid.Row="3" Grid.Column="1"
 																	   Grid.ColumnSpan="4"
 																	   HorizontalTextAlignment="Start" 
 																	   VerticalTextAlignment="Center"/>
-																<Picker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="4" 
-																	SelectedIndex="{Binding Currency}" HorizontalOptions="FillAndExpand">
+																<Picker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="4" 
+																	SelectedIndex="{Binding CurrencyPicker}" HorizontalOptions="FillAndExpand">
 																	<Picker.Items>
 																		<x:String>USD</x:String>
 																		<x:String>MXN</x:String>
 																	</Picker.Items>
 																</Picker>
-																<Label Text="Refundable" Grid.Row="5" Grid.Column="1"
+																<Label Text="Refundable" Grid.Row="4" Grid.Column="1"
 																	 Grid.ColumnSpan="4"
 																	 HorizontalTextAlignment="Start" 
 																	 VerticalTextAlignment="Center"/>
-																<CheckBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="4"  
+																<CheckBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="4"  
 																	 IsChecked="{Binding RefundableOn}" />
 																<!-- BREAK 3 -->
-																<Button Text="DELETE" Grid.Row="6" Grid.Column="2"
+																<Button Text="DELETE" Grid.Row="5" Grid.Column="2"
 																	TextColor="White"
 																	BackgroundColor="#15212f"
-																	Grid.ColumnSpan="7"/>
+																	Grid.ColumnSpan="7"
+																	Command="{Binding Path=BindingContext.DeleteExpense, Source={x:Reference Page}}"
+																	CommandParameter="{Binding .}"/>
 															</Grid>
 														</Frame>
 													</ViewCell>
@@ -184,8 +171,12 @@
 								</Frame>
 							</ViewCell>
 						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
+					</local:RepeaterView.ItemTemplate>
+				</local:RepeaterView>
+				<Button Text="SAVE" 
+					TextColor="White"
+					BackgroundColor="#15212f"
+					Command="{Binding GuardarExpenses}"/>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

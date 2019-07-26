@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -64,8 +65,8 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-        private List<Expense> _iexpenses { get; set; }
-        public List<Expense> iExpenses
+        private ObservableCollection<Expense> _iexpenses { get; set; }
+        public ObservableCollection<Expense> iExpenses
         {
             get
             {
@@ -74,14 +75,18 @@ namespace BetrackingAPP.Models
             set
             {
                 _iexpenses = value;
-                UpdateInfo();
-                OnPropertyChanged();
+                if (value != null)
+                {
+                    OnPropertyChanged();
+                    UpdateInfo();
+                }
             }
         }
 
-        private void UpdateInfo()
+        public void UpdateInfo()
         {
             TotalExpenses = iExpenses.Count;
+            TotalMoney = 0;
             foreach (Expense expense_item in iExpenses)
             {
                 TotalMoney += expense_item.ValorFinal;
