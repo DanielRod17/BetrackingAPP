@@ -89,7 +89,7 @@ namespace BetrackingAPP.Models
             TotalMoney = 0;
             foreach (Expense expense_item in iExpenses)
             {
-                TotalMoney += expense_item.ValorFinal;
+                TotalMoney += decimal.Parse(expense_item.Quantity);
             }
         }
 

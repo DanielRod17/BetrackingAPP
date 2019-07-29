@@ -98,11 +98,13 @@ namespace BetrackingAPP.ViewModel
                     else
                     {
                         await Application.Current.MainPage.DisplayAlert("Oops", elemeneto[1].ToString(), "OK");
+                        HasPropertyValueChanged = false;
                     }
                 }
                 else
                 {
                     await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong", "OK");
+                    HasPropertyValueChanged = false;
                 }
             }
             catch (HttpRequestException e)

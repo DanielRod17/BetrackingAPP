@@ -25,5 +25,11 @@ namespace BetrackingAPP.Views
             var day = (sender as View).BindingContext as ExpensesList;
             vm.HideOrShowInputs(day);
         }
+
+        protected override void OnDisappearing()
+        {
+            var vm = BindingContext as AddExpensesViewModel;
+            vm.EnviarUpdate();
+        }
     }
 }

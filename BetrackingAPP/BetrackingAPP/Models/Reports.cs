@@ -115,7 +115,19 @@ namespace BetrackingAPP.Models
         public string CategoryName { get; set; }
         public decimal ValorFinal { get; set; }
         public bool DescriptionOn { get; set; }
-        public bool RefundableOn { get; set; }
+        private bool _RefundableOn { get; set; }
+        public bool RefundableOn
+        {
+            get
+            {
+                return _RefundableOn;
+            }
+            set
+            {
+                _RefundableOn = value;
+                OnPropertyChanged();
+            }
+        }
         public bool MxOn { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;

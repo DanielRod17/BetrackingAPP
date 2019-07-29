@@ -38,6 +38,12 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public async Task EnviarUpdate()
+        {
+            MessagingCenter.Send<IndividualReportViewModel>(new IndividualReportViewModel(Usuario, Reporte), "Change");
+        }
+
         public Command<int> AddExpense { get; }
         public Command<Expense> DeleteExpense { get; }
         public Command GuardarExpenses { get; set; }
@@ -128,6 +134,7 @@ namespace BetrackingAPP.ViewModel
             var pop = ExpensesList[expenese - 1];
             ExpensesList.RemoveAt(expenese - 1);
             ExpensesList.Insert(expenese - 1, pop);
+            ExpensesList[expenese].UpdateInfo();
 
             /*var r = ExpensesList;
             ExpensesList = null;
@@ -185,6 +192,7 @@ namespace BetrackingAPP.ViewModel
                     expense_cat.DisplayInputs = 0;
                 }
             }
+            expense_cat.UpdateInfo();
         }
         public async Task SaveExpenses()
         {
@@ -201,6 +209,10 @@ namespace BetrackingAPP.ViewModel
             var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/SaveExpenses.php", formContent);
             if (result.IsSuccessStatusCode)
             {
+                foreach (ExpensesList expense in ExpensesList)
+                {
+                    expense.UpdateInfo();
+                }
                 var responseData = await result.Content.ReadAsStringAsync();
                 //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
                 if (responseData == "Timecard Saved!")

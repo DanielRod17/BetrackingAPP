@@ -21,13 +21,47 @@ namespace BetrackingAPP.ViewModel
 {
     public class IndividualReportViewModel : BaseViewModel
     {
-        public Reports Reporte;
+        private Reports _reporte { get; set; }
+        public Reports Reporte
+        {
+            get
+            {
+                return _reporte;
+            }
+            set
+            {
+                _reporte = value;
+                OnPropertyChanged();
+            }
+        }
 
         ObservableCollection<Expense> expenses = new ObservableCollection<Expense>();
-        public ObservableCollection<Expense> ExpensesList { get { return expenses; } }
+        public ObservableCollection<Expense> ExpensesList
+        {
+            get
+            {
+                return expenses;
+            }
+            set
+            {
+                expenses = value;
+                OnPropertyChanged();
+            }
+        }
 
         ObservableCollection<File> files = new ObservableCollection<File>();
-        public ObservableCollection<File> FilesList { get { return files; } }
+        public ObservableCollection<File> FilesList
+        {
+            get
+            {
+                return files;
+            }
+            set
+            {
+                files = value;
+                OnPropertyChanged();
+            }
+        }
         //public string Name { get; set; }
         public string ProjectName { get; set; }
         public DateTime? FromDate { get; set; }
@@ -179,7 +213,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         private string _assignmentName { get; set; }
         public string AssignmentName
         {
@@ -722,12 +755,18 @@ namespace BetrackingAPP.ViewModel
             Uri Ur = new Uri(URL);
             Device.OpenUri(Ur);
         }
-
         public IndividualReportViewModel(User usuarioFrom, Reports reportFrom)
         {
+            
             //////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////
             Reporte = reportFrom;
+
+            MessagingCenter.Subscribe<IndividualReportViewModel>(this, "Change", (sender) =>
+            {
+                ReCargarValores();
+            });
+
             BaggageExp = 0;
             AirfareExp = 0;
             CarRentalExp = 0;
@@ -745,11 +784,86 @@ namespace BetrackingAPP.ViewModel
             Refundable = 0;
             Total = 0;
 
-            CargarValores(Reporte);
+            CargarValores();
 
 
             DownloadCommand = new Command<string>(DownloadFile);
 
+            
+        }
+        public async void ReCargarValores()
+        {
+            var client = new HttpClient();
+            var URL = "https://bepc.backnetwork.net/BEPCINC/api/getReport.php?reporte=" + Reporte.ID;
+            var result = await client.GetAsync(URL);
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                Reporte = JsonConvert.DeserializeObject<Reports>(responseData, settings);
+                ExpensesList = new ObservableCollection<Expense>();
+                CargarValores();
+                
+            }
+        }
+        public void CargarValores()
+        {
+            //////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////
+            Name = Reporte.Name;
+            AssignmentName = Reporte.AssignmentName;
+            FromDate = Reporte.FromDate;
+            ToDate = Reporte.ToDate;
+            Status = (Reporte.Status + 1);
+
+            ReportType = 0;
+            Type_of_travel = Reporte.Type_of_travel;
+            Flight = Reporte.Flight;
+            From_Departure = Reporte.From_Departure;
+
+            Country_From = Reporte.country_from_name;
+            Country_To = Reporte.country_to_name;
+            Return_Country_From = Reporte.rcountry_from_name;
+            Return_Country_To = Reporte.rcountry_to_name;
+            //var taskDelay = Task.Delay(3000);
+            Task.Delay(3000);
+            State_From = Reporte.state_from_name;
+            State_To = Reporte.state_to_name;
+            Return_State_From = Reporte.rstate_from_name;
+            Return_State_To = Reporte.rstate_to_name;
+            Task.Delay(2500);
+            City_From = Reporte.city_from_name;
+            City_To = Reporte.city_to_name;
+            Return_City_From = Reporte.rcity_from_name;
+            Return_City_To = Reporte.rcity_to_name;
+            //await taskDelay;
+
+            Arrival_Date = Reporte.Arrival_Date;
+            To_Departure = Reporte.To_Departure;
+
+            Seating_preference = Reporte.Seating_preference;
+
+
+            Hotel_Arrival_Date = Reporte.Hotel_Arrival_Date;
+            Hotel_Departure_Date = Reporte.Hotel_Departure_Date;
+            Smoking = Reporte.Smoking;
+            Special_Needs = Reporte.Special_Needs;
+            Ground_Method = Reporte.Ground_Method;
+            Emerald_Club_Number = Reporte.Emeral_Club_Number;
+            Car_Rental_Pickup_Date = Reporte.Car_Rental_Pickup_Date;
+            Car_Rental_Time = Reporte.Car_Rental_Time;
+            Car_Size_Preference = 0;
+            Car_Rental_Return = Reporte.Car_Rental_Return;
+            Car_Rental_Return_Time = Reporte.Car_Rental_Return_Time;
+            Reason_Request = Reporte.Reason_Request;
+            Emergency_Contact = Reporte.Emergency_Contact;
+            //////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////
             if (Reporte.Reason_Request != null)
             {
                 DisplayHeight = 45;
@@ -760,24 +874,26 @@ namespace BetrackingAPP.ViewModel
                 DisplayHeight = 0;
                 ReportType = 0;
             }
-            var Expenses_List = reportFrom.Expenses;
-            var Files_List = reportFrom.Files;
+            var Expenses_Lista = Reporte.Expenses;
+            var Files_List = Reporte.Files;
             decimal Valor_expense = 0;
 
-            ProjectName = reportFrom.ProjectName;
-            FromDate = reportFrom.FromDate;
-            ToDate = reportFrom.ToDate;
+            ProjectName = Reporte.ProjectName;
+            FromDate = Reporte.FromDate;
+            ToDate = Reporte.ToDate;
+            files = new ObservableCollection<File>();
+            ExpensesList = new ObservableCollection<Expense>();
             foreach (File file_item in Files_List)
             {
                 files.Add(file_item);
             }
-            foreach (Expense expense_item in Expenses_List)
+            foreach (Expense expense_item in Expenses_Lista)
             {
-                expenses.Add(expense_item);
+                ExpensesList.Add(expense_item);
                 Valor_expense = decimal.Parse(expense_item.Quantity);
                 if (expense_item.Currency == 0)
                 {
-                    Valor_expense = Valor_expense / expense_item.DOF;
+                    Valor_expense = decimal.Parse(String.Format("{0:.##}", (Valor_expense / expense_item.DOF)));
                 }
 
                 if (expense_item.Refundable == 1)
@@ -829,61 +945,6 @@ namespace BetrackingAPP.ViewModel
                         break;
                 }
             }
-        }
-
-        public async Task CargarValores(Reports Reporte)
-        {
-            //////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////////////////
-            Name = Reporte.Name;
-            AssignmentName = Reporte.AssignmentName;
-            FromDate = Reporte.FromDate;
-            ToDate = Reporte.ToDate;
-            Status = (Reporte.Status + 1);
-
-            ReportType = 0;
-            Type_of_travel = Reporte.Type_of_travel;
-            Flight = Reporte.Flight;
-            From_Departure = Reporte.From_Departure;
-
-            Country_From = Reporte.country_from_name;
-            Country_To = Reporte.country_to_name;
-            Return_Country_From = Reporte.rcountry_from_name;
-            Return_Country_To = Reporte.rcountry_to_name;
-            //var taskDelay = Task.Delay(3000);
-            await Task.Delay(3000);
-            State_From = Reporte.state_from_name;
-            State_To = Reporte.state_to_name;
-            Return_State_From = Reporte.rstate_from_name;
-            Return_State_To = Reporte.rstate_to_name;
-            await Task.Delay(2500);
-            City_From = Reporte.city_from_name;
-            City_To = Reporte.city_to_name;
-            Return_City_From = Reporte.rcity_from_name;
-            Return_City_To = Reporte.rcity_to_name;
-            //await taskDelay;
-
-            Arrival_Date = Reporte.Arrival_Date;
-            To_Departure = Reporte.To_Departure;
-
-            Seating_preference = Reporte.Seating_preference;
-
-
-            Hotel_Arrival_Date = Reporte.Hotel_Arrival_Date;
-            Hotel_Departure_Date = Reporte.Hotel_Departure_Date;
-            Smoking = Reporte.Smoking;
-            Special_Needs = Reporte.Special_Needs;
-            Ground_Method = Reporte.Ground_Method;
-            Emerald_Club_Number = Reporte.Emeral_Club_Number;
-            Car_Rental_Pickup_Date = Reporte.Car_Rental_Pickup_Date;
-            Car_Rental_Time = Reporte.Car_Rental_Time;
-            Car_Size_Preference = 0;
-            Car_Rental_Return = Reporte.Car_Rental_Return;
-            Car_Rental_Return_Time = Reporte.Car_Rental_Return_Time;
-            Reason_Request = Reporte.Reason_Request;
-            Emergency_Contact = Reporte.Emergency_Contact;
-            //////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////////////////////////////////////////////
         }
 
         public async void ChangeStates(int v)
@@ -984,6 +1045,11 @@ namespace BetrackingAPP.ViewModel
         public async void AddExpenses(Reports reporte, User usuario)
         {
             await App.Current.MainPage.Navigation.PushAsync(new AddExpenses(reporte, usuario));
+        }
+
+        public async void AddFiles(Reports reporte, User usuario)
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new AddFiles(reporte, usuario));
         }
     }
 }
