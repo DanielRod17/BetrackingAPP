@@ -21,10 +21,12 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="17.1.0.52" />
     <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF" Version="1.0.2" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.3.1-beta" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.1.1.1-beta" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.496342-pre2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="2.1.1" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.30-beta" />
     <PackageReference Include="Xfx.Controls" Version="1.2.1" />
     <PackageReference Include="XLabs.Forms" Version="2.3.0-pre05" />
   </ItemGroup>

@@ -10,6 +10,7 @@ using ImageCircle.Forms.Plugin.Droid;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Pages;
 using Xfx;
+using Plugin.CurrentActivity;
 
 namespace BetrackingAPP.Droid
 {
@@ -17,7 +18,10 @@ namespace BetrackingAPP.Droid
     public partial/*GORILLA*/class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         private Bundle bundle;
-
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -25,6 +29,7 @@ namespace BetrackingAPP.Droid
 
             base.OnCreate(savedInstanceState);
             XfxControls.Init();
+            CrossCurrentActivity.Current.Init(this, bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

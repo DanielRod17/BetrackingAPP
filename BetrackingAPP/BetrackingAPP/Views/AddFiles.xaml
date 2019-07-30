@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:BetrackingAPP"
              mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.AddFiles">
+             x:Class="BetrackingAPP.Views.AddFiles"
+			 x:Name="Page">
     <ContentPage.Content>
         <StackLayout>
 			<Label Text="ADD FILES"
@@ -28,16 +30,73 @@
 					BorderRadius="2"
 					Clicked="PickPhoto_Clicked"
 				/>
-			<Button Text="Save" 
+			<Button Text="Take Photo" 
 					TextColor="White"
 					FontSize="14"
 					BackgroundColor="#15212f"
 					BorderRadius="2"
 					Clicked="TakePhoto_Clicked"
 				/>
-			<Image x:Name="FileImage"
-				   WidthRequest="400"
-				   HeightRequest="220"/>
+			<ListView
+				ItemsSource="{Binding Medias}"
+				HasUnevenRows="true">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Frame CornerRadius="5"
+								 Padding="0"
+								 Margin="1"
+								 BackgroundColor="White"
+                                 HasShadow="False">
+								<StackLayout>
+									<Image 
+									   WidthRequest="400"
+									   HeightRequest="220"
+									   Source="{Binding Path}"/>
+									<Label Text="{Binding FileName}"/>
+									<Button Text="Delete" 
+											TextColor="White"
+											FontSize="14"
+											BackgroundColor="#15212f"
+											BorderRadius="2"
+											Command="{Binding Path=BindingContext.DeleteMedia, Source={x:Reference Page}}"
+											CommandParameter="{Binding .}"/>
+								</StackLayout>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			<ListView
+				ItemsSource="{Binding Archivos}"
+				HasUnevenRows="true">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Frame CornerRadius="5"
+								 Padding="0"
+								 Margin="1"
+								 BackgroundColor="White"
+                                 HasShadow="False">
+								<StackLayout>
+									<Image 
+									   WidthRequest="400"
+									   HeightRequest="220"
+									   Source="{Binding Path}"/>
+									<Label Text="{Binding FileName}"/>
+									<Button Text="Delete" 
+										TextColor="White"
+										FontSize="14"
+										BackgroundColor="#15212f"
+										BorderRadius="2"
+										Command="{Binding Path=BindingContext.DeleteFile, Source={x:Reference Page}}"
+										CommandParameter="{Binding .}"/>
+								</StackLayout>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 			<Button Text="Upload!" 
 					TextColor="White"
 					FontSize="14"

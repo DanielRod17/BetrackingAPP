@@ -150,6 +150,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete">
       <Version>17.1.0.52</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.3.1-beta</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.1.1.1-beta</Version>
     </PackageReference>
@@ -157,6 +160,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack">
       <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Plugin.FilePicker">
+      <Version>2.1.30-beta</Version>
     </PackageReference>
     <PackageReference Include="Xfx.Controls">
       <Version>1.2.1</Version>
@@ -252,5 +258,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pdficon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fileicon.png" />
   </ItemGroup>
 </Project>
