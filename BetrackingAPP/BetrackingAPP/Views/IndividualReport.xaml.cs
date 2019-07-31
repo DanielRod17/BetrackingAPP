@@ -46,13 +46,18 @@ namespace BetrackingAPP.Views
                 Button = new Button { Text = "Add Files", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
                 Button.Clicked += delegate { AddFiles(eu_report, usuario, Button); };
                 stackPanel.Children.Add(Button);
+
+                stackPanel = this.FindByName<StackLayout>("relatedPanel");
+                Button = new Button { Text = "Submit Report", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
+                Button.Clicked += delegate { SubmitReport(eu_report, usuario, Button); };
+                stackPanel.Children.Add(Button);
             }
             Cargado = true;
         }
         protected override void OnAppearing()
         {
             var vm = BindingContext as IndividualReportViewModel;
-            vm.CargarValores();
+            //vm.CargarValores();
         }
         private void AddExpenses(Reports eu_report, User usuario, Button button)
         {
@@ -64,6 +69,12 @@ namespace BetrackingAPP.Views
         {
             var vm = BindingContext as IndividualReportViewModel;
             vm.AddFiles(eu_report, usuario);
+        }
+
+        private void SubmitReport(Reports eu_report, User usuario, Button button)
+        {
+            var vm = BindingContext as IndividualReportViewModel;
+            vm.SubmitReport(eu_report, usuario);
         }
     }
 }

@@ -5,7 +5,7 @@
 
 	<ContentPage.Resources>
 		<ResourceDictionary>
-			<Style x:Key="Box1" TargetType="BoxView">
+			<!--<Style x:Key="Box1" TargetType="BoxView">
 				<Setter Property="BackgroundColor" Value="#77000000"/>
 				<Setter Property="IsVisible" Value="False"></Setter>
 			</Style>
@@ -18,7 +18,7 @@
 			</Style>
 			<Style x:Key="Stack2" TargetType="BoxView">
 				<Setter Property="IsVisible" Value="True"></Setter>
-			</Style>
+			</Style>-->
 		</ResourceDictionary>
 	</ContentPage.Resources>
 
@@ -44,7 +44,8 @@
 			</StackLayout>
 
 			<!---->
-			<BoxView Style="{StaticResource Box1}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+			<!--
+			<BoxView BackgroundColor="#77000000" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 				<BoxView.Triggers>
 					<DataTrigger TargetType="BoxView" Binding="{Binding HasPropertyValueChanged}" Value="true">
 						<Setter Property="Style" Value="{StaticResource Box2}" />
@@ -56,13 +57,12 @@
 				<ActivityIndicator IsRunning="True" Color ="#BBFFFFFF"
 					VerticalOptions="FillAndExpand"/>
 				<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"/>
-			<!---->
-				<StackLayout.Triggers>
-					<DataTrigger TargetType="StackLayout" Binding="{Binding HasPropertyValueChanged}" Value="true">
-						<Setter Property="Style" Value="{StaticResource Stack2}" />
-					</DataTrigger>
-				</StackLayout.Triggers>
-			</StackLayout>
+			<StackLayout.Triggers>
+				<DataTrigger TargetType="StackLayout" Binding="{Binding HasPropertyValueChanged}" Value="true">
+					<Setter Property="Style" Value="{StaticResource Stack2}" />
+				</DataTrigger>
+			</StackLayout.Triggers>
+			</StackLayout>-->
 		</AbsoluteLayout>
 	</ScrollView>
 </ContentPage>

@@ -130,6 +130,7 @@ namespace BetrackingAPP.ViewModel
         internal async Task SubirArchivosAsync()
         {
             var content = new MultipartFormDataContent();
+
             foreach (FilesAdd media in Medias)
             {
                 content.Add(new StreamContent(media.Archivo.GetStream()),

@@ -725,8 +725,8 @@
 				<ListView
 					x:Name="FilesList"
 					ItemsSource="{Binding FilesList}"
-					IsPullToRefreshEnabled="true" 
-					RowHeight="200">
+					IsPullToRefreshEnabled="false"
+					HasUnevenRows="true">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell >
@@ -743,6 +743,16 @@
 											CommandParameter="{Binding URL}"
 											IsVisible="{Binding HasPropertyValueChanged}" 
 											Text="Download" 
+											TextColor="White"
+											FontSize="14"
+											BackgroundColor="#15212f"
+											BorderRadius="2"
+											/>
+										<Button
+											Command="{Binding Path=BindingContext.DeleteFileCommand, Source={x:Reference Page}}"
+											CommandParameter="{Binding .}"
+											IsVisible="{Binding HasPropertyValueChanged}" 
+											Text="Delete" 
 											TextColor="White"
 											FontSize="14"
 											BackgroundColor="#15212f"

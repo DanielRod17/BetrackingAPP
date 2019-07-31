@@ -14,5 +14,5 @@
 	<BetrackingAPP:Home Icon="Home50.png" Title="" BindingContext="{Binding HomeViewModel}" />
 	<BetrackingAPP:Timecards Icon="timecards50.png" Title="" BindingContext="{Binding TimecardsViewModel}" />
 	<BetrackingAPP:Expenses  Icon="Expenses50.png" Title=""  BindingContext="{Binding ExpensesViewModel}"  />
-	<BetrackingAPP:Expenses  Icon="Settings50.png" Title=""  />
+	<BetrackingAPP:Settings  Icon="Settings50.png" Title="" BindingContext="{Binding SettingsViewModel}" />
 </TabbedPage>

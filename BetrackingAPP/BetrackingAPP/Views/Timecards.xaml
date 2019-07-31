@@ -9,6 +9,7 @@
 			 BackgroundColor="#f4f4f4">
 
 	<ContentPage.Resources>
+		<!--
 		<ResourceDictionary>
 			<Style x:Key="Box1" TargetType="BoxView">
 				<Setter Property="BackgroundColor" Value="#77000000"/>
@@ -24,7 +25,7 @@
 			<Style x:Key="Stack2" TargetType="BoxView">
 				<Setter Property="IsVisible" Value="True"></Setter>
 			</Style>
-		</ResourceDictionary>
+		</ResourceDictionary>-->
 	</ContentPage.Resources>
 
 	<Grid>
@@ -148,7 +149,7 @@
 			</ListView>
 		</StackLayout>
 
-		<!---->
+		<!--
 		<BoxView Style="{StaticResource Box1}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 			<BoxView.Triggers>
 				<DataTrigger TargetType="BoxView" Binding="{Binding HasPropertyValueChanged}" Value="true">
@@ -161,12 +162,11 @@
 			<ActivityIndicator IsRunning="True" Color ="#BBFFFFFF"
 				VerticalOptions="FillAndExpand"/>
 			<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"/>
-			<!---->
 		<StackLayout.Triggers>
 			<DataTrigger TargetType="StackLayout" Binding="{Binding HasPropertyValueChanged}" Value="true">
 				<Setter Property="Style" Value="{StaticResource Stack2}" />
 			</DataTrigger>
 		</StackLayout.Triggers>
-		</StackLayout>
+		</StackLayout>-->
 	</Grid>
 </ContentPage>

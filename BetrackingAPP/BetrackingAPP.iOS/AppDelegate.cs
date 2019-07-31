@@ -9,6 +9,7 @@ using Xfx;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Plugin.DownloadManager;
 
 namespace BetrackingAPP.iOS
 {
@@ -19,7 +20,10 @@ namespace BetrackingAPP.iOS
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         public object ImagecircleRender { get; private set; }
-
+        public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, Action completionHandler)
+        {
+            CrossDownloadManager.BackgroundSessionCompletionHandler = completionHandler;
+        }
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window

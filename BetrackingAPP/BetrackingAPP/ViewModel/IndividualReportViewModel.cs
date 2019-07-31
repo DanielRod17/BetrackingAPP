@@ -15,7 +15,9 @@ using Newtonsoft.Json.Linq;
 using System.Windows.Input;
 using Rg.Plugins.Popup.Services;
 using Rg.Plugins.Popup.Extensions;
+using Plugin.DownloadManager;
 using System.Net;
+using Plugin.DownloadManager.Abstractions;
 
 namespace BetrackingAPP.ViewModel
 {
@@ -49,19 +51,7 @@ namespace BetrackingAPP.ViewModel
             }
         }
 
-        ObservableCollection<File> files = new ObservableCollection<File>();
-        public ObservableCollection<File> FilesList
-        {
-            get
-            {
-                return files;
-            }
-            set
-            {
-                files = value;
-                OnPropertyChanged();
-            }
-        }
+        
         //public string Name { get; set; }
         public string ProjectName { get; set; }
         public DateTime? FromDate { get; set; }
@@ -87,6 +77,20 @@ namespace BetrackingAPP.ViewModel
         ///////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////
 
+        private ObservableCollection<File> files = new ObservableCollection<File>();
+        public ObservableCollection<File> FilesList
+        {
+            get
+            {
+                return files;
+            }
+            set
+            {
+                files = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<string> _StatesListFrom = new ObservableCollection<string>();
         private ObservableCollection<string> _CitiesListFrom = new ObservableCollection<string>();
         public ObservableCollection<string> StatesListFrom
@@ -101,6 +105,41 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        internal async void SubmitReport(Reports eu_report, User usuario)
+        {
+            HttpClient client = new HttpClient();
+
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("Usuario",usuario.Id.ToString()),
+                new KeyValuePair<string, string>("Reporte", eu_report.ID.ToString()),
+                new KeyValuePair<string, string>("Firstname", usuario.Firstname),
+                new KeyValuePair<string, string>("Lastname", usuario.Lastname),
+                new KeyValuePair<string, string>("Email", usuario.Email),
+                new KeyValuePair<string, string>("Payroll", usuario.Payroll.ToString())
+            }); ;
+
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/SubmitReport.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                if (responseData == "Timecard Saved!")
+                {
+                    //await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+            }
+        }
+
         public ObservableCollection<string> CitiesListFrom
         {
             get
@@ -748,12 +787,54 @@ namespace BetrackingAPP.ViewModel
         //////////////////////////////////////////////////////
         //////////////////////////////////////////////////////
         public Command DownloadCommand { get; private set; }
-        void DownloadFile(string URL)
+        public Command DeleteFileCommand { get; private set; }
+        public IDownloadFile File;
+        async void DownloadFile(string URL)
         {
+
             URL = "https://bepc.backnetwork.net/BEPCINC" + URL;
-            WebClient myWebClient = new WebClient();
-            Uri Ur = new Uri(URL);
-            Device.OpenUri(Ur);
+            File = CrossDownloadManager.Current.CreateDownloadFile(
+                URL
+            // If you need, you can add a dictionary of headers you need.
+            //, new Dictionary<string, string> {
+            //    { "Cookie", "LetMeDownload=1;" },
+            //    { "Authorization", "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==" }
+            //}
+            );
+            CrossDownloadManager.Current.Start(File, true);
+            bool isDownloading = true;
+            while (isDownloading)
+            {
+                await Task.Delay(500);
+                isDownloading = IsDownloading(File);
+            }
+            await Application.Current.MainPage.DisplayAlert("Success", "File Downloaded!", "OK");
+            //Device.OpenUri(new Uri(File.DestinationPathName));
+        }
+        public void DeleteFile(File Arquivo)
+        {
+            FilesList.Remove(Arquivo);
+        }
+
+        bool IsDownloading(IDownloadFile file)
+        {
+            if (file == null) return false;
+
+            switch (file.Status)
+            {
+                case DownloadFileStatus.INITIALIZED:
+                case DownloadFileStatus.PAUSED:
+                case DownloadFileStatus.PENDING:
+                case DownloadFileStatus.RUNNING:
+                    return true;
+
+                case DownloadFileStatus.COMPLETED:
+                case DownloadFileStatus.CANCELED:
+                case DownloadFileStatus.FAILED:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         public IndividualReportViewModel(User usuarioFrom, Reports reportFrom)
         {
@@ -783,13 +864,11 @@ namespace BetrackingAPP.ViewModel
             Billable = 0;
             Refundable = 0;
             Total = 0;
-
+            FilesList = new ObservableCollection<File>();
             CargarValores();
 
-
             DownloadCommand = new Command<string>(DownloadFile);
-
-            
+            DeleteFileCommand = new Command<Models.File>(DeleteFile);
         }
         public async void ReCargarValores()
         {
@@ -808,7 +887,6 @@ namespace BetrackingAPP.ViewModel
                 Reporte = JsonConvert.DeserializeObject<Reports>(responseData, settings);
                 ExpensesList = new ObservableCollection<Expense>();
                 CargarValores();
-                
             }
         }
         public void CargarValores()
@@ -881,11 +959,11 @@ namespace BetrackingAPP.ViewModel
             ProjectName = Reporte.ProjectName;
             FromDate = Reporte.FromDate;
             ToDate = Reporte.ToDate;
-            files = new ObservableCollection<File>();
+            //files = new ObservableCollection<File>();
             ExpensesList = new ObservableCollection<Expense>();
             foreach (File file_item in Files_List)
             {
-                files.Add(file_item);
+                FilesList.Add(file_item);
             }
             foreach (Expense expense_item in Expenses_Lista)
             {

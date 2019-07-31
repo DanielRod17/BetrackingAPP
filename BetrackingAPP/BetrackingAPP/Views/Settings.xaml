@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BetrackingAPP.Views.Settings"
+			 BackgroundColor="#f4f4f4"
+			 x:Name="Page">
+	<Grid>
+		<StackLayout>
+			<StackLayout BackgroundColor="#f4f4f4">
+				<Label Text=""
+						   FontSize="30"
+						   TextColor="#f4c53f"
+						   HeightRequest="15"
+						   HorizontalTextAlignment="Center"
+						   VerticalTextAlignment="Center"/>
+				<Image Source="BETRACKING.png"
+                       HeightRequest="40"
+                       WidthRequest="80"/>
+			</StackLayout>
+			<StackLayout BackgroundColor="#15212f">
+				<Label Text="S E T T I N G S"
+						   FontSize="40"
+						   TextColor="White"
+						   HeightRequest="90"
+						   HorizontalTextAlignment="Center"
+						   VerticalTextAlignment="Center"/>
+			</StackLayout>
+			<StackLayout Margin="20">
+				<TableView Intent="Form">
+					<TableRoot Title="Settings">
+						<TableSection Title="General Info">
+
+							<ViewCell>
+								<ViewCell.View>
+									<Button
+                                        Text="Betracking Web >"
+                                        BackgroundColor="White"
+                                        TextColor="Black"
+                                        Clicked="Button_Clicked"/>
+								</ViewCell.View>
+							</ViewCell>
+							<ViewCell>
+								<ViewCell.View>
+									<Button
+                                        Text="Privacy Policy >"
+                                        BackgroundColor="White"
+                                        TextColor="Black"/>
+								</ViewCell.View>
+							</ViewCell>
+							<ViewCell>
+								<ViewCell.View>
+									<Button
+                                        Text="Term of Services >"
+                                        BackgroundColor="White"
+                                        TextColor="#15212f"/>
+								</ViewCell.View>
+							</ViewCell>
+						</TableSection>
+						<TableSection Title="Are you having trouble?">
+							<ViewCell>
+								<ViewCell.View>
+									<Button
+                                        Text="Help >"
+                                        BackgroundColor="White"
+                                        TextColor="Black"
+                                        Command="{Binding Path=BindingContext.GoToHelp, Source={x:Reference Page}}"
+										CommandParameter="{Binding usuario}"/>
+								</ViewCell.View>
+							</ViewCell>
+							<ViewCell>
+								<ViewCell.View>
+									<Button
+                                        Text="Sign Out >"
+                                        BackgroundColor="White"
+                                        TextColor="#15212f"
+                                        Command="{Binding Path=BindingContext.GoToHelp, Source={x:Reference Page}}"
+										CommandParameter="{Binding usuario}"/>
+								</ViewCell.View>
+							</ViewCell>
+						</TableSection>
+					</TableRoot>
+				</TableView>
+			</StackLayout>
+		</StackLayout>
+		<Grid Opacity=".8" BackgroundColor="Black" IsVisible="false">
+			<ActivityIndicator IsRunning="false"
+				HorizontalOptions="Center">
+			</ActivityIndicator>
+		</Grid>
+	</Grid>
+</ContentPage>

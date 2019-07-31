@@ -13,6 +13,7 @@ namespace BetrackingAPP.ViewModel
         public TimecardsViewModel TimecardsViewModel { set; get; }
         public ExpensesViewModel ExpensesViewModel { set; get; }
         public HomeViewModel HomeViewModel { set; get; }
+        public SettingsViewModel SettingsViewModel { set; get; }
         //private User usuarioLoged;
 
         public MainPageViewModel(User usuario)
@@ -21,6 +22,7 @@ namespace BetrackingAPP.ViewModel
             TimecardsViewModel = new TimecardsViewModel (usuario);
             HomeViewModel = new HomeViewModel(usuario);
             ExpensesViewModel = new ExpensesViewModel(usuario);
+            SettingsViewModel = new SettingsViewModel(usuario);
             //Application.Current.MainPage.DisplayAlert("Oops", Firstname, "OK");
         }
     }
