@@ -45,7 +45,7 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-        public DateTime _dateSearch = DateTime.Today;
+        private DateTime _dateSearch = DateTime.Today;
         private bool IsLoading
         {
             get => inWork;
@@ -60,8 +60,6 @@ namespace BetrackingAPP.ViewModel
         {
             set
             {
-                OnPropertyChanged();
-
                 if (value.ToString() != "1/1/0001 12:00:00 AM")
                 {
                     if ((int)value.DayOfWeek != 0)
@@ -86,6 +84,7 @@ namespace BetrackingAPP.ViewModel
                 {
                     _dateSearch = value;
                 }
+                OnPropertyChanged();
             }
             get {
                 if (_dateSearch.ToString() != "1/1/0001 12:00:00 AM")
@@ -132,6 +131,7 @@ namespace BetrackingAPP.ViewModel
 
         public async void GoToTimecard(Timecard eu_timecard, User usuario)
         {
+            HasPropertyValueChanged = true;
             var bandera = 0;
             for (var i = 0; i < usuario.Assignments.Length; i ++)
             {
@@ -151,6 +151,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualTimeInOut(eu_timecard, usuario, _dateSearch));
             }
+            HasPropertyValueChanged = false;
         }
 
         public TimecardsViewModel(User usuarioFrom)
@@ -161,6 +162,7 @@ namespace BetrackingAPP.ViewModel
 
         public async Task NavigateToNewTimecard()
         {
+            HasPropertyValueChanged = true;
             var bandera = 0;
             for (var i = 0; i < usuario.Assignments.Length; i++)
             {
@@ -171,13 +173,13 @@ namespace BetrackingAPP.ViewModel
             }
             if (bandera == 1)
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new NewTimecard(Timecards, usuario, _dateSearch));
+                await Application.Current.MainPage.Navigation.PushAsync(new NewTimecard(Timecards, usuario, FechaSeleccionada));
             }
             else
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new NewTimeOut(Timecards, usuario, _dateSearch));
+                await Application.Current.MainPage.Navigation.PushAsync(new NewTimeOut(Timecards, usuario, FechaSeleccionada));
             }
-            
+            HasPropertyValueChanged = false;
         }
         public Command SearchCommand { get; set; }
         public async void LoadTimecards(User usuario, DateTime dateSearch)

@@ -10,11 +10,13 @@ namespace BetrackingAPP
 {
     public partial class App : Application
     {
+        private static bool _logedin { get; set; }
+        public static bool Logedin { get; set; }
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new LoginPage(null));
             //MainPage = new  NavigationPage(new IndividualCard());
         }
 

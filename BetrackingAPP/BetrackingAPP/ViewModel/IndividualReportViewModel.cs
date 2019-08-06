@@ -889,7 +889,7 @@ namespace BetrackingAPP.ViewModel
                 CargarValores();
             }
         }
-        public void CargarValores()
+        public async void CargarValores()
         {
             //////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////
@@ -909,12 +909,12 @@ namespace BetrackingAPP.ViewModel
             Return_Country_From = Reporte.rcountry_from_name;
             Return_Country_To = Reporte.rcountry_to_name;
             //var taskDelay = Task.Delay(3000);
-            Task.Delay(3000);
+            await Task.Delay(2000);
             State_From = Reporte.state_from_name;
             State_To = Reporte.state_to_name;
             Return_State_From = Reporte.rstate_from_name;
             Return_State_To = Reporte.rstate_to_name;
-            Task.Delay(2500);
+            await Task.Delay(1500);
             City_From = Reporte.city_from_name;
             City_To = Reporte.city_to_name;
             Return_City_From = Reporte.rcity_from_name;

@@ -720,8 +720,7 @@
 		</ScrollView>
 	</ContentPage>
 	<ContentPage Title="Files">
-		<ScrollView>
-			<StackLayout x:Name="Files">
+		<StackLayout x:Name="Files">
 				<ListView
 					x:Name="FilesList"
 					ItemsSource="{Binding FilesList}"
@@ -765,6 +764,5 @@
 					</ListView.ItemTemplate>
 				</ListView>
 			</StackLayout>
-		</ScrollView>
 	</ContentPage>
 </TabbedPage>

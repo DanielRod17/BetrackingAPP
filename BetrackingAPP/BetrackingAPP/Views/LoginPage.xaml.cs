@@ -16,27 +16,18 @@ namespace BetrackingAPP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        public LoginPage(User usuario)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            Init();
+            //Init();
         }
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+            App.Logedin = false;
             this.BindingContext = new LoginPageViewModel(Navigation);
-            //Scroll();
+            base.OnAppearing();
         }
-
-
-        void Init()
-        {
-            //BackgroundColor = Constants.BackgroundColor;
-            //ActivitySpinner.IsVisible = false;
-            //LoginIcon.HeightRequest = Constants.LoginIconHeight;
-        }
-
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Plugin.DownloadManager;
+using FFImageLoading.Forms.Platform;
 
 namespace BetrackingAPP.iOS
 {
@@ -36,6 +37,7 @@ namespace BetrackingAPP.iOS
             AppCenter.Start("5591c0eb-8f92-4ce0-b444-ca5943cea3d9", typeof(Analytics), typeof(Crashes));
             XfxControls.Init();
             Rg.Plugins.Popup.Popup.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             global::Xamarin.Forms.Forms.Init();
 
             ImagecircleRender.Init();

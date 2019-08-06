@@ -12,6 +12,7 @@ using System.Net.Http;
 using Plugin.Permissions;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+using System.IO;
 
 namespace BetrackingAPP.Views
 {
@@ -40,34 +41,16 @@ namespace BetrackingAPP.Views
 
         private async void PickFile_Clicked(object sender, EventArgs e)
         {
-            var file = await CrossFilePicker.Current.PickFile();
-
+            var filetypes = new string[] { "application/pdf" };
+            var file = await CrossFilePicker.Current.PickFile(filetypes);
+            if (file == null)
+            {
+                return;
+            }
             if (file != null)
             {
-
-                var elemento = ImageSource.FromStream(() => {
-                    return _mediaFile.GetStream();
-                });
-                AgregarAListaArchivo(file);
-                /*var splitted = file.FileName.Split('.');
-                var ext = splitted[splitted.Length - 1];
-
-                if (ext.ToUpper() == "JPG" || ext.ToUpper() == "PNG" || ext.ToUpper() == "BMP" || ext.ToUpper() == "GIF")
-                {
-                    FileImage.Source = ImageSource.FromStream(() =>
-                    {
-                        return file.GetStream();
-                    });
-                }
-                else if (ext.ToUpper() == "PDF")
-                {
-                    //FileImage.Source = "pdficon.png";
-                }
-                else
-                {
-                    //FileImage.Source = "fileicon.png";
-                }*/
-
+                var elemento = file.GetStream();
+                AgregarAListaArchivo(file, elemento);
             }
 
         }
@@ -145,10 +128,10 @@ namespace BetrackingAPP.Views
             vm.AgregarALista(_mediaFile, elemento);
         }
 
-        public void AgregarAListaArchivo(FileData file)
+        public void AgregarAListaArchivo(FileData file, System.IO.Stream elemento)
         {
             var vm = BindingContext as AddFilesViewModel;
-            vm.AgregarAListaArchivo(file);
+            vm.AgregarAListaArchivo(file, elemento);
         }
     }
 }

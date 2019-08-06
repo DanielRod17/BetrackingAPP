@@ -7,25 +7,10 @@
 			 xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              mc:Ignorable="d"
              x:Class="BetrackingAPP.Views.Expenses"
-			 BackgroundColor="#f4f4f4">
-	<ContentPage.Resources>
-		<!--<ResourceDictionary>
-			<Style x:Key="Box1" TargetType="BoxView">
-				<Setter Property="BackgroundColor" Value="#77000000"/>
-				<Setter Property="IsVisible" Value="False"></Setter>
-			</Style>
-			<Style x:Key="Box2" TargetType="BoxView">
-				<Setter Property="BackgroundColor" Value="#77000000"/>
-				<Setter Property="IsVisible" Value="True"></Setter>
-			</Style>
-			<Style x:Key="Stack1" TargetType="BoxView">
-				<Setter Property="IsVisible" Value="False"></Setter>
-			</Style>
-			<Style x:Key="Stack2" TargetType="BoxView">
-				<Setter Property="IsVisible" Value="True"></Setter>
-			</Style>
-		</ResourceDictionary>-->
-	</ContentPage.Resources>
+			 BackgroundColor="#f4f4f4"
+			 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+			 xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+			 xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 	<Grid>
 		<StackLayout>
 			<StackLayout BackgroundColor="#f4f4f4">
@@ -118,25 +103,14 @@
 				</ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
-		<!--
-		<BoxView Style="{StaticResource Box1}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-			<BoxView.Triggers>
-				<DataTrigger TargetType="BoxView" Binding="{Binding HasPropertyValueChanged}" Value="true">
-					<Setter Property="Style" Value="{StaticResource Box2}" />
-				</DataTrigger>
-			</BoxView.Triggers>
-		</BoxView>
-		<StackLayout Style="{StaticResource Stack1}" x:Name="loginDisplays" IsVisible="{Binding HasPropertyValueChanged}" AbsoluteLayout.LayoutFlags="All" 
-				AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.5,0.3">
-			<ActivityIndicator IsRunning="True" Color ="#BBFFFFFF"
-				VerticalOptions="FillAndExpand"/>
-			<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center"/>
-			<StackLayout.Triggers>
-			<DataTrigger TargetType="StackLayout" Binding="{Binding HasPropertyValueChanged}" Value="true">
-				<Setter Property="Style" Value="{StaticResource Stack2}" />
-			</DataTrigger>
-		</StackLayout.Triggers>
-		</StackLayout>-->
+		<StackLayout AbsoluteLayout.LayoutFlags="All" 
+					AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<!--<Image Source="fileicon.png" HeightRequest="200"></Image>-->
+				<ffSvg:SvgCachedImage HeightRequest="200" Source="loadinggifi.gif"/>
+				<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+			</StackLayout>
+		</StackLayout>
 	</Grid>
 </ContentPage>
 

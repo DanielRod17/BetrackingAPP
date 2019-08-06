@@ -2,6 +2,7 @@
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
@@ -21,5 +22,7 @@ namespace BetrackingAPP.Models
         public FileData Archivo { get; set; }
         public string Path { get; set; }
         public string FileName { get; set; }
+        public string Contents { get; set; }
+        public Stream Contenido { get; set; }
     }
 }

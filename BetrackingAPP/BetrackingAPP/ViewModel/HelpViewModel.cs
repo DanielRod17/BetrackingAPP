@@ -59,10 +59,11 @@ namespace BetrackingAPP.ViewModel
 
         private async void AskHelp()
         {
+            string fiel_name = "";
             var content = new MultipartFormDataContent();
             if (MediaFile != null) {
                 var splitted = MediaFile.Path.Split('/');
-                string fiel_name = splitted[splitted.Length - 1];
+                fiel_name = splitted[splitted.Length - 1];
 
                 content.Add(new StreamContent(MediaFile.GetStream()),
                        $"\"{fiel_name}\"",
@@ -73,6 +74,7 @@ namespace BetrackingAPP.ViewModel
             content.Add(new StringContent(Usuario.Lastname), "Lastname");
             content.Add(new StringContent(Usuario.Email), "Email");
             content.Add(new StringContent(HelpText), "Motivo");
+            content.Add(new StringContent(fiel_name), "Filename");
 
             var httpClient = new HttpClient();
             var uploadServiceBaseAddress = "https://bepc.backnetwork.net/BEPCINC/api/RequestHelp.php";

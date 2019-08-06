@@ -76,8 +76,7 @@
                                         Text="Sign Out >"
                                         BackgroundColor="White"
                                         TextColor="#15212f"
-                                        Command="{Binding Path=BindingContext.GoToHelp, Source={x:Reference Page}}"
-										CommandParameter="{Binding usuario}"/>
+                                        Clicked="Logout_Clicked"/>
 								</ViewCell.View>
 							</ViewCell>
 						</TableSection>

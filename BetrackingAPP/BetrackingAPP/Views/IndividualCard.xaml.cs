@@ -15,6 +15,7 @@ namespace BetrackingAPP.Views
         public User Usuario_Reload { get; set; }
         public Timecard timecard_Reload { get; set; }
         public DateTime date_reload { get; set; }
+        public Button boton { get; set; }
         public IndividualCard(Timecard eu_timecard = null, User usuario = null, DateTime _dateSearch = default)
         {
             Usuario_Reload = usuario;
@@ -52,7 +53,6 @@ namespace BetrackingAPP.Views
                     stackPanel.Children.Add(label);
                 }
             }
-
             //////////////////////////////////////////Tuesday
             if (eu_timecard.Tue_In != "00:00:00" && eu_timecard.Tue_In != null)
             {
@@ -197,6 +197,7 @@ namespace BetrackingAPP.Views
             var vm = BindingContext as IndividualCardViewModel;
             vm.SubmitTimecard(ID);
             button.IsVisible = false;
+            boton.IsVisible = false;
         }
 
         private void CrearUpdateButtons(Timecard eu_timecard, User usuario, DateTime fecha)
@@ -208,6 +209,7 @@ namespace BetrackingAPP.Views
                 var Button = new Button { Text = "Update", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
                 Button.Clicked += delegate { UpdateTimecard(eu_timecard.ID, Button, eu_timecard.AssignmentID); };
                 Stack.Children.Add(Button);
+                boton = Button;
             }
         }
         private void UpdateTimecard(int ID, Button button, int AssignmentID)

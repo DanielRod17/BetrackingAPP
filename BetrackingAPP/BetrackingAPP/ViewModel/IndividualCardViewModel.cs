@@ -17,20 +17,30 @@ namespace BetrackingAPP.ViewModel
 {
     public class IndividualCardViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        private bool _submitted { get; set; }
+        public bool SubmittedCard
+        {
+            get
+            {
+                return _submitted;
+            }
+            set
+            {
+                _submitted = value;
+                OnPropertyChanged();
+            }
+        }
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
         .Where(x => x.ToLower().StartsWith(text.ToLower()))
         .OrderBy(x => x)
         .ToList();
-
-        public DateTime _dateSearch = DateTime.Today;
+        private DateTime _dateSearch = DateTime.Today;
         ObservableCollection<string> assignments = new ObservableCollection<string>();
         public ObservableCollection<string> Assignments { get { return assignments; } }
         public DateTime FechaSeleccionada
         {
             set
             {
-                OnPropertyChanged();
-
                 if (value.ToString() != "1/1/0001 12:00:00 AM")
                 {
                     if ((int)value.DayOfWeek != 0)
@@ -55,6 +65,8 @@ namespace BetrackingAPP.ViewModel
                 {
                     _dateSearch = value;
                 }
+                OnPropertyChanged();
+
             }
             get
             {
@@ -83,7 +95,6 @@ namespace BetrackingAPP.ViewModel
             }
         }
         public User User { get; set; }
-
         private bool _happened;
         public bool HasPropertyValueChanged
         {
@@ -160,9 +171,18 @@ namespace BetrackingAPP.ViewModel
 
         public IndividualCardViewModel(User usuarioFrom, Timecard timecardFrom, DateTime _dateSearch)
         {
-            
+            FechaSeleccionada = _dateSearch;
+            HasPropertyValueChanged = true;
             usuario = usuarioFrom;
             User = usuario;
+            if (timecardFrom.Submitted == 0)
+            {
+                SubmittedCard = true;
+            }
+            else
+            {
+                SubmittedCard = false;
+            }
             timecard = timecardFrom;
             var fecha = _dateSearch;
             int monNum = fecha.AddDays(-6).Day;
@@ -173,13 +193,13 @@ namespace BetrackingAPP.ViewModel
             int satNum = fecha.AddDays(-1).Day;
             int sunNum = fecha.Day;
             Days = new ObservableCollection<NewTimecardNormal> {
-                new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = timecard.Mon, Nota = timecard.MonNote, DisplayInputs = 35 },
-                new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = timecard.Tue, Nota = timecard.TueNote, DisplayInputs = 35 },
-                new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = timecard.Wed, Nota = timecard.WedNote, DisplayInputs = 35 },
-                new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = timecard.Thu, Nota = timecard.ThuNote, DisplayInputs = 35 },
-                new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = timecard.Fri, Nota = timecard.FriNote, DisplayInputs = 35 },
-                new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = timecard.Sat, Nota = timecard.SatNote, DisplayInputs = 35 },
-                new NewTimecardNormal() { Day = "Sun", Numero = fecha.Day, Valor = timecard.Sun, Nota = timecard.SunNote, DisplayInputs = 35 }
+                new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = timecard.Mon, Nota = timecard.MonNote, DisplayInputs = 40 },
+                new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = timecard.Tue, Nota = timecard.TueNote, DisplayInputs = 40 },
+                new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = timecard.Wed, Nota = timecard.WedNote, DisplayInputs = 40 },
+                new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = timecard.Thu, Nota = timecard.ThuNote, DisplayInputs = 40 },
+                new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = timecard.Fri, Nota = timecard.FriNote, DisplayInputs = 40 },
+                new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = timecard.Sat, Nota = timecard.SatNote, DisplayInputs = 40 },
+                new NewTimecardNormal() { Day = "Sun", Numero = fecha.Day, Valor = timecard.Sun, Nota = timecard.SunNote, DisplayInputs = 40 }
             };
 
             Assignment_Name = timecard.Name;
@@ -209,6 +229,8 @@ namespace BetrackingAPP.ViewModel
                timecard
             };
             GetActions(timecard);
+            HasPropertyValueChanged = false;
+
         }
 
         public void GetAssignments(User usuario)
@@ -230,6 +252,7 @@ namespace BetrackingAPP.ViewModel
 
         public async void SubmitTimecard(int ID)
         {
+
             HasPropertyValueChanged = true;
             HttpClient client = new HttpClient();
 
@@ -245,7 +268,8 @@ namespace BetrackingAPP.ViewModel
                 var responseData = await result.Content.ReadAsStringAsync();
                 if (responseData == "Timecard Submitted!")
                 {
-                    HasPropertyValueChanged = false;
+                    LoadTimecard(User.Id, ID);
+                    SubmittedCard = false;
                     await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(User, responseData));
                 }
                 else
@@ -257,10 +281,12 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            HasPropertyValueChanged = false;
         }
 
         public async void UpdateTimecard(int iD, int AssignmentID)
         {
+            HasPropertyValueChanged = true;
             var temp = Days;
             Days = new ObservableCollection<NewTimecardNormal>();
             Days = temp;
@@ -273,7 +299,7 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("Timecard", iD.ToString()),
                 new KeyValuePair<string, string>("Assignment", AssignmentID.ToString()),
                 new KeyValuePair<string, string>("AssignmentName", AssignmentName),
-                new KeyValuePair<string, string>("date", FechaSeleccionada.Date.ToString("g")),
+                new KeyValuePair<string, string>("date", FechaSeleccionada.Date.ToString()),
                 new KeyValuePair<string, string>("info", yeison)
             }); ;
 
@@ -296,6 +322,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            HasPropertyValueChanged = false;
         }
 
         public async void LoadTimecard(int usuario, int timecard)
@@ -319,20 +346,21 @@ namespace BetrackingAPP.ViewModel
                 int satNum = FechaSeleccionada.AddDays(-1).Day;
                 int sunNum = FechaSeleccionada.Day;
                 var temp = new ObservableCollection<NewTimecardNormal> {
-                    new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = Timecard[0].Mon, Nota = Timecard[0].MonNote, DisplayInputs = 35 },
-                    new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = Timecard[0].Tue, Nota = Timecard[0].TueNote, DisplayInputs = 35 },
-                    new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = Timecard[0].Wed, Nota = Timecard[0].WedNote, DisplayInputs = 35 },
-                    new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = Timecard[0].Thu, Nota = Timecard[0].ThuNote, DisplayInputs = 35 },
-                    new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = Timecard[0].Fri, Nota = Timecard[0].FriNote, DisplayInputs = 35 },
-                    new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = Timecard[0].Sat, Nota = Timecard[0].SatNote, DisplayInputs = 35 },
-                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 35 },
-                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 35 },
+                    new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = Timecard[0].Mon, Nota = Timecard[0].MonNote, DisplayInputs = 70 },
+                    new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = Timecard[0].Tue, Nota = Timecard[0].TueNote, DisplayInputs = 40 },
+                    new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = Timecard[0].Wed, Nota = Timecard[0].WedNote, DisplayInputs = 40 },
+                    new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = Timecard[0].Thu, Nota = Timecard[0].ThuNote, DisplayInputs = 40 },
+                    new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = Timecard[0].Fri, Nota = Timecard[0].FriNote, DisplayInputs = 40 },
+                    new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = Timecard[0].Sat, Nota = Timecard[0].SatNote, DisplayInputs = 40 },
+                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 40 },
+                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 40 },
                 };
                 
                 GetActions(Timecard[0]);
                 temp.RemoveAt(7);
                 Days = temp;
             }
+            HasPropertyValueChanged = false;
         }
     }
 }

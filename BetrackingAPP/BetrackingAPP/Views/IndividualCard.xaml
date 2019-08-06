@@ -8,237 +8,249 @@
              mc:Ignorable="d"
 			 xmlns:local="clr-namespace:BetrackingAPP"
 			 x:Class="BetrackingAPP.Views.IndividualCard"
-			 BackgroundColor="#f4f4f4">
+			 BackgroundColor="#f4f4f4"
+			 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+			 xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+			 xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 	<!--Pages can be added as references or inline-->
 	<ContentPage Title="Detail" x:Name="Detail">
 		<ScrollView>
-			<StackLayout x:Name="stackPanel">
-				<Label Text="TIMECARD DETAIL"
+			<Grid>
+				<StackLayout x:Name="stackPanel">
+					<Label Text="TIMECARD DETAIL"
 							   FontSize="20"
 							   TextColor="White"
 							   HeightRequest="100"
 							   HorizontalTextAlignment="Center"
 							   VerticalTextAlignment="Center"
 							   BackgroundColor="#15212f"/>
-				<ListView x:Name="TimecardDetail"
+					<ListView x:Name="TimecardDetail"
                           ItemsSource="{Binding Info}"
                           HasUnevenRows="True">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<ViewCell>
-								<Frame BackgroundColor="White"
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<Frame BackgroundColor="White"
                                        HasShadow="False"
                                        CornerRadius="5">
-									<Grid>
-										<Grid.RowDefinitions>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-										</Grid.RowDefinitions>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="150"/>
-											<ColumnDefinition Width="*"/>
-										</Grid.ColumnDefinitions>
+										<Grid>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+												<RowDefinition Height="25"/>
+											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="150"/>
+												<ColumnDefinition Width="*"/>
+											</Grid.ColumnDefinitions>
 
-										<Label Text="{Binding Assignment_Name}"/>
-										<Label Grid.Column="1"
+											<Label Text="{Binding Assignment_Name}"/>
+											<Label Grid.Column="1"
                                                Text="Week Hours"
                                                FontAttributes="Bold"/>
-										<Image Source="calendar.png"
+											<Image Source="calendar.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="1"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="1"
                                                Text="Monday"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="1"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Mon}"/>
-										<Image Source="calendar.png"
+											<Image Source="calendar.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="2"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="2"
                                                Text="Tuesday"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="2"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Tue}"/>
-										<Image Source="calendar.png"
+											<Image Source="calendar.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="3"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="3"
                                                Text="Wednesday"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="3"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Wed}"/>
-										<Image Source="calendar.png"
+											<Image Source="calendar.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="4"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="4"
                                                Text="Thursday"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="4"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Thu}"/>
-										<Image Source="calendar.png"
+											<Image Source="calendar.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="5"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="5"
                                                Text="Friday"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="5"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Fri}"/>
-										<Image Source="calendar.png"
+											<Image Source="calendar.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="6"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="6"
                                                Text="Saturday"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="6"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Sat}"/>
-										<Image Source="calendar.png"
+											<Image Source="calendar.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="7"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="7"
                                                Text="Sunday"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="7"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Sun}"/>
 
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="8"
                                                Text="Total Hours"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="8"
                                                HorizontalTextAlignment="End"
                                                Text="{Binding Total}"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="9"
                                                Text="Notes"
                                                FontAttributes="Bold"/>
-										<Image Source="notes.png"
+											<Image Source="notes.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="10"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="10"
                                                Text="Monday Notes"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="10"
                                                Text="{Binding MonNote}"/>
-										<Image Source="notes.png"
+											<Image Source="notes.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="11"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="11"
                                                Text="Tuesday Notes"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="11"
                                                Text="{Binding TueNote}"/>
-										<Image Source="notes.png"
+											<Image Source="notes.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="12"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="12"
                                                Text="Wednesday Notes"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="12"
                                                Text="{Binding WedNote}"/>
-										<Image Source="notes.png"
+											<Image Source="notes.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="13"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="13"
                                                Text="Thursday Notes"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="13"
                                                Text="{Binding ThuNote}"/>
-										<Image Source="notes.png"
+											<Image Source="notes.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="14"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="14"
                                                Text="Friday Notes"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="14"
                                                Text="{Binding FriNote}"/>
-										<Image Source="notes.png"
+											<Image Source="notes.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="15"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="15"
                                                Text="Saturday Notes"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="15"
                                                Text="{Binding SatNote}"/>
-										<Image Source="notes.png"
+											<Image Source="notes.png"
                                                HeightRequest="10"
                                                WidthRequest="10"
                                                Grid.Column="0"
                                                Grid.Row="16"/>
-										<Label Grid.Column="1"
+											<Label Grid.Column="1"
                                                Grid.Row="16"
                                                Text="Sunday Notes"/>
-										<Label Grid.Column="2"
+											<Label Grid.Column="2"
                                                Grid.Row="16"
                                                Text="{Binding SunNote}"/>
-
-									</Grid>
-								</Frame>
-							</ViewCell>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-			</StackLayout>
+										</Grid>
+									</Frame>
+								</ViewCell>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</StackLayout>
+				<StackLayout AbsoluteLayout.LayoutFlags="All" 
+				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
+					<StackLayout VerticalOptions="CenterAndExpand">
+						<!--<Image Source="fileicon.png" HeightRequest="200"></Image>-->
+						<ffSvg:SvgCachedImage HeightRequest="200" Source="loadinggifi.gif"/>
+						<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+					</StackLayout>
+				</StackLayout>
+			</Grid>
 		</ScrollView>
 	</ContentPage>
 	<ContentPage Title="Activity"
@@ -262,7 +274,7 @@
                 BackgroundColor="#f4f4f4">
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<ViewCell >
+							<ViewCell>
 								<Frame CornerRadius="5"
 							   Margin="10, 5, 10, 0"
 							   BackgroundColor="White"
@@ -283,7 +295,7 @@
 		</ScrollView>
 	</ContentPage>
 	<ContentPage Title="Update">
-		<ScrollView>
+		<Grid>
 			<StackLayout x:Name="UpdateList">
 				<Label Text="UPDATE INFORMATION"
 							   FontSize="20"
@@ -343,7 +355,8 @@
 									<Grid>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="35"/>
-											<RowDefinition Height="{Binding DisplayInputs}"/>
+											<RowDefinition Height="40"/>
+											<RowDefinition Height="45"/>
 										</Grid.RowDefinitions>
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="*"/>
@@ -412,6 +425,14 @@
 					</ListView.ItemTemplate>
 				</ListView>
 			</StackLayout>
-		</ScrollView>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" 
+				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<!--<Image Source="fileicon.png" HeightRequest="200"></Image>-->
+					<ffSvg:SvgCachedImage HeightRequest="200" Source="loadinggifi.gif"/>
+					<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				</StackLayout>
+			</StackLayout>
+		</Grid>
 	</ContentPage>
 </TabbedPage>

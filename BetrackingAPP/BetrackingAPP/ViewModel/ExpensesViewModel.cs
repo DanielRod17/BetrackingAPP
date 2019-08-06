@@ -74,7 +74,7 @@ namespace BetrackingAPP.ViewModel
         }
         public async void GetTravels(User usuario)
         {
-
+            HasPropertyValueChanged = true;
             var client = new HttpClient();
             var URL = "https://bepc.backnetwork.net/BEPCINC/api/getReports.php?usuario=" + usuario.Id;
             var result = await client.GetAsync(URL);
@@ -88,8 +88,8 @@ namespace BetrackingAPP.ViewModel
             {
                 var responseData = await result.Content.ReadAsStringAsync();
                 Reports = JsonConvert.DeserializeObject<List<Reports>>(responseData, settings);
-
             }
+            HasPropertyValueChanged = false;
         }
 
         private Reports _selectedItem;
@@ -109,10 +109,12 @@ namespace BetrackingAPP.ViewModel
 
         public async void GoToReport(Reports eu_report, User usuario)
         {
+            HasPropertyValueChanged = true;
             if (eu_report != null)
             {
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualReport(eu_report, usuario));
             }
+            HasPropertyValueChanged = false;
         }
     }
 }

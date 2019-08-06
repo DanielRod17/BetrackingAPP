@@ -24,9 +24,20 @@ namespace BetrackingAPP.Views
             //await Navigation.PushAsync(new Help(Usuario));
         }
 
-        private async void Button_Clicked_1(object sender, EventArgs e)
+        private async void Logout_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new LoginPage());
+            App.Logedin = false;
+            await Navigation.PopAsync();
+            await Navigation.PushAsync(new LoginPage(Usuario));
+        }
+
+        protected override void OnAppearing()
+        {
+            if (App.Logedin == false)
+            {
+                Navigation.PushAsync(new LoginPage(Usuario));
+            }
+            base.OnAppearing();
         }
     }
 }

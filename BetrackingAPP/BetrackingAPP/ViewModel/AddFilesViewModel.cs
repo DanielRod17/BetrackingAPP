@@ -18,6 +18,9 @@ using Rg.Plugins.Popup.Extensions;
 using System.Net;
 using Plugin.Media.Abstractions;
 using Plugin.FilePicker.Abstractions;
+using System.IO;
+using System.Collections;
+using System.Net.Http.Headers;
 
 namespace BetrackingAPP.ViewModel
 {
@@ -91,14 +94,14 @@ namespace BetrackingAPP.ViewModel
             }*/
         }
 
-        internal void AgregarAListaArchivo(FileData file)
+        internal void AgregarAListaArchivo(FileData file, Stream elemento)
         {
             var splitted = file.FileName.Split('.');
             var ext = splitted[splitted.Length - 1];
-
+            string contents = System.Text.Encoding.ASCII.GetString(file.DataArray);
 
             splitted = file.FileName.Split('/');
-            string fiel_name = splitted[splitted.Length - 1];
+            string fiel_name = file.FileName;
 
 
             string path = "";
@@ -116,7 +119,7 @@ namespace BetrackingAPP.ViewModel
                 path = "fileicon.png";
             }
 
-            Archivos.Add(new ArchivosAdd() { Archivo = file, Path = path, FileName = fiel_name });
+            Archivos.Add(new ArchivosAdd() { Archivo = file, Path = path, FileName = fiel_name, Contents = contents, Contenido = elemento });
         }
         public void BorrarMedia(FilesAdd item)
         {
@@ -131,22 +134,39 @@ namespace BetrackingAPP.ViewModel
         {
             var content = new MultipartFormDataContent();
 
+            var arrayList = new ArrayList();
+            int i = 0;
             foreach (FilesAdd media in Medias)
             {
                 content.Add(new StreamContent(media.Archivo.GetStream()),
                     $"\"{media.FileName}\"",
                     $"\"{media.Archivo.Path}\"");
+                arrayList.Add(media.FileName);
             }
             foreach (ArchivosAdd archivo in Archivos)
             {
-                content.Add(new StreamContent(archivo.Archivo.GetStream()),
-                    $"\"{archivo.FileName}\"",
+
+                byte[] byteArray = Encoding.ASCII.GetBytes(archivo.Contents);
+                //byteArray = System.IO.File.ReadAllBytes(archivo.Archivo.FilePath);
+                MemoryStream stream = new MemoryStream(byteArray);
+                content.Add(new StreamContent(archivo.Contenido),
+                //content.Add(new StreamContent(File.Open(archivo.Archivo.FilePath, FileMode.Open)),
+                    $"\"{archivo.Archivo.FileName}\"",
                     $"\"{archivo.Archivo.FilePath}\"");
+                arrayList.Add(archivo.FileName);
             }
+            // content.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data; boundary=------WebKitFormBoundary7MA4YWxkTrZu0gW\r\n");
+            //content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/x-www-form-urlencoded");
+            //content.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+            var json = JsonConvert.SerializeObject(arrayList);
             content.Add(new StringContent(Usuario.Id.ToString()), "User");
             content.Add(new StringContent(Reporte.ID.ToString()), "TravelID");
+            content.Add(new StringContent(json), "NombresArchivo");
 
             var httpClient = new HttpClient();
+            //httpClient.DefaultRequestHeaders
+            //.Accept
+            //.Add(new MediaTypeWithQualityHeaderValue("multipart/form-data", "boundary=------WebKitFormBoundary7MA4YWxkTrZu0gW\r\n"));//ACCEPT header
             var uploadServiceBaseAddress = "https://bepc.backnetwork.net/BEPCINC/api/SaveFiles.php";
             var result = await httpClient.PostAsync(uploadServiceBaseAddress, content);
             if (result.IsSuccessStatusCode)

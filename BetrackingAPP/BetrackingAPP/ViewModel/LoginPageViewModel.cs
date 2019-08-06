@@ -33,6 +33,12 @@ namespace BetrackingAPP.ViewModel
         }
 
         private INavigation Navigation;
+        static public User Usuario { get; set; }
+        internal async void CheckLogin()
+        {
+            await Navigation.PushAsync(new MainPage(Usuario));
+        }
+
         public Command MainPageCommand { get; set; }
 
         private User _dataServicio;
@@ -84,6 +90,7 @@ namespace BetrackingAPP.ViewModel
                         var mensageJson = JsonConvert.DeserializeObject<User>(elemeneto[1].ToString(), settings);
                         System.Diagnostics.Debug.WriteLine(mensageJson);
                         usuarioBT = mensageJson;
+                        Usuario = usuarioBT;
                         var _payroll = "US";
                         if (usuarioBT.Payroll == "142")
                         {
@@ -93,6 +100,7 @@ namespace BetrackingAPP.ViewModel
                         properties.Set("Payroll", _payroll);
                         AppCenter.SetUserId(usuarioBT.Id.ToString());
                         AppCenter.SetCustomProperties(properties);
+                        App.Logedin = true;
                         await Navigation.PushAsync(new MainPage(usuarioBT));
                     }
                     else
