@@ -135,7 +135,6 @@ namespace BetrackingAPP.ViewModel
             var content = new MultipartFormDataContent();
 
             var arrayList = new ArrayList();
-            int i = 0;
             foreach (FilesAdd media in Medias)
             {
                 content.Add(new StreamContent(media.Archivo.GetStream()),

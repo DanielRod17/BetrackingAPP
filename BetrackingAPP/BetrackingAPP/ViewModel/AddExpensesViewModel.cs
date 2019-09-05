@@ -39,7 +39,7 @@ namespace BetrackingAPP.ViewModel
             }
         }
 
-        public async Task EnviarUpdate()
+        public void EnviarUpdate()
         {
             MessagingCenter.Send<IndividualReportViewModel>(new IndividualReportViewModel(Usuario, Reporte), "Change");
         }
@@ -123,7 +123,7 @@ namespace BetrackingAPP.ViewModel
                 }
             }
         }
-        public async void AgregarExpense(int expenese)
+        public void AgregarExpense(int expenese)
         {
             var x = ExpensesList[expenese-1].iExpenses;
             x.Add(new Expense() { TravelID = Reporte.ID, Category = 0, Name = "", Quantity = "", Currency = 0, Billable = 1, Refundable = 0, Attachments = "", DOF = 0.00m, SalesForceID = null, CategoryName = "Baggage Fees", DescriptionOn = false, ValorFinal = 0.00m, RefundableOn = false, MxOn = false });

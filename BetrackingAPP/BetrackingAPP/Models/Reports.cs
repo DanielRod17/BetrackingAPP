@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BetrackingAPP.Models
 {
-    public class Reports
+    public class Reports : INotifyPropertyChanged
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -60,8 +60,27 @@ namespace BetrackingAPP.Models
         public string rstate_to_name { get; set; }
         public string rcountry_to_name { get; set; }
         public Expense[] Expenses { get; set; }
-
         public File[] Files { get; set; }
+
+        private int _searched = 110;
+        public int Searched
+        {
+            get
+            {
+                return _searched;
+            }
+            set
+            {
+                _searched = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public class Expense

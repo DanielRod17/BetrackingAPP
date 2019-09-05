@@ -31,23 +31,28 @@ namespace BetrackingAPP.Views
             BindingContext = new NewTimeOutViewModel(usuario, eu_timecard, dateSearch);
         }
 
-        private void TimecardsList_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void TimecardsList_ItemTapped(object sender, EventArgs e)
         {
-            var vm = BindingContext as NewTimeOutViewModel;
+            /*var vm = BindingContext as NewTimeOutViewModel;
             var day = e.Item as NewTimeOutCard;
+            vm.HideOrShowInputs(day);*/
+            var vm = BindingContext as NewTimeOutViewModel;
+            var day = (sender as View).BindingContext as NewTimeOutCard;
             vm.HideOrShowInputs(day);
         }
 
         void Agregar_Break(object sender, EventArgs e)
         {
             var vm = BindingContext as NewTimeOutViewModel;
-            vm.AgregarBreak();
+            var day = (sender as View).BindingContext as NewTimeOutCard;
+            vm.AgregarBreak(day);
         }
 
         void Remove_Break(object sender, EventArgs e)
         {
             var vm = BindingContext as NewTimeOutViewModel;
-            vm.QuitarBreak();
+            var day = (sender as View).BindingContext as NewTimeOutCard;
+            vm.QuitarBreak(day);
         }
     }
 }

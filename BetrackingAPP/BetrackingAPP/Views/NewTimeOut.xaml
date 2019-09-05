@@ -1,47 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage
-			xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-            xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
-			xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
-            x:Class="BetrackingAPP.Views.NewTimeOut"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+    xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
+	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+	xmlns:local="clr-namespace:BetrackingAPP"
+	x:Class="BetrackingAPP.Views.NewTimeOut"
 	>
-
-
 	<ContentPage.Content>
 		<ScrollView>
 			<StackLayout x:Name="TimeOutContainer">
 				<Label Text="{Binding Fecha_timecard}"
-							   FontSize="20"
-							   TextColor="White"
-							   HeightRequest="100"
-							   HorizontalTextAlignment="Center"
-							   VerticalTextAlignment="Center"
-							   BackgroundColor="#15212f"/>
+					FontSize="20"
+					TextColor="White"
+					HeightRequest="100"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f"/>
 				<xfx:XfxComboBox Placeholder="Select an Assignment"
-					             Text="{Binding AssignmentName}"
-					             ItemsSource="{Binding Assignments}"
-					             SortingAlgorithm="{Binding SortingAlgorithm}"
-                                 HorizontalTextAlignment="Center"
-                                 WidthRequest="300"/>
-
-				<ListView
+					Text="{Binding AssignmentName}"
+					ItemsSource="{Binding Assignments}"
+					SortingAlgorithm="{Binding SortingAlgorithm}"
+                    HorizontalTextAlignment="Start"
+                    WidthRequest="300"/>
+				<local:RepeaterView 
 					x:Name="TimeOutList"
 					ItemsSource="{Binding Days}"
-					HasUnevenRows="True"
-					ItemTapped="TimecardsList_ItemTapped"
 					>
-					<ListView.ItemTemplate>
+					<local:RepeaterView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<Frame CornerRadius="5"
-									   Padding="0"
-									   Margin="1"
-									   BackgroundColor="White"
-                                       HasShadow="False">
-									<Grid>
+									Padding="0"
+									Margin="1"
+									HasShadow="False">
+									<Grid BackgroundColor="{Binding bgColor}">
+										<Grid.GestureRecognizers>
+											<TapGestureRecognizer Tapped="TimecardsList_ItemTapped"/>
+										</Grid.GestureRecognizers>
 										<Grid.RowDefinitions>
 											<RowDefinition Height="35"/>
 											<RowDefinition Height="{Binding DisplayInputs}"/>
@@ -56,43 +53,43 @@
 											<ColumnDefinition Width="*"/>
 										</Grid.ColumnDefinitions>
 										<Label TextColor="White" 
-                                               BackgroundColor="#15212f" 
-                                               Text="{Binding Numero}" 
-                                               Grid.Row="0" 
-                                               Grid.Column="0" 
-                                               Grid.ColumnSpan="1" 
-                                               HorizontalTextAlignment="Center"
-                                               VerticalTextAlignment="Center"
-                                               WidthRequest="40"/>
+                                            BackgroundColor="#15212f" 
+                                            Text="{Binding Numero}" 
+                                            Grid.Row="0" 
+                                            Grid.Column="0" 
+                                            Grid.ColumnSpan="1" 
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="40"/>
 										<Label Text="{Binding Day}" 
-                                               Grid.Row="0" 
-                                               Grid.Column="1"  
-                                               Grid.ColumnSpan="4" 
-                                               HorizontalTextAlignment="Start"
-                                               VerticalTextAlignment="Center"
-                                               Margin="20,0,0,0"/>
+                                            Grid.Row="0" 
+                                            Grid.Column="1"  
+                                            Grid.ColumnSpan="4" 
+                                            HorizontalTextAlignment="Start"
+                                            VerticalTextAlignment="Center"
+                                            Margin="20,0,0,0"/>
 										<Label Text="{Binding Valor}" 
-                                               Grid.Row="0" 
-                                               Grid.Column="5" 
-                                               Grid.ColumnSpan="2" 
-                                               HorizontalTextAlignment="End"
-                                               VerticalTextAlignment="Center"
-                                               Margin="0,0,20,0"/>
-										<Grid  Grid.Row="1" 
-                                               Grid.Column="0" 
-                                               Grid.ColumnSpan="7"
-											   ColumnSpacing="0">
+                                            Grid.Row="0" 
+                                            Grid.Column="5" 
+                                            Grid.ColumnSpan="2" 
+                                            HorizontalTextAlignment="End"
+                                            VerticalTextAlignment="Center"
+                                            Margin="0,0,20,0"/>
+										<StackLayout Grid.Row="1" 
+                                            Grid.Column="0" 
+                                            Grid.ColumnSpan="7">
+										<Grid>
 											<Grid.RowDefinitions>
-												<RowDefinition Height="35"/>
-												<RowDefinition Height="45"/>
-												<RowDefinition Height="45"/>
+												<RowDefinition Height="{Binding InputHeight}"/>
+												<RowDefinition Height="{Binding InputHeight}"/>
+												<RowDefinition Height="{Binding InputHeight}"/>
 												<RowDefinition Height="{Binding Break1}"/>
 												<RowDefinition Height="{Binding Break1}"/>
 												<RowDefinition Height="{Binding Break2}"/>
 												<RowDefinition Height="{Binding Break2}"/>
 												<RowDefinition Height="{Binding Break3}"/>
 												<RowDefinition Height="{Binding Break3}"/>
-												<RowDefinition Height="45"/>
+												<RowDefinition Height="{Binding InputHeight}"/>
 											</Grid.RowDefinitions>
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="*"/>
@@ -110,105 +107,110 @@
 											<Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"
 												Text="- Break" 
 												TextColor="White"
-												FontSize="12"
 												BackgroundColor="#15212f"
 												BorderRadius="2"
 												Clicked="Remove_Break"/>
 											<Button Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="3"
 												Text="+ Break" 
 												TextColor="White"
-												FontSize="12"
 												BackgroundColor="#15212f"
 												BorderRadius="2"
-												Clicked="Agregar_Break"/>		
+												Clicked="Agregar_Break"/>
 											<Label Text="Time In" Grid.Row="1" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start" 
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
 												Time="{Binding TimeIn}"
-												Format="hh:mm"/>
+												Format="T"/>
 											<Label Text="Time Out" Grid.Row="2" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start" 
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
 												Time="{Binding TimeOut}"
-												Format="hh:mm"/>
+												Format="T"/>
 
 											<!-- BREAK 1 -->
 											<Label Text="Break 1 Out" Grid.Row="3" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start" 
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5"
-												Format="hh:mm"
+												Format="T"
 												Time="{Binding Break1Out}"/>
 											<Label Text="Break 1 In" Grid.Row="4" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start" 
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"
-												Format="hh:mm"
+												Format="T"
 												Time="{Binding Break1In}"/>
 											<!-- BREAK 2 -->
 											<Label Text="Break 2 Out" Grid.Row="5" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start" 
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5"
-												Format="hh:mm"
+												Format="T"
 												Time="{Binding Break2Out}"/>
 											<Label Text="Break 2 In" Grid.Row="6" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start" 
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5"
-												Format="hh:mm"
+												Format="T"
 												Time="{Binding Break2In}"/>
 											<!-- BREAK 3 -->
 											<Label Text="Break 3 Out" Grid.Row="7" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start" 
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="5"
-												Format="hh:mm"
+												Format="T"
 												Time="{Binding Break3Out}"
 												/>
 											<Label Text="Break 3 In" Grid.Row="8" Grid.Column="1"
-                                                   Grid.ColumnSpan="4"
-                                                   HorizontalTextAlignment="Start" 
-                                                   VerticalTextAlignment="Center"/>
+                                                Grid.ColumnSpan="4"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"/>
 											<TimePicker Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="5"
-												Format="hh:mm"
+												Format="T"
 												Time="{Binding Break3In}"/>
 											<!-- -->
-											<Entry Placeholder="Notes" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" 
-												   Text="{Binding Nota}"
-                                                   FontSize="Small"/>
-										</Grid>
+											<Entry Placeholder="Notes" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="7" 
+												Text="{Binding Nota}"
+                                                FontSize="Small"/>
+											</Grid>
+										</StackLayout>
 									</Grid>
 								</Frame>
 							</ViewCell>
 						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-				<Button Margin="-20"
-					Text="Save" 
-					TextColor="White"
-					FontSize="14"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Command="{Binding SaveTimecard}"
-				/>
-				<Button Margin="-20"
-					Text="Submit" 
-					TextColor="White"
-					FontSize="14"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Command="{Binding SubmitTimecard}"
-				/>
+					</local:RepeaterView.ItemTemplate>
+				</local:RepeaterView>
+				<StackLayout 
+					BackgroundColor="White"
+					VerticalOptions="End">
+					<Button
+						Text="Save" 
+						TextColor="White"
+						FontSize="14"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Command="{Binding SaveTimecard}"
+						VerticalOptions="End" 
+					/>
+					<Button
+						Text="Submit" 
+						TextColor="White"
+						FontSize="14"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Command="{Binding SubmitTimecard}"
+						VerticalOptions="End" 
+					/>
+				</StackLayout>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

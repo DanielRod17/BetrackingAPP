@@ -59,34 +59,42 @@ namespace BetrackingAPP.ViewModel
 
         private async void AskHelp()
         {
-            string fiel_name = "";
-            var content = new MultipartFormDataContent();
-            if (MediaFile != null) {
-                var splitted = MediaFile.Path.Split('/');
-                fiel_name = splitted[splitted.Length - 1];
-
-                content.Add(new StreamContent(MediaFile.GetStream()),
-                       $"\"{fiel_name}\"",
-                       $"\"{MediaFile.Path}\"");
-            }
-            content.Add(new StringContent(Usuario.Id.ToString()), "User");
-            content.Add(new StringContent(Usuario.Firstname), "Firstname");
-            content.Add(new StringContent(Usuario.Lastname), "Lastname");
-            content.Add(new StringContent(Usuario.Email), "Email");
-            content.Add(new StringContent(HelpText), "Motivo");
-            content.Add(new StringContent(fiel_name), "Filename");
-
-            var httpClient = new HttpClient();
-            var uploadServiceBaseAddress = "https://bepc.backnetwork.net/BEPCINC/api/RequestHelp.php";
-            var result = await httpClient.PostAsync(uploadServiceBaseAddress, content);
-            if (result.IsSuccessStatusCode)
+            if (HelpText != null && HelpText != "")
             {
-                var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                string fiel_name = "";
+                var content = new MultipartFormDataContent();
+                if (MediaFile != null)
+                {
+                    var splitted = MediaFile.Path.Split('/');
+                    fiel_name = splitted[splitted.Length - 1];
+
+                    content.Add(new StreamContent(MediaFile.GetStream()),
+                           $"\"{fiel_name}\"",
+                           $"\"{MediaFile.Path}\"");
+                }
+                content.Add(new StringContent(Usuario.Id.ToString()), "User");
+                content.Add(new StringContent(Usuario.Firstname), "Firstname");
+                content.Add(new StringContent(Usuario.Lastname), "Lastname");
+                content.Add(new StringContent(Usuario.Email), "Email");
+                content.Add(new StringContent(HelpText), "Motivo");
+                content.Add(new StringContent(fiel_name), "Filename");
+
+                var httpClient = new HttpClient();
+                var uploadServiceBaseAddress = "https://bepc.backnetwork.net/BEPCINC/api/RequestHelp.php";
+                var result = await httpClient.PostAsync(uploadServiceBaseAddress, content);
+                if (result.IsSuccessStatusCode)
+                {
+                    var responseData = await result.Content.ReadAsStringAsync();
+                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.DisplayAlert("Oops", "Enter a description of your issue", "OK");
             }
 
         }

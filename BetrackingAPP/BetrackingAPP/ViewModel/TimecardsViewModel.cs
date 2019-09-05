@@ -15,11 +15,36 @@ using Newtonsoft.Json.Linq;
 using System.Windows.Input;
 using Rg.Plugins.Popup.Services;
 using Rg.Plugins.Popup.Extensions;
+using System.Linq;
 
 namespace BetrackingAPP.ViewModel
 {
     public class TimecardsViewModel : BaseViewModel
     {
+        private bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await LoadTimecards(usuario, FechaSeleccionada);
+
+                    IsRefreshing = false;
+                });
+            }
+        }
         public Command NewTimecardCommand { get; set; }
         private bool _happened;
         public bool HasPropertyValueChanged
@@ -55,7 +80,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public DateTime FechaSeleccionada
         {
             set
@@ -113,7 +137,6 @@ namespace BetrackingAPP.ViewModel
                 return _dateSearch;
             }
         }
-
         private Timecard _selectedItem;
         public Timecard ShowTimecardDetails
         {
@@ -128,7 +151,6 @@ namespace BetrackingAPP.ViewModel
                 }
             }
         }
-
         public async void GoToTimecard(Timecard eu_timecard, User usuario)
         {
             HasPropertyValueChanged = true;
@@ -153,25 +175,24 @@ namespace BetrackingAPP.ViewModel
             }
             HasPropertyValueChanged = false;
         }
-
         public TimecardsViewModel(User usuarioFrom)
         {
             usuario = usuarioFrom;
             NewTimecardCommand = new Command(async () => await NavigateToNewTimecard());
         }
-
         public async Task NavigateToNewTimecard()
         {
             HasPropertyValueChanged = true;
             var bandera = 0;
             for (var i = 0; i < usuario.Assignments.Length; i++)
             {
-                if (usuario.Assignments[i].Division == 5 || usuario.Assignments[i].Division == 2)
+                if (usuario.Assignments[i].Division == 5 || usuario.Assignments[i].Division == 2 || usuario.Assignments[i].Division == 3)
                 {
                     bandera = 1;
                 }
             }
-            if (bandera == 1)
+            int[] arreglo_ids = { 702, 656, 738, 439, 805, 657, 713, 633, 537, 501, 689 };
+            if (bandera == 1 || arreglo_ids.Contains(usuario.Id))
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new NewTimecard(Timecards, usuario, FechaSeleccionada));
             }
@@ -182,7 +203,7 @@ namespace BetrackingAPP.ViewModel
             HasPropertyValueChanged = false;
         }
         public Command SearchCommand { get; set; }
-        public async void LoadTimecards(User usuario, DateTime dateSearch)
+        public async Task LoadTimecards(User usuario, DateTime dateSearch)
         {
             HasPropertyValueChanged = true;
             var client = new HttpClient();

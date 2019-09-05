@@ -84,13 +84,13 @@ namespace BetrackingAPP.ViewModel
             int satNum = fecha.AddDays(-1).Day;
             Fecha_timecard = "TIME IN/OUT \n" + fecha.Date.ToString("MM/dd/yyyy");
             Days = new ObservableCollection<NewTimeOutCard> {
-                new NewTimeOutCard() { Day = "Mon", Numero = monNum, Nota = "", DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0 },
-                new NewTimeOutCard() { Day = "Tue", Numero = tueNum, Nota = "", DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0 },
-                new NewTimeOutCard() { Day = "Wed", Numero = wedNum, Nota = "", DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0 },
-                new NewTimeOutCard() { Day = "Thu", Numero = thuNum, Nota = "", DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0 },
-                new NewTimeOutCard() { Day = "Fri", Numero = friNum, Nota = "", DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0 },
-                new NewTimeOutCard() { Day = "Sat", Numero = satNum, Nota = "", DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0 },
-                new NewTimeOutCard() { Day = "Sun", Numero = fecha.Day, Nota = "", DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0 }
+                new NewTimeOutCard() { Day = "Mon", Numero = monNum, Nota = "", InputHeight = 0, DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0, bgColor="White" },
+                new NewTimeOutCard() { Day = "Tue", Numero = tueNum, Nota = "", InputHeight = 0, DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0, bgColor="White" },
+                new NewTimeOutCard() { Day = "Wed", Numero = wedNum, Nota = "", InputHeight = 0, DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0, bgColor="White" },
+                new NewTimeOutCard() { Day = "Thu", Numero = thuNum, Nota = "", InputHeight = 0, DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0, bgColor="White" },
+                new NewTimeOutCard() { Day = "Fri", Numero = friNum, Nota = "", InputHeight = 0, DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0, bgColor="White" },
+                new NewTimeOutCard() { Day = "Sat", Numero = satNum, Nota = "", InputHeight = 0, DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0, bgColor="White" },
+                new NewTimeOutCard() { Day = "Sun", Numero = fecha.Day, Nota = "", InputHeight = 0, DisplayInputs = 0, Break1 = 0, Break2 = 0, Break3 = 0, bgColor="White" }
             };
             GetAssignments(usuarioFrom);
 
@@ -112,7 +112,7 @@ namespace BetrackingAPP.ViewModel
             {
                 new KeyValuePair<string, string>("usuario", Usuario.Id.ToString()),
                 new KeyValuePair<string, string>("Assignment", AssignmentName),
-                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("g")),
+                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("info", yeison)
             }); ;
 
@@ -154,7 +154,7 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("usuario", Usuario.Id.ToString()),
                 new KeyValuePair<string, string>("Submit", "1"),
                 new KeyValuePair<string, string>("Assignment", AssignmentName),
-                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("g")),
+                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("info", yeison)
             }); ;
 
@@ -195,65 +195,105 @@ namespace BetrackingAPP.ViewModel
         }
 
 
-        public void AgregarBreak()
+        public void AgregarBreak(NewTimeOutCard day)
         {
-            if (_oldDay.Break1 == 0)
+            if (day.Break1 == 0)
             {
-                _oldDay.Break1 = 35;
-                _oldDay.DisplayInputs += 70;
+                day.Break1 = 45;
+                day.DisplayInputs += 90;
+                day.Break1Enabled = true;
             }
             else
             {
-                if (_oldDay.Break2 == 0)
+                if (day.Break2 == 0)
                 {
-                    _oldDay.Break2 = 35;
-                    _oldDay.DisplayInputs += 70;
+                    day.Break2 = 45;
+                    day.DisplayInputs += 90;
+                    day.Break2Enabled = true;
                 }
-                else if(_oldDay.Break3 == 0)
+                else if(day.Break3 == 0)
                 {
-                    _oldDay.Break3 = 35;
-                    _oldDay.DisplayInputs += 70;
+                    day.Break3 = 45;
+                    day.DisplayInputs += 90;
+                    day.Break3Enabled = true;
                 }
             }
-            UpdateDays(_oldDay);
+            //UpdateDays(_oldDay);
         }
 
-        public void QuitarBreak()
+        public void QuitarBreak(NewTimeOutCard day)
         {
-            if (_oldDay.Break3 == 35)
+            if (day.Break3 == 45)
             {
-                _oldDay.Break3 = 0;
-                _oldDay.DisplayInputs -= 70;
+                day.Break3 = 0;
+                day.DisplayInputs -= 90;
+                day.Break3Enabled = false;
             }
             else
             {
-                if (_oldDay.Break2 == 35)
+                if (day.Break2 == 45)
                 {
-                    _oldDay.Break2 = 0;
-                    _oldDay.DisplayInputs -= 70;
+                    day.Break2 = 0;
+                    day.DisplayInputs -= 90;
+                    day.Break2Enabled = false;
                 }
-                else if(_oldDay.Break1 == 35)
+                else if(day.Break1 == 45)
                 {
-                    _oldDay.Break1 = 0;
-                    _oldDay.DisplayInputs -= 70;
+                    day.Break1 = 0;
+                    day.DisplayInputs -= 90;
+                    day.Break1Enabled = false;
                 }
             }
-            UpdateDays(_oldDay);
+            //UpdateDays(_oldDay);
         }
 
         public void HideOrShowInputs(NewTimeOutCard day)
         {
-
-            if (_oldDay == day)
+            if (day != null)
+            {
+                if (day.DisplayInputs == 0)
+                {
+                    day.DisplayInputs = 235;
+                    if (day.Break1Enabled == true)
+                    {
+                        day.DisplayInputs += 90;
+                        day.Break1 = 45;
+                    }
+                    if (day.Break2Enabled == true)
+                    {
+                        day.DisplayInputs += 90;
+                        day.Break2 = 45;
+                    }
+                    if (day.Break3Enabled == true)
+                    {
+                        day.DisplayInputs += 90;
+                        day.Break3 = 45;
+                    }
+                    day.InputHeight = 45;
+                    day.bgColor = "#E1EAF7";
+                }
+                else
+                {
+                    day.Break1 = 0;
+                    day.Break2 = 0;
+                    day.Break3 = 0;
+                    day.DisplayInputs = 0;
+                    day.InputHeight = 0;
+                    day.bgColor = "White";
+                }
+            }
+            /*if (_oldDay == day)
             {
                 // click twice on same item to hide it
                 if (day.DisplayInputs == 0)
                 {
                     day.DisplayInputs = 225;
+                    day.bgColor = "#b9c7da";
                 }
                 else
                 {
                     day.DisplayInputs = 0;
+                    day.bgColor = "white";
                 }
                 UpdateDays(day);
             }
@@ -269,7 +309,7 @@ namespace BetrackingAPP.ViewModel
                 day.DisplayInputs = 225;
                 UpdateDays(day);
             }
-            _oldDay = day;
+            _oldDay = day;*/
         }
 
         private void UpdateDays(NewTimeOutCard day)

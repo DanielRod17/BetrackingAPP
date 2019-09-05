@@ -49,10 +49,16 @@ namespace BetrackingAPP.Views
             }
             if (file != null)
             {
-                var elemento = file.GetStream();
-                AgregarAListaArchivo(file, elemento);
+                try
+                {
+                    var elemento = file.GetStream();
+                    AgregarAListaArchivo(file, elemento);
+                }
+                catch
+                {
+                    await DisplayAlert("Oops :(", "Couldn't open the file. Try moving it to other folder", "Ok");
+                }
             }
-
         }
 
 
@@ -119,7 +125,7 @@ namespace BetrackingAPP.Views
             var uploadServiceBaseAddress = "https://";
             var httpResponseMessage = await httpClient.PostAsync(uploadServiceBaseAddress, content);*/
             var vm = BindingContext as AddFilesViewModel;
-            vm.SubirArchivosAsync();
+            await vm.SubirArchivosAsync();
         }
 
         public void AgregarALista(MediaFile _mediaFile, ImageSource elemento)

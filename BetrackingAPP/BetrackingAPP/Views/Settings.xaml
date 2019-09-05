@@ -39,7 +39,16 @@
                                         Text="Betracking Web >"
                                         BackgroundColor="White"
                                         TextColor="Black"
-                                        Clicked="Button_Clicked"/>
+										Clicked="BETracking_Web"/>
+								</ViewCell.View>
+							</ViewCell>
+							<ViewCell>
+								<ViewCell.View>
+									<Button
+                                        Text="Betracking Help >"
+                                        BackgroundColor="White"
+                                        TextColor="Black"
+										Clicked="BETracking_Help"/>
 								</ViewCell.View>
 							</ViewCell>
 							<ViewCell>
@@ -47,7 +56,9 @@
 									<Button
                                         Text="Privacy Policy >"
                                         BackgroundColor="White"
-                                        TextColor="Black"/>
+                                        TextColor="Black"
+										Clicked="BETracking_Policy"
+										/>
 								</ViewCell.View>
 							</ViewCell>
 							<ViewCell>
@@ -55,7 +66,9 @@
 									<Button
                                         Text="Term of Services >"
                                         BackgroundColor="White"
-                                        TextColor="#15212f"/>
+                                        TextColor="#15212f"
+										Clicked="BETracking_Terms"
+										/>
 								</ViewCell.View>
 							</ViewCell>
 						</TableSection>

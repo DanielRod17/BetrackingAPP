@@ -18,12 +18,6 @@ namespace BetrackingAPP.Views
         {
             InitializeComponent();
         }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            //await Navigation.PushAsync(new Help(Usuario));
-        }
-
         private async void Logout_Clicked(object sender, EventArgs e)
         {
             App.Logedin = false;
@@ -38,6 +32,23 @@ namespace BetrackingAPP.Views
                 Navigation.PushAsync(new LoginPage(Usuario));
             }
             base.OnAppearing();
+        }
+
+        private void BETracking_Web(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://bepc.backnetwork.net/BEPCINC/BeTracking/index"));
+        }
+        private void BETracking_Help(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://www.bepcinc.com/betrackinghelp"));
+        }
+        private void BETracking_Policy(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://www.bepcinc.com/privacy-and-terms"));
+        }
+        private void BETracking_Terms(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://www.bepcinc.com/privacy-and-terms"));
         }
     }
 }

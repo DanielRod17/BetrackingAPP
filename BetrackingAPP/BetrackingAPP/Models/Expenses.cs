@@ -82,7 +82,6 @@ namespace BetrackingAPP.Models
                 }
             }
         }
-
         public void UpdateInfo()
         {
             TotalExpenses = iExpenses.Count;
@@ -92,7 +91,6 @@ namespace BetrackingAPP.Models
                 TotalMoney += decimal.Parse(expense_item.Quantity);
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

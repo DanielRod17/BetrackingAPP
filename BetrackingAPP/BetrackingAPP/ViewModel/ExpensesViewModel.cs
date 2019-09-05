@@ -18,8 +18,44 @@ namespace BetrackingAPP.ViewModel
 {
     public class ExpensesViewModel : BaseViewModel
     {
+        private string _expensesName { get; set; }
+        public string ExpensesName
+        {
+            get
+            {
+                return _expensesName;
+            }
+            set
+            {
+                _expensesName = value;
+                Filtrar(_expensesName);
+                OnPropertyChanged();
+            }
+        }
+        private bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
 
-        //private INavigation Navigation;
+                    await GetTravels(usuario);
+
+                    IsRefreshing = false;
+                });
+            }
+        }
         public Command NewReportCommand { get; set; }
         private bool _happened;
         public bool HasPropertyValueChanged
@@ -72,7 +108,7 @@ namespace BetrackingAPP.ViewModel
             }
 
         }
-        public async void GetTravels(User usuario)
+        public async Task GetTravels(User usuario)
         {
             HasPropertyValueChanged = true;
             var client = new HttpClient();
@@ -91,7 +127,6 @@ namespace BetrackingAPP.ViewModel
             }
             HasPropertyValueChanged = false;
         }
-
         private Reports _selectedItem;
         public Reports ShowReportDetails
         {
@@ -106,7 +141,6 @@ namespace BetrackingAPP.ViewModel
                 }
             }
         }
-
         public async void GoToReport(Reports eu_report, User usuario)
         {
             HasPropertyValueChanged = true;
@@ -115,6 +149,27 @@ namespace BetrackingAPP.ViewModel
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualReport(eu_report, usuario));
             }
             HasPropertyValueChanged = false;
+        }
+        public async void Filtrar(string Busqueda)
+        {
+            string Name = "";
+            string Assignment = "";
+            string Status = "";
+            foreach(Reports reporte in Reports)
+            {
+                Name = reporte.Name.ToUpper();
+                Assignment = reporte.AssignmentName.ToUpper();
+                Status = reporte.StatusName.ToUpper();
+                Busqueda = Busqueda.ToUpper();
+                if ( Name.Contains(Busqueda) || Assignment.Contains(Busqueda) || Status.Contains(Busqueda))
+                {
+                    reporte.Searched = 115;
+                }
+                else
+                {
+                    reporte.Searched = 0;
+                }
+            }
         }
     }
 }

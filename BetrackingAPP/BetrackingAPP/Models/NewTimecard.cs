@@ -23,6 +23,19 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
+        private string _bgColor { get; set; }
+        public string bgColor
+        {
+            get
+            {
+                return _bgColor;
+            }
+            set
+            {
+                _bgColor = value;
+                OnPropertyChanged();
+            }
+        }
         private string _nota { get; set; }
         public string Nota
         {
@@ -36,7 +49,32 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-        public int DisplayInputs { get; set; }
+        private int _displayInputs { get; set; }
+        public int DisplayInputs
+        {
+            get
+            {
+                return _displayInputs;
+            }
+            set
+            {
+                _displayInputs = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _displayInputsNotes { get; set; }
+        public int DisplayInputsNotes
+        {
+            get
+            {
+                return _displayInputsNotes;
+            }
+            set
+            {
+                _displayInputsNotes = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

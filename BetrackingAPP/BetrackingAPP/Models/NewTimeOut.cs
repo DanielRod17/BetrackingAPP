@@ -9,8 +9,60 @@ namespace BetrackingAPP.Models
 {
     public class NewTimeOutCard : INotifyPropertyChanged
     {
+        private bool _break1Enabled { get; set; }
+        public bool Break1Enabled
+        {
+            get
+            {
+                return _break1Enabled;
+            }
+            set
+            {
+                _break1Enabled = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _break2Enabled { get; set; }
+        public bool Break2Enabled
+        {
+            get
+            {
+                return _break2Enabled;
+            }
+            set
+            {
+                _break2Enabled = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _break3Enabled { get; set; }
+        public bool Break3Enabled
+        {
+            get
+            {
+                return _break3Enabled;
+            }
+            set
+            {
+                _break3Enabled = value;
+                OnPropertyChanged();
+            }
+        }
         public string Day { get; set; }
         public int Numero { get; set; }
+        private int _inputHeight { get; set; }
+        public int InputHeight
+        {
+            get
+            {
+                return _inputHeight;
+            }
+            set
+            {
+                _inputHeight = value;
+                OnPropertyChanged();
+            }
+        }
         private TimeSpan _timein = new TimeSpan(0, 0, 0);
         public TimeSpan TimeIn {
             get
@@ -37,7 +89,19 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-
+        private string _bgColor { get; set; }
+        public string bgColor
+        {
+            get
+            {
+                return _bgColor;
+            }
+            set
+            {
+                _bgColor = value;
+                OnPropertyChanged();
+            }
+        }
         private TimeSpan _break1Out = new TimeSpan(0, 0, 0);
         private TimeSpan _break1In = new TimeSpan(0, 0, 0);
         private TimeSpan _break2Out = new TimeSpan(0, 0, 0);
@@ -116,7 +180,6 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-
         private decimal _valor = 0;
         public decimal Valor {
             get
@@ -130,7 +193,7 @@ namespace BetrackingAPP.Models
             }
         }
         public string Nota { get; set; }
-        private int _displayInputs;
+        private int _displayInputs { get; set; }
         public int DisplayInputs {
             get
             {
@@ -180,12 +243,11 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-
         public void UpdateValor()
         {
             if (TimeOut < TimeIn)
             {
-                TimeOut = TimeSpan.FromSeconds(TimeIn.TotalSeconds + 60);
+                TimeOut = TimeSpan.FromSeconds(TimeIn.TotalSeconds + 32400);
             }
 
             if (Break1 != 0)

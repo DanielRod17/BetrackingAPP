@@ -28,7 +28,19 @@ namespace BetrackingAPP.ViewModel
 
         public Timecard Timecard;
         private NewTimecardNormal _oldDay;
-        public DateTime Fecha_Send;
+        private DateTime _fecha_send { get; set; }
+        public DateTime Fecha_Send
+        {
+            get
+            {
+                return _fecha_send;
+            }
+            set
+            {
+                _fecha_send = value;
+                OnPropertyChanged();
+            }
+        }
         private string _assignmentName;
         public string AssignmentName
         {
@@ -84,13 +96,13 @@ namespace BetrackingAPP.ViewModel
             int satNum = fecha.AddDays(-1).Day;
             Fecha_timecard = "NEW TIMECARD\n" + fecha.Date.ToString("MM/dd/yyyy");
             Days = new ObservableCollection<NewTimecardNormal> {
-                new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = 0.00m, Nota = "", DisplayInputs = 0 },
-                new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = 0.00m, Nota = "", DisplayInputs = 0 },
-                new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = 0.00m, Nota = "", DisplayInputs = 0 },
-                new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = 0.00m, Nota = "", DisplayInputs = 0 },
-                new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = 0.00m, Nota = "", DisplayInputs = 0 },
-                new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = 0.00m, Nota = "", DisplayInputs = 0 },
-                new NewTimecardNormal() { Day = "Sun", Numero = fecha.Day, Valor = 0.00m, Nota = "", DisplayInputs = 0 }
+                new NewTimecardNormal() { Day = "Mon", Numero = monNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Fri", Numero = friNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Sat", Numero = satNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Sun", Numero = fecha.Day, Nota = "", DisplayInputs = 0, bgColor="White" }
             };
             GetAssignments(usuarioFrom);
 
@@ -107,7 +119,7 @@ namespace BetrackingAPP.ViewModel
             {
                 new KeyValuePair<string, string>("usuario", Usuario.Id.ToString()),
                 new KeyValuePair<string, string>("Assignment", AssignmentName),
-                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("g")),
+                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("info", yeison)
             }); ;
 
@@ -148,8 +160,8 @@ namespace BetrackingAPP.ViewModel
             {
                 new KeyValuePair<string, string>("usuario", Usuario.Id.ToString()),
                 new KeyValuePair<string, string>("Assignment", AssignmentName),
-                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("g")),
-                 new KeyValuePair<string, string>("Submit", "1"),
+                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Submit", "1"),
                 new KeyValuePair<string, string>("info", yeison)
             }); ;
 
@@ -191,8 +203,22 @@ namespace BetrackingAPP.ViewModel
 
         public void HideOrShowInputs(NewTimecardNormal day)
         {
-
-            if (_oldDay == day)
+            if (day != null)
+            {
+                if (day.DisplayInputs == 0)
+                {
+                    day.DisplayInputs = 100;
+                    day.DisplayInputsNotes = 35;
+                    day.bgColor = "#E1EAF7";
+                }
+                else
+                {
+                    day.DisplayInputs = 0;
+                    day.DisplayInputsNotes = 0;
+                    day.bgColor = "White";
+                }
+            }
+            /*if (_oldDay == day)
             {
                 // click twice on same item to hide it
                 if (day.DisplayInputs == 0)
@@ -217,7 +243,7 @@ namespace BetrackingAPP.ViewModel
                 day.DisplayInputs = 100;
                 UpdateDays(day);
             }
-            _oldDay = day;
+            _oldDay = day;*/
         }
 
         private void UpdateDays(NewTimecardNormal day)
