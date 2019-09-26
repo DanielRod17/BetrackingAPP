@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:app="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.Timecards"
-			 BackgroundColor="#f4f4f4"
-			 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-			 xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-			 xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:app="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    mc:Ignorable="d"
+    x:Class="BetrackingAPP.Views.Timecards"
+	BackgroundColor="#f4f4f4"
+	xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+	xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 	<Grid>
 		<StackLayout>
 			<StackLayout BackgroundColor="#f4f4f4">
@@ -18,6 +18,7 @@
 					TextColor="#f4c53f"
 					HeightRequest="15"
 					HorizontalTextAlignment="Center"
+					Margin="0,-70,0,0"
 					VerticalTextAlignment="Center"/>
 				<Image Source="BETRACKING.png"
                     HeightRequest="40"
@@ -72,7 +73,7 @@
 				IsPullToRefreshEnabled="true"
 				RefreshCommand="{Binding RefreshCommand}"
 				IsRefreshing="{Binding IsRefreshing}"
-				RowHeight="130"
+				RowHeight="150"
 				Margin="0, 0, 0, 0"
 				BackgroundColor="#f4f4f4"
 				SeparatorVisibility="None">
@@ -91,40 +92,35 @@
 										<ColumnDefinition Width="120"/>
 									</Grid.ColumnDefinitions>
 									<Grid.RowDefinitions>
-										<RowDefinition Height="30"/>
+										<RowDefinition Height="60"/>
 										<RowDefinition Height="30"/>
 										<RowDefinition Height="30"/>
 									</Grid.RowDefinitions>
 									<Image Source="person.png"
                                         HorizontalOptions="Start"
-                                        HeightRequest="20"
-                                        WidthRequest="20"/>
+                                        HeightRequest="30"
+                                        WidthRequest="30"/>
 									<Label Grid.Column="0"
                                         Grid.Row="1"
-                                        Text="{Binding suma, StringFormat='Suma: {0}'}"
-                                        FontSize="Micro"
+										Grid.ColumnSpan="2"
+                                        Text="{Binding suma, StringFormat='Hours: {0}'}"
+                                        FontSize="Small"
                                         HorizontalOptions="StartAndExpand">
 									</Label>
 									<Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
-                                        Text="{Binding Name, StringFormat='Project:{0}'}"
+                                        Text="{Binding Name, StringFormat='{0}'}"
 									    FontSize="Medium"
                                         HorizontalOptions="StartAndExpand">
-									</Label>
-									<Label Grid.Column="1"
-                                        Grid.Row="1"
-                                        Text="{Binding StartingDay, StringFormat='From: {0:dd/MM/yyyy}'}"
-                                        FontSize="Micro"
-                                        HorizontalOptions="Start">
 									</Label>
 									<Label Grid.Column="2"
                                         Grid.Row="2"
                                         HorizontalTextAlignment="End"
-                                        Text="{Binding Submitted, StringFormat='Submitted: {0}'}"
+                                        Text="{Binding Estado, StringFormat='Status: {0}'}"
                                         FontSize="Micro">
 									</Label>
 									<Label Grid.Row="1"
                                         Grid.Column="2"
-                                        Text="{Binding EndDay, StringFormat='To: {0:dd/MM/yyyy}'}"
+                                        Text="{Binding EndDay, StringFormat='End Day: {0:dd/MM/yyyy}'}"
                                         FontSize="Micro"
                                         HorizontalTextAlignment="End">
 									</Label>
@@ -138,8 +134,8 @@
 		<StackLayout AbsoluteLayout.LayoutFlags="All" 
 			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
 			<StackLayout VerticalOptions="CenterAndExpand">
-				<ffSvg:SvgCachedImage HeightRequest="200" Source="loadinggifi.gif"/>
-				<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 			</StackLayout>
 		</StackLayout>
 	</Grid>

@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="BetrackingAPP.App">
-    <Application.Resources>
-		<Style TargetType="NavigationPage">
+	<Application.Resources>
+		<!--<Style TargetType="NavigationPage">
 			<Setter Property="BarBackgroundColor" Value="White" />
 			<Setter Property="BarTextColor" Value="Black" />
-		</Style>
+			<Setter Property="Ba" Value="False"/>
+		</Style>-->
 	</Application.Resources>
 </Application>

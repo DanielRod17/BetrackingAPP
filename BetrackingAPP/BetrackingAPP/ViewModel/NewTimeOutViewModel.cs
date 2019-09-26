@@ -20,14 +20,26 @@ namespace BetrackingAPP.ViewModel
         public Command SaveTimecard { get; set; }
         public Command SubmitTimecard { get; set; }
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
-        .Where(x => x.ToLower().StartsWith(text.ToLower()))
+        .Where(x => x.ToLower().Contains(text.ToLower()))
         .OrderBy(x => x)
         .ToList();
 
         public User Usuario;
-
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
         public Timecard Timecard;
-        private NewTimeOutCard _oldDay;
+        //private NewTimeOutCard _oldDay;
         public DateTime Fecha_Send;
         private string _assignmentName;
         public string AssignmentName
@@ -42,14 +54,10 @@ namespace BetrackingAPP.ViewModel
                 return _assignmentName;
             }
         }
-
         public string Fecha_timecard { get; set; }
-
         ObservableCollection<string> assignments = new ObservableCollection<string>();
         public ObservableCollection<string> Assignments { get { return assignments; } }
-
         public ObservableCollection<NewTimeOutCard> Days { get; set; }
-
         private NewTimecardNormal _selectedItem;
         public NewTimecardNormal ShowDay
         {
@@ -64,7 +72,6 @@ namespace BetrackingAPP.ViewModel
                 }
             }
         }
-
         public void GoToDay(NewTimecardNormal eu_day)
         {
             if (eu_day != null)
@@ -74,6 +81,7 @@ namespace BetrackingAPP.ViewModel
         }
         public NewTimeOutViewModel(User usuarioFrom, List<Timecard> timecardFrom, System.DateTime fecha)
         {
+            IsLoading = true;
             Usuario = usuarioFrom;
             Fecha_Send = fecha;
             int monNum = fecha.AddDays(-6).Day;
@@ -96,6 +104,7 @@ namespace BetrackingAPP.ViewModel
 
             SaveTimecard = new Command(async () => await GuardarTimecard());
             SubmitTimecard = new Command(async () => await SometerTimecard());
+            IsLoading = false;
         }
 
         public async void Test()
@@ -105,6 +114,7 @@ namespace BetrackingAPP.ViewModel
 
         public async Task GuardarTimecard()
         {
+            IsLoading = true;
             HttpClient client = new HttpClient();
 
             var yeison = JsonConvert.SerializeObject(Days);
@@ -120,7 +130,6 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
                 if (responseData == "Timecard Saved!")
                 {
                     AssignmentName = "";
@@ -131,7 +140,7 @@ namespace BetrackingAPP.ViewModel
                         dia.Nota = "";
                     }
 
-                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
                 }
                 else
                 {
@@ -142,10 +151,12 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            IsLoading = false;
         }
 
         public async Task SometerTimecard()
         {
+            IsLoading = true;
             HttpClient client = new HttpClient();
 
             var yeison = JsonConvert.SerializeObject(Days);
@@ -162,7 +173,6 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
                 if (responseData == "Timecard Submitted!")
                 {
                     AssignmentName = "";
@@ -184,6 +194,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            IsLoading = false;
         }
         public void GetAssignments(User usuario)
         {
@@ -193,7 +204,6 @@ namespace BetrackingAPP.ViewModel
                 Assignments.Add(assignment_item.Name);
             }
         }
-
 
         public void AgregarBreak(NewTimeOutCard day)
         {
@@ -220,7 +230,6 @@ namespace BetrackingAPP.ViewModel
             }
             //UpdateDays(_oldDay);
         }
-
         public void QuitarBreak(NewTimeOutCard day)
         {
             if (day.Break3 == 45)
@@ -246,7 +255,6 @@ namespace BetrackingAPP.ViewModel
             }
             //UpdateDays(_oldDay);
         }
-
         public void HideOrShowInputs(NewTimeOutCard day)
         {
             if (day != null)
@@ -270,7 +278,7 @@ namespace BetrackingAPP.ViewModel
                         day.Break3 = 45;
                     }
                     day.InputHeight = 45;
-                    day.bgColor = "#E1EAF7";
+                    day.bgColor = "#F4F4F4";
                 }
                 else
                 {
@@ -282,34 +290,6 @@ namespace BetrackingAPP.ViewModel
                     day.bgColor = "White";
                 }
             }
-            /*if (_oldDay == day)
-            {
-                // click twice on same item to hide it
-                if (day.DisplayInputs == 0)
-                {
-                    day.DisplayInputs = 225;
-                    day.bgColor = "#b9c7da";
-                }
-                else
-                {
-                    day.DisplayInputs = 0;
-                    day.bgColor = "white";
-                }
-                UpdateDays(day);
-            }
-            else
-            {
-                if (_oldDay != null)
-                {
-                    // hide previous selected item
-                    _oldDay.DisplayInputs = 0;
-                    UpdateDays(_oldDay);
-                }
-                // show selected item
-                day.DisplayInputs = 225;
-                UpdateDays(day);
-            }
-            _oldDay = day;*/
         }
 
         private void UpdateDays(NewTimeOutCard day)

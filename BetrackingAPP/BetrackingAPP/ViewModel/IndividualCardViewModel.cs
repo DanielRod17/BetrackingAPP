@@ -135,7 +135,6 @@ namespace BetrackingAPP.ViewModel
         public string Sun_Note { get; set; }
         public string Assignment_Name { get; set; }
         public string Total_Hours { get; set; }
-
         public string monday_info { get; set; }
 
         private User usuario;
@@ -165,10 +164,19 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged("Actions");
             }
         }
-
-        ObservableCollection<NewTimecardNormal> _dias;
-        public ObservableCollection<NewTimecardNormal> Days { get { return _dias;  } set { _dias = value; OnPropertyChanged(); } }
-
+        private ObservableCollection<NewTimecardNormal> _dias;
+        public ObservableCollection<NewTimecardNormal> Days
+        {
+            get
+            {
+                return _dias;
+            }
+            set
+            {
+                _dias = value;
+                OnPropertyChanged();
+            }
+        }
         public IndividualCardViewModel(User usuarioFrom, Timecard timecardFrom, DateTime _dateSearch)
         {
             FechaSeleccionada = _dateSearch;
@@ -193,13 +201,13 @@ namespace BetrackingAPP.ViewModel
             int satNum = fecha.AddDays(-1).Day;
             int sunNum = fecha.Day;
             Days = new ObservableCollection<NewTimecardNormal> {
-                new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = timecard.Mon, Nota = timecard.MonNote, DisplayInputs = 40 },
-                new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = timecard.Tue, Nota = timecard.TueNote, DisplayInputs = 40 },
-                new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = timecard.Wed, Nota = timecard.WedNote, DisplayInputs = 40 },
-                new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = timecard.Thu, Nota = timecard.ThuNote, DisplayInputs = 40 },
-                new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = timecard.Fri, Nota = timecard.FriNote, DisplayInputs = 40 },
-                new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = timecard.Sat, Nota = timecard.SatNote, DisplayInputs = 40 },
-                new NewTimecardNormal() { Day = "Sun", Numero = fecha.Day, Valor = timecard.Sun, Nota = timecard.SunNote, DisplayInputs = 40 }
+                new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = timecard.Mon, Nota = timecard.MonNote, DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = timecard.Tue, Nota = timecard.TueNote, DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = timecard.Wed, Nota = timecard.WedNote, DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = timecard.Thu, Nota = timecard.ThuNote, DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = timecard.Fri, Nota = timecard.FriNote, DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = timecard.Sat, Nota = timecard.SatNote, DisplayInputs = 0, bgColor="White" },
+                new NewTimecardNormal() { Day = "Sun", Numero = fecha.Day, Valor = timecard.Sun, Nota = timecard.SunNote, DisplayInputs = 0, bgColor="White" }
             };
 
             Assignment_Name = timecard.Name;
@@ -299,7 +307,7 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("Timecard", iD.ToString()),
                 new KeyValuePair<string, string>("Assignment", AssignmentID.ToString()),
                 new KeyValuePair<string, string>("AssignmentName", AssignmentName),
-                new KeyValuePair<string, string>("date", FechaSeleccionada.Date.ToString()),
+                new KeyValuePair<string, string>("date", FechaSeleccionada.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("info", yeison)
             }); ;
 
@@ -346,14 +354,14 @@ namespace BetrackingAPP.ViewModel
                 int satNum = FechaSeleccionada.AddDays(-1).Day;
                 int sunNum = FechaSeleccionada.Day;
                 var temp = new ObservableCollection<NewTimecardNormal> {
-                    new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = Timecard[0].Mon, Nota = Timecard[0].MonNote, DisplayInputs = 70 },
-                    new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = Timecard[0].Tue, Nota = Timecard[0].TueNote, DisplayInputs = 40 },
-                    new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = Timecard[0].Wed, Nota = Timecard[0].WedNote, DisplayInputs = 40 },
-                    new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = Timecard[0].Thu, Nota = Timecard[0].ThuNote, DisplayInputs = 40 },
-                    new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = Timecard[0].Fri, Nota = Timecard[0].FriNote, DisplayInputs = 40 },
-                    new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = Timecard[0].Sat, Nota = Timecard[0].SatNote, DisplayInputs = 40 },
-                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 40 },
-                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 40 },
+                    new NewTimecardNormal() { Day = "Mon", Numero = monNum, Valor = Timecard[0].Mon, Nota = Timecard[0].MonNote, DisplayInputs = 0 },
+                    new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Valor = Timecard[0].Tue, Nota = Timecard[0].TueNote, DisplayInputs = 0 },
+                    new NewTimecardNormal() { Day = "Wed", Numero = wedNum, Valor = Timecard[0].Wed, Nota = Timecard[0].WedNote, DisplayInputs = 0 },
+                    new NewTimecardNormal() { Day = "Thu", Numero = thuNum, Valor = Timecard[0].Thu, Nota = Timecard[0].ThuNote, DisplayInputs = 0 },
+                    new NewTimecardNormal() { Day = "Fri", Numero = friNum, Valor = Timecard[0].Fri, Nota = Timecard[0].FriNote, DisplayInputs = 0 },
+                    new NewTimecardNormal() { Day = "Sat", Numero = satNum, Valor = Timecard[0].Sat, Nota = Timecard[0].SatNote, DisplayInputs = 0 },
+                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 0 },
+                    new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 0 },
                 };
                 
                 GetActions(Timecard[0]);
@@ -361,6 +369,24 @@ namespace BetrackingAPP.ViewModel
                 Days = temp;
             }
             HasPropertyValueChanged = false;
+        }
+        public void HideOrShowInputs(NewTimecardNormal day)
+        {
+            if (day != null)
+            {
+                if (day.DisplayInputs == 0)
+                {
+                    day.DisplayInputs = 100;
+                    day.DisplayInputsNotes = 35;
+                    day.bgColor = "#E1EAF7";
+                }
+                else
+                {
+                    day.DisplayInputs = 0;
+                    day.DisplayInputsNotes = 0;
+                    day.bgColor = "White";
+                }
+            }
         }
     }
 }

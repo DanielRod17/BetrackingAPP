@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.MainPage"
-			 xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-			 xmlns:BetrackingAPP="clr-namespace:BetrackingAPP.Views"
-			 android:TabbedPage.ToolbarPlacement="Bottom"
-             BarBackgroundColor="#15212f"
-             BarTextColor="White">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="BetrackingAPP.Views.MainPage"
+	xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+	xmlns:BetrackingAPP="clr-namespace:BetrackingAPP.Views"
+	android:TabbedPage.ToolbarPlacement="Bottom"
+	android:TabbedPage.BarItemColor="White"
+	android:TabbedPage.BarSelectedItemColor="#038cfc"
+    BarBackgroundColor="#15212f"
+    BarTextColor="White">
 	<!--Pages can be added as references or inline-->
-	<BetrackingAPP:Home Icon="Home50.png" Title="" BindingContext="{Binding HomeViewModel}" />
-	<BetrackingAPP:Timecards Icon="timecards50.png" Title="" BindingContext="{Binding TimecardsViewModel}" />
-	<BetrackingAPP:Expenses  Icon="Expenses50.png" Title=""  BindingContext="{Binding ExpensesViewModel}"  />
-	<BetrackingAPP:Settings  Icon="Settings50.png" Title="" BindingContext="{Binding SettingsViewModel}" />
+	<BetrackingAPP:Home Icon="home.png" Title="Home" BindingContext="{Binding HomeViewModel}" />
+	<BetrackingAPP:Timecards Icon="timecards.png" Title="Timecards" BindingContext="{Binding TimecardsViewModel}" />
+	<BetrackingAPP:Expenses  Icon="expenses.png" Title="Expenses"  BindingContext="{Binding ExpensesViewModel}"  />
+	<BetrackingAPP:Settings  Icon="SETTINGS.png" Title="Settings" BindingContext="{Binding SettingsViewModel}" />
 </TabbedPage>

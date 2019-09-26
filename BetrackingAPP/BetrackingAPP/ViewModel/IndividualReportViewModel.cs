@@ -23,6 +23,45 @@ namespace BetrackingAPP.ViewModel
 {
     public class IndividualReportViewModel : BaseViewModel
     {
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _hasPropertyValueChanged { get; set; }
+        public bool HasPropertyValueChanged
+        {
+            get
+            {
+                return _hasPropertyValueChanged;
+            }
+            set
+            {
+                _hasPropertyValueChanged = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isTentative { get; set; }
+        public bool IsTentative
+        {
+            get
+            {
+                return _isTentative;
+            }
+            set
+            {
+                _isTentative = value;
+                OnPropertyChanged();
+            }
+        }
         private Reports _reporte { get; set; }
         public Reports Reporte
         {
@@ -36,7 +75,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         ObservableCollection<Expense> expenses = new ObservableCollection<Expense>();
         public ObservableCollection<Expense> ExpensesList
         {
@@ -50,25 +88,181 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        
+        public int DisplayReportMode { get; set; }
         //public string Name { get; set; }
         public string ProjectName { get; set; }
         public DateTime? FromDate { get; set; }
         //public DateTime? ToDate { get; set; }
-        public decimal BaggageExp { get; set; }
-        public decimal AirfareExp { get; set; }
-        public decimal CarRentalExp { get; set; }
-        public decimal GasolineExp { get; set; }
-        public decimal LodgingExp { get; set; }
-        public decimal ParkingExp { get; set; }
-        public decimal MiscExp { get; set; }
-        public decimal MealsExp { get; set; }
-        public decimal ToolsExp { get; set; }
-        public decimal ChangeExp { get; set; }
-        public decimal TransportationExp { get; set; }
-        public decimal TollExp { get; set; }
-        public decimal PerDiemExp { get; set; }
+        private decimal _baggage { get; set; }
+        public decimal BaggageExp
+        {
+            get
+            {
+                return _baggage;
+            }
+            set
+            {
+                _baggage = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _airfare { get; set; }
+        public decimal AirfareExp
+        {
+            get
+            {
+                return _airfare;
+            }
+            set
+            {
+                _airfare = value;
+                OnPropertyChanged();
+            }
+            
+        }
+        private decimal _carRental { get; set; }
+        public decimal CarRentalExp
+        {
+            get
+            {
+                return _carRental;
+            }
+            set
+            {
+                _carRental = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _gasoline { get; set; }
+        public decimal GasolineExp
+        {
+            get
+            {
+                return _gasoline;
+            }
+            set
+            {
+                _gasoline = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _lodging { get; set; }
+        public decimal LodgingExp
+        {
+            get
+            {
+                return _lodging;
+            }
+            set
+            {
+                _lodging = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _parking { get; set; }
+        public decimal ParkingExp
+        {
+            get
+            {
+                return _parking;
+            }
+            set
+            {
+                _parking = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _misc { get; set; }
+        public decimal MiscExp
+        {
+            get
+            {
+                return _misc;
+            }
+            set
+            {
+                _misc = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _meals { get; set; }
+        public decimal MealsExp
+        {
+            get
+            {
+                return _meals;
+            }
+            set
+            {
+                _meals = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _tools { get; set; }
+        public decimal ToolsExp
+        {
+            get
+            {
+                return _tools;
+            }
+            set
+            {
+                _tools = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _change { get; set; }
+        public decimal ChangeExp
+        {
+            get
+            {
+                return _change;
+            }
+            set
+            {
+                _change = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _transportation { get; set; }
+        public decimal TransportationExp
+        {
+            get
+            {
+                return _transportation;
+            }
+            set
+            {
+                _transportation = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _toll { get; set; }
+        public decimal TollExp
+        {
+            get
+            {
+                return _toll;
+            }
+            set
+            {
+                _toll = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _perDiem { get; set; }
+        public decimal PerDiemExp
+        {
+            get
+            {
+                return _perDiem;
+            }
+            set
+            {
+                _perDiem = value;
+                OnPropertyChanged();
+            }
+        }
         public decimal Billable { get; set; }
         public decimal Refundable { get; set; }
         public decimal Total { get; set; }
@@ -90,7 +284,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         private ObservableCollection<string> _StatesListFrom = new ObservableCollection<string>();
         private ObservableCollection<string> _CitiesListFrom = new ObservableCollection<string>();
         public ObservableCollection<string> StatesListFrom
@@ -105,9 +298,112 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        public ObservableCollection<string> CitiesListFrom
+        {
+            get
+            {
+                return _CitiesListFrom;
+            }
+            set
+            {
+                _CitiesListFrom = value;
+                OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<string> _StatesListDest = new ObservableCollection<string>();
+        private ObservableCollection<string> _CitiesListDest = new ObservableCollection<string>();
+        public ObservableCollection<string> StatesListDest
+        {
+            get
+            {
+                return _StatesListDest;
+            }
+            set
+            {
+                _StatesListDest = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<string> CitiesListDest
+        {
+            get
+            {
+                return _CitiesListDest;
+            }
+            set
+            {
+                _CitiesListDest = value;
+                OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<string> _StatesListReturnFrom = new ObservableCollection<string>();
+        private ObservableCollection<string> _CitiesListReturnFrom = new ObservableCollection<string>();
+        public ObservableCollection<string> StatesListReturnFrom
+        {
+            get
+            {
+                return _StatesListReturnFrom;
+            }
+            set
+            {
+                _StatesListReturnFrom = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<string> CitiesListReturnFrom
+        {
+            get
+            {
+                return _CitiesListReturnFrom;
+            }
+            set
+            {
+                _CitiesListReturnFrom = value;
+                OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<string> _StatesListReturnTo = new ObservableCollection<string>();
+        private ObservableCollection<string> _CitiesListReturnTo = new ObservableCollection<string>();
+        public ObservableCollection<string> StatesListReturnTo
+        {
+            get
+            {
+                return _StatesListReturnTo;
+            }
+            set
+            {
+                _StatesListReturnTo = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<string> CitiesListReturnTo
+        {
+            get
+            {
+                return _CitiesListReturnTo;
+            }
+            set
+            {
+                _CitiesListReturnTo = value;
+                OnPropertyChanged();
+            }
+        }
+        private ObservableCollection<string> assignments = new ObservableCollection<string>();
+        public ObservableCollection<string> Assignments
+        {
+            get
+            {
+                return assignments;
+            }
+            set
+            {
+                assignments = value;
+                OnPropertyChanged();
+            }
+        }
         internal async void SubmitReport(Reports eu_report, User usuario)
         {
+            IsLoading = true;
             HttpClient client = new HttpClient();
 
             var formContent = new FormUrlEncodedContent(new[]
@@ -138,119 +434,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
-        }
-
-        public ObservableCollection<string> CitiesListFrom
-        {
-            get
-            {
-                return _CitiesListFrom;
-            }
-            set
-            {
-                _CitiesListFrom = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private ObservableCollection<string> _StatesListDest = new ObservableCollection<string>();
-        private ObservableCollection<string> _CitiesListDest = new ObservableCollection<string>();
-        public ObservableCollection<string> StatesListDest
-        {
-            get
-            {
-                return _StatesListDest;
-            }
-            set
-            {
-                _StatesListDest = value;
-                OnPropertyChanged();
-            }
-        }
-        public ObservableCollection<string> CitiesListDest
-        {
-            get
-            {
-                return _CitiesListDest;
-            }
-            set
-            {
-                _CitiesListDest = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private ObservableCollection<string> _StatesListReturnFrom = new ObservableCollection<string>();
-        private ObservableCollection<string> _CitiesListReturnFrom = new ObservableCollection<string>();
-        public ObservableCollection<string> StatesListReturnFrom
-        {
-            get
-            {
-                return _StatesListReturnFrom;
-            }
-            set
-            {
-                _StatesListReturnFrom = value;
-                OnPropertyChanged();
-            }
-        }
-        public ObservableCollection<string> CitiesListReturnFrom
-        {
-            get
-            {
-                return _CitiesListReturnFrom;
-            }
-            set
-            {
-                _CitiesListReturnFrom = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private ObservableCollection<string> _StatesListReturnTo = new ObservableCollection<string>();
-        private ObservableCollection<string> _CitiesListReturnTo = new ObservableCollection<string>();
-        public ObservableCollection<string> StatesListReturnTo
-        {
-            get
-            {
-                return _StatesListReturnTo;
-            }
-            set
-            {
-                _StatesListReturnTo = value;
-                OnPropertyChanged();
-            }
-        }
-        public ObservableCollection<string> CitiesListReturnTo
-        {
-            get
-            {
-                return _CitiesListReturnTo;
-            }
-            set
-            {
-                _CitiesListReturnTo = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-
-        private ObservableCollection<string> assignments = new ObservableCollection<string>();
-        public ObservableCollection<string> Assignments
-        {
-            get
-            {
-                return assignments;
-            }
-            set
-            {
-                assignments = value;
-                OnPropertyChanged();
-            }
+            IsLoading = false;
         }
         private string _assignmentName { get; set; }
         public string AssignmentName
@@ -304,8 +488,18 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-        //private int _displayHeight = 0;
-        public int DisplayHeight { get; set; }
+        private int _displayHeight { get; set; }
+        public int DisplayHeight {
+            get
+            {
+                return _displayHeight;
+            }
+            set
+            {
+                _displayHeight = value;
+                OnPropertyChanged();
+            }
+        }
         private int _reportType = 0;
         public int ReportType
         {
@@ -783,6 +977,8 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
+        public User Usuario { get; set; }
+        public Command UpdateReport { get; set; }
 
         //////////////////////////////////////////////////////
         //////////////////////////////////////////////////////
@@ -791,7 +987,7 @@ namespace BetrackingAPP.ViewModel
         public IDownloadFile File;
         async void DownloadFile(string URL)
         {
-
+            IsLoading = true;
             URL = "https://bepc.backnetwork.net/BEPCINC" + URL;
             File = CrossDownloadManager.Current.CreateDownloadFile(
                 URL
@@ -809,13 +1005,35 @@ namespace BetrackingAPP.ViewModel
                 isDownloading = IsDownloading(File);
             }
             await Application.Current.MainPage.DisplayAlert("Success", "File Downloaded!", "OK");
-            //Device.OpenUri(new Uri(File.DestinationPathName));
+            IsLoading = false;
         }
-        public void DeleteFile(File Arquivo)
+        public async void DeleteFileAsync(File Arquivo)
         {
-            FilesList.Remove(Arquivo);
-        }
+            IsLoading = true;
+            HttpClient client = new HttpClient();
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("reporte", Reporte.ID.ToString()),
+                new KeyValuePair<string, string>("file", Arquivo.URL),
+            }); ;
 
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/DeleteFile.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                if (responseData == "File Deleted!")
+                {
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, "File Deleted!"));
+                    FilesList.Remove(Arquivo);
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                }
+                
+            }
+            IsLoading = false;
+        }
         bool IsDownloading(IDownloadFile file)
         {
             if (file == null) return false;
@@ -838,16 +1056,35 @@ namespace BetrackingAPP.ViewModel
         }
         public IndividualReportViewModel(User usuarioFrom, Reports reportFrom)
         {
-            
             //////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////
             Reporte = reportFrom;
-
+            Usuario = usuarioFrom;
+            var bandera = 0;
+            for (var i = 0; i < usuarioFrom.Assignments.Length; i++)
+            {
+                if (usuarioFrom.Assignments[i].Division == 5 || usuarioFrom.Assignments[i].Division == 2)
+                {
+                    bandera = 1;
+                }
+            }
+            if (usuarioFrom.Payroll == "142")
+            {
+                bandera = 1;
+            }
+            if (bandera == 1)
+            {
+                DisplayReportMode = 45;
+            }
+            else
+            {
+                DisplayReportMode = 0;
+            }
             MessagingCenter.Subscribe<IndividualReportViewModel>(this, "Change", (sender) =>
             {
                 ReCargarValores();
             });
-
+            IsLoading = true;
             BaggageExp = 0;
             AirfareExp = 0;
             CarRentalExp = 0;
@@ -865,13 +1102,52 @@ namespace BetrackingAPP.ViewModel
             Refundable = 0;
             Total = 0;
             FilesList = new ObservableCollection<File>();
+            if (Reporte.Reason_Request != null)
+            {
+                ReportType = 0;
+                DisplayHeight = 45;
+            }
+            else if (Reporte.Reason_Request == null)
+            {
+                ReportType = 1;
+                DisplayHeight = 0;
+            }
+
             CargarValores();
 
             DownloadCommand = new Command<string>(DownloadFile);
-            DeleteFileCommand = new Command<Models.File>(DeleteFile);
+            DeleteFileCommand = new Command<Models.File>(DeleteFileAsync);
+            GetAssignments(usuarioFrom);
+            if (Reporte.Status == 0 || Reporte.Status == 2)
+            {
+                HasPropertyValueChanged = true;
+            }
+            else
+            {
+                HasPropertyValueChanged = false;
+            }
+
+            if (Reporte.Status == -1)
+            {
+                IsTentative = true;
+            }
+            else
+            {
+                IsTentative = false;
+            }
+            UpdateReport = new Command(async () => await ActualizarReporte());
+        }
+        public void GetAssignments(User usuario)
+        {
+            var Assignments_List = usuario.Assignments;
+            foreach (Assignment assignment_item in Assignments_List)
+            {
+                Assignments.Add(assignment_item.Name);
+            }
         }
         public async void ReCargarValores()
         {
+            IsLoading = true;
             var client = new HttpClient();
             var URL = "https://bepc.backnetwork.net/BEPCINC/api/getReport.php?reporte=" + Reporte.ID;
             var result = await client.GetAsync(URL);
@@ -893,22 +1169,19 @@ namespace BetrackingAPP.ViewModel
         {
             //////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////
+            IsLoading = true;
             Name = Reporte.Name;
             AssignmentName = Reporte.AssignmentName;
             FromDate = Reporte.FromDate;
             ToDate = Reporte.ToDate;
             Status = (Reporte.Status + 1);
-
-            ReportType = 0;
             Type_of_travel = Reporte.Type_of_travel;
             Flight = Reporte.Flight;
             From_Departure = Reporte.From_Departure;
-
             Country_From = Reporte.country_from_name;
             Country_To = Reporte.country_to_name;
             Return_Country_From = Reporte.rcountry_from_name;
-            Return_Country_To = Reporte.rcountry_to_name;
-            //var taskDelay = Task.Delay(3000);
+            Return_Country_To = Reporte.rcountry_to_name;    
             await Task.Delay(2000);
             State_From = Reporte.state_from_name;
             State_To = Reporte.state_to_name;
@@ -918,15 +1191,10 @@ namespace BetrackingAPP.ViewModel
             City_From = Reporte.city_from_name;
             City_To = Reporte.city_to_name;
             Return_City_From = Reporte.rcity_from_name;
-            Return_City_To = Reporte.rcity_to_name;
-            //await taskDelay;
-
+            Return_City_To = Reporte.rcity_to_name;            
             Arrival_Date = Reporte.Arrival_Date;
             To_Departure = Reporte.To_Departure;
-
             Seating_preference = Reporte.Seating_preference;
-
-
             Hotel_Arrival_Date = Reporte.Hotel_Arrival_Date;
             Hotel_Departure_Date = Reporte.Hotel_Departure_Date;
             Smoking = Reporte.Smoking;
@@ -942,16 +1210,6 @@ namespace BetrackingAPP.ViewModel
             Emergency_Contact = Reporte.Emergency_Contact;
             //////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////
-            if (Reporte.Reason_Request != null)
-            {
-                DisplayHeight = 45;
-                ReportType = 1;
-            }
-            else
-            {
-                DisplayHeight = 0;
-                ReportType = 0;
-            }
             var Expenses_Lista = Reporte.Expenses;
             var Files_List = Reporte.Files;
             decimal Valor_expense = 0;
@@ -1023,8 +1281,8 @@ namespace BetrackingAPP.ViewModel
                         break;
                 }
             }
+            IsLoading = false;
         }
-
         public async void ChangeStates(int v)
         {
             string country_val = "";
@@ -1119,15 +1377,89 @@ namespace BetrackingAPP.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
         }
-
         public async void AddExpenses(Reports reporte, User usuario)
         {
+            IsLoading = true;
             await App.Current.MainPage.Navigation.PushAsync(new AddExpenses(reporte, usuario));
+            IsLoading = false;
         }
-
         public async void AddFiles(Reports reporte, User usuario)
         {
+            IsLoading = true;
             await App.Current.MainPage.Navigation.PushAsync(new AddFiles(reporte, usuario));
+            IsLoading = false;
+        }
+        public async Task ActualizarReporte()
+        {
+            IsLoading = true;
+            HttpClient client = new HttpClient();
+
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("usuario", Usuario.Id.ToString()),
+                new KeyValuePair<string, string>("ReporteID", Reporte.ID.ToString()),
+                new KeyValuePair<string, string>("Assignment", AssignmentName),
+                new KeyValuePair<string, string>("Name", Name),
+                new KeyValuePair<string, string>("Payroll", Usuario.Payroll),
+                new KeyValuePair<string, string>("ReportType", ReportType.ToString()),
+                new KeyValuePair<string, string>("Type_of_travel", Type_of_travel.ToString()),
+                new KeyValuePair<string, string>("Flight", Flight.ToString()),
+                new KeyValuePair<string, string>("FromDate", FromDate.Value.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("From_Departure", From_Departure.ToString()),
+                new KeyValuePair<string, string>("State_From", State_From),
+                new KeyValuePair<string, string>("City_From", City_From),
+                new KeyValuePair<string, string>("ToDate", ToDate.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Arrival_Date", Arrival_Date.Value.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("To_Departure", To_Departure.ToString()),
+                new KeyValuePair<string, string>("State_To", State_To),
+                new KeyValuePair<string, string>("City_To", City_To),
+                new KeyValuePair<string, string>("Seating_preference", Seating_preference.ToString()),
+                new KeyValuePair<string, string>("Return_State_From", Return_State_From),
+                new KeyValuePair<string, string>("Return_City_From", Return_City_From),
+                new KeyValuePair<string, string>("Return_State_To", Return_State_To),
+                new KeyValuePair<string, string>("Return_City_To", Return_City_To),
+                new KeyValuePair<string, string>("Hotel_Arrival_Date", Hotel_Arrival_Date.Value.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Hotel_Departure_Date", Hotel_Departure_Date.Value.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Smoking", Smoking.ToString()),
+                new KeyValuePair<string, string>("Special_Needs", Special_Needs),
+                new KeyValuePair<string, string>("Ground_Method", Ground_Method.ToString()),
+                new KeyValuePair<string, string>("Emerald_Club_Number", Emerald_Club_Number),
+                new KeyValuePair<string, string>("Car_Rental_Pickup_Date", Car_Rental_Pickup_Date.Value.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Car_Rental_Time", Car_Rental_Time.ToString()),
+                new KeyValuePair<string, string>("Car_Size_Preference", Car_Size_Preference.ToString()),
+                new KeyValuePair<string, string>("Car_Rental_Return", Car_Rental_Return.Value.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Car_Rental_Return_Time", Car_Rental_Return_Time.ToString()),
+                new KeyValuePair<string, string>("Reason_Request", Reason_Request),
+                new KeyValuePair<string, string>("Emergency_Contact", Emergency_Contact),
+                new KeyValuePair<string, string>("Status", Status.ToString()),
+                new KeyValuePair<string, string>("Firstname", Usuario.Firstname),
+                new KeyValuePair<string, string>("Lastname", Usuario.Lastname),
+                new KeyValuePair<string, string>("Email", Usuario.Email)
+            });
+
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/UpdateReport.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                if (responseData == "Report Updated!")
+                {
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    if (Status == 0)
+                    {
+                        IsTentative = false;
+                        HasPropertyValueChanged = true;
+                    }
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+            }
+            IsLoading = false;
         }
     }
 }

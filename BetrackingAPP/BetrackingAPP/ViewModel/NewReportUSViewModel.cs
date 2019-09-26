@@ -24,6 +24,19 @@ namespace BetrackingAPP.ViewModel
         .Where(x => x.ToLower().StartsWith(text.ToLower()))
         .OrderBy(x => x)
         .ToList();
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
         public User Usuario;
         public Command CreateExpense { get; set; }
         private ObservableCollection<string> assignments = new ObservableCollection<string>();
@@ -78,11 +91,11 @@ namespace BetrackingAPP.ViewModel
         {
             get
             {
-                return _startDate;
+                return _endDate;
             }
             set
             {
-                _startDate = value;
+                _endDate = value;
                 OnPropertyChanged();
             }
         }
@@ -101,13 +114,15 @@ namespace BetrackingAPP.ViewModel
         }
         public NewReportUSViewModel(User usuario)
         {
+            IsLoading = true;
             Usuario = usuario;
             GetAssignments(usuario);
             CreateExpense = new Command(async () => await CrearReporte());
+            IsLoading = false;
         }
-
         public async Task CrearReporte()
         {
+            IsLoading = true;
             HttpClient client = new HttpClient();
 
             var formContent = new FormUrlEncodedContent(new[]
@@ -116,23 +131,22 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("Assignment", AssignmentName),
                 new KeyValuePair<string, string>("Payroll", Usuario.Payroll),
                 new KeyValuePair<string, string>("Name", Name),
-                new KeyValuePair<string, string>("StartDate", StartDate.Date.ToString("g")),
-                new KeyValuePair<string, string>("EndDate", EndDate.Date.ToString("g")),
+                new KeyValuePair<string, string>("StartDate", StartDate.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("EndDate", EndDate.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("Firstname", Usuario.Firstname),
                 new KeyValuePair<string, string>("Lastname", Usuario.Lastname),
                 new KeyValuePair<string, string>("Email", Usuario.Email),
                 new KeyValuePair<string, string>("Status", Status.ToString())
-            }); ;
+            });
 
             var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/CreateReport.php", formContent);
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
-                if (responseData == "Timecard Saved!")
+                if (responseData == "Yes")
                 {
                     AssignmentName = "";
-                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, "Expenses' Report Created!"));
                 }
                 else
                 {
@@ -143,8 +157,8 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            IsLoading = false;
         }
-
         public void GetAssignments(User usuario)
         {
             var Assignments_List = usuario.Assignments;

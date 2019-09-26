@@ -24,6 +24,7 @@ namespace BetrackingAPP.Models
         public int WorkCity { get; set; }
         public int Privilege { get; set; }
         public string Payroll { get; set; }
+        public string Round_Up { get; set; }
         public Assignment[] Assignments { get; set; }
 
     }

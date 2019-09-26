@@ -22,6 +22,19 @@ namespace BetrackingAPP.ViewModel
 {
     public class AddExpensesViewModel : BaseViewModel
     {
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
         public User Usuario { get; set; }
         public Reports Reporte { get; set; }
         public string ReportName { get; set; }
@@ -38,17 +51,18 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public void EnviarUpdate()
         {
+            IsLoading = true;
             MessagingCenter.Send<IndividualReportViewModel>(new IndividualReportViewModel(Usuario, Reporte), "Change");
+            IsLoading = false;
         }
-
         public Command<int> AddExpense { get; }
         public Command<Expense> DeleteExpense { get; }
         public Command GuardarExpenses { get; set; }
         public AddExpensesViewModel(Reports reporte, User usuario)
         {
+            IsLoading = true;
             Usuario = usuario;
             Reporte = reporte;
             ReportName = Reporte.Name;
@@ -122,6 +136,7 @@ namespace BetrackingAPP.ViewModel
                         break;
                 }
             }
+            IsLoading = false;
         }
         public void AgregarExpense(int expenese)
         {
@@ -179,23 +194,32 @@ namespace BetrackingAPP.ViewModel
                     if (expense_cat.DisplayAdd == 0)
                     {
                         expense_cat.DisplayAdd = 40;
+                        foreach (Expense expenese in expense_cat.iExpenses)
+                        {
+                            //expenese.bgColor = "#F4F4F4";
+                        }
                     }
                     else
                     {
                         expense_cat.DisplayAdd = 0;
                     }
-                    expense_cat.DisplayInputs = ( (expense_cat.iExpenses.Count) * 340 );
+                    expense_cat.DisplayInputs = ( (expense_cat.iExpenses.Count) * 337 );
                 }
                 else
                 {
                     expense_cat.DisplayAdd = 0;
                     expense_cat.DisplayInputs = 0;
+                    foreach (Expense expenese in expense_cat.iExpenses)
+                    {
+                        //expenese.bgColor = "White";
+                    }
                 }
             }
             expense_cat.UpdateInfo();
         }
         public async Task SaveExpenses()
         {
+            IsLoading = true;
             HttpClient client = new HttpClient();
 
             var yeison = JsonConvert.SerializeObject(ExpensesList);
@@ -215,14 +239,14 @@ namespace BetrackingAPP.ViewModel
                 }
                 var responseData = await result.Content.ReadAsStringAsync();
                 //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
-                if (responseData == "Timecard Saved!")
+                if (responseData == "Expenses Saved. Submit the expense report to send it for approval.")
                 {
                     //foreach (NewTimecardNormal dia in Days)
                     //{
                     //    dia.Valor = 0.00m;
                     //    dia.Nota = "";
                     //}
-                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
                 }
                 else
                 {
@@ -233,6 +257,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            IsLoading = false;
         }
     }
 }

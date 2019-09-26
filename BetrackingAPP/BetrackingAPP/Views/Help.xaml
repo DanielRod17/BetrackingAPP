@@ -1,52 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.Help"
-			 BackgroundColor="#f4f4f4">
-	<StackLayout Margin="20">
-		<TableView Intent="Form">
-			<TableRoot Title="Settings">
-				<TableSection Title="Type your problem here!">
-
-					<EntryCell Text="{Binding HelpText}" Placeholder="Text..."></EntryCell>
-
-				</TableSection>
-				<TableSection Title="Send us a ScreenShot">
-					<ViewCell>
-						<ViewCell.View>
-							<Button
-                                Text="+ ScreenShot >"
-                                BackgroundColor="White"
-                                TextColor="Black"
-								Clicked="PickPhoto_Clicked"/>
-						</ViewCell.View>
-					</ViewCell>
-				</TableSection>
-				<TableSection Title="Send us a ScreenShot">
-					<ViewCell>
-						<ViewCell.View>
-							<Image x:Name="Screenshot"
-								WidthRequest="400"
-								HeightRequest="220"
-								Source="{Binding imgSrc}"/>
-						</ViewCell.View>
-					</ViewCell>
-				</TableSection>
-				<TableSection Title="Submit your ticket">
-					<ViewCell>
-						<ViewCell.View>
-							<Button
-                                Text="Submit >"
-                                BackgroundColor="#15212f"
-                                TextColor="White"
-								Command="{Binding PedirAyuda}"/>
-						</ViewCell.View>
-					</ViewCell>
-				</TableSection>
-			</TableRoot>
-		</TableView>
-	</StackLayout>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="BetrackingAPP.Views.Help"
+	BackgroundColor="#f4f4f4">
+	<Grid>
+		<StackLayout Margin="20">
+			<TableView Intent="Form" HasUnevenRows="true">
+				<TableRoot Title="Settings">
+					<TableSection Title="Type your problem here!">
+						<EntryCell Text="{Binding HelpText}" Placeholder="Reason..."></EntryCell>
+					</TableSection>
+					<TableSection Title="Send us a ScreenShot">
+						<ViewCell>
+							<ViewCell.View>
+								<Button
+									Text="+ ScreenShot >"
+									BackgroundColor="White"
+									TextColor="Black"
+									Clicked="PickPhoto_Clicked"/>
+							</ViewCell.View>
+						</ViewCell>
+					</TableSection>
+					<TableSection Title="Send us a ScreenShot">
+						<ViewCell Height="150">
+							<ViewCell.View>
+								<Image x:Name="Screenshot"
+									WidthRequest="400"
+									HeightRequest="220"
+									Source="{Binding imgSrc}"/>
+							</ViewCell.View>
+						</ViewCell>
+					</TableSection>
+					<TableSection Title="Submit your ticket">
+						<ViewCell>
+							<ViewCell.View>
+								<Button
+									Text="Submit >"
+									BackgroundColor="#15212f"
+									TextColor="White"
+									Command="{Binding PedirAyuda}"/>
+							</ViewCell.View>
+						</ViewCell>
+					</TableSection>
+				</TableRoot>
+			</TableView>
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" 
+			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+			</StackLayout>
+		</StackLayout>
+	</Grid>
 </ContentPage>

@@ -26,13 +26,8 @@ namespace BetrackingAPP.ViewModel
         .ToList();
         public User Usuario;
 
-
         /////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////
-
-
-
-
 
         private ObservableCollection<string> _StatesListFrom = new ObservableCollection<string>();
         private ObservableCollection<string> _CitiesListFrom = new ObservableCollection<string>();
@@ -61,8 +56,6 @@ namespace BetrackingAPP.ViewModel
             }
         }
 
-
-
         private ObservableCollection<string> _StatesListDest = new ObservableCollection<string>();
         private ObservableCollection<string> _CitiesListDest = new ObservableCollection<string>();
         public ObservableCollection<string> StatesListDest
@@ -89,8 +82,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
 
         private ObservableCollection<string> _StatesListReturnFrom = new ObservableCollection<string>();
         private ObservableCollection<string> _CitiesListReturnFrom = new ObservableCollection<string>();
@@ -119,8 +110,6 @@ namespace BetrackingAPP.ViewModel
             }
         }
 
-
-
         private ObservableCollection<string> _StatesListReturnTo = new ObservableCollection<string>();
         private ObservableCollection<string> _CitiesListReturnTo = new ObservableCollection<string>();
         public ObservableCollection<string> StatesListReturnTo
@@ -147,10 +136,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
-
-
 
         //////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////
@@ -321,7 +306,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         private string _State_From { get; set; }
         public string State_From
         {
@@ -715,7 +699,6 @@ namespace BetrackingAPP.ViewModel
             GetAssignments(usuario);
             CreateExpense = new Command(async () => await CrearReporte());
         }
-
         public async Task CrearReporte()
         {
             HttpClient client = new HttpClient();
@@ -729,12 +712,12 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("ReportType", ReportType.ToString()),
                 new KeyValuePair<string, string>("Type_of_travel", Type_of_travel.ToString()),
                 new KeyValuePair<string, string>("Flight", Flight.ToString()),
-                new KeyValuePair<string, string>("FromDate", StartDate.Date.ToString("yyyy-MM-dd")),
+                new KeyValuePair<string, string>("FromDate", StartDate.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("From_Departure", From_Departure.ToString()),
                 new KeyValuePair<string, string>("State_From", State_From),
                 new KeyValuePair<string, string>("City_From", City_From),
-                new KeyValuePair<string, string>("ToDate", ToDate.Date.ToString("yyyy-MM-dd")),
-                new KeyValuePair<string, string>("Arrival_Date", Arrival_Date.Date.ToString("yyyy-MM-dd")),
+                new KeyValuePair<string, string>("ToDate", ToDate.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Arrival_Date", Arrival_Date.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("To_Departure", To_Departure.ToString()),
                 new KeyValuePair<string, string>("State_To", State_To),
                 new KeyValuePair<string, string>("City_To", City_To),
@@ -743,16 +726,16 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("Return_City_From", Return_City_From),
                 new KeyValuePair<string, string>("Return_State_To", Return_State_To),
                 new KeyValuePair<string, string>("Return_City_To", Return_City_To),
-                new KeyValuePair<string, string>("Hotel_Arrival_Date", Hotel_Arrival_Date.Date.ToString("yyyy-MM-dd")),
-                new KeyValuePair<string, string>("Hotel_Departure_Date", Hotel_Departure_Date.Date.ToString("yyyy-MM-dd")),
+                new KeyValuePair<string, string>("Hotel_Arrival_Date", Hotel_Arrival_Date.Date.ToString("MM/dd/yyyy")),
+                new KeyValuePair<string, string>("Hotel_Departure_Date", Hotel_Departure_Date.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("Smoking", Smoking.ToString()),
                 new KeyValuePair<string, string>("Special_Needs", Special_Needs),
                 new KeyValuePair<string, string>("Ground_Method", Ground_Method.ToString()),
                 new KeyValuePair<string, string>("Emerald_Club_Number", Emerald_Club_Number),
-                new KeyValuePair<string, string>("Car_Rental_Pickup_Date", Car_Rental_Pickup_Date.Date.ToString("yyyy-MM-dd")),
+                new KeyValuePair<string, string>("Car_Rental_Pickup_Date", Car_Rental_Pickup_Date.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("Car_Rental_Time", Car_Rental_Time.ToString()),
                 new KeyValuePair<string, string>("Car_Size_Preference", Car_Size_Preference.ToString()),
-                new KeyValuePair<string, string>("Car_Rental_Return", Car_Rental_Return.Date.ToString("yyyy-MM-dd")),
+                new KeyValuePair<string, string>("Car_Rental_Return", Car_Rental_Return.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("Car_Rental_Return_Time", Car_Rental_Return_Time.ToString()),
                 new KeyValuePair<string, string>("Reason_Request", Reason_Request),
                 new KeyValuePair<string, string>("Emergency_Contact", Emergency_Contact),
@@ -782,7 +765,6 @@ namespace BetrackingAPP.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
         }
-
         public void GetAssignments(User usuario)
         {
             var Assignments_List = usuario.Assignments;
@@ -791,7 +773,6 @@ namespace BetrackingAPP.ViewModel
                 Assignments.Add(assignment_item.Name);
             }
         }
-
         public async void ChangeStates(int v)
         {
             string country_val = "";
@@ -839,7 +820,6 @@ namespace BetrackingAPP.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
         }
-
         public async void ChangeCities(int v)
         {
             string state_val = "";

@@ -20,14 +20,26 @@ namespace BetrackingAPP.ViewModel
         public Command SaveTimecard { get; set; }
         public Command SubmitTimecard { get; set; }
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
-        .Where(x => x.ToLower().StartsWith(text.ToLower()))
+        .Where(x => x.ToLower().Contains(text.ToLower()))
         .OrderBy(x => x)
         .ToList();
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
         public User Usuario;
-
         public Timecard Timecard;
-        private NewTimecardNormal _oldDay;
+        //private NewTimecardNormal _oldDay;
         private DateTime _fecha_send { get; set; }
         public DateTime Fecha_Send
         {
@@ -54,14 +66,10 @@ namespace BetrackingAPP.ViewModel
                 return _assignmentName;
             }
         }
-
         public string Fecha_timecard { get; set; }
-
         ObservableCollection<string> assignments = new ObservableCollection<string>();
         public ObservableCollection<string> Assignments { get { return assignments; } }
-
         public ObservableCollection<NewTimecardNormal> Days { get; set; }
-
         private NewTimecardNormal _selectedItem;
         public NewTimecardNormal ShowDay
         {
@@ -76,7 +84,6 @@ namespace BetrackingAPP.ViewModel
                 }
             }
         }
-
         public void GoToDay(NewTimecardNormal eu_day)
         {
             if (eu_day != null)
@@ -86,6 +93,7 @@ namespace BetrackingAPP.ViewModel
         }
         public NewTimecardViewModel(User usuarioFrom, List<Timecard> timecardFrom, System.DateTime fecha)
         {
+            IsLoading = true;
             Usuario = usuarioFrom;
             Fecha_Send = fecha;
             int monNum = fecha.AddDays(-6).Day;
@@ -108,10 +116,12 @@ namespace BetrackingAPP.ViewModel
 
             SaveTimecard = new Command(async () => await GuardarTimecard());
             SubmitTimecard = new Command(async () => await SometerTimecard());
+            IsLoading = false;
         }
 
         public async Task GuardarTimecard()
         {
+            IsLoading = true;
             HttpClient client = new HttpClient();
 
             var yeison = JsonConvert.SerializeObject(Days);
@@ -138,7 +148,7 @@ namespace BetrackingAPP.ViewModel
                         dia.Nota = "";
                     }
 
-                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
                 }
                 else
                 {
@@ -149,10 +159,12 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            IsLoading = false;
         }
 
         public async Task SometerTimecard()
         {
+            IsLoading = true;
             HttpClient client = new HttpClient();
 
             var yeison = JsonConvert.SerializeObject(Days);
@@ -191,6 +203,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            IsLoading = false;
         }
         public void GetAssignments(User usuario)
         {
@@ -209,7 +222,7 @@ namespace BetrackingAPP.ViewModel
                 {
                     day.DisplayInputs = 100;
                     day.DisplayInputsNotes = 35;
-                    day.bgColor = "#E1EAF7";
+                    day.bgColor = "#F4F4F4";
                 }
                 else
                 {
@@ -218,32 +231,6 @@ namespace BetrackingAPP.ViewModel
                     day.bgColor = "White";
                 }
             }
-            /*if (_oldDay == day)
-            {
-                // click twice on same item to hide it
-                if (day.DisplayInputs == 0)
-                {
-                    day.DisplayInputs = 100;
-                }
-                else
-                {
-                    day.DisplayInputs = 0;
-                }
-                UpdateDays(day);
-            }
-            else
-            {
-                if (_oldDay != null)
-                {
-                    // hide previous selected item
-                    _oldDay.DisplayInputs = 0;
-                    UpdateDays(_oldDay);
-                }
-                // show selected item
-                day.DisplayInputs = 100;
-                UpdateDays(day);
-            }
-            _oldDay = day;*/
         }
 
         private void UpdateDays(NewTimecardNormal day)

@@ -69,6 +69,8 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\BebasNeue Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -276,5 +278,38 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loadinggifi.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ICONO IOS 180x180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SETTINGS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\test_fondo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GreenCheck.png" />
   </ItemGroup>
 </Project>

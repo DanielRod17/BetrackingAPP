@@ -62,7 +62,7 @@ namespace BetrackingAPP.Models
         public Expense[] Expenses { get; set; }
         public File[] Files { get; set; }
 
-        private int _searched = 110;
+        private int _searched = 140;
         public int Searched
         {
             get
@@ -153,6 +153,19 @@ namespace BetrackingAPP.Models
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private string _bgColor { get; set; }
+        public string bgColor
+        {
+            get
+            {
+                return _bgColor;
+            }
+            set
+            {
+                _bgColor = value;
+                OnPropertyChanged();
+            }
         }
     }
 

@@ -29,5 +29,17 @@ namespace BetrackingAPP.Views
             this.BindingContext = new LoginPageViewModel(Navigation);
             base.OnAppearing();
         }
+
+        private void Entry_Username_Completed(object sender, EventArgs e)
+        {
+            var password = this.FindByName<Entry>("Entry_Password");
+            password.Focus();
+        }
+
+        private void Entry_Password_Completed(object sender, EventArgs e)
+        {
+            var boton = this.FindByName<Button>("Btn_Signin");
+            boton.Command.Execute(null);
+        }
     }
 }

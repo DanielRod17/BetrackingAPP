@@ -147,11 +147,12 @@ namespace BetrackingAPP.ViewModel
             if (eu_report != null)
             {
                 await App.Current.MainPage.Navigation.PushAsync(new IndividualReport(eu_report, usuario));
+                HasPropertyValueChanged = false;
             }
-            HasPropertyValueChanged = false;
         }
         public async void Filtrar(string Busqueda)
         {
+            HasPropertyValueChanged = true;
             string Name = "";
             string Assignment = "";
             string Status = "";
@@ -163,13 +164,14 @@ namespace BetrackingAPP.ViewModel
                 Busqueda = Busqueda.ToUpper();
                 if ( Name.Contains(Busqueda) || Assignment.Contains(Busqueda) || Status.Contains(Busqueda))
                 {
-                    reporte.Searched = 115;
+                    reporte.Searched = 130;
                 }
                 else
                 {
                     reporte.Searched = 0;
                 }
             }
+            HasPropertyValueChanged = false;
         }
     }
 }

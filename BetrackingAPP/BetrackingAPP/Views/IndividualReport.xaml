@@ -1,768 +1,974 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.IndividualReport"
-			 x:Name="Page">
-	<!--Pages can be added as references or inline-->
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+    mc:Ignorable="d"
+    x:Class="BetrackingAPP.Views.IndividualReport"
+	x:Name="Page">
 	<ContentPage Title="Detail" x:Name="Detail">
 		<ScrollView>
-			<StackLayout x:Name="detailPanel">
-				<Grid RowSpacing="0">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="45"/>
-						<RowDefinition Height="45"/>
-						<RowDefinition Height="45"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="45"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="45"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="{Binding DisplayHeight}"/>
-						<RowDefinition Height="45"/>
-						<RowDefinition Height="50"/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-					</Grid.ColumnDefinitions>
-
-					<!-- Inputs -->
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="Assignment" 
-                        Grid.Row="0" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<xfx:XfxComboBox Placeholder="Select an Assignment" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" 
-						Text="{Binding AssignmentName}"
-						ItemsSource="{Binding Assignments}"
-						SortingAlgorithm="{Binding SortingAlgorithm}"
-						HorizontalTextAlignment="Center"
-						WidthRequest="300"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="Name" 
-                        Grid.Row="1" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Entry Placeholder="Name" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" 
-						Text="{Binding Name}"
-						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Type of Report" 
-                        Grid.Row="2" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding ReportType}" HorizontalOptions="FillAndExpand"
+			<Grid>
+				<StackLayout x:Name="detailPanel" BackgroundColor="#f4f4f4">
+					<StackLayout>
+						<Label Text="D E T A I L S"
+							FontSize="30"
+							TextColor="White"
+							HeightRequest="90"
+							HorizontalTextAlignment="Center"
+							VerticalTextAlignment="Center"
+							BackgroundColor="#15212f"/>
+					</StackLayout>
+					<Grid  Margin="20, 20, 20, 0" RowSpacing="0" BackgroundColor="#f4f4f4">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="{Binding DisplayReportMode}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="{Binding DisplayHeight}"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="50"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<!-- Inputs -->
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4" 
+							Text="Assignment" 
+							Grid.Row="0" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<!--<xfx:XfxComboBox Placeholder="Select an Assignment" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" 
+							Text="{Binding AssignmentName}"
+							ItemsSource="{Binding Assignments}"
+							SortingAlgorithm="{Binding SortingAlgorithm}"
+							HorizontalTextAlignment="Center"
+							WidthRequest="300"/>-->
+						<Picker Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4"
+							Title="Assignments"
+							WidthRequest="300"
+							Margin="0,0,10,0"
+							ItemsSource="{Binding Assignments}"
+							SelectedItem="{Binding AssignmentName}"
+						/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4" 
+							Text="Name" 
+							Grid.Row="1" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Entry Placeholder="Name" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" 
+							Text="{Binding Name}"
+							FontSize="Small"
+							Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Type of Report" 
+							Grid.Row="2" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding ReportType}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0"
 						>
-						<Picker.Items>
-							<x:String>Travel</x:String>
-							<x:String>Expenses Only</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Type of Travel" 
-                        Grid.Row="3" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Type_of_travel}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Business Travel (BEPC Life Science)</x:String>
-							<x:String>BE PRO (IT Division)</x:String>
-							<x:String>Other Travel</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Flight" 
-                        Grid.Row="4" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Flight}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Required</x:String>
-							<x:String>Not Required</x:String>
-						</Picker.Items>
-					</Picker>
-					<!--  FROM -->
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="F R O M" 
-                        Grid.Row="5" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="7" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Departure Date" 
-                        Grid.Row="6" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<DatePicker Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="4" 
-						MinimumDate="01/01/2019"
-						Date ="{Binding FromDate}"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Departure Time" 
-                        Grid.Row="7" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding From_Departure}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Morning</x:String>
-							<x:String>Afternoon</x:String>
-							<x:String>Night</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Country" 
-                        Grid.Row="8" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedItem="{Binding Country_From}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>MX</x:String>
-							<x:String>US</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="State" 
-                        Grid.Row="9" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding StatesListFrom}"
-						SelectedItem="{Binding State_From}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="City" 
-                        Grid.Row="10" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding CitiesListFrom}"
-						SelectedItem="{Binding City_From}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Date of Return" 
-                        Grid.Row="11" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<DatePicker Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="4" 
-						Date="{Binding ToDate}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
-					<!-- DESTINATION-->
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="D E S T I N A T I O N" 
-                        Grid.Row="12" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="7" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Date of Arrival" 
-                        Grid.Row="13" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<DatePicker Grid.Row="13" Grid.Column="3" Grid.ColumnSpan="4" 
-						Date="{Binding Arrival_Date}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Arrival Time" 
-                        Grid.Row="14" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="14" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding To_Departure}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Morning</x:String>
-							<x:String>Afternoon</x:String>
-							<x:String>Night</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Country" 
-                        Grid.Row="15" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedItem="{Binding Country_To}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>MX</x:String>
-							<x:String>US</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="State" 
-                        Grid.Row="16" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding StatesListDest}"
-						SelectedItem="{Binding State_To}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="City" 
-                        Grid.Row="17" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="17" Grid.Column="3" Grid.ColumnSpan="4"  ItemsSource="{Binding CitiesListDest}"
-						SelectedItem="{Binding City_To}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Seating Preference" 
-                        Grid.Row="18" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="18" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Seating_preference}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>No Preference</x:String>
-							<x:String>Aisle Seat</x:String>
-							<x:String>Window Seat</x:String>
-						</Picker.Items>
-					</Picker>
-					<!-- RETURN INFORMATION -->
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="RETURN INFORMATION" 
-                        Grid.Row="19" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="7" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Country From" 
-                        Grid.Row="20" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="20" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedItem="{Binding Return_Country_From}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>MX</x:String>
-							<x:String>US</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="State From" 
-                        Grid.Row="21" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="21" Grid.Column="3" Grid.ColumnSpan="4"  ItemsSource="{Binding StatesListReturnFrom}"
-						SelectedItem="{Binding Return_State_From}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="City From" 
-                        Grid.Row="22" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="22" Grid.Column="3" Grid.ColumnSpan="4"  ItemsSource="{Binding CitiesListReturnFrom}"
-						SelectedItem="{Binding Return_City_From}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Country To" 
-                        Grid.Row="23" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="23" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedItem="{Binding Return_Country_To}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>MX</x:String>
-							<x:String>US</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="State To" 
-                        Grid.Row="24" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="24" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding StatesListReturnTo}"
-						SelectedItem="{Binding Return_State_To}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="City To" 
-                        Grid.Row="25" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="25" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding CitiesListReturnTo}"
-						SelectedItem="{Binding Return_City_To}" HorizontalOptions="FillAndExpand">
-					</Picker>
-					<!--HOTEL RESERVATION-->
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="HOTEL RESERVATION" 
-                        Grid.Row="26" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="7" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Arrival Date" 
-                        Grid.Row="27" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<DatePicker Grid.Row="27" Grid.Column="3" Grid.ColumnSpan="4" 
-						Date="{Binding Hotel_Arrival_Date}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Departure Date" 
-                        Grid.Row="28" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<DatePicker Grid.Row="28" Grid.Column="3" Grid.ColumnSpan="4" 
-						Date="{Binding Hotel_Departure_Date}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Smoking" 
-                        Grid.Row="29" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="29" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Smoking}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>No</x:String>
-							<x:String>Yes</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Special Needs" 
-                        Grid.Row="30" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Entry Grid.Row="30" Grid.Column="3" Grid.ColumnSpan="4" 
-						Placeholder="Special Needs" Text="{Binding Special_Needs}"/>
-					<!--GROUND TRANSPORTATION-->
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="GROUND TRANSPORTATION" 
-                        Grid.Row="31" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="7" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Arrive Method" 
-                        Grid.Row="32" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="32" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Ground_Method}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Taxi</x:String>
-							<x:String>Rental Car</x:String>
-							<x:String>Emerald</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Emerald Club Number" 
-                        Grid.Row="33" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Entry Grid.Row="33" Grid.Column="3" Grid.ColumnSpan="4" 
-						Placeholder="Emerald Club Number" Text="{Binding Emerald_Club_Number}"/>
-					<!--IF RENTAL CAR-->
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="IF RENTAL CAR" 
-                        Grid.Row="34" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="7" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Pick up date" 
-                        Grid.Row="35" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<DatePicker Grid.Row="35" Grid.Column="3" Grid.ColumnSpan="4" 
-						Date="{Binding Car_Rental_Pickup_Date}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Time of pickup" 
-                        Grid.Row="36" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="36" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Car_Rental_Time}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Morning</x:String>
-							<x:String>Afternoon</x:String>
-							<x:String>Night</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Car Size" 
-                        Grid.Row="37" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="37" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Car_Size_Preference}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Small (Sedan, coupe, etc.)</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Car Return Date" 
-                        Grid.Row="38" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<DatePicker Grid.Row="38" Grid.Column="3" Grid.ColumnSpan="4" 
-						Date="{Binding Car_Rental_Return}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Approximate Time of Return" 
-                        Grid.Row="39" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="39" Grid.Column="3" Grid.ColumnSpan="4" 
-						SelectedIndex="{Binding Car_Rental_Return_Time}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Morning</x:String>
-							<x:String>Afternoon</x:String>
-							<x:String>Night</x:String>
-						</Picker.Items>
-					</Picker>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Reason of request" 
-                        Grid.Row="40" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Entry Grid.Row="40" Grid.Column="3" Grid.ColumnSpan="4" 
-						Placeholder="Reason Request" Text="{Binding Reason_Request}"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f"
-                        Text="Emergency contact" 
-                        Grid.Row="41" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Entry Grid.Row="41" Grid.Column="3" Grid.ColumnSpan="4"  
-						Placeholder="Emergency Contact" Text="{Binding Emergency_Contact}"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="Status" 
-                        Grid.Row="42" 
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3" 
-                        HorizontalTextAlignment="Start"
-                        VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
-					<Picker Grid.Row="42" Grid.Column="4" Grid.ColumnSpan="3" 
-						SelectedIndex="{Binding Status}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
-							<x:String>Tentative</x:String>
-							<x:String>Open</x:String>
-						</Picker.Items>
-					</Picker>
-					<Button Grid.Row="43" Grid.Column="2" Grid.ColumnSpan="4" 
-						Text="Update Report" 
-						TextColor="White"
-						FontSize="14"
-						BackgroundColor="#15212f"
-						BorderRadius="2"
-						Command="{Binding CreateExpense}"
-					/>
-				</Grid>
-			</StackLayout>
+							<Picker.Items>
+								<x:String>Travel</x:String>
+								<x:String>Expenses Only</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Type of Travel" 
+							Grid.Row="3" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Type_of_travel}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Business Travel (BEPC Life Science)</x:String>
+								<x:String>BE PRO (IT Division)</x:String>
+								<x:String>Other Travel</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Flight" 
+							Grid.Row="4" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Flight}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Required</x:String>
+								<x:String>Not Required</x:String>
+							</Picker.Items>
+						</Picker>
+						<!--  FROM -->
+						<Label TextColor="#15212f" 
+							BackgroundColor="#f4f4f4"
+							FontAttributes="Bold"
+							Text="F R O M" 
+							Grid.Row="5" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="7" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Departure Date" 
+							Grid.Row="6" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<DatePicker Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="4" 
+							MinimumDate="01/01/2019"
+							Date ="{Binding FromDate}"
+							Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Departure Time" 
+							Grid.Row="7" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding From_Departure}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Morning</x:String>
+								<x:String>Afternoon</x:String>
+								<x:String>Night</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Country" 
+							Grid.Row="8" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedItem="{Binding Country_From}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>MX</x:String>
+								<x:String>US</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="State" 
+							Grid.Row="9" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding StatesListFrom}"
+							SelectedItem="{Binding State_From}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="City" 
+							Grid.Row="10" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding CitiesListFrom}"
+							SelectedItem="{Binding City_From}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Date of Return" 
+							Grid.Row="11" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<DatePicker Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="4" 
+							Date="{Binding ToDate}"
+							MinimumDate="01/01/2019"
+							FontSize="Small"
+							Margin="0,0,10,0"/>
+						<!-- DESTINATION-->
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="D E S T I N A T I O N" 
+							FontAttributes="Bold"
+							Grid.Row="12" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="7" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Date of Arrival" 
+							Grid.Row="13" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<DatePicker Grid.Row="13" Grid.Column="3" Grid.ColumnSpan="4" 
+							Date="{Binding Arrival_Date}"
+							MinimumDate="01/01/2019"
+							FontSize="Small"
+							Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Arrival Time" 
+							Grid.Row="14" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="14" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding To_Departure}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Morning</x:String>
+								<x:String>Afternoon</x:String>
+								<x:String>Night</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Country" 
+							Grid.Row="15" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedItem="{Binding Country_To}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>MX</x:String>
+								<x:String>US</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="State" 
+							Grid.Row="16" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding StatesListDest}"
+							SelectedItem="{Binding State_To}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="City" 
+							Grid.Row="17" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="17" Grid.Column="3" Grid.ColumnSpan="4"  ItemsSource="{Binding CitiesListDest}"
+							SelectedItem="{Binding City_To}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Seating Preference" 
+							Grid.Row="18" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="18" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Seating_preference}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>No Preference</x:String>
+								<x:String>Aisle Seat</x:String>
+								<x:String>Window Seat</x:String>
+							</Picker.Items>
+						</Picker>
+						<!-- RETURN INFORMATION -->
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="R E T U R N  I N F O R M A T I O N" 
+							Grid.Row="19" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="7" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Country From" 
+							Grid.Row="20" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="20" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedItem="{Binding Return_Country_From}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>MX</x:String>
+								<x:String>US</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="State From" 
+							Grid.Row="21" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="21" Grid.Column="3" Grid.ColumnSpan="4"  ItemsSource="{Binding StatesListReturnFrom}"
+							SelectedItem="{Binding Return_State_From}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="City From" 
+							Grid.Row="22" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="22" Grid.Column="3" Grid.ColumnSpan="4"  ItemsSource="{Binding CitiesListReturnFrom}"
+							SelectedItem="{Binding Return_City_From}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Country To" 
+							Grid.Row="23" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="23" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedItem="{Binding Return_Country_To}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>MX</x:String>
+								<x:String>US</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="State To" 
+							Grid.Row="24" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="24" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding StatesListReturnTo}"
+							SelectedItem="{Binding Return_State_To}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="City To" 
+							Grid.Row="25" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="25" Grid.Column="3" Grid.ColumnSpan="4" ItemsSource="{Binding CitiesListReturnTo}"
+							SelectedItem="{Binding Return_City_To}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+						</Picker>
+						<!--HOTEL RESERVATION-->
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="H O T E L  R E S E R V A T I O N" 
+							Grid.Row="26" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="7" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Arrival Date" 
+							Grid.Row="27" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<DatePicker Grid.Row="27" Grid.Column="3" Grid.ColumnSpan="4" 
+							Date="{Binding Hotel_Arrival_Date}"
+							MinimumDate="01/01/2019"
+							FontSize="Small"
+							Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Departure Date" 
+							Grid.Row="28" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<DatePicker Grid.Row="28" Grid.Column="3" Grid.ColumnSpan="4" 
+							Date="{Binding Hotel_Departure_Date}"
+							MinimumDate="01/01/2019"
+							FontSize="Small"
+							Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Smoking" 
+							Grid.Row="29" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="29" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Smoking}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>No</x:String>
+								<x:String>Yes</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Special Needs" 
+							Grid.Row="30" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Entry Grid.Row="30" Grid.Column="3" Grid.ColumnSpan="4" 
+							Placeholder="Special Needs" Text="{Binding Special_Needs}" Margin="0,0,10,0"/>
+						<!--GROUND TRANSPORTATION-->
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="G R O U N D  T R A N S P O R T A T I O N" 
+							Grid.Row="31" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="7" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Arrive Method" 
+							Grid.Row="32" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="32" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Ground_Method}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Taxi</x:String>
+								<x:String>Rental Car</x:String>
+								<x:String>Emerald</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Emerald Club Number" 
+							Grid.Row="33" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Entry Grid.Row="33" Grid.Column="3" Grid.ColumnSpan="4" 
+							Placeholder="Emerald Club Number" Text="{Binding Emerald_Club_Number}" Margin="0,0,10,0"/>
+						<!--IF RENTAL CAR-->
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="IF RENTAL CAR" 
+							Grid.Row="34" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="7" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Pick up date" 
+							Grid.Row="35" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<DatePicker Grid.Row="35" Grid.Column="3" Grid.ColumnSpan="4" 
+							Date="{Binding Car_Rental_Pickup_Date}"
+							MinimumDate="01/01/2019"
+							FontSize="Small"
+							Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Time of pickup" 
+							Grid.Row="36" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="36" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Car_Rental_Time}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Morning</x:String>
+								<x:String>Afternoon</x:String>
+								<x:String>Night</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Car Size" 
+							Grid.Row="37" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="37" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Car_Size_Preference}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Small (Sedan, coupe, etc.)</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Car Return Date" 
+							Grid.Row="38" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<DatePicker Grid.Row="38" Grid.Column="3" Grid.ColumnSpan="4" 
+							Date="{Binding Car_Rental_Return}"
+							MinimumDate="01/01/2019"
+							FontSize="Small"
+							Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Approximate Time of Return" 
+							Grid.Row="39" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="39" Grid.Column="3" Grid.ColumnSpan="4" 
+							SelectedIndex="{Binding Car_Rental_Return_Time}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Morning</x:String>
+								<x:String>Afternoon</x:String>
+								<x:String>Night</x:String>
+							</Picker.Items>
+						</Picker>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Reason of request" 
+							Grid.Row="40" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Entry Grid.Row="40" Grid.Column="3" Grid.ColumnSpan="4" 
+							Placeholder="Reason Request" Text="{Binding Reason_Request}" Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4"
+							Text="Emergency contact" 
+							Grid.Row="41" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Entry Grid.Row="41" Grid.Column="3" Grid.ColumnSpan="4"  
+							Placeholder="Emergency Contact" Text="{Binding Emergency_Contact}" Margin="0,0,10,0"/>
+						<Label TextColor="Black" 
+							BackgroundColor="#f4f4f4" 
+							Text="Status" 
+							Grid.Row="42" 
+							Grid.Column="0" 
+							Grid.ColumnSpan="3" 
+							HorizontalTextAlignment="Start"
+							VerticalTextAlignment="Center"
+							WidthRequest="40"
+							Margin="10,0,0,0"/>
+						<Picker Grid.Row="42" Grid.Column="3" Grid.ColumnSpan="4"
+							SelectedIndex="{Binding Status}" HorizontalOptions="FillAndExpand" Margin="0,0,10,0">
+							<Picker.Items>
+								<x:String>Open</x:String>
+								<x:String>Tentative</x:String>
+							</Picker.Items>
+						</Picker>
+						<Button Grid.Row="44" Grid.Column="1" Grid.ColumnSpan="5" 
+							Text="Update Report" 
+							TextColor="White"
+							FontSize="14"
+							BackgroundColor="#14212f"
+							BorderRadius="2"
+							Command="{Binding UpdateReport}"
+							IsVisible="{Binding IsTentative}" 
+						/>
+					</Grid>
+				</StackLayout>
+				<StackLayout AbsoluteLayout.LayoutFlags="All" 
+					AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+					<StackLayout VerticalOptions="CenterAndExpand">
+						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+						<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+					</StackLayout>
+				</StackLayout>
+			</Grid>
 		</ScrollView>
 	</ContentPage>
 	<ContentPage Title="Related" x:Name="Related">
 		<ScrollView>
-			<StackLayout x:Name="relatedPanel">
-				<Label Text="{Binding Name}"/>
-				<Label Text="{Binding StatusName, StringFormat='Status: {0}'}"/>
-				<Label Text="{Binding ProjectName, StringFormat='Project: {0}'}"/>
-				<Label Text="{Binding FromDate, StringFormat='From: {0:dd/MM/yyyy}'}"/>
-				<Label Text="{Binding ToDate, StringFormat='To: {0:dd/MM/yyyy}'}"/>
-				<Label Text="{Binding BaggageExp, StringFormat='Baggage: ${0} USD'}"/>
-				<Label Text="{Binding AirfareExp, StringFormat='Airfare: ${0} USD'}"/>
-				<Label Text="{Binding CarRentalExp, StringFormat='Car Rental: ${0} USD'}"/>
-				<Label Text="{Binding LodgingExp, StringFormat='Lodging: ${0} USD'}"/>
-				<Label Text="{Binding ParkingExp, StringFormat='Parking: ${0} USD'}"/>
-				<Label Text="{Binding GasolineExp, StringFormat='Gasoline: ${0} USD'}"/>
-				<Label Text="{Binding MiscExp, StringFormat='Miscellaneous: ${0} USD'}"/>
-				<Label Text="{Binding MealsExp, StringFormat='Meals: ${0} USD'}"/>
-				<Label Text="{Binding ToolsExp, StringFormat='Tools Supplies: ${0} USD'}"/>
-				<Label Text="{Binding ChangeExp, StringFormat='Change Fees: ${0} USD'}"/>
-				<Label Text="{Binding TransportationExp, StringFormat='Transportation: {0} USD'}"/>
-				<Label Text="{Binding TollExp, StringFormat='Tolls: ${0} USD'}"/>
-				<Label Text="{Binding PerDiemExp, StringFormat='Per Diem: ${0} USD'}"/>
-				<Label Text="{Binding Billable, StringFormat='Billable: ${0} USD'}"/>
-				<Label Text="{Binding Refundable, StringFormat='Refundable: ${0} USD'}"/>
-				<Label Text="{Binding Total, StringFormat='Total: ${0} USD'}"/>
-			</StackLayout>
+			<Grid>
+				<StackLayout x:Name="relatedPanel" BackgroundColor="#F4F4F4">
+					<Label Text="R E L A T E D"
+						FontSize="30"
+						TextColor="White"
+						HeightRequest="90"
+						HorizontalTextAlignment="Center"
+						VerticalTextAlignment="Center"
+						BackgroundColor="#15212f"/>
+					<StackLayout Margin="20, 20, 20, 0">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="30"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+								<RowDefinition Height="45"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							
+							<Label Text="{Binding Name}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="Title"/>
+							<Label Text="Status" Grid.Column="0" Grid.Row="1" FontAttributes="Bold"/>
+							<Label Text="{Binding StatusName}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+							<Label Text="Project" Grid.Column="0" Grid.Row="2" FontAttributes="Bold"/>
+							<Label Text="{Binding ProjectName}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
+							<Label Text="From" Grid.Column="0" Grid.Row="3" FontAttributes="Bold"/>
+							<Label Text="{Binding FromDate, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"/>
+							<Label Text="To"  Grid.Column="0" Grid.Row="4" FontAttributes="Bold"/>
+							<Label Text="{Binding ToDate, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"/>
+							<Label Text="Baggage"  Grid.Column="0" Grid.Row="5" FontAttributes="Bold"/>
+							<Label Text="{Binding BaggageExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
+							<Label Text="Airfare"  Grid.Column="0" Grid.Row="6" FontAttributes="Bold"/>
+							<Label Text="{Binding AirfareExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"/>
+							<Label Text="Car Rental"  Grid.Column="0" Grid.Row="7" FontAttributes="Bold"/>
+							<Label Text="{Binding CarRentalExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"/>
+							<Label Text="Lodging"  Grid.Column="0" Grid.Row="8" FontAttributes="Bold"/>
+							<Label Text="{Binding LodgingExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2"/>
+							<Label Text="Parking"  Grid.Column="0" Grid.Row="9" FontAttributes="Bold"/>
+							<Label Text="{Binding ParkingExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2"/>
+							<Label Text="Gasoline"  Grid.Column="0" Grid.Row="10" FontAttributes="Bold"/>
+							<Label Text="{Binding GasolineExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2"/>
+							<Label Text="Miscellaneous"  Grid.Column="0" Grid.Row="11" FontAttributes="Bold"/>
+							<Label Text="{Binding MiscExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2"/>
+							<Label Text="Meals"  Grid.Column="0" Grid.Row="12" FontAttributes="Bold"/>
+							<Label Text="{Binding MealsExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2"/>
+							<Label Text="Tools Supplies"  Grid.Column="0" Grid.Row="13" FontAttributes="Bold"/>
+							<Label Text="{Binding ToolsExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="2"/>
+							<Label Text="Change Fees"  Grid.Column="0" Grid.Row="14" FontAttributes="Bold"/>
+							<Label Text="{Binding ChangeExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="2"/>
+							<Label Text="Transportation"  Grid.Column="0" Grid.Row="15" FontAttributes="Bold"/>
+							<Label Text="{Binding TransportationExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="2"/>
+							<Label Text="Tolls"  Grid.Column="0" Grid.Row="16" FontAttributes="Bold"/>
+							<Label Text="{Binding TollExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="2"/>
+							<Label Text="Per Diem"  Grid.Column="0" Grid.Row="17" FontAttributes="Bold"/>
+							<Label Text="{Binding PerDiemExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="2"/>
+							<Label Text="Billable"  Grid.Column="0" Grid.Row="18" FontAttributes="Bold"/>
+							<Label Text="{Binding Billable, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="2"/>
+							<Label Text="Refundable"  Grid.Column="0" Grid.Row="19" FontAttributes="Bold"/>
+							<Label Text="{Binding Refundable, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2"/>
+							<Label Text="Total"  Grid.Column="0" Grid.Row="20" FontAttributes="Bold"/>
+							<Label Text="{Binding Total, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2"/>
+						</Grid>
+						<Button
+							Text = "Submit Report"
+							BackgroundColor="#15212f"
+							Clicked="SubmitReport"
+							IsVisible="{Binding HasPropertyValueChanged}"
+							TextColor="White"
+							FontSize="20"
+						/>
+					</StackLayout>
+				</StackLayout>
+				<StackLayout AbsoluteLayout.LayoutFlags="All" 
+					AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+					<StackLayout VerticalOptions="CenterAndExpand">
+						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+						<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+					</StackLayout>
+				</StackLayout>
+			</Grid>
 		</ScrollView>
 	</ContentPage>
 	<ContentPage Title="Expenses">
 		<ScrollView>
-			<StackLayout x:Name="ExpensesList">
-				<ListView
-					x:Name="TimecardsList"
-					ItemsSource="{Binding ExpensesList}"
-					IsPullToRefreshEnabled="true" 
-					RowHeight="180">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<ViewCell >
-								<Frame CornerRadius="5"
-							   Margin="5"
-							   BackgroundColor="White">
-									<StackLayout>
-										<Label Text="{Binding CategoryName}"
-									   FontSize="Large"/>
-										<Label Text="{Binding ExpenseDate, StringFormat='Date: {0:dd/MM/yyyy}'}"/>
-										<Label Text="{Binding ValorFinal, StringFormat='Quantity: ${0} USD'}"/>
-										<Label IsVisible="{Binding MxOn}" Text="{Binding Quantity, StringFormat='Quantity: ${0} MXN'}"/>
-										<Label IsVisible="{Binding DescriptionOn}" Text="{Binding Name, StringFormat='Description: {0}'}"/>
-										<Label IsVisible="{Binding RefundableOn}" Text="Refundable"/>
-									</StackLayout>
-								</Frame>
-							</ViewCell>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-			</StackLayout>
+			<Grid>
+				<StackLayout x:Name="ExpensesList" BackgroundColor="#F4F4F4">
+					<Label Text="E X P E N S E S"
+						FontSize="30"
+						TextColor="White"
+						HeightRequest="90"
+						HorizontalTextAlignment="Center"
+						VerticalTextAlignment="Center"
+						BackgroundColor="#15212f"/>
+					<ListView
+						x:Name="TimecardsList"
+						ItemsSource="{Binding ExpensesList}"
+						RowHeight="180"
+						SeparatorVisibility="None"
+						BackgroundColor="#f4f4f4">
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell >
+									<Frame CornerRadius="5"
+									Margin="10,2,10,0"
+									BackgroundColor="White"
+									HasShadow="False"
+									BorderColor="#e4e4e4">
+										<StackLayout>
+											<Label Text="{Binding CategoryName}" FontSize="Large"/>
+											<Label Text="{Binding ExpenseDate, StringFormat='Date: {0:dd/MM/yyyy}'}" Margin="10,0,0,0"/>
+											<Label Text="{Binding ValorFinal, StringFormat='Quantity: ${0} USD'}"/>
+											<Label IsVisible="{Binding MxOn}" Text="{Binding Quantity, StringFormat='Quantity: ${0} MXN'}"/>
+											<Label IsVisible="{Binding DescriptionOn}" Text="{Binding Name, StringFormat='Description: {0}'}"/>
+											<Label IsVisible="{Binding RefundableOn}" Text="Refundable"/>
+										</StackLayout>
+									</Frame>
+								</ViewCell>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+					<Button
+						Text="Add Expenses"
+						BackgroundColor="#15212f"
+						Clicked="AddExpenses"
+						IsVisible="{Binding HasPropertyValueChanged}"
+						TextColor="White"
+						FontSize="20"
+					/>
+				</StackLayout>
+				<StackLayout AbsoluteLayout.LayoutFlags="All" 
+					AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+					<StackLayout VerticalOptions="CenterAndExpand">
+						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+						<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+					</StackLayout>
+				</StackLayout>
+			</Grid>
 		</ScrollView>
 	</ContentPage>
 	<ContentPage Title="Files">
-		<StackLayout x:Name="Files">
+		<Grid>
+			<StackLayout x:Name="Files" BackgroundColor="#F4F4F4">
+				<Label Text="F I L E S"
+					FontSize="30"
+					TextColor="White"
+					HeightRequest="90"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f"/>
 				<ListView
 					x:Name="FilesList"
 					ItemsSource="{Binding FilesList}"
 					IsPullToRefreshEnabled="false"
-					HasUnevenRows="true">
+					HasUnevenRows="true"
+					SeparatorVisibility="None"
+					BackgroundColor="#f4f4f4">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell >
 								<Frame CornerRadius="5"
-							   Margin="5"
-							   BackgroundColor="White">
+									Margin="10,2,10,0"
+									BackgroundColor="White"
+									HasShadow="False"
+									BorderColor="#e4e4e4">
 									<StackLayout>
-										<Label Text="{Binding Name}"
-									   FontSize="Large"/>
+										<Label Text="{Binding Name}" FontSize="Large"/>
 										<Label Text="{Binding Date, StringFormat='Date: {0}'}"/>
 										<Label Text="{Binding Size, StringFormat='Size: {0}'}"/>
 										<Button
-											Command="{Binding Path=BindingContext.DownloadCommand, Source={x:Reference Page}}"
-											CommandParameter="{Binding URL}"
-											IsVisible="{Binding HasPropertyValueChanged}" 
-											Text="Download" 
-											TextColor="White"
-											FontSize="14"
-											BackgroundColor="#15212f"
-											BorderRadius="2"
-											/>
+									Command="{Binding Path=BindingContext.DownloadCommand, Source={x:Reference Page}}"
+									CommandParameter="{Binding URL}"
+									Text="Download" 
+									TextColor="White"
+									FontSize="14"
+									BackgroundColor="#15212f"
+									BorderRadius="5"
+								/>
 										<Button
-											Command="{Binding Path=BindingContext.DeleteFileCommand, Source={x:Reference Page}}"
-											CommandParameter="{Binding .}"
-											IsVisible="{Binding HasPropertyValueChanged}" 
-											Text="Delete" 
-											TextColor="White"
-											FontSize="14"
-											BackgroundColor="#15212f"
-											BorderRadius="2"
-											/>
+									Command="{Binding Path=BindingContext.DeleteFileCommand, Source={x:Reference Page}}"
+									CommandParameter="{Binding .}"
+									Text="Delete" 
+									TextColor="White"
+									FontSize="14"
+									BackgroundColor="#15212f"
+									BorderRadius="5"
+								/>
 									</StackLayout>
 								</Frame>
 							</ViewCell>
 						</DataTemplate>
 					</ListView.ItemTemplate>
 				</ListView>
+				<Button
+					Text="Add Files"
+					BackgroundColor="#15212f"
+					Clicked="AddFiles"
+					IsVisible="{Binding HasPropertyValueChanged}"
+					TextColor="White"
+					FontSize="20"
+				/>
 			</StackLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" 
+				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+					<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				</StackLayout>
+			</StackLayout>
+		</Grid>
 	</ContentPage>
 </TabbedPage>

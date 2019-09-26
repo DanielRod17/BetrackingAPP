@@ -19,6 +19,7 @@ namespace BetrackingAPP.Models
             set
             {
                 _break1Enabled = value;
+                UpdateValor();
                 OnPropertyChanged();
             }
         }
@@ -32,6 +33,7 @@ namespace BetrackingAPP.Models
             set
             {
                 _break2Enabled = value;
+                UpdateValor();
                 OnPropertyChanged();
             }
         }
@@ -45,6 +47,7 @@ namespace BetrackingAPP.Models
             set
             {
                 _break3Enabled = value;
+                UpdateValor();
                 OnPropertyChanged();
             }
         }
@@ -245,10 +248,10 @@ namespace BetrackingAPP.Models
         }
         public void UpdateValor()
         {
-            if (TimeOut < TimeIn)
+            /*if (TimeOut < TimeIn)
             {
                 TimeOut = TimeSpan.FromSeconds(TimeIn.TotalSeconds + 32400);
-            }
+            }*/
 
             if (Break1 != 0)
             {
@@ -296,17 +299,26 @@ namespace BetrackingAPP.Models
                 }
             }
 
-            var tempSeconds = TimeOut.TotalSeconds - TimeIn.TotalSeconds;
+            double tempSeconds = 0;
+            if (TimeOut < TimeIn)
+            {
+                //24 - ( HoraToVal($lineas[0]) - HoraToVal($lineas[1]) );
+                tempSeconds = 86400 - (TimeIn.TotalSeconds - TimeOut.TotalSeconds);
+            }
+            else
+            {
+                tempSeconds = TimeOut.TotalSeconds - TimeIn.TotalSeconds;
+            }
 
-            if (Break1 != 0)
+            if (Break1 != 0 && Break1Enabled == true)
             {
                 tempSeconds = tempSeconds - (Break1In.TotalSeconds - Break1Out.TotalSeconds);
             }
-            if (Break2 != 0)
+            if (Break2 != 0 && Break2Enabled == true)
             {
                 tempSeconds = tempSeconds - (Break2In.TotalSeconds - Break2Out.TotalSeconds);
             }
-            if (Break3 != 0)
+            if (Break3 != 0 && Break3Enabled == true)
             {
                 tempSeconds = tempSeconds - (Break3In.TotalSeconds - Break3Out.TotalSeconds);
             }

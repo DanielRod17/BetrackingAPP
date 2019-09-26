@@ -26,8 +26,18 @@ namespace BetrackingAPP.Views
         }
         public NewTimecard(List<Models.Timecard> eu_timecard = null, User usuario = null, System.DateTime dateSearch = default)
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new NewTimecardViewModel(usuario, eu_timecard, dateSearch);
         }
 

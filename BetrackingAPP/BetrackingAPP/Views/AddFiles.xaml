@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:local="clr-namespace:BetrackingAPP"
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.AddFiles"
-			 x:Name="Page">
-    <ContentPage.Content>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:BetrackingAPP"
+    mc:Ignorable="d"
+    x:Class="BetrackingAPP.Views.AddFiles"
+	x:Name="Page">
+    <Grid>
         <StackLayout>
 			<Label Text="ADD FILES"
-							   FontSize="20"
-							   TextColor="White"
-							   HeightRequest="100"
-							   HorizontalTextAlignment="Center"
-							   VerticalTextAlignment="Center"
-							   BackgroundColor="#15212f"/>
+				FontSize="20"
+				TextColor="White"
+				HeightRequest="100"
+				HorizontalTextAlignment="Center"
+				VerticalTextAlignment="Center"
+				BackgroundColor="#15212f"/>
 			<Button Text="Pick File" 
-					TextColor="White"
-					FontSize="14"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Clicked="PickFile_Clicked"
-				/>
+				TextColor="White"
+				FontSize="14"
+				BackgroundColor="#15212f"
+				BorderRadius="2"
+				Clicked="PickFile_Clicked"
+			/>
 			<Button Text="Pick Photo" 
-					TextColor="White"
-					FontSize="14"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Clicked="PickPhoto_Clicked"
-				/>
+				TextColor="White"
+				FontSize="14"
+				BackgroundColor="#15212f"
+				BorderRadius="2"
+				Clicked="PickPhoto_Clicked"
+			/>
 			<Button Text="Take Photo" 
-					TextColor="White"
-					FontSize="14"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Clicked="TakePhoto_Clicked"
-				/>
+				TextColor="White"
+				FontSize="14"
+				BackgroundColor="#15212f"
+				BorderRadius="2"
+				Clicked="TakePhoto_Clicked"
+			/>
 			<ListView
 				ItemsSource="{Binding Medias}"
 				HasUnevenRows="true">
@@ -55,12 +55,12 @@
 									   Source="{Binding Path}"/>
 									<Label Text="{Binding FileName}"/>
 									<Button Text="Delete" 
-											TextColor="White"
-											FontSize="14"
-											BackgroundColor="#15212f"
-											BorderRadius="2"
-											Command="{Binding Path=BindingContext.DeleteMedia, Source={x:Reference Page}}"
-											CommandParameter="{Binding .}"/>
+										TextColor="White"
+										FontSize="14"
+										BackgroundColor="#15212f"
+										BorderRadius="2"
+										Command="{Binding Path=BindingContext.DeleteMedia, Source={x:Reference Page}}"
+										CommandParameter="{Binding .}"/>
 								</StackLayout>
 							</Frame>
 						</ViewCell>
@@ -98,12 +98,19 @@
 				</ListView.ItemTemplate>
 			</ListView>
 			<Button Text="Upload!" 
-					TextColor="White"
-					FontSize="14"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Clicked="UploadFile_Clicked"
-				/>
+				TextColor="White"
+				FontSize="14"
+				BackgroundColor="#15212f"
+				BorderRadius="2"
+				Clicked="UploadFile_Clicked"
+			/>
 		</StackLayout>
-    </ContentPage.Content>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" 
+			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+			</StackLayout>
+		</StackLayout>
+    </Grid>
 </ContentPage>

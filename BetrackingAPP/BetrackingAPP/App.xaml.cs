@@ -22,7 +22,17 @@ namespace BetrackingAPP
 
         protected override void OnStart()
         {
-            AppCenter.Start("3dc6f4a4-ed59-486a-ac0a-3f6d880a8b16", typeof(Push));
+            if ( Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS )
+            {
+                //Application.Current.MainPage.DisplayAlert("Oops", "iOS", "OK");
+                AppCenter.Start("5591c0eb-8f92-4ce0-b444-ca5943cea3d9", typeof(Push));
+            }
+            else if ( Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android )
+            {
+                //Application.Current.MainPage.DisplayAlert("Oops", "Android", "OK");
+                AppCenter.Start("3dc6f4a4-ed59-486a-ac0a-3f6d880a8b16", typeof(Push));
+            }
+            //AppCenter.Start("3dc6f4a4-ed59-486a-ac0a-3f6d880a8b16", typeof(Push));
         }
 
         protected override void OnSleep()

@@ -18,6 +18,17 @@ namespace BetrackingAPP.Views
         public Button boton { get; set; }
         public IndividualCard(Timecard eu_timecard = null, User usuario = null, DateTime _dateSearch = default)
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             Usuario_Reload = usuario;
             timecard_Reload = eu_timecard;
             date_reload = _dateSearch;
@@ -216,6 +227,16 @@ namespace BetrackingAPP.Views
         {
             var vm = BindingContext as IndividualCardViewModel;
             vm.UpdateTimecard(ID, AssignmentID);
+        }
+
+        private void TimecardsList_ItemTapped(object sender, EventArgs e)
+        {
+            /*var vm = BindingContext as NewTimecardViewModel;
+            var day = e.Item as NewTimecardNormal;
+            vm.HideOrShowInputs(day);*/
+            var vm = BindingContext as IndividualCardViewModel;
+            var day = (sender as View).BindingContext as NewTimecardNormal;
+            vm.HideOrShowInputs(day);
         }
     }
 }

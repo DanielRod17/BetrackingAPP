@@ -1,58 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 x:Class="BetrackingAPP.Views.LoginPage"
-			 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-			 xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-			 xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
-
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="BetrackingAPP.Views.LoginPage"
+	xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+	xmlns:local="clr-namespace:BetrackingAPP"
+	BackgroundImage="test_fondo.png">
 	<ContentPage.Resources>
 		<ResourceDictionary>
-			<!--<Style x:Key="Box1" TargetType="BoxView">
+			<Style x:Key="tspEntry" TargetType="Entry">
 				<Setter Property="BackgroundColor" Value="#77000000"/>
-				<Setter Property="IsVisible" Value="False"></Setter>
 			</Style>
-			<Style x:Key="Box2" TargetType="BoxView">
-				<Setter Property="BackgroundColor" Value="#77000000"/>
-				<Setter Property="IsVisible" Value="True"></Setter>
-			</Style>
-			<Style x:Key="Stack1" TargetType="BoxView">
-				<Setter Property="IsVisible" Value="False"></Setter>
-			</Style>
-			<Style x:Key="Stack2" TargetType="BoxView">
-				<Setter Property="IsVisible" Value="True"></Setter>
-			</Style>-->
 		</ResourceDictionary>
 	</ContentPage.Resources>
-
-	<ScrollView BackgroundColor="White">
-		<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="scr">
-			<StackLayout x:Name="loginMain" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-					BackgroundColor="White" Padding="20">
-				<!-- Place new controls here -->
-				<Image Source="user1.jpg" WidthRequest="80" HeightRequest="100"/>
-				<Label x:Name="Lbl_Username" Text="Email" TextColor="#4e4e4e" FontSize="10"/>
-				<Entry x:Name="Entry_Username" Text="{Binding sn}"  Keyboard="Email" FontSize="11"/>
-				<Label x:Name="Lbl_Password" Text="Password" TextColor="#4e4e4e" FontSize="10" HeightRequest="30"/>
-				<Entry x:Name="Entry_Password" IsPassword="true" Text="{Binding hash}"  FontSize="11"/>
-				<Label x:Name="forgot_Password" Text="Forgot Password?" TextColor="LightBlue" FontSize="8" HorizontalOptions="Start"/>
-				<Button x:Name="Btn_Signin" 
-						Command="{Binding LoginCommand}"
-                        Text="Sign in" 
-                        TextColor="White"
-                        FontSize="14"
-                        BackgroundColor="#15212f"
-                        BorderRadius="2"
-                        />
-			</StackLayout>
-			<StackLayout AbsoluteLayout.LayoutFlags="All" 
-					AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
-				<StackLayout VerticalOptions="CenterAndExpand">
-					<!--<Image Source="fileicon.png" HeightRequest="200"></Image>-->
-					<ffSvg:SvgCachedImage HeightRequest="200" Source="loadinggifi.gif"/>
-					<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+	<Grid>
+		<StackLayout x:Name="loginMain" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+			VerticalOptions="FillAndExpand" BackgroundColor="Transparent" Padding="30,60,30,120">
+			<!-- Place new controls here -->
+			<Image Source="BEPClogo.png" WidthRequest="50" HeightRequest="70"/>
+			<Label Text="BEPC" HorizontalOptions="CenterAndExpand" FontFamily="BebasNeue Bold.ttf"/>
+			<Grid Margin="0, 60, 0, 0" Padding="20, 0, 20, 0" ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="50"/>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+				<StackLayout Padding="10, 10, 10, 10" BackgroundColor="#15ffffff"  Grid.Column="0" Grid.Row="0">
+					<Image Source="User.png"/>
 				</StackLayout>
+				<Entry x:Name="Entry_Username" Text="{Binding sn}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0"
+					   Placeholder="Username" Keyboard="Email" FontSize="14" Completed="Entry_Username_Completed"
+					   BackgroundColor="#15ffffff"/>
+				<StackLayout Padding="10, 5, 15, 10" BackgroundColor="#15ffffff"  Grid.Column="0" Grid.Row="2">
+					<Image Source="Lock.png"/>
+				</StackLayout>
+				<Entry x:Name="Entry_Password" IsPassword="true" Text="{Binding hash}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="2"  
+					   Placeholder="Password" FontSize="14" Completed="Entry_Password_Completed" 
+					   HeightRequest="35" BackgroundColor="#15ffffff"/>
+			</Grid>
+			<Label x:Name="forgot_Password" Text="Forgot Password?" TextColor="LightBlue" FontSize="8" HorizontalOptions="Start"/>
+			<Button x:Name="Btn_Signin" 
+					Command="{Binding LoginCommand}"
+                    Text="Sign in" 
+                    TextColor="White"
+                    FontSize="14"
+                    BackgroundColor="#15212f"
+                    BorderRadius="2"
+					Margin="0,40,0,0"
+                />
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" 
+				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 			</StackLayout>
-		</AbsoluteLayout>
-	</ScrollView>
+		</StackLayout>
+	</Grid>
 </ContentPage>

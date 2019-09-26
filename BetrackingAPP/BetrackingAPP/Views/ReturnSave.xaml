@@ -10,21 +10,25 @@
         <StackLayout
 			Margin="12"
 			Padding="24"
-			BackgroundColor="White"
+			BackgroundColor="#FFFFFFFF"
 			HorizontalOptions="Center"
 			VerticalOptions="Center">
 			<Image Source="GreenCheck.png" WidthRequest="80" HeightRequest="100"/>
 			<Label 
-				   TextColor="Black"
-				   VerticalOptions="CenterAndExpand" 
-				   HorizontalOptions="CenterAndExpand"
-				   x:Name="Motivo"/>
+				TextColor="White"
+				VerticalOptions="CenterAndExpand" 
+				HorizontalOptions="CenterAndExpand"
+				x:Name="Motivo"/>
 			<Button Clicked="HidePopup"
 				Text="Close"
+				BackgroundColor="#15212f"
+				TextColor="White"
 			/>
 			<Button
 				Clicked="GoBack"
 				Text="Go Back"
+				BackgroundColor="#15212f"
+				TextColor="White"
 			/>
 		</StackLayout>
     </ContentPage.Content>

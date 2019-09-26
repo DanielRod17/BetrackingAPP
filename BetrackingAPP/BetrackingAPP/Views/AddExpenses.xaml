@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,27 +8,26 @@
 	xmlns:local="clr-namespace:BetrackingAPP"
 	x:Class="BetrackingAPP.Views.AddExpenses"
 	x:Name="Page">
-
-	<ContentPage.Content>
+	<Grid>
 		<ScrollView>
-		<StackLayout x:Name="ExpensesContainer">
-			<Label Text="{Binding ReportName}"
-				FontSize="20"
-				TextColor="White"
-				HeightRequest="100"
-				HorizontalTextAlignment="Center"
-				VerticalTextAlignment="Center"
-				BackgroundColor="#15212f"/>
+			<StackLayout x:Name="ExpensesContainer">
+				<Label Text="{Binding ReportName}"
+					FontSize="Title"
+					TextColor="White"
+					HeightRequest="100"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f"/>
 				<local:RepeaterView 
 					ItemsSource="{Binding ExpensesList}">
 					<local:RepeaterView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<Frame CornerRadius="5"
-									   Padding="0"
-									   Margin="1"
-									   BackgroundColor="White"
-                                       HasShadow="False">
+									Padding="0"
+									Margin="1"
+									BackgroundColor="White"
+									HasShadow="False">
 									<Grid>
 										<Grid.GestureRecognizers>
 											<TapGestureRecognizer Tapped="Expense_Item_Tapped"/>
@@ -49,33 +47,33 @@
 											<ColumnDefinition Width="*"/>
 										</Grid.ColumnDefinitions>
 										<Label TextColor="White" 
-                                               BackgroundColor="#15212f" 
-                                               Text="{Binding TotalExpenses}" 
-                                               Grid.Row="0" 
-                                               Grid.Column="0" 
-                                               Grid.ColumnSpan="1" 
-                                               HorizontalTextAlignment="Center"
-                                               VerticalTextAlignment="Center"
-                                               WidthRequest="40"/>
+											BackgroundColor="#15212f" 
+											Text="{Binding TotalExpenses}" 
+											Grid.Row="0" 
+											Grid.Column="0" 
+											Grid.ColumnSpan="1" 
+											HorizontalTextAlignment="Center"
+											VerticalTextAlignment="Center"
+											WidthRequest="40"/>
 										<Label Text="{Binding NameCategory}" 
-                                               Grid.Row="0" 
-                                               Grid.Column="1"  
-                                               Grid.ColumnSpan="4" 
-                                               HorizontalTextAlignment="Start"
-                                               VerticalTextAlignment="Center"
-                                               Margin="20,0,0,0"/>
-										<Label Text="{Binding TotalMoney}" 
-                                               Grid.Row="0" 
-                                               Grid.Column="5" 
-                                               Grid.ColumnSpan="2" 
-                                               HorizontalTextAlignment="End"
-                                               VerticalTextAlignment="Center"
-                                               Margin="0,0,20,0"/>
+											Grid.Row="0" 
+											Grid.Column="1"  
+											Grid.ColumnSpan="3" 
+											HorizontalTextAlignment="Start"
+											VerticalTextAlignment="Center"
+											Margin="20,0,0,0"/>
+										<Label Text="{Binding TotalMoney, StringFormat='${0} USD'}" 
+											Grid.Row="0" 
+											Grid.Column="4" 
+											Grid.ColumnSpan="3" 
+											HorizontalTextAlignment="End"
+											VerticalTextAlignment="Center"
+											Margin="0,0,20,0"/>
 										<Button Text="+ ADD" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3"
-												TextColor="White"
-												BackgroundColor="#15212f"
-												Command="{Binding Path=BindingContext.AddExpense, Source={x:Reference Page}}"
-												CommandParameter="{Binding ID}"/>
+											TextColor="White"
+											BackgroundColor="#15212f"
+											Command="{Binding Path=BindingContext.AddExpense, Source={x:Reference Page}}"
+											CommandParameter="{Binding ID}"/>
 										<ListView 
 											Grid.Row="2" 
 											Grid.Column="0" 
@@ -90,7 +88,7 @@
 															Margin="1"
 															BackgroundColor="White"
 															HasShadow="False">
-															<Grid ColumnSpacing="0">
+															<Grid ColumnSpacing="0" BackgroundColor="{Binding bgColor}">
 																<Grid.RowDefinitions>
 																	<RowDefinition Height="45"/>
 																	<RowDefinition Height="45"/>
@@ -115,32 +113,32 @@
 																	<ColumnDefinition Width="*"/>
 																</Grid.ColumnDefinitions>
 																<Label Text="Expense Date" Grid.Row="0" Grid.Column="1"
-																	   Grid.ColumnSpan="4"
-																	   HorizontalTextAlignment="Start" 
-																	   VerticalTextAlignment="Center"/>
+																	Grid.ColumnSpan="4"
+																	HorizontalTextAlignment="Start" 
+																	VerticalTextAlignment="Center"/>
 																<DatePicker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4"
-																		MinimumDate="01/01/2019"
-																		Date="{Binding ExpenseDate}"/>
+																	MinimumDate="01/01/2019"
+																	Date="{Binding ExpenseDate}"/>
 																<Label Text="Description" Grid.Row="1" Grid.Column="1"
-																	   Grid.ColumnSpan="4"
-																	   HorizontalTextAlignment="Start" 
-																	   VerticalTextAlignment="Center"/>
+																	Grid.ColumnSpan="4"
+																	HorizontalTextAlignment="Start" 
+																	VerticalTextAlignment="Center"/>
 																<Entry Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="4"
 																	Placeholder="Description"
 																	Text="{Binding Name}"/>
 																<Label Text="Quantity" Grid.Row="2" Grid.Column="1"
-																	   Grid.ColumnSpan="4"
-																	   HorizontalTextAlignment="Start" 
-																	   VerticalTextAlignment="Center"/>
+																	Grid.ColumnSpan="4"
+																	HorizontalTextAlignment="Start" 
+																	VerticalTextAlignment="Center"/>
 																<Entry Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="4"
 																	Placeholder="Quantity"
 																	Keyboard="Numeric"
 																	Text="{Binding Quantity, StringFormat='{0:F2}'}"/>
 																<!-- BREAK 2 -->
 																<Label Text="Currency" Grid.Row="3" Grid.Column="1"
-																	   Grid.ColumnSpan="4"
-																	   HorizontalTextAlignment="Start" 
-																	   VerticalTextAlignment="Center"/>
+																	Grid.ColumnSpan="4"
+																	HorizontalTextAlignment="Start" 
+																	VerticalTextAlignment="Center"/>
 																<Picker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="4" 
 																	SelectedIndex="{Binding CurrencyPicker}" HorizontalOptions="FillAndExpand">
 																	<Picker.Items>
@@ -149,11 +147,11 @@
 																	</Picker.Items>
 																</Picker>
 																<Label Text="Refundable" Grid.Row="4" Grid.Column="1"
-																	 Grid.ColumnSpan="4"
-																	 HorizontalTextAlignment="Start" 
-																	 VerticalTextAlignment="Center"/>
+																		Grid.ColumnSpan="4"
+																		HorizontalTextAlignment="Start" 
+																		VerticalTextAlignment="Center"/>
 																<CheckBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="4"  
-																	 IsChecked="{Binding RefundableOn}" />
+																		IsChecked="{Binding RefundableOn}" />
 																<!-- BREAK 3 -->
 																<Button Text="DELETE" Grid.Row="5" Grid.Column="2"
 																	TextColor="White"
@@ -179,5 +177,12 @@
 					Command="{Binding GuardarExpenses}"/>
 			</StackLayout>
 		</ScrollView>
-	</ContentPage.Content>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" 
+			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+			</StackLayout>
+		</StackLayout>
+	</Grid>
 </ContentPage>

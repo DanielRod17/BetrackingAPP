@@ -34,8 +34,18 @@ namespace BetrackingAPP.Views
         }
         public AddFiles(Reports reporte, User usuario)
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new AddFilesViewModel(reporte, usuario);
         }
 
@@ -138,6 +148,11 @@ namespace BetrackingAPP.Views
         {
             var vm = BindingContext as AddFilesViewModel;
             vm.AgregarAListaArchivo(file, elemento);
+        }
+        protected override void OnDisappearing()
+        {
+            var vm = BindingContext as AddFilesViewModel;
+            vm.EnviarUpdate();
         }
     }
 }

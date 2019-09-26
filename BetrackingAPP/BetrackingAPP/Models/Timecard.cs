@@ -91,6 +91,7 @@ namespace BetrackingAPP.Models
         public string Sun_Out { get; set; }
 
         public int Submitted { get; set; }
+        public string Estado { get; set; }
         public string StartingDay { get; set; }
         public string CreatedDate { get; set; }
         public string SubmitDate { get; set; }

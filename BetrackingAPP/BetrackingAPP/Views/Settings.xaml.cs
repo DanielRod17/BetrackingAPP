@@ -16,6 +16,17 @@ namespace BetrackingAPP.Views
         public User Usuario { get; set; }
         public Settings()
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
         }
         private async void Logout_Clicked(object sender, EventArgs e)

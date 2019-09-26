@@ -16,8 +16,18 @@ namespace BetrackingAPP.Views
     {
         public MainPage(User usuario = null)
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new MainPageViewModel(usuario);
             //Children.Add(new Timecards(usuario));
         }

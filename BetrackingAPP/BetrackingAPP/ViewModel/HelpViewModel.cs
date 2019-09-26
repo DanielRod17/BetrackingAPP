@@ -5,11 +5,27 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
+using Rg.Plugins.Popup.Extensions;
+using BetrackingAPP.Views;
 
 namespace BetrackingAPP.ViewModel
 {
     public class HelpViewModel : BaseViewModel
     {
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
         public User Usuario { get; set; }
         private MediaFile _media { get; set; }
         public MediaFile MediaFile
@@ -56,9 +72,9 @@ namespace BetrackingAPP.ViewModel
             Usuario = usuario;
             PedirAyuda = new Command(AskHelp);
         }
-
         private async void AskHelp()
         {
+            IsLoading = true;
             if (HelpText != null && HelpText != "")
             {
                 string fiel_name = "";
@@ -85,7 +101,15 @@ namespace BetrackingAPP.ViewModel
                 if (result.IsSuccessStatusCode)
                 {
                     var responseData = await result.Content.ReadAsStringAsync();
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    if (responseData == "Email sent to the support department")
+                    {
+                        await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
+                        HelpText = "";
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    }
                 }
                 else
                 {
@@ -96,9 +120,8 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Enter a description of your issue", "OK");
             }
-
+            IsLoading = false;
         }
-
         internal void AgregarFile(MediaFile mediaFile, ImageSource elemento)
         {
             MediaFile = mediaFile;

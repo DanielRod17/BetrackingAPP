@@ -14,8 +14,18 @@ namespace BetrackingAPP.Views
     {
         public AddExpenses(Reports reporte, User usuario)
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new AddExpensesViewModel(reporte, usuario);
         }
 

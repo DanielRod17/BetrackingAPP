@@ -18,6 +18,17 @@ namespace BetrackingAPP.Views
     {
         public Home()
         {
+            switch (Xamarin.Forms.Device.RuntimePlatform)
+            {
+                case Xamarin.Forms.Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Xamarin.Forms.Device.Android:
+                case Xamarin.Forms.Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
         }
 

@@ -26,6 +26,25 @@ namespace BetrackingAPP.ViewModel
 {
     public class AddFilesViewModel : BaseViewModel
     {
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+        public void EnviarUpdate()
+        {
+            IsLoading = true;
+            MessagingCenter.Send<IndividualReportViewModel>(new IndividualReportViewModel(Usuario, Reporte), "Change");
+            IsLoading = false;
+        }
         public User Usuario { get; set; }
         public Reports Reporte { get; set; }
         private bool _HasUploaded { get; set; }
@@ -56,7 +75,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         private ObservableCollection<ArchivosAdd> _archivos { get; set; }
         public ObservableCollection<ArchivosAdd> Archivos
         {
@@ -72,6 +90,7 @@ namespace BetrackingAPP.ViewModel
         }
         public AddFilesViewModel(Reports reportFrom, User usuarioFrom)
         {
+            IsLoading = true;
             HasUploaded = false;
             Usuario = usuarioFrom;
             Reporte = reportFrom;
@@ -79,23 +98,19 @@ namespace BetrackingAPP.ViewModel
             DeleteFile = new Command<ArchivosAdd>(BorrarFiles);
             Medias = new ObservableCollection<FilesAdd>();
             Archivos = new ObservableCollection<ArchivosAdd>();
-            //Medias.Add(new FilesAdd() { Path = "fileicon.png" });
+            IsLoading = false;
         }
         public void AgregarALista(MediaFile mediaFile, ImageSource fuente)
         {
+            IsLoading = true;
             var splitted = mediaFile.Path.Split('/');
             string fiel_name = splitted[splitted.Length - 1];
             Medias.Add(new FilesAdd() { Archivo = mediaFile, Fuente = fuente, Path = mediaFile.Path, FileName = fiel_name });
-
-            /*if (HasUploaded == false)
-            {
-                Medias.RemoveAt(0);
-                HasUploaded = true;
-            }*/
+            IsLoading = false;
         }
-
         internal void AgregarAListaArchivo(FileData file, Stream elemento)
         {
+            IsLoading = true;
             var splitted = file.FileName.Split('.');
             var ext = splitted[splitted.Length - 1];
             string contents = System.Text.Encoding.ASCII.GetString(file.DataArray);
@@ -120,6 +135,7 @@ namespace BetrackingAPP.ViewModel
             }
 
             Archivos.Add(new ArchivosAdd() { Archivo = file, Path = path, FileName = fiel_name, Contents = contents, Contenido = elemento });
+            IsLoading = false;
         }
         public void BorrarMedia(FilesAdd item)
         {
@@ -129,9 +145,9 @@ namespace BetrackingAPP.ViewModel
         {
             Archivos.Remove(item);
         }
-
         internal async Task SubirArchivosAsync()
         {
+            IsLoading = true;
             var content = new MultipartFormDataContent();
 
             var arrayList = new ArrayList();
@@ -171,11 +187,12 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
-                if (responseData == "Timecard Saved!")
+                //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                if (responseData == "Files uploaded!")
                 {
-                    
-                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    Archivos = new ObservableCollection<ArchivosAdd>();
+                    Medias = new ObservableCollection<FilesAdd>();
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
                 }
                 else
                 {
@@ -186,6 +203,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
             }
+            IsLoading = false;
         }
     }
 }

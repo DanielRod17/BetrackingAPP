@@ -16,7 +16,27 @@ namespace BetrackingAPP.Views
         public TimecardsViewModel ViewModel { get; set; }
         public Timecards()
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
+            /*switch (Device.RuntimePlatform)
+            {
+                case Device.Android:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+                default:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+            }*/
         }
 
         protected override void OnAppearing()

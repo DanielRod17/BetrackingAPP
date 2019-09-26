@@ -22,6 +22,43 @@ namespace BetrackingAPP.ViewModel
     {
         public User usuario;
         public string Greeting { get; set; }
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isRefreshing = false;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await LoadNotifications(usuario);
+
+                    IsRefreshing = false;
+                });
+            }
+        }
         public HomeViewModel ViewModel { get; set; }
         private List<Models.Notification> _notifications;
         public List<Models.Notification> Notifications
@@ -33,18 +70,15 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public bool HasPropertyValueChanged { get; private set; }
-
         public HomeViewModel(User usuarioFrom)
         {
             usuario = usuarioFrom;
-            Greeting = "Welcome back, " + usuarioFrom.Firstname + " " + usuarioFrom.Lastname;
+            Greeting = "Welcome back,\n" + usuarioFrom.Firstname + " " + usuarioFrom.Lastname;
         }
-
-        public async void LoadNotifications(User usuario)
+        public async Task LoadNotifications(User usuario)
         {
-            HasPropertyValueChanged = true;
+            IsLoading = true;
             var client = new HttpClient();
             var URL = "https://bepc.backnetwork.net/BEPCINC/api/getNotifications.php?usuario=" + usuario.Id;
             var result = await client.GetAsync(URL);
@@ -53,7 +87,7 @@ namespace BetrackingAPP.ViewModel
                 var responseData = await result.Content.ReadAsStringAsync();
                 Notifications = JsonConvert.DeserializeObject<List<Models.Notification>>(responseData);
             }
-            HasPropertyValueChanged = false;
+            IsLoading = false;
         }
     }
 }

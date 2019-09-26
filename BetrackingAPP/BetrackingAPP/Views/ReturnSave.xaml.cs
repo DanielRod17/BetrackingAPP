@@ -29,11 +29,23 @@ namespace BetrackingAPP.Views
         string textContent { get; set; }
         public ReturnSave(User usuarioFrom = null, string textContentFrom = null)
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
             usuario = usuarioFrom;
             BindingContext = new ReturnSaveViewModel(usuario, textContentFrom);
             var coso = this.FindByName<Label>("Motivo");
             coso.Text = textContentFrom;
+            coso.TextColor = Color.FromHex("#15212f");
         }
 
         void HidePopup(object sender, System.EventArgs e)

@@ -3,8 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
-	xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
     mc:Ignorable="d"
     x:Class="BetrackingAPP.Views.Expenses"
 	BackgroundColor="#f4f4f4"
@@ -18,20 +16,45 @@
 					FontSize="30"
 					TextColor="#f4c53f"
 					HeightRequest="15"
+					Margin="0,-70,0,0"
 					HorizontalTextAlignment="Center"
 					VerticalTextAlignment="Center"/>
 				<Image Source="BETRACKING.png"
                     HeightRequest="40"
                     WidthRequest="80"/>
 			</StackLayout>
-			<StackLayout BackgroundColor="#15212f">
-				<Label Text="E X P E N S E S"
-					FontSize="30"
-					TextColor="White"
-					HeightRequest="90"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"/>
-				<Button x:Name="Btn_Add" 
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+				<!--<Image Grid.Column="0"
+					Grid.ColumnSpan="1"
+					Source="calendar.png"/>
+				<Entry Grid.Column="1"
+					Grid.ColumnSpan="6"
+                    Placeholder="Search Reports"
+					Text="{Binding ExpensesName}"
+					HorizontalTextAlignment="Start"/>-->
+				<SearchBar Grid.Column="0"
+					Grid.ColumnSpan="7"
+					Placeholder="Search Reports"
+					Text="{Binding ExpensesName}"
+					SearchCommand="{Binding Filtrar}"
+				/>
+				<Button Grid.Column="7"
+					Grid.ColumnSpan="2"
+					x:Name="Btn_Add" 
                     Text="ADD +"
 					Command="{Binding NewReportCommand}"
                     TextColor="White"
@@ -39,69 +62,73 @@
                     BackgroundColor="#15212f"
                     BorderRadius="2"
                 />
+			</Grid>
+			<StackLayout BackgroundColor="#15212f">
+				<Label Text="E X P E N S E S"
+					FontSize="30"
+					TextColor="White"
+					HeightRequest="90"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"/>
 			</StackLayout>
-			<Entry Placeholder="Search Reports"
-				Text="{Binding ExpensesName}"
-				HorizontalTextAlignment="Start"
-				WidthRequest="300"/>
 			<ListView
 				x:Name="ExpensesList"
 				ItemsSource="{Binding Reports}"
 				SelectedItem="{Binding ShowReportDetails}"
 				IsPullToRefreshEnabled="true"
-				RefreshCommand="{Binding RefreshCommand}"
-				IsRefreshing="{Binding IsRefreshing}"
 				HasUnevenRows="true"
                 SeparatorVisibility="None"
-                BackgroundColor="#f4f4f4">
+                BackgroundColor="#f4f4f4"
+				RefreshCommand="{Binding RefreshCommand}"
+				IsRefreshing="{Binding IsRefreshing}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell Appearing="ViewCell_Appearing">
 							<StackLayout HeightRequest="{Binding Searched}">
 								<Frame CornerRadius="4"
-								Margin="10"
-								BackgroundColor="White"
-								HasShadow="False"
-								BorderColor="#e4e4e4">
-								<Grid>
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="*"/>
-										<ColumnDefinition Width="*"/>
-										<ColumnDefinition Width="*"/>
-									</Grid.ColumnDefinitions>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="30"/>
-										<RowDefinition Height="30"/>
-									</Grid.RowDefinitions>
-									<Image Source="cart.png"
-                                        HorizontalOptions="Start"/>
-									<Label Grid.Column="2" 
-                                        Text="{Binding Name}"
-									    FontSize="Micro"
-                                        HorizontalOptions="StartAndExpand"/>
-									<Label Grid.Row="1"
-                                        Text="{Binding StatusName, StringFormat='Status: {0}'}"
-                                        FontSize="Micro"
-                                        HorizontalOptions="Start"/>
-									<Label Grid.Column="1"
-                                        Text="{Binding AssignmentName, StringFormat='Assignment: {0}'}"
-                                        Grid.Row="1"
-                                        FontSize="Micro"
-                                        HorizontalOptions="Start"/>
-									<Label Grid.Column="1"
-                                        Text="{Binding ExpensesQty, StringFormat='Expenses Qty: {0}'}"
-                                        FontSize="Micro"/>
-									<Label Grid.Row="1"
-                                        Grid.Column="2"
-                                        Text="{Binding FromDate, StringFormat='{0:dd/MM/yyyy}'}"
-                                        FontSize="Micro"
-                                        HorizontalOptions="End"/>
-									<Label Grid.Row="2"
-                                        Grid.Column="2"
-                                        Text="{Binding ToDate, StringFormat='{0:dd/MM/yyyy}'}"
-                                        FontSize="Micro"
-                                        HorizontalOptions="End"/>
-								</Grid>
+									Margin="10,5,10,5"
+									BackgroundColor="White"
+									HasShadow="False"
+									BorderColor="#e4e4e4">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*"/>
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="40"/>
+											<RowDefinition Height="100"/>
+										</Grid.RowDefinitions>
+										<Image Source="cart.png"
+											HorizontalOptions="Start"/>
+										<Label Grid.Column="2" 
+											Text="{Binding Name}"
+											FontSize="Micro"
+											HorizontalOptions="StartAndExpand"/>
+										<Label Grid.Row="1"
+											Text="{Binding StatusName, StringFormat='Status: {0}'}"
+											FontSize="Micro"
+											HorizontalOptions="Start"/>
+										<Label Grid.Column="1"
+											Text="{Binding AssignmentName, StringFormat='Assignment: {0}'}"
+											Grid.Row="1"
+											FontSize="Micro"
+											HorizontalOptions="Start"/>
+										<Label Grid.Column="1"
+											Text="{Binding ExpensesQty, StringFormat='Expenses Qty: {0}'}"
+											FontSize="Micro"/>
+										<Label Grid.Row="1"
+											Grid.Column="2"
+											Text="{Binding FromDate, StringFormat='{0:dd/MM/yyyy}'}"
+											FontSize="Micro"
+											HorizontalOptions="End"/>
+										<Label Grid.Row="2"
+											Grid.Column="2"
+											Text="{Binding ToDate, StringFormat='{0:dd/MM/yyyy}'}"
+											FontSize="Micro"
+											HorizontalOptions="End"/>
+									</Grid>
 								</Frame>
 							</StackLayout>
 						</ViewCell>
@@ -112,9 +139,8 @@
 		<StackLayout AbsoluteLayout.LayoutFlags="All" 
 			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
 			<StackLayout VerticalOptions="CenterAndExpand">
-				<!--<Image Source="fileicon.png" HeightRequest="200"></Image>-->
-				<ffSvg:SvgCachedImage HeightRequest="200" Source="loadinggifi.gif"/>
-				<Label Text="Loading..." FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 			</StackLayout>
 		</StackLayout>
 	</Grid>

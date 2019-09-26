@@ -1,16 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-             xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.NewReportUS">
-    <ContentPage.Content>
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+	xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
+	mc:Ignorable="d"
+	x:Class="BetrackingAPP.Views.NewReportUS">
+    <Grid>
 		<ScrollView>
-			<StackLayout>
-				<Grid>
+			<StackLayout BackgroundColor="#f4f4f4">
+				<Label Text="NEW EXPENSES' REPORT"
+					FontSize="20"
+					TextColor="White"
+					HeightRequest="100"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f"/>
+				<Grid Margin="20, 20, 20, 0" RowSpacing="0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="*"/>
 						<RowDefinition Height="*"/>
@@ -28,85 +35,89 @@
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="Name" 
-                        Grid.Row="0" 
+					<Label
+                        Text="  Name" 
+                        Grid.Row="0"
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
                         WidthRequest="40"/>
-					<Entry Placeholder="Name" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" 
+					<Entry Placeholder="Name" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" 
 						Text="{Binding Name}"
 						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="Assignment" 
+					<Label
+                        Text="  Assignment" 
                         Grid.Row="1" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
                         WidthRequest="40"/>
-					<xfx:XfxComboBox Placeholder="Select an Assignment" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" 
-						Text="{Binding AssignmentName}"
+					<Picker Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" 
+						HorizontalOptions="FillAndExpand"
+						Title="Assignments"
 						ItemsSource="{Binding Assignments}"
-						SortingAlgorithm="{Binding SortingAlgorithm}"
-						HorizontalTextAlignment="Center"
-						WidthRequest="300"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="Start Date" 
+						SelectedItem="{Binding AssignmentName}"
+					/>
+					<Label
+                        Text="  Start Date" 
                         Grid.Row="2" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
                         WidthRequest="40"/>
-					<DatePicker Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" 
+					<DatePicker Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
 						Date="{Binding StartDate}"
                         MinimumDate="01/01/2019"
 						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="End Date" 
+					<Label
+                        Text="  End Date" 
                         Grid.Row="3" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
                         WidthRequest="40"/>
-					<DatePicker Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" 
+					<DatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
 						Date="{Binding EndDate}"
                         MinimumDate="01/01/2019"
 						FontSize="Small"/>
-					<Label TextColor="White" 
-                        BackgroundColor="#15212f" 
-                        Text="Status" 
+					<Label 
+                        Text="  Status" 
                         Grid.Row="4" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
                         WidthRequest="40"/>
-					<Picker Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" 
+					<Picker Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
 						SelectedIndex="{Binding Status}" HorizontalOptions="FillAndExpand">
 						<Picker.Items>
-							<x:String>Tentative</x:String>
 							<x:String>Open</x:String>
+							<x:String>Tentative</x:String>
 						</Picker.Items>
 					</Picker>
-					<Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" 
-						Text="Create Report" 
-						TextColor="White"
-						FontSize="14"
-						BackgroundColor="#15212f"
-						BorderRadius="2"
-						Command="{Binding CreateExpense}"
-					/>
 				</Grid>
+				<Button 
+					Margin="40, 40, 40, 0"
+					Text="Create Report" 
+					TextColor="White"
+					FontSize="14"
+					BackgroundColor="#15212f"
+					BorderRadius="2"
+					Command="{Binding CreateExpense}"
+					VerticalOptions="End"
+					/>
 			</StackLayout>
 		</ScrollView>
-    </ContentPage.Content>
+		<!--<StackLayout AbsoluteLayout.LayoutFlags="All" 
+			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+			</StackLayout>
+		</StackLayout>-->
+	</Grid>
 </ContentPage>

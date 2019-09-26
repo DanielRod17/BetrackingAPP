@@ -31,27 +31,23 @@ namespace BetrackingAPP.Views
         }
         public IndividualReport(Models.Reports eu_report, Models.User usuario)
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
+            Usuario = usuario;
+            Reporte = eu_report;
             BarBackgroundColor = Color.White;
             BarTextColor = Color.Black;
             BindingContext = new IndividualReportViewModel(usuario, eu_report);
-            if (eu_report.Status == 0 || eu_report.Status == 2)
-            {
-                var stackPanel = this.FindByName<StackLayout>("ExpensesList");
-                var Button = new Button { Text = "Add Expenses", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
-                Button.Clicked += delegate { AddExpenses(eu_report, usuario, Button); };
-                stackPanel.Children.Add(Button);
-
-                stackPanel = this.FindByName<StackLayout>("Files");
-                Button = new Button { Text = "Add Files", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
-                Button.Clicked += delegate { AddFiles(eu_report, usuario, Button); };
-                stackPanel.Children.Add(Button);
-
-                stackPanel = this.FindByName<StackLayout>("relatedPanel");
-                Button = new Button { Text = "Submit Report", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
-                Button.Clicked += delegate { SubmitReport(eu_report, usuario, Button); };
-                stackPanel.Children.Add(Button);
-            }
             Cargado = true;
         }
         protected override void OnAppearing()
@@ -59,20 +55,26 @@ namespace BetrackingAPP.Views
             var vm = BindingContext as IndividualReportViewModel;
             //vm.CargarValores();
         }
-        private void AddExpenses(Reports eu_report, User usuario, Button button)
+        private void AddExpenses(object sender, EventArgs e)
         {
+            var eu_report = Reporte;
+            var usuario = Usuario;
             var vm = BindingContext as IndividualReportViewModel;
             vm.AddExpenses(eu_report, usuario);
         }
 
-        private void AddFiles(Reports eu_report, User usuario, Button button)
+        private void AddFiles(object sender, EventArgs e)
         {
+            var eu_report = Reporte;
+            var usuario = Usuario;
             var vm = BindingContext as IndividualReportViewModel;
             vm.AddFiles(eu_report, usuario);
         }
 
-        private void SubmitReport(Reports eu_report, User usuario, Button button)
+        private void SubmitReport(object sender, EventArgs e)
         {
+            var eu_report = Reporte;
+            var usuario = Usuario;
             var vm = BindingContext as IndividualReportViewModel;
             vm.SubmitReport(eu_report, usuario);
         }

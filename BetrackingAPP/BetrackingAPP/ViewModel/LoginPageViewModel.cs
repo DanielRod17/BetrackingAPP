@@ -18,9 +18,21 @@ namespace BetrackingAPP.ViewModel
     public class LoginPageViewModel : INotifyPropertyChanged
     {
         //private bool _happened;
+        private string _loadingText;
+        public string LoadingText
+        {
+            get
+            {
+                return _loadingText;
+            }
+            set
+            {
+                _loadingText = value;
+                OnPropertyChanged();
+            }
+        }
         public string sn { get; set; }
         public string hash { get; set; }
-
         private bool _happened;
         public bool HasPropertyValueChanged
         {
@@ -31,16 +43,13 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         private INavigation Navigation;
         static public User Usuario { get; set; }
         internal async void CheckLogin()
         {
             await Navigation.PushAsync(new MainPage(Usuario));
         }
-
         public Command MainPageCommand { get; set; }
-
         private User _dataServicio;
         public User usuarioBT
         {
@@ -51,19 +60,15 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public LoginPageViewModel(INavigation navigation)
         {
             Navigation = navigation;
             LoginCommand = new Command(async () => await NavigateToMainPage());
             MainPageCommand = new Command(async () => await NavigateToMainPage());
         }
-
         public Command LoginCommand { get; set; }
-
         public async Task NavigateToMainPage()
         {
-
             HasPropertyValueChanged = true;
             var contra = CalculateSha1Hash(hash);
             try
@@ -120,7 +125,10 @@ namespace BetrackingAPP.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Oops", e.Message, "OK");
             }
         }
+        public void ChangeText()
+        {
 
+        }
         private static string CalculateSha1Hash(string input)
         {
             // step 1, calculate MD5 hash from input
@@ -135,10 +143,7 @@ namespace BetrackingAPP.ViewModel
             }
             return sb.ToString();
         }
-
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

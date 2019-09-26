@@ -16,6 +16,17 @@ namespace BetrackingAPP.Views
         public ExpensesViewModel ViewModel { get; set; }
         public Expenses()
         {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NavigationPage.SetHasNavigationBar(this, true);
+                    break;
+                case Device.Android:
+                case Device.UWP:
+                default:
+                    NavigationPage.SetHasNavigationBar(this, false);
+                    break;
+            }
             InitializeComponent();
         }
 
@@ -39,6 +50,11 @@ namespace BetrackingAPP.Views
                 view.TranslateTo(0, 0, 250, Easing.SinIn),
                 view.FadeTo(1, 500, Easing.BounceIn)
             );
+        }
+
+        private void SearchBar_SearchButtonPressed(object sender, EventArgs e)
+        {
+
         }
     }
 }
