@@ -312,4 +312,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\GreenCheck.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\redCross.png" />
+  </ItemGroup>
 </Project>

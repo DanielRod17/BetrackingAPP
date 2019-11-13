@@ -11,13 +11,13 @@
 			<StackLayout x:Name="home1" VerticalOptions="Fill">
 				<Image Source="HomeBackground.jpg" Aspect="AspectFit" Margin="0,-50,0,0"/>
 				<Label Text="{Binding Greeting}"
-				FontSize="25"
-				TextColor="White"
-				HeightRequest="200"
-				HorizontalTextAlignment="Center"
-				VerticalTextAlignment="Center"
-				BackgroundColor="Transparent"
-                Margin="0,-220,0,0"/>
+					FontSize="25"
+					TextColor="White"
+					HeightRequest="200"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="Transparent"
+					Margin="0,-220,0,0"/>
 				<Grid Margin="0,30,0,0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
@@ -26,32 +26,32 @@
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
 					<Image Source="notifications.png"
-                    HeightRequest="10"
-                    WidthRequest="10"/>
-					<Label Grid.Column="1"
-					Grid.ColumnSpan="2"
-                    Text="Notifications"
-					FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    FontSize="22"/>
+						HeightRequest="10"
+						WidthRequest="10"/>
+						<Label Grid.Column="1"
+						Grid.ColumnSpan="2"
+						Text="Notifications"
+						FontAttributes="Bold"
+						HorizontalTextAlignment="Center"
+						FontSize="22"/>
 				</Grid>
 				<ListView
-				x:Name="HomepageList"
-				IsPullToRefreshEnabled="True" 
-				ItemsSource="{Binding Notifications}"
-				RefreshCommand="{Binding RefreshCommand}"
-				IsRefreshing="{Binding IsRefreshing}"
-				RowHeight="120"
-				Margin="10,5,10,0"
-				BackgroundColor="#f4f4f4"
-				SeparatorVisibility="None">
+					x:Name="HomepageList"
+					IsPullToRefreshEnabled="True" 
+					ItemsSource="{Binding Notifications}"
+					RefreshCommand="{Binding RefreshCommand}"
+					IsRefreshing="{Binding IsRefreshing}"
+					RowHeight="120"
+					Margin="10,5,10,0"
+					BackgroundColor="#f4f4f4"
+					SeparatorVisibility="None">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<Frame CornerRadius="1"
-								BackgroundColor="White"
-								HasShadow="False"
-								BorderColor="#f4f4f4">
+									BackgroundColor="White"
+									HasShadow="False"
+									BorderColor="#f4f4f4">
 									<Grid>
 										<Grid.ColumnDefinitions>
 											<ColumnDefinition Width="*"/>
@@ -66,26 +66,26 @@
 											<RowDefinition Height="30"/>
 										</Grid.RowDefinitions>
 										<Label Grid.Column="0" Grid.Row="0"
-										Grid.RowSpan="3"
-										BackgroundColor="{Binding Color}"
-									/>
+											Grid.RowSpan="3"
+											BackgroundColor="{Binding Color}"
+										/>
 										<Label Grid.Column="1" Grid.Row="0"
-										Grid.ColumnSpan="4"
-                                        Text="{Binding Title}"
-										FontAttributes="Bold"
-                                        FontSize="Large"
-                                        HorizontalOptions="StartAndExpand"></Label>
+											Grid.ColumnSpan="4"
+											Text="{Binding Title}"
+											FontAttributes="Bold"
+											FontSize="Large"
+											HorizontalOptions="StartAndExpand"></Label>
 										<Label Grid.Row="1" 
-										Grid.Column="1"
-										Grid.ColumnSpan="4"
-                                        Text="{Binding Message}"
-									    FontSize="Medium"
-                                        HorizontalOptions="StartAndExpand"></Label>
+											Grid.Column="1"
+											Grid.ColumnSpan="4"
+											Text="{Binding Message}"
+											FontSize="Medium"
+											HorizontalOptions="StartAndExpand"></Label>
 										<Label Grid.Column="1"
-										Grid.Row="2"
-										Grid.ColumnSpan="4"
-                                        Text="{Binding cName, StringFormat='Sent By: {0}'}"
-                                        FontSize="Micro"></Label>
+											Grid.Row="2"
+											Grid.ColumnSpan="4"
+											Text="{Binding cName, StringFormat='Sent By: {0}'}"
+											FontSize="Micro"></Label>
 									</Grid>
 								</Frame>
 							</ViewCell>
@@ -94,12 +94,12 @@
 				</ListView>
 			</StackLayout>
 		</ScrollView>
-		<StackLayout AbsoluteLayout.LayoutFlags="All" 
+		<!--<StackLayout AbsoluteLayout.LayoutFlags="All" 
 			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
 				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
 			</StackLayout>
-		</StackLayout>
+		</StackLayout>-->
 	</Grid>
 </ContentPage>

@@ -12,6 +12,7 @@ using PCLCrypto;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Microsoft.AppCenter;
+using Rg.Plugins.Popup.Extensions;
 
 namespace BetrackingAPP.ViewModel
 {
@@ -70,65 +71,69 @@ namespace BetrackingAPP.ViewModel
         public async Task NavigateToMainPage()
         {
             HasPropertyValueChanged = true;
-            var contra = CalculateSha1Hash(hash);
             try
             {
-                var client = new HttpClient();
-                var formContent = new FormUrlEncodedContent(new[]
+                if ( sn != null && hash != null )
                 {
+                    var contra = CalculateSha1Hash(hash);
+                    var client = new HttpClient();
+                    var formContent = new FormUrlEncodedContent(new[]
+                    {
                     new KeyValuePair<string, string>("sn", sn),
                     new KeyValuePair<string, string>("con", contra),
                 });
 
-                var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/login.php", formContent);
-                if (result.IsSuccessStatusCode)
-                {
-                    var responseData = await result.Content.ReadAsStringAsync();
-                    var settings = new JsonSerializerSettings
+                    var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/login.php", formContent);
+                    if (result.IsSuccessStatusCode)
                     {
-                        NullValueHandling = NullValueHandling.Ignore,
-                        MissingMemberHandling = MissingMemberHandling.Ignore
-                    };
-                    var elemeneto =     JToken.Parse(responseData);
-                    if (elemeneto[0].ToString() == "Correct")
-                    {
-                        var mensageJson = JsonConvert.DeserializeObject<User>(elemeneto[1].ToString(), settings);
-                        System.Diagnostics.Debug.WriteLine(mensageJson);
-                        usuarioBT = mensageJson;
-                        Usuario = usuarioBT;
-                        var _payroll = "US";
-                        if (usuarioBT.Payroll == "142")
+                        var responseData = await result.Content.ReadAsStringAsync();
+                        var settings = new JsonSerializerSettings
                         {
-                            _payroll = "MX";
+                            NullValueHandling = NullValueHandling.Ignore,
+                            MissingMemberHandling = MissingMemberHandling.Ignore
+                        };
+                        var elemeneto = JToken.Parse(responseData);
+                        if (elemeneto[0].ToString() == "Correct")
+                        {
+                            var mensageJson = JsonConvert.DeserializeObject<User>(elemeneto[1].ToString(), settings);
+                            System.Diagnostics.Debug.WriteLine(mensageJson);
+                            usuarioBT = mensageJson;
+                            Usuario = usuarioBT;
+                            var _payroll = "US";
+                            if (usuarioBT.Payroll == "142")
+                            {
+                                _payroll = "MX";
+                            }
+                            CustomProperties properties = new CustomProperties();
+                            properties.Set("Payroll", _payroll);
+                            AppCenter.SetUserId(usuarioBT.Id.ToString());
+                            AppCenter.SetCustomProperties(properties);
+                            App.Logedin = true;
+                            await Navigation.PushAsync(new MainPage(usuarioBT));
                         }
-                        CustomProperties properties = new CustomProperties();
-                        properties.Set("Payroll", _payroll);
-                        AppCenter.SetUserId(usuarioBT.Id.ToString());
-                        AppCenter.SetCustomProperties(properties);
-                        App.Logedin = true;
-                        await Navigation.PushAsync(new MainPage(usuarioBT));
+                        else
+                        {
+                            await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(elemeneto[1].ToString()));
+                            //await Application.Current.MainPage.DisplayAlert("Oops", elemeneto[1].ToString(), "OK");
+                        }
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Oops", elemeneto[1].ToString(), "OK");
-                        HasPropertyValueChanged = false;
+                        await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
                     }
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong", "OK");
-                    HasPropertyValueChanged = false;
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Please fill all the fields!") );
                 }
             }
             catch (HttpRequestException e)
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", e.Message, "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(e.Message));
             }
+            HasPropertyValueChanged = false;
         }
-        public void ChangeText()
-        {
 
-        }
         private static string CalculateSha1Hash(string input)
         {
             // step 1, calculate MD5 hash from input

@@ -1,0 +1,28 @@
+﻿<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+             mc:Ignorable="d"
+             x:Class="BetrackingAPP.Views.ErrorPage">
+	<ContentPage.Content>
+		<StackLayout
+			Margin="5"
+			Padding="60"
+			BackgroundColor="#c515212f"
+			HorizontalOptions="Center"
+			VerticalOptions="Center">
+			<Image Source="redCross.png" WidthRequest="80" HeightRequest="100"/>
+			<Label 
+				TextColor="#f4f4f4"
+				VerticalOptions="CenterAndExpand" 
+				HorizontalOptions="CenterAndExpand"
+				x:Name="Motivo"/>
+			<Button Clicked="HidePopup"
+				Text="Close"
+				BackgroundColor="#f4c53f"
+				TextColor="#f4f4f4"
+			/>
+		</StackLayout>
+	</ContentPage.Content>
+</pages:PopupPage>

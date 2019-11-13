@@ -4,22 +4,23 @@
 	x:Class="BetrackingAPP.Views.LoginPage"
 	xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
 	xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-	xmlns:local="clr-namespace:BetrackingAPP"
-	BackgroundImage="test_fondo.png">
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<Style x:Key="tspEntry" TargetType="Entry">
-				<Setter Property="BackgroundColor" Value="#77000000"/>
-			</Style>
-		</ResourceDictionary>
-	</ContentPage.Resources>
-	<Grid>
+	xmlns:local="clr-namespace:BetrackingAPP">
+	<Grid BackgroundColor="#f4f4f4">
 		<StackLayout x:Name="loginMain" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
-			VerticalOptions="FillAndExpand" BackgroundColor="Transparent" Padding="30,60,30,120">
+			VerticalOptions="FillAndExpand" BackgroundColor="#15212f">
 			<!-- Place new controls here -->
-			<Image Source="BEPClogo.png" WidthRequest="50" HeightRequest="70"/>
-			<Label Text="BEPC" HorizontalOptions="CenterAndExpand" FontFamily="BebasNeue Bold.ttf"/>
-			<Grid Margin="0, 60, 0, 0" Padding="20, 0, 20, 0" ColumnSpacing="0">
+			<StackLayout BackgroundColor="#f4f4f4">
+				<Image Source="BEPClogo.png" WidthRequest="60" HeightRequest="80" Margin="20, 20, 20, 0"/>
+				<Label Text="BE Tracking" FontSize="30" TextColor="#15212f" HorizontalOptions="CenterAndExpand">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="iOS" Value="MarkerFelt-Thin" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+			</StackLayout>
+			<Grid VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 0" Padding="40, 0, 40, 0" ColumnSpacing="0">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
@@ -31,30 +32,38 @@
 					<RowDefinition Height="50"/>
 					<RowDefinition Height="40"/>
 					<RowDefinition Height="50"/>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="40"/>
 				</Grid.RowDefinitions>
-				<StackLayout Padding="10, 10, 10, 10" BackgroundColor="#15ffffff"  Grid.Column="0" Grid.Row="0">
+				<StackLayout Padding="10, 10, 10, 10" BackgroundColor="#01ffffff"  Grid.Column="0" Grid.Row="0">
 					<Image Source="User.png"/>
 				</StackLayout>
-				<Entry x:Name="Entry_Username" Text="{Binding sn}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0"
-					   Placeholder="Username" Keyboard="Email" FontSize="14" Completed="Entry_Username_Completed"
-					   BackgroundColor="#15ffffff"/>
-				<StackLayout Padding="10, 5, 15, 10" BackgroundColor="#15ffffff"  Grid.Column="0" Grid.Row="2">
+				<StackLayout Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0">
+					<local:CustomEntry x:Name="Entry_Username" Text="{Binding sn}" 
+						Placeholder="Username" Keyboard="Email" FontSize="16" Completed="Entry_Username_Completed"
+						Margin="0, 8, 0, 0"
+						TextColor="#f4f4f4"/>
+					<Label Text="" Margin="4, -17" BackgroundColor="White" HeightRequest="2"/>
+				</StackLayout>
+				<StackLayout Padding="10, 5, 15, 10" BackgroundColor="#01ffffff"  Grid.Column="0" Grid.Row="2">
 					<Image Source="Lock.png"/>
 				</StackLayout>
-				<Entry x:Name="Entry_Password" IsPassword="true" Text="{Binding hash}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="2"  
-					   Placeholder="Password" FontSize="14" Completed="Entry_Password_Completed" 
-					   HeightRequest="35" BackgroundColor="#15ffffff"/>
+				<StackLayout Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="2"  >
+					<local:CustomEntry x:Name="Entry_Password" IsPassword="true" Text="{Binding hash}" 
+						Placeholder="Password" FontSize="16" Completed="Entry_Password_Completed" 
+						Margin="0, 8, 0, 0"
+						TextColor="#f4f4f4"/>
+					<Label Text="" Margin="4, -17" BackgroundColor="White" HeightRequest="2"/>
+				</StackLayout>
+				<Button x:Name="Btn_Signin" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4"
+					Command="{Binding LoginCommand}"
+					Text="Sign in" 
+					TextColor="White"
+					FontSize="14"
+					BackgroundColor="#f4c53f"
+					BorderRadius="2"/>
 			</Grid>
 			<Label x:Name="forgot_Password" Text="Forgot Password?" TextColor="LightBlue" FontSize="8" HorizontalOptions="Start"/>
-			<Button x:Name="Btn_Signin" 
-					Command="{Binding LoginCommand}"
-                    Text="Sign in" 
-                    TextColor="White"
-                    FontSize="14"
-                    BackgroundColor="#15212f"
-                    BorderRadius="2"
-					Margin="0,40,0,0"
-                />
 		</StackLayout>
 		<StackLayout AbsoluteLayout.LayoutFlags="All" 
 				AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
