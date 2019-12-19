@@ -41,5 +41,24 @@ namespace BetrackingAPP.Views
             var boton = this.FindByName<Button>("Btn_Signin");
             boton.Command.Execute(null);
         }
+
+        private new void Focused(object sender, FocusEventArgs e)
+        {
+            var user_input = this.FindByName<Grid>("Grid_Container");
+            //user_input.Margin.Top = 10;
+            user_input.TranslationY = -50;
+        }
+        private void FocusedPass(object sender, FocusEventArgs e)
+        {
+            var user_input = this.FindByName<Grid>("Grid_Container");
+            //user_input.Margin.Top = 10;
+            user_input.TranslationY = -120;
+        }
+        private new void Unfocused(object sender, FocusEventArgs e)
+        {
+            var user_input = this.FindByName<Grid>("Grid_Container");
+            //user_input.Margin.Top = 10;
+            user_input.TranslationY = 0;
+        }
     }
 }

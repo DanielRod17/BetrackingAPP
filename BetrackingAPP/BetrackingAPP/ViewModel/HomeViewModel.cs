@@ -74,7 +74,7 @@ namespace BetrackingAPP.ViewModel
         public HomeViewModel(User usuarioFrom)
         {
             usuario = usuarioFrom;
-            Greeting = "Welcome back,\n" + usuarioFrom.Firstname + " " + usuarioFrom.Lastname;
+            Greeting = "Welcome,\n" + usuarioFrom.Firstname + " " + usuarioFrom.Lastname + "!";
         }
         public async Task LoadNotifications(User usuario)
         {

@@ -63,9 +63,15 @@ namespace BetrackingAPP.ViewModel
         }
         public LoginPageViewModel(INavigation navigation)
         {
+            HasPropertyValueChanged = false;
             Navigation = navigation;
             LoginCommand = new Command(async () => await NavigateToMainPage());
             MainPageCommand = new Command(async () => await NavigateToMainPage());
+
+            if (Application.Current.Properties.ContainsKey("ID") && Application.Current.Properties["ID"] != null)
+            {
+                AutomaticLogin();
+            }
         }
         public Command LoginCommand { get; set; }
         public async Task NavigateToMainPage()
@@ -73,7 +79,7 @@ namespace BetrackingAPP.ViewModel
             HasPropertyValueChanged = true;
             try
             {
-                if ( sn != null && hash != null )
+                if (sn != null && hash != null)
                 {
                     var contra = CalculateSha1Hash(hash);
                     var client = new HttpClient();
@@ -99,6 +105,7 @@ namespace BetrackingAPP.ViewModel
                             System.Diagnostics.Debug.WriteLine(mensageJson);
                             usuarioBT = mensageJson;
                             Usuario = usuarioBT;
+                            Application.Current.Properties["ID"] = Usuario.Id;
                             var _payroll = "US";
                             if (usuarioBT.Payroll == "142")
                             {
@@ -120,18 +127,20 @@ namespace BetrackingAPP.ViewModel
                     else
                     {
                         await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
+                        HasPropertyValueChanged = false;
                     }
                 }
                 else
                 {
-                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Please fill all the fields!") );
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Please fill all the fields!"));
+                    HasPropertyValueChanged = false;
                 }
             }
             catch (HttpRequestException e)
             {
                 await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(e.Message));
+                HasPropertyValueChanged = false;
             }
-            HasPropertyValueChanged = false;
         }
 
         private static string CalculateSha1Hash(string input)
@@ -152,6 +161,66 @@ namespace BetrackingAPP.ViewModel
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public async Task AutomaticLogin()
+        {
+            HasPropertyValueChanged = true;
+            try
+            {
+
+                var client = new HttpClient();
+                var formContent = new FormUrlEncodedContent(new[]
+                {
+                new KeyValuePair<string, string>("sn", Application.Current.Properties["ID"].ToString()),
+                });
+
+                var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/StraightLogin.php", formContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var responseData = await result.Content.ReadAsStringAsync();
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+                    var elemeneto = JToken.Parse(responseData);
+                    if (elemeneto[0].ToString() == "Correct")
+                    {
+                        var mensageJson = JsonConvert.DeserializeObject<User>(elemeneto[1].ToString(), settings);
+                        System.Diagnostics.Debug.WriteLine(mensageJson);
+                        usuarioBT = mensageJson;
+                        Usuario = usuarioBT;
+                        Application.Current.Properties["ID"] = Usuario.Id;
+                        var _payroll = "US";
+                        if (usuarioBT.Payroll == "142")
+                        {
+                            _payroll = "MX";
+                        }
+                        CustomProperties properties = new CustomProperties();
+                        properties.Set("Payroll", _payroll);
+                        AppCenter.SetUserId(usuarioBT.Id.ToString());
+                        AppCenter.SetCustomProperties(properties);
+                        App.Logedin = true;
+                        await Navigation.PushAsync(new MainPage(usuarioBT));
+                        HasPropertyValueChanged = false;
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(elemeneto[1].ToString()));
+                        HasPropertyValueChanged = false;
+                    }
+                }
+                else
+                {
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
+                    HasPropertyValueChanged = false;
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(e.Message));
+                HasPropertyValueChanged = false;
+            }
         }
     }
 }

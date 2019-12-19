@@ -36,7 +36,7 @@ namespace BetrackingAPP.Views
         {
             base.OnAppearing();
             var vm = BindingContext as HomeViewModel;
-            vm.LoadNotifications(vm.usuario);
+            _ = vm.LoadNotifications(vm.usuario);
         }
 
         private async void ViewCell_Appearing(object sender, EventArgs e)

@@ -22,7 +22,6 @@ namespace BetrackingAPP.ViewModel
         .OrderBy(x => x)
         .ToList();
 
-        private NewTimeOutCard _oldDay;
         public DateTime _dateSearch = DateTime.Today;
         ObservableCollection<string> assignments = new ObservableCollection<string>();
         public ObservableCollection<string> Assignments { get { return assignments; } }
@@ -109,13 +108,90 @@ namespace BetrackingAPP.ViewModel
             }
         }
         public Timecard Timecard { get; set; }
-        public string Mon_Hours { get; set; }
-        public string Tue_Hours { get; set; }
-        public string Wed_Hours { get; set; }
-        public string Thu_Hours { get; set; }
-        public string Fri_Hours { get; set; }
-        public string Sat_Hours { get; set; }
-        public string Sun_Hours { get; set; }
+        private decimal _monH { get; set; }
+        public decimal Mon_Hours {
+            get
+            {
+                return _monH;
+            }
+            set
+            {
+                _monH = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _tueH { get; set; }
+        public decimal Tue_Hours {
+            get
+            {
+                return _tueH;
+            }
+            set
+            {
+                _tueH = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _wedH { get; set; }
+        public decimal Wed_Hours {
+            get
+            {
+                return _wedH;
+            }
+            set
+            {
+                _wedH = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _thuH { get; set; }
+        public decimal Thu_Hours {
+            get
+            {
+                return _thuH;
+            }
+            set
+            {
+                _thuH = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _friH { get; set; }
+        public decimal Fri_Hours {
+            get
+            {
+                return _friH;
+            }
+            set
+            {
+                _friH = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _satH { get; set; }
+        public decimal Sat_Hours {
+            get
+            {
+                return _satH;
+            }
+            set
+            {
+                _satH = value;
+                OnPropertyChanged();
+            }
+        }
+        private decimal _sunH { get; set; }
+        public decimal Sun_Hours {
+            get
+            {
+                return _sunH;
+            }
+            set
+            {
+                _sunH = value;
+                OnPropertyChanged();
+            }            
+        }
         public string Mon_Note { get; set; }
         public string Tue_Note { get; set; }
         public string Wed_Note { get; set; }
@@ -124,7 +200,7 @@ namespace BetrackingAPP.ViewModel
         public string Sat_Note { get; set; }
         public string Sun_Note { get; set; }
         public string Assignment_Name { get; set; }
-        public string Total_Hours { get; set; }
+        public decimal Total_Hours { get; set; }
 
         public string monday_info { get; set; }
 
@@ -417,28 +493,26 @@ namespace BetrackingAPP.ViewModel
                 new NewTimeOutCard() { Break1Enabled = sunBreak1Enabled, Break2Enabled = sunBreak2Enabled, Break3Enabled = sunBreak3Enabled, Break1 = sunBreak1, Break2 = sunBreak2, Break3 = sunBreak3, Day = "Sun", Numero = fecha.Day, Valor = timecard.Sun, TimeIn = TimeSpan.Parse(timecard.Sun_In), TimeOut= TimeSpan.Parse(timecard.Sun_Out), Break1Out=TimeSpan.Parse(timecard.Sun_Meal_In), Break1In=TimeSpan.Parse(timecard.Sun_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Sun_Break1_In), Break2In=TimeSpan.Parse(timecard.Sun_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Sun_Break2_In), Break3In=TimeSpan.Parse(timecard.Sun_Break2_Out), Nota = timecard.SunNote, DisplayInputs = sunDisplay }
             };
 
-            Assignment_Name = timecard.Name;
-            AssignmentName = timecard.Name;
-
             GetAssignments(usuarioFrom);
 
-            Mon_Hours = "Monday: " + timecard.Mon;
-            Tue_Hours = "Tuesday: " + timecard.Tue;
-            Wed_Hours = "Wednesday: " + timecard.Wed;
-            Thu_Hours = "Thursday: " + timecard.Thu;
-            Fri_Hours = "Friday: " + timecard.Fri;
-            Sat_Hours = "Saturday: " + timecard.Sat;
-            Sun_Hours = "Sun: " + timecard.Sun;
-            Total_Hours = "Total Hours: " + timecard.suma.ToString();
+            Assignment_Name = timecard.Name;
+            AssignmentName = timecard.Name;
+            Mon_Hours = timecard.Mon;
+            Tue_Hours = timecard.Tue;
+            Wed_Hours = timecard.Wed;
+            Thu_Hours = timecard.Thu;
+            Fri_Hours = timecard.Fri;
+            Sat_Hours = timecard.Sat;
+            Sun_Hours = timecard.Sun;
+            Total_Hours = timecard.suma;
 
-            Mon_Note = "Monday: " + timecard.MonNote;
-            Tue_Note = "Tuesday: " + timecard.TueNote;
-            Wed_Note = "Wednesday: " + timecard.WedNote;
-            Thu_Note = "Thursday: " + timecard.ThuNote;
-            Fri_Note = "Friday: " + timecard.FriNote;
-            Sat_Note = "Saturday: " + timecard.SatNote;
-            Sun_Note = "Sun: " + timecard.SunNote;
-            monday_info = "ROFL";
+            Mon_Note = timecard.MonNote;
+            Tue_Note = timecard.TueNote;
+            Wed_Note = timecard.WedNote;
+            Thu_Note = timecard.ThuNote;
+            Fri_Note = timecard.FriNote;
+            Sat_Note = timecard.SatNote;
+            Sun_Note = timecard.SunNote;
 
             Info = new ObservableCollection<Timecard> {
                timecard
@@ -485,17 +559,18 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
         }
 
         public async void UpdateTimecard(int iD, int AssignmentID)
         {
+            HasPropertyValueChanged = true;
             var temp = Days;
             Days = null;
             Days = temp;
@@ -516,7 +591,6 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
                 if (responseData == "Timecard Updated!")
                 {
                     LoadTimecard(User.Id, iD);
@@ -524,13 +598,14 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
+            HasPropertyValueChanged = false;
         }
 
         public async void LoadTimecard(int usuario, int timecard)
@@ -581,10 +656,6 @@ namespace BetrackingAPP.ViewModel
                 int sunBreak1 = 0;
                 int sunBreak2 = 0;
                 int sunBreak3 = 0;
-
-                
-
-
 
                 if (Timecard[0].Mon_Meal_In != "00:00:00")
                 {
@@ -708,9 +779,25 @@ namespace BetrackingAPP.ViewModel
                     new NewTimeOutCard() { Break1 = sunBreak1, Break2 = sunBreak2, Break3 = sunBreak3, Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, TimeIn = TimeSpan.Parse(Timecard[0].Sun_In), TimeOut= TimeSpan.Parse(Timecard[0].Sun_Out), Break1Out=TimeSpan.Parse(Timecard[0].Sun_Meal_In), Break1In=TimeSpan.Parse(Timecard[0].Sun_Meal_Out), Break2Out=TimeSpan.Parse(Timecard[0].Sun_Break1_In), Break2In=TimeSpan.Parse(Timecard[0].Sun_Break1_Out), Break3Out=TimeSpan.Parse(Timecard[0].Sun_Break2_In), Break3In=TimeSpan.Parse(Timecard[0].Sun_Break2_Out), Nota = Timecard[0].SunNote, DisplayInputs = sunDisplay }
                 };
                 GetActions(Timecard[0]);
-                //Days = new ObservableCollection<NewTimeOutCard>();
-                //Days.RemoveAt(0);
-                //Days = temp;
+                Assignment_Name = Timecard[0].Name;
+                AssignmentName = Timecard[0].Name;
+                Mon_Hours = Timecard[0].Mon;
+                Tue_Hours = Timecard[0].Tue;
+                Wed_Hours = Timecard[0].Wed;
+                Thu_Hours = Timecard[0].Thu;
+                Fri_Hours = Timecard[0].Fri;
+                Sat_Hours = Timecard[0].Sat;
+                Sun_Hours = Timecard[0].Sun;
+                Total_Hours = Timecard[0].suma;
+
+                Mon_Note = Timecard[0].MonNote;
+                Tue_Note = Timecard[0].TueNote;
+                Wed_Note = Timecard[0].WedNote;
+                Thu_Note = Timecard[0].ThuNote;
+                Fri_Note = Timecard[0].FriNote;
+                Sat_Note = Timecard[0].SatNote;
+                Sun_Note = Timecard[0].SunNote;
+
             }
         }
 
@@ -749,34 +836,6 @@ namespace BetrackingAPP.ViewModel
                     day.bgColor = "White";
                 }
             }
-            /*if (_oldDay == day)
-            {
-                // click twice on same item to hide it
-                if (day.DisplayInputs == 0)
-                {
-                    day.DisplayInputs = 225;
-                    day.bgColor = "#b9c7da";
-                }
-                else
-                {
-                    day.DisplayInputs = 0;
-                    day.bgColor = "white";
-                }
-                UpdateDays(day);
-            }
-            else
-            {
-                if (_oldDay != null)
-                {
-                    // hide previous selected item
-                    _oldDay.DisplayInputs = 0;
-                    UpdateDays(_oldDay);
-                }
-                // show selected item
-                day.DisplayInputs = 225;
-                UpdateDays(day);
-            }
-            _oldDay = day;*/
         }
         private void UpdateDays(NewTimeOutCard day)
         {

@@ -39,8 +39,6 @@ namespace BetrackingAPP.iOS
             Rg.Plugins.Popup.Popup.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             global::Xamarin.Forms.Forms.Init();
-
-            ImagecircleRender.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

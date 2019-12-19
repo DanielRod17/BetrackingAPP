@@ -26,6 +26,32 @@ namespace BetrackingAPP.ViewModel
 {
     public class AddFilesViewModel : BaseViewModel
     {
+        private int _archivosSize { get; set; }
+        public int ArchivosSize
+        {
+            get
+            {
+                return _archivosSize;
+            }
+            set
+            {
+                _archivosSize = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _mediasSize { get; set; }
+        public int MediasSize
+        {
+            get
+            {
+                return _mediasSize;
+            }
+            set
+            {
+                _mediasSize = value;
+                OnPropertyChanged();
+            }
+        }
         private bool _isLoading = false;
         public bool IsLoading
         {
@@ -100,12 +126,25 @@ namespace BetrackingAPP.ViewModel
             Archivos = new ObservableCollection<ArchivosAdd>();
             IsLoading = false;
         }
+
+        public void CambiarHeight(string lista)
+        {
+            if (lista == "MediasList")
+            {
+                MediasSize = Medias.Count*320;
+            }
+            else
+            {
+                ArchivosSize = Archivos.Count * 320;
+            }
+        }
         public void AgregarALista(MediaFile mediaFile, ImageSource fuente)
         {
             IsLoading = true;
             var splitted = mediaFile.Path.Split('/');
             string fiel_name = splitted[splitted.Length - 1];
             Medias.Add(new FilesAdd() { Archivo = mediaFile, Fuente = fuente, Path = mediaFile.Path, FileName = fiel_name });
+            CambiarHeight("MediasList");
             IsLoading = false;
         }
         internal void AgregarAListaArchivo(FileData file, Stream elemento)
@@ -135,15 +174,18 @@ namespace BetrackingAPP.ViewModel
             }
 
             Archivos.Add(new ArchivosAdd() { Archivo = file, Path = path, FileName = fiel_name, Contents = contents, Contenido = elemento });
+            CambiarHeight("ArchivosList");
             IsLoading = false;
         }
         public void BorrarMedia(FilesAdd item)
         {
             Medias.Remove(item);
+            CambiarHeight("MediasList");
         }
         public void BorrarFiles(ArchivosAdd item)
         {
             Archivos.Remove(item);
+            CambiarHeight("ArchivosList");
         }
         internal async Task SubirArchivosAsync()
         {

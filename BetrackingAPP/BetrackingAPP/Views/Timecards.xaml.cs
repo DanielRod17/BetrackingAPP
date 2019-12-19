@@ -45,7 +45,7 @@ namespace BetrackingAPP.Views
             var pippo = this.FindByName<ListView>("TimecardsList");
             pippo.SelectedItem = null;
             var vm = BindingContext as TimecardsViewModel;
-            vm.LoadTimecards(vm.usuario, vm.FechaSeleccionada);
+            _ = vm.LoadTimecards(vm.usuario, vm.FechaSeleccionada);
         }
 
         private async void ViewCell_Appearing(object sender, EventArgs e)

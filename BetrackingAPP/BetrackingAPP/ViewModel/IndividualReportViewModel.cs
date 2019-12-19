@@ -449,6 +449,32 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
+        private string _projectName { get; set; }
+        public string ProjectNeim
+        {
+            get
+            {
+                return _projectName;
+            }
+            set
+            {
+                _projectName = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _statusName { get; set; }
+        public string StatusName
+        {
+            get
+            {
+                return _statusName;
+            }
+            set
+            {
+                _statusName = value;
+                OnPropertyChanged();
+            }
+        }
         private string _name { get; set; }
         public string Name
         {
@@ -1086,6 +1112,8 @@ namespace BetrackingAPP.ViewModel
             });
             IsLoading = true;
             BaggageExp = 0;
+            ProjectNeim = Reporte.ProjectName;
+            StatusName = Reporte.StatusName;
             AirfareExp = 0;
             CarRentalExp = 0;
             GasolineExp = 0;

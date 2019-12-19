@@ -5,24 +5,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     x:Class="BetrackingAPP.Views.Expenses"
-	BackgroundColor="#f4f4f4"
-	xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-	xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-	xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+	BackgroundColor="#f4f4f4">
 	<Grid>
 		<StackLayout>
-			<StackLayout BackgroundColor="#f4f4f4">
-				<Label Text=""
-					FontSize="30"
-					TextColor="#f4c53f"
-					HeightRequest="15"
-					Margin="0,-70,0,0"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"/>
-				<Image Source="BETRACKING.png"
-                    HeightRequest="40"
-                    WidthRequest="80"/>
-			</StackLayout>
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
@@ -51,25 +36,46 @@
 					Placeholder="Search Reports"
 					Text="{Binding ExpensesName}"
 					SearchCommand="{Binding Filtrar}"
-				/>
+					>
+					<SearchBar.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+						</OnPlatform>
+					</SearchBar.FontFamily>
+				</SearchBar>
 				<Button Grid.Column="7"
 					Grid.ColumnSpan="2"
 					x:Name="Btn_Add" 
                     Text="ADD +"
 					Command="{Binding NewReportCommand}"
                     TextColor="White"
-                    FontSize="Small"
+                    FontSize="Medium"
                     BackgroundColor="#15212f"
-                    BorderRadius="2"
-                />
+                    BorderRadius="1">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
 			</Grid>
 			<StackLayout BackgroundColor="#15212f">
-				<Label Text="E X P E N S E S"
-					FontSize="30"
+				<Label Text="EXPENSES"
+					FontSize="40"
+					CharacterSpacing="2"
 					TextColor="White"
 					HeightRequest="90"
 					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"/>
+					VerticalTextAlignment="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 			</StackLayout>
 			<ListView
 				x:Name="ExpensesList"
@@ -104,30 +110,71 @@
 											HorizontalOptions="Start"/>
 										<Label Grid.Column="2" 
 											Text="{Binding Name}"
-											FontSize="Micro"
-											HorizontalOptions="StartAndExpand"/>
+											FontSize="Small"
+											HorizontalOptions="StartAndExpand">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Grid.Row="1"
 											Text="{Binding StatusName, StringFormat='Status: {0}'}"
-											FontSize="Micro"
-											HorizontalOptions="Start"/>
+											FontSize="Small"
+											HorizontalOptions="Start">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Grid.Column="1"
+											Grid.ColumnSpan="2"
 											Text="{Binding AssignmentName, StringFormat='Assignment: {0}'}"
 											Grid.Row="1"
-											FontSize="Micro"
-											HorizontalOptions="Start"/>
+											FontSize="Small"
+											HorizontalOptions="Start">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Grid.Column="1"
 											Text="{Binding ExpensesQty, StringFormat='Expenses Qty: {0}'}"
-											FontSize="Micro"/>
-										<Label Grid.Row="1"
+											FontSize="Small">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<!--<Label Grid.Row="1"
 											Grid.Column="2"
 											Text="{Binding FromDate, StringFormat='{0:dd/MM/yyyy}'}"
-											FontSize="Micro"
-											HorizontalOptions="End"/>
+											FontSize="Small"
+											HorizontalOptions="End">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Grid.Row="2"
 											Grid.Column="2"
 											Text="{Binding ToDate, StringFormat='{0:dd/MM/yyyy}'}"
-											FontSize="Micro"
-											HorizontalOptions="End"/>
+											FontSize="Small"
+											HorizontalOptions="End">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>-->
 									</Grid>
 								</Frame>
 							</StackLayout>
@@ -136,11 +183,22 @@
 				</ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
-		<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
+			<!--<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9">-->
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+			</StackLayout>
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding HasPropertyValueChanged}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 			</StackLayout>
 		</StackLayout>
 	</Grid>

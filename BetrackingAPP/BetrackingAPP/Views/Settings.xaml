@@ -9,25 +9,21 @@
 	x:Name="Page">
 	<Grid>
 		<StackLayout>
-			<StackLayout BackgroundColor="#f4f4f4">
-				<Label Text=""
-					FontSize="30"
-					TextColor="#f4c53f"
-					HeightRequest="15"
-					Margin="0,-70,0,0"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"/>
-				<Image Source="BETRACKING.png"
-                    HeightRequest="40"
-                    WidthRequest="80"/>
-			</StackLayout>
 			<StackLayout BackgroundColor="#15212f">
-				<Label Text="S E T T I N G S"
+				<Label Text="SETTINGS"
+					CharacterSpacing="2"
 					FontSize="40"
 					TextColor="White"
 					HeightRequest="90"
 					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"/>
+					VerticalTextAlignment="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 			</StackLayout>
 			<StackLayout Margin="20">
 				<TableView Intent="Form">
@@ -39,7 +35,14 @@
                                         Text="Betracking Web >"
                                         BackgroundColor="White"
                                         TextColor="Black"
-										Clicked="BETracking_Web"/>
+										Clicked="BETracking_Web">
+										<Button.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Button.FontFamily>
+									</Button>
 								</ViewCell.View>
 							</ViewCell>
 							<ViewCell>
@@ -48,7 +51,14 @@
                                         Text="Betracking Help >"
                                         BackgroundColor="White"
                                         TextColor="Black"
-										Clicked="BETracking_Help"/>
+										Clicked="BETracking_Help">
+										<Button.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Button.FontFamily>
+									</Button>
 								</ViewCell.View>
 							</ViewCell>
 							<ViewCell>
@@ -58,7 +68,14 @@
                                         BackgroundColor="White"
                                         TextColor="Black"
 										Clicked="BETracking_Policy"
-										/>
+										>
+										<Button.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Button.FontFamily>
+									</Button>
 								</ViewCell.View>
 							</ViewCell>
 							<ViewCell>
@@ -68,7 +85,14 @@
                                         BackgroundColor="White"
                                         TextColor="#15212f"
 										Clicked="BETracking_Terms"
-										/>
+										>
+										<Button.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Button.FontFamily>
+									</Button>
 								</ViewCell.View>
 							</ViewCell>
 						</TableSection>
@@ -80,7 +104,14 @@
                                         BackgroundColor="White"
                                         TextColor="Black"
                                         Command="{Binding Path=BindingContext.GoToHelp, Source={x:Reference Page}}"
-										CommandParameter="{Binding usuario}"/>
+										CommandParameter="{Binding usuario}">
+										<Button.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Button.FontFamily>
+									</Button>
 								</ViewCell.View>
 							</ViewCell>
 							<ViewCell>
@@ -89,7 +120,14 @@
                                         Text="Sign Out >"
                                         BackgroundColor="White"
                                         TextColor="#15212f"
-                                        Clicked="Logout_Clicked"/>
+                                        Clicked="Logout_Clicked">
+										<Button.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Button.FontFamily>
+									</Button>
 								</ViewCell.View>
 							</ViewCell>
 						</TableSection>

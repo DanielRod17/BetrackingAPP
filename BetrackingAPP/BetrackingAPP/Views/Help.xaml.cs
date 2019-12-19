@@ -46,7 +46,6 @@ namespace BetrackingAPP.Views
             NavigationPage.SetHasNavigationBar(this, false);
             BindingContext = new HelpViewModel(usuario);
         }
-
         private async void PickPhoto_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -66,7 +65,6 @@ namespace BetrackingAPP.Views
             });
             AgregarFile(_mediaFile, elemento);
         }
-
         public void AgregarFile(MediaFile _mediaFile, ImageSource elemento)
         {
             var vm = BindingContext as HelpViewModel;

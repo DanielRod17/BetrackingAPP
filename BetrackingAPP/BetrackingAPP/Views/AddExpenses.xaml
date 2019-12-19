@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-	xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
     xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
@@ -17,7 +16,13 @@
 					HeightRequest="100"
 					HorizontalTextAlignment="Center"
 					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f"/>
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 				<local:RepeaterView 
 					ItemsSource="{Binding ExpensesList}">
 					<local:RepeaterView.ItemTemplate>
@@ -54,26 +59,54 @@
 											Grid.ColumnSpan="1" 
 											HorizontalTextAlignment="Center"
 											VerticalTextAlignment="Center"
-											WidthRequest="40"/>
+											WidthRequest="40">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+													<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Text="{Binding NameCategory}" 
 											Grid.Row="0" 
 											Grid.Column="1"  
 											Grid.ColumnSpan="3" 
 											HorizontalTextAlignment="Start"
 											VerticalTextAlignment="Center"
-											Margin="20,0,0,0"/>
+											Margin="20,0,0,0">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Text="{Binding TotalMoney, StringFormat='${0} USD'}" 
 											Grid.Row="0" 
 											Grid.Column="4" 
 											Grid.ColumnSpan="3" 
 											HorizontalTextAlignment="End"
 											VerticalTextAlignment="Center"
-											Margin="0,0,20,0"/>
+											Margin="0,0,20,0">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Button Text="+ ADD" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3"
 											TextColor="White"
 											BackgroundColor="#15212f"
 											Command="{Binding Path=BindingContext.AddExpense, Source={x:Reference Page}}"
-											CommandParameter="{Binding ID}"/>
+											CommandParameter="{Binding ID}">
+											<Button.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+													<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+												</OnPlatform>
+											</Button.FontFamily>
+										</Button>
 										<ListView 
 											Grid.Row="2" 
 											Grid.Column="0" 
@@ -115,50 +148,118 @@
 																<Label Text="Expense Date" Grid.Row="0" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
-																	VerticalTextAlignment="Center"/>
-																<DatePicker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4"
+																	VerticalTextAlignment="Center">
+																	<Label.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																		</OnPlatform>
+																	</Label.FontFamily>
+																</Label>
+																<DatePicker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="5"
 																	MinimumDate="01/01/2019"
-																	Date="{Binding ExpenseDate}"/>
+																	Date="{Binding ExpenseDate}">
+																	<DatePicker.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+																		</OnPlatform>
+																	</DatePicker.FontFamily>
+																</DatePicker>
 																<Label Text="Description" Grid.Row="1" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
-																	VerticalTextAlignment="Center"/>
-																<Entry Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="4"
+																	VerticalTextAlignment="Center">
+																	<Label.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																		</OnPlatform>
+																	</Label.FontFamily>
+																</Label>
+																<Entry Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
 																	Placeholder="Description"
-																	Text="{Binding Name}"/>
+																	Text="{Binding Name}">
+																	<Entry.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+																		</OnPlatform>
+																	</Entry.FontFamily>
+																</Entry>
 																<Label Text="Quantity" Grid.Row="2" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
-																	VerticalTextAlignment="Center"/>
-																<Entry Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="4"
+																	VerticalTextAlignment="Center">
+																	<Label.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																		</OnPlatform>
+																	</Label.FontFamily>
+																</Label>
+																<Entry Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
 																	Placeholder="Quantity"
 																	Keyboard="Numeric"
-																	Text="{Binding Quantity, StringFormat='{0:F2}'}"/>
+																	Text="{Binding Quantity, StringFormat='{0:F2}'}">
+																	<Entry.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+																		</OnPlatform>
+																	</Entry.FontFamily>
+																</Entry>
 																<!-- BREAK 2 -->
 																<Label Text="Currency" Grid.Row="3" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
-																	VerticalTextAlignment="Center"/>
-																<Picker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="4" 
+																	VerticalTextAlignment="Center">
+																	<Label.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																		</OnPlatform>
+																	</Label.FontFamily>
+																</Label>
+																<Picker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5" 
 																	SelectedIndex="{Binding CurrencyPicker}" HorizontalOptions="FillAndExpand">
+																		<Picker.FontFamily>
+																			<OnPlatform x:TypeArguments="x:String">
+																				<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+																			</OnPlatform>
+																		</Picker.FontFamily>
 																	<Picker.Items>
 																		<x:String>USD</x:String>
 																		<x:String>MXN</x:String>
 																	</Picker.Items>
 																</Picker>
 																<Label Text="Refundable" Grid.Row="4" Grid.Column="1"
-																		Grid.ColumnSpan="4"
-																		HorizontalTextAlignment="Start" 
-																		VerticalTextAlignment="Center"/>
-																<CheckBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="4"  
-																		IsChecked="{Binding RefundableOn}" />
+																	Grid.ColumnSpan="4"
+																	HorizontalTextAlignment="Start" 
+																	VerticalTextAlignment="Center">
+																	<Label.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																		</OnPlatform>
+																	</Label.FontFamily>
+																</Label>
+																<CheckBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"  
+																	IsChecked="{Binding RefundableOn}" />
 																<!-- BREAK 3 -->
 																<Button Text="DELETE" Grid.Row="5" Grid.Column="2"
 																	TextColor="White"
 																	BackgroundColor="#15212f"
 																	Grid.ColumnSpan="7"
 																	Command="{Binding Path=BindingContext.DeleteExpense, Source={x:Reference Page}}"
-																	CommandParameter="{Binding .}"/>
+																	CommandParameter="{Binding .}">
+																	<Button.FontFamily>
+																		<OnPlatform x:TypeArguments="x:String">
+																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																		</OnPlatform>
+																	</Button.FontFamily>
+																</Button>
 															</Grid>
 														</Frame>
 													</ViewCell>
@@ -173,15 +274,35 @@
 				</local:RepeaterView>
 				<Button Text="SAVE" 
 					TextColor="White"
+					CharacterSpacing="2"
+					FontSize="18"
+					Margin="10, 0, 10, 10"
 					BackgroundColor="#15212f"
-					Command="{Binding GuardarExpenses}"/>
+					Command="{Binding GuardarExpenses}">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
 			</StackLayout>
 		</ScrollView>
-		<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+			</StackLayout>
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 			</StackLayout>
 		</StackLayout>
 	</Grid>

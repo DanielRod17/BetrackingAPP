@@ -81,7 +81,7 @@ namespace BetrackingAPP.ViewModel
         public ExpensesViewModel(User usuarioFrom)
         {
             usuario = usuarioFrom;
-            GetTravels(usuario);
+            _ = GetTravels(usuario);
             NewReportCommand = new Command(async () => await NavigateToNewReport());
         }
         public async Task NavigateToNewReport()
@@ -150,7 +150,7 @@ namespace BetrackingAPP.ViewModel
                 HasPropertyValueChanged = false;
             }
         }
-        public async void Filtrar(string Busqueda)
+        public void Filtrar(string Busqueda)
         {
             HasPropertyValueChanged = true;
             string Name = "";

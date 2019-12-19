@@ -1,41 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-    xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
 	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
 	xmlns:local="clr-namespace:BetrackingAPP"
-	x:Class="BetrackingAPP.Views.NewTimecard"
-	>
+	x:Class="BetrackingAPP.Views.NewTimecard">
 	<Grid>
 		<ScrollView>
 			<StackLayout x:Name="TimecardContainer">
 				<Label Text="{Binding Fecha_timecard}"
-						FontSize="20"
-						TextColor="White"
-						HeightRequest="100"
-						HorizontalTextAlignment="Center"
-						VerticalTextAlignment="Center"
-						BackgroundColor="#15212f"/>
-				<xfx:XfxComboBox Placeholder="Select an Assignment"
-						Text="{Binding AssignmentName}"
-						ItemsSource="{Binding Assignments}"
-						SortingAlgorithm="{Binding SortingAlgorithm}"
-						HorizontalTextAlignment="Start"
-						WidthRequest="300"/>
+					TextColor="White"
+					CharacterSpacing="2"
+					FontSize="36"
+					HeightRequest="80"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<local:XfxCustomized Placeholder="Select an Assignment"
+					Text="{Binding AssignmentName}"
+					ItemsSource="{Binding Assignments}"
+					SelectedItem=""
+					SortingAlgorithm="{Binding SortingAlgorithm}"
+					HorizontalTextAlignment="Start"
+					WidthRequest="300">
+					<local:XfxCustomized.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</local:XfxCustomized.FontFamily>
+				</local:XfxCustomized>
 				<local:RepeaterView 
-						x:Name="TimecardsList"
-						ItemsSource="{Binding Days}"
-						>
+					x:Name="TimecardsList"
+					ItemsSource="{Binding Days}">
 					<local:RepeaterView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
 								<Frame CornerRadius="5"
-										Padding="0"
-										Margin="1"
-										HasShadow="False">
+									Padding="0"
+									Margin="1"
+									HasShadow="False">
 									<Grid BackgroundColor="{Binding bgColor}">
 										<Grid.GestureRecognizers>
 											<TapGestureRecognizer Tapped="TimecardsList_ItemTapped"/>
@@ -54,31 +66,56 @@
 											<ColumnDefinition Width="*"/>
 										</Grid.ColumnDefinitions>
 										<Label TextColor="White" 
-												BackgroundColor="#15212f" 
-												Text="{Binding Numero}" 
-												Grid.Row="0" 
-												Grid.Column="0" 
-												Grid.ColumnSpan="1" 
-												HorizontalTextAlignment="Center"
-												VerticalTextAlignment="Center"
-												WidthRequest="40"/>
+											BackgroundColor="#15212f" 
+											Text="{Binding Numero}"
+											CharacterSpacing="2"
+											FontSize="Medium"
+											Grid.Row="0" 
+											Grid.Column="0" 
+											Grid.ColumnSpan="1" 
+											HorizontalTextAlignment="Center"
+											VerticalTextAlignment="Center"
+											WidthRequest="40">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+													<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Text="{Binding Day}" 
-												Grid.Row="0" 
-												Grid.Column="1"  
-												Grid.ColumnSpan="4" 
-												HorizontalTextAlignment="Start"
-												VerticalTextAlignment="Center"
-												Margin="20,0,0,0"/>
+											Grid.Row="0" 
+											Grid.Column="1"  
+											Grid.ColumnSpan="4" 
+											HorizontalTextAlignment="Start"
+											VerticalTextAlignment="Center"
+											FontSize="Medium"
+											Margin="20,0,0,0">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 										<Label Text="{Binding Valor}" 
-												Grid.Row="0" 
-												Grid.Column="5" 
-												Grid.ColumnSpan="2" 
-												HorizontalTextAlignment="End"
-												VerticalTextAlignment="Center"
-												Margin="0,0,20,0"/>
-										<StackLayout Grid.Row="1" 
-													Grid.Column="0" 
-													Grid.ColumnSpan="7">
+											Grid.Row="0" 
+											Grid.Column="5" 
+											Grid.ColumnSpan="2" 
+											HorizontalTextAlignment="End"
+											VerticalTextAlignment="Center"
+											Margin="0,0,20,0">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<StackLayout 
+											Grid.Row="1" 
+											Grid.Column="0" 
+											Grid.ColumnSpan="7">
 											<Grid>
 												<Grid.RowDefinitions>
 													<RowDefinition Height="{Binding DisplayInputsNotes}"/>
@@ -94,19 +131,40 @@
 													<ColumnDefinition Width="*"/>
 												</Grid.ColumnDefinitions>
 												<Label Text="Insert Hours" Grid.Row="0" Grid.Column="1"
-														Grid.ColumnSpan="2"
-														HeightRequest="{Binding DisplayInputsNotes}"
-														HorizontalTextAlignment="Center" 
-														VerticalTextAlignment="Center"/>
+													Grid.ColumnSpan="2"
+													HeightRequest="{Binding DisplayInputsNotes}"
+													HorizontalTextAlignment="Center" 
+													VerticalTextAlignment="Center">
+													<Label.FontFamily>
+														<OnPlatform x:TypeArguments="x:String">
+															<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+															<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+														</OnPlatform>
+													</Label.FontFamily>
+												</Label>
 												<Entry Placeholder="Hours" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" 
 														FontSize="Small" 
 														HeightRequest="{Binding DisplayInputsNotes}"
 														Text="{Binding Valor}"
-														Keyboard="Numeric"/>
+														Keyboard="Numeric">
+													<Entry.FontFamily>
+														<OnPlatform x:TypeArguments="x:String">
+															<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+															<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+														</OnPlatform>
+													</Entry.FontFamily>
+												</Entry>
 												<Entry Placeholder="Notes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" 
-														Text="{Binding Nota}"
-														HeightRequest="{Binding DisplayInputsNotes}"
-														FontSize="Small"/>
+													Text="{Binding Nota}"
+													HeightRequest="{Binding DisplayInputsNotes}"
+													FontSize="Small">
+													<Entry.FontFamily>
+														<OnPlatform x:TypeArguments="x:String">
+															<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+															<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+														</OnPlatform>
+													</Entry.FontFamily>
+												</Entry>
 											</Grid>
 										</StackLayout>
 									</Grid>
@@ -116,36 +174,59 @@
 					</local:RepeaterView.ItemTemplate>
 				</local:RepeaterView>
 				<StackLayout
-							Margin="20, 20, 20, 0"
-							BackgroundColor="White"
-							VerticalOptions="End" >
+					Margin="20, 20, 20, 0"
+					BackgroundColor="White"
+					VerticalOptions="End" >
 					<Button
-								Text="Save"
-								TextColor="White"
-								FontSize="14"
-								BackgroundColor="#15212f"
-								BorderRadius="2"
-								Command="{Binding SaveTimecard}"
-								VerticalOptions="End" 
-							/>
+						Text="Save"
+						TextColor="White"
+						CharacterSpacing="2"
+						FontSize="22"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Command="{Binding SaveTimecard}"
+						VerticalOptions="End">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
 					<Button
-								Text="Submit" 
-								TextColor="White"
-								FontSize="14"
-								BackgroundColor="#15212f"
-								BorderRadius="2"
-								Command="{Binding SubmitTimecard}"
-								VerticalOptions="End" 
-							/>
+						Text="Submit" 
+						TextColor="White"
+						FontSize="22"
+						CharacterSpacing="2"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Command="{Binding SubmitTimecard}"
+						VerticalOptions="End">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
 				</StackLayout>
 			</StackLayout>
 		</ScrollView>
-
-		<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+			</StackLayout>
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 			</StackLayout>
 		</StackLayout>
 	</Grid>

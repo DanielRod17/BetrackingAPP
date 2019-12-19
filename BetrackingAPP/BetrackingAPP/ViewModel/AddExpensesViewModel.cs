@@ -86,7 +86,6 @@ namespace BetrackingAPP.ViewModel
             };
             CargarExpenses();
         }
-
         public void CargarExpenses()
         {
             foreach (Expense expense_item in Reporte.Expenses)
@@ -184,7 +183,6 @@ namespace BetrackingAPP.ViewModel
             tempList.Add(item);
             ExpensesList[v - 1].iExpenses = tempList;
         }
-
         public void HideOrShowInputs(ExpensesList expense_cat)
         {
             if (expense_cat != null) {
@@ -250,12 +248,12 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
             IsLoading = false;
         }

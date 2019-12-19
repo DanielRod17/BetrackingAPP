@@ -5,54 +5,82 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     x:Class="BetrackingAPP.Views.Help"
-	BackgroundColor="#f4f4f4">
+	BackgroundColor="#15212f">
 	<Grid>
-		<StackLayout Margin="20">
-			<TableView Intent="Form" HasUnevenRows="true">
-				<TableRoot Title="Settings">
-					<TableSection Title="Type your problem here!">
-						<EntryCell Text="{Binding HelpText}" Placeholder="Reason..."></EntryCell>
-					</TableSection>
-					<TableSection Title="Send us a ScreenShot">
-						<ViewCell>
-							<ViewCell.View>
-								<Button
-									Text="+ ScreenShot >"
-									BackgroundColor="White"
-									TextColor="Black"
-									Clicked="PickPhoto_Clicked"/>
-							</ViewCell.View>
-						</ViewCell>
-					</TableSection>
-					<TableSection Title="Send us a ScreenShot">
-						<ViewCell Height="150">
-							<ViewCell.View>
-								<Image x:Name="Screenshot"
-									WidthRequest="400"
-									HeightRequest="220"
-									Source="{Binding imgSrc}"/>
-							</ViewCell.View>
-						</ViewCell>
-					</TableSection>
-					<TableSection Title="Submit your ticket">
-						<ViewCell>
-							<ViewCell.View>
-								<Button
-									Text="Submit >"
-									BackgroundColor="#15212f"
-									TextColor="White"
-									Command="{Binding PedirAyuda}"/>
-							</ViewCell.View>
-						</ViewCell>
-					</TableSection>
-				</TableRoot>
-			</TableView>
+		<StackLayout>
+			<Label Text="Type your problem here!"
+				BackgroundColor="#f4f4f4"
+				TextColor="#15212f"
+				Padding="20"
+				FontSize="Title"
+				CharacterSpacing="2">
+				<Label.FontFamily>
+					<OnPlatform x:TypeArguments="x:String">
+						<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+					</OnPlatform>
+				</Label.FontFamily>
+			</Label>
+			<StackLayout Margin="20">
+				<Editor Text="{Binding HelpText}" PlaceholderColor="#f4f4f4" TextColor="#f4f4f4"
+					Placeholder="Reason..." 
+					HeightRequest="100" AutoSize="Disabled">
+					<Editor.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Editor.FontFamily>
+				</Editor>
+				<Button
+					Margin="0, 8, 0, 15"
+					Text="+ ScreenShot"
+					BackgroundColor="#f4f4f4"
+					TextColor="Black"
+					Clicked="PickPhoto_Clicked">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+				<Image x:Name="Screenshot"
+					HeightRequest="220"
+					BackgroundColor="#0d141c"
+					Source="{Binding imgSrc}"/>
+				<Button
+					Text="Submit"
+					BackgroundColor="#f4c53f"
+					CharacterSpacing="2"
+					TextColor="White"
+					Command="{Binding PedirAyuda}"
+					FontSize="Title"
+					Margin="0, 20, 0, 0">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+			</StackLayout>
 		</StackLayout>
-		<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+			</StackLayout>
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 			</StackLayout>
 		</StackLayout>
 	</Grid>

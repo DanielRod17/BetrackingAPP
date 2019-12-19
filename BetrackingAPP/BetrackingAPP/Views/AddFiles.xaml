@@ -8,109 +8,160 @@
     x:Class="BetrackingAPP.Views.AddFiles"
 	x:Name="Page">
     <Grid>
-        <StackLayout>
-			<Label Text="ADD FILES"
-				FontSize="20"
-				TextColor="White"
-				HeightRequest="100"
-				HorizontalTextAlignment="Center"
-				VerticalTextAlignment="Center"
-				BackgroundColor="#15212f"/>
-			<Button Text="Pick File" 
-				TextColor="White"
-				FontSize="14"
-				BackgroundColor="#15212f"
-				BorderRadius="2"
-				Clicked="PickFile_Clicked"
-			/>
-			<Button Text="Pick Photo" 
-				TextColor="White"
-				FontSize="14"
-				BackgroundColor="#15212f"
-				BorderRadius="2"
-				Clicked="PickPhoto_Clicked"
-			/>
-			<Button Text="Take Photo" 
-				TextColor="White"
-				FontSize="14"
-				BackgroundColor="#15212f"
-				BorderRadius="2"
-				Clicked="TakePhoto_Clicked"
-			/>
-			<ListView
-				ItemsSource="{Binding Medias}"
-				HasUnevenRows="true">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<ViewCell>
-							<Frame CornerRadius="5"
-								 Padding="0"
-								 Margin="1"
-								 BackgroundColor="White"
-                                 HasShadow="False">
-								<StackLayout>
-									<Image 
-									   WidthRequest="400"
-									   HeightRequest="220"
-									   Source="{Binding Path}"/>
-									<Label Text="{Binding FileName}"/>
-									<Button Text="Delete" 
-										TextColor="White"
-										FontSize="14"
-										BackgroundColor="#15212f"
-										BorderRadius="2"
-										Command="{Binding Path=BindingContext.DeleteMedia, Source={x:Reference Page}}"
-										CommandParameter="{Binding .}"/>
-								</StackLayout>
-							</Frame>
-						</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-			<ListView
-				ItemsSource="{Binding Archivos}"
-				HasUnevenRows="true">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<ViewCell>
-							<Frame CornerRadius="5"
-								 Padding="0"
-								 Margin="1"
-								 BackgroundColor="White"
-                                 HasShadow="False">
-								<StackLayout>
-									<Image 
-									   WidthRequest="400"
-									   HeightRequest="220"
-									   Source="{Binding Path}"/>
-									<Label Text="{Binding FileName}"/>
-									<Button Text="Delete" 
-										TextColor="White"
-										FontSize="14"
-										BackgroundColor="#15212f"
-										BorderRadius="2"
-										Command="{Binding Path=BindingContext.DeleteFile, Source={x:Reference Page}}"
-										CommandParameter="{Binding .}"/>
-								</StackLayout>
-							</Frame>
-						</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-			<Button Text="Upload!" 
-				TextColor="White"
-				FontSize="14"
-				BackgroundColor="#15212f"
-				BorderRadius="2"
-				Clicked="UploadFile_Clicked"
-			/>
-		</StackLayout>
-		<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+		<ScrollView>
+			<StackLayout>
+				<Label Text="ADD FILES"
+					FontSize="30"
+					TextColor="White"
+					CharacterSpacing="2"
+					HeightRequest="100"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<ListView
+					Margin="40, 0, 40, 0"
+					x:Name="MediasList"
+					ItemsSource="{Binding Medias}"
+					HeightRequest="{Binding MediasSize}"
+					HasUnevenRows="true">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Frame CornerRadius="5"
+									Padding="0"
+									Margin="1"
+									BackgroundColor="White"
+									HasShadow="False">
+									<StackLayout>
+										<Image 
+											WidthRequest="400"
+											HeightRequest="220"
+											Source="{Binding Path}"/>
+										<Label Text="{Binding FileName}"/>
+										<Button Text="Delete" 
+											TextColor="White"
+											FontSize="14"
+											Margin="15, 0, 0, 15"
+											BackgroundColor="#15212f"
+											BorderRadius="2"
+											Command="{Binding Path=BindingContext.DeleteMedia, Source={x:Reference Page}}"
+											CommandParameter="{Binding .}"/>
+									</StackLayout>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<ListView
+					Margin="40, 0, 40, 0"
+					HeightRequest="{Binding ArchivosSize}"
+					ItemsSource="{Binding Archivos}"
+					HasUnevenRows="true">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<Frame CornerRadius="5"
+									 Padding="0"
+									 Margin="1"
+									 BackgroundColor="White"
+									 HasShadow="False">
+									<StackLayout>
+										<Image 
+										   WidthRequest="400"
+										   HeightRequest="220"
+										   Source="{Binding Path}"/>
+										<Label Text="{Binding FileName}"/>
+										<Button Text="Delete" 
+											TextColor="White"
+											FontSize="14"
+											BackgroundColor="#15212f"
+											BorderRadius="2"
+											Command="{Binding Path=BindingContext.DeleteFile, Source={x:Reference Page}}"
+											CommandParameter="{Binding .}"/>
+									</StackLayout>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<Button Text="Pick File" 
+					TextColor="White"
+					CharacterSpacing="2"
+					FontSize="18"
+					BackgroundColor="#15212f"
+					BorderRadius="2"
+					Margin="15, 0, 15, 0"
+					Clicked="PickFile_Clicked">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+				<Button Text="Pick Photo" 
+					TextColor="White"
+					Margin="15, 0, 15, 0"
+					CharacterSpacing="2"
+					FontSize="18"
+					BackgroundColor="#15212f"
+					BorderRadius="2"
+					Clicked="PickPhoto_Clicked">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+				<Button Text="Take Photo" 
+					TextColor="White"
+					FontSize="18"
+					BackgroundColor="#15212f"
+					BorderRadius="2"
+					Margin="15, 0, 15, 0"
+					Clicked="TakePhoto_Clicked">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+				<Button Text="Upload!" 
+					TextColor="White"
+					FontSize="24"
+					Margin="15, 0, 15, 15"
+					BackgroundColor="#15212f"
+					BorderRadius="2"
+					Clicked="UploadFile_Clicked">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+			</StackLayout>
+		</ScrollView>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 			</StackLayout>
 		</StackLayout>
-    </Grid>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
+			</StackLayout>
+		</StackLayout>
+	</Grid>
 </ContentPage>

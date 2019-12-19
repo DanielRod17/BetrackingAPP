@@ -101,6 +101,7 @@ namespace BetrackingAPP.Models
             set
             {
                 _quantity = value;
+                CambiarValor();
                 OnPropertyChanged();
             }
         }
@@ -132,7 +133,18 @@ namespace BetrackingAPP.Models
         public decimal DOF { get; set; }
         public string SalesForceID { get; set; }
         public string CategoryName { get; set; }
-        public decimal ValorFinal { get; set; }
+        private decimal _valorFinal { get; set; }
+        public decimal ValorFinal {
+            get
+            {
+                return _valorFinal;
+            }
+            set
+            {
+                _valorFinal = value;
+                OnPropertyChanged(); 
+            }
+        }
         public bool DescriptionOn { get; set; }
         private bool _RefundableOn { get; set; }
         public bool RefundableOn
@@ -147,7 +159,39 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-        public bool MxOn { get; set; }
+        private bool _mx { get; set; }
+        public bool MxOn {
+            get
+            {
+                return _mx;
+            }
+            set
+            {
+                _mx = value;
+                CambiarValor();
+                OnPropertyChanged();
+            }
+        }
+        public void CambiarValor()
+        {
+            if ( MxOn == true )
+            {
+                ValorFinal = Convert.ToDecimal(Quantity) / DOF;
+            }
+            else
+            {
+                if ( Quantity == null || Quantity == "")
+                {
+                    ValorFinal = 0;
+                }
+                else
+                {
+                    ValorFinal = Convert.ToDecimal(Quantity);
+                }
+                
+            }
+            ValorFinal = Math.Round(ValorFinal, 2);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

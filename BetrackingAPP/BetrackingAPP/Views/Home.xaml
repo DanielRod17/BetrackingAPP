@@ -7,99 +7,145 @@
     x:Class="BetrackingAPP.Views.Home"
 	BackgroundColor="#f4f4f4">
 	<Grid>
-		<ScrollView>
-			<StackLayout x:Name="home1" VerticalOptions="Fill">
-				<Image Source="HomeBackground.jpg" Aspect="AspectFit" Margin="0,-50,0,0"/>
-				<Label Text="{Binding Greeting}"
-					FontSize="25"
-					TextColor="White"
-					HeightRequest="200"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"
-					BackgroundColor="Transparent"
-					Margin="0,-220,0,0"/>
-				<Grid Margin="0,30,0,0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-					</Grid.ColumnDefinitions>
-					<Image Source="notifications.png"
-						HeightRequest="10"
-						WidthRequest="10"/>
-						<Label Grid.Column="1"
-						Grid.ColumnSpan="2"
-						Text="Notifications"
-						FontAttributes="Bold"
-						HorizontalTextAlignment="Center"
-						FontSize="22"/>
-				</Grid>
-				<ListView
-					x:Name="HomepageList"
-					IsPullToRefreshEnabled="True" 
-					ItemsSource="{Binding Notifications}"
-					RefreshCommand="{Binding RefreshCommand}"
-					IsRefreshing="{Binding IsRefreshing}"
-					RowHeight="120"
-					Margin="10,5,10,0"
-					BackgroundColor="#f4f4f4"
-					SeparatorVisibility="None">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<ViewCell>
-								<Frame CornerRadius="1"
-									BackgroundColor="White"
-									HasShadow="False"
-									BorderColor="#f4f4f4">
-									<Grid>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-										</Grid.ColumnDefinitions>
-										<Grid.RowDefinitions>
-											<RowDefinition Height="30"/>
-											<RowDefinition Height="30"/>
-											<RowDefinition Height="30"/>
-										</Grid.RowDefinitions>
-										<Label Grid.Column="0" Grid.Row="0"
-											Grid.RowSpan="3"
-											BackgroundColor="{Binding Color}"
-										/>
-										<Label Grid.Column="1" Grid.Row="0"
-											Grid.ColumnSpan="4"
-											Text="{Binding Title}"
-											FontAttributes="Bold"
-											FontSize="Large"
-											HorizontalOptions="StartAndExpand"></Label>
-										<Label Grid.Row="1" 
-											Grid.Column="1"
-											Grid.ColumnSpan="4"
-											Text="{Binding Message}"
-											FontSize="Medium"
-											HorizontalOptions="StartAndExpand"></Label>
-										<Label Grid.Column="1"
-											Grid.Row="2"
-											Grid.ColumnSpan="4"
-											Text="{Binding cName, StringFormat='Sent By: {0}'}"
-											FontSize="Micro"></Label>
-									</Grid>
-								</Frame>
-							</ViewCell>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-			</StackLayout>
-		</ScrollView>
-		<!--<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+		<StackLayout x:Name="home1" VerticalOptions="Fill">
+			<Image Source="HomeBackground.jpg" Aspect="AspectFit" Margin="0,-100,0,0"/>
+			<Label Text="{Binding Greeting}"
+				FontSize="35"
+				TextColor="White"
+				HeightRequest="200"
+				HorizontalTextAlignment="Center"
+				VerticalTextAlignment="Center"
+				BackgroundColor="Transparent"
+				Margin="0,-150,0,0">
+				<Label.FontFamily>
+					<OnPlatform x:TypeArguments="x:String">
+						<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+					</OnPlatform>
+				</Label.FontFamily>
+			</Label>
+			<Grid Margin="0, 10, 0, 0" ColumnSpacing="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="50"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="40"/>
+				</Grid.RowDefinitions>
+				<StackLayout Grid.Column="1" Grid.Row="0"
+					Padding="20, 0">
+					<Image Source="notifications.png" VerticalOptions="Fill"/>
+				</StackLayout>
+				<Label Grid.Column="2"
+					Grid.ColumnSpan="3"
+					Grid.Row="0"
+					VerticalOptions="Center"
+					Text="Notifications"
+					FontAttributes="Bold"
+					HorizontalTextAlignment="Start"
+					FontSize="Title">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+			</Grid>
+			<ListView
+				x:Name="HomepageList"
+				IsPullToRefreshEnabled="True" 
+				ItemsSource="{Binding Notifications}"
+				RefreshCommand="{Binding RefreshCommand}"
+				IsRefreshing="{Binding IsRefreshing}"
+				RowHeight="120"
+				Margin="5, 5, 5, 5"
+				BackgroundColor="#f4f4f4"
+				SeparatorVisibility="None">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Frame CornerRadius="1"
+								BackgroundColor="White"
+								HasShadow="False"
+								BorderColor="#f4f4f4">
+								<Grid ColumnSpacing="8">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="*"/>
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="30"/>
+										<RowDefinition Height="30"/>
+										<RowDefinition Height="30"/>
+									</Grid.RowDefinitions>
+									<Label Grid.Column="0" Grid.Row="0"
+										Grid.RowSpan="3"
+										Margin="-15, -15, 0, 0"
+										BackgroundColor="{Binding Color}"/>
+									<Label Grid.Column="1" Grid.Row="0"
+										Grid.ColumnSpan="4"
+										Text="{Binding Title}"
+										FontAttributes="Bold"
+										FontSize="Large"
+										HorizontalOptions="StartAndExpand">
+										<Label.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+											</OnPlatform>
+										</Label.FontFamily>
+									</Label>
+									<Label Grid.Row="1" 
+										Grid.Column="1"
+										Grid.ColumnSpan="4"
+										Text="{Binding Message}"
+										FontSize="Medium"
+										HorizontalOptions="StartAndExpand">
+										<Label.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+											</OnPlatform>
+										</Label.FontFamily>
+									</Label>
+									<Label Grid.Column="1"
+										Grid.Row="2"
+										Grid.ColumnSpan="4"
+										Text="{Binding cName, StringFormat='Sent By: {0}'}"
+										FontSize="Micro">
+										<Label.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+											</OnPlatform>
+										</Label.FontFamily>
+									</Label>
+								</Grid>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
+			<!--<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9">-->
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 			</StackLayout>
-		</StackLayout>-->
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
+			</StackLayout>
+		</StackLayout>
 	</Grid>
 </ContentPage>

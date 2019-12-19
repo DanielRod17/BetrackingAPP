@@ -10,6 +10,7 @@ namespace BetrackingAPP
         public CustomEntry()
         {
             PlaceholderColor = Color.FromHex("#f4f4f4");
+            BackgroundColor = Color.Transparent;
         }
     }
 }

@@ -45,7 +45,6 @@ namespace BetrackingAPP.Views
             BindingContext = new ReturnSaveViewModel(usuario, textContentFrom);
             var coso = this.FindByName<Label>("Motivo");
             coso.Text = textContentFrom;
-            coso.TextColor = Color.FromHex("#15212f");
         }
 
         void HidePopup(object sender, System.EventArgs e)

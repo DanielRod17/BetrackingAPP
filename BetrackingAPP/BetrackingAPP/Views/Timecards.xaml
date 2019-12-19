@@ -6,24 +6,9 @@
 	xmlns:app="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     mc:Ignorable="d"
     x:Class="BetrackingAPP.Views.Timecards"
-	BackgroundColor="#f4f4f4"
-	xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-	xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-	xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+	BackgroundColor="#f4f4f4">
 	<Grid>
 		<StackLayout>
-			<StackLayout BackgroundColor="#f4f4f4">
-				<Label Text=""
-					FontSize="30"
-					TextColor="#f4c53f"
-					HeightRequest="15"
-					HorizontalTextAlignment="Center"
-					Margin="0,-70,0,0"
-					VerticalTextAlignment="Center"/>
-				<Image Source="BETRACKING.png"
-                    HeightRequest="40"
-                    WidthRequest="80"/>
-			</StackLayout>
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
@@ -53,18 +38,33 @@
                     Text="ADD +"
 					Command="{Binding NewTimecardCommand}"
                     TextColor="White"
-                    FontSize="Small"
+                    FontSize="Medium"
                     BackgroundColor="#15212f"
-                    BorderRadius="2"
-                />
+                    BorderRadius="1"
+                >
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
 			</Grid>
 			<StackLayout BackgroundColor="#15212f">
-				<Label Text="T I M E C A R D S"
-					FontSize="30"
+				<Label Text="TIMECARDS"
+					FontSize="40"
+					CharacterSpacing="2"
 					TextColor="White"
 					HeightRequest="90"
 					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"/>
+					VerticalTextAlignment="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 			</StackLayout>
 			<ListView
 				x:Name="TimecardsList"
@@ -106,23 +106,47 @@
                                         Text="{Binding suma, StringFormat='Hours: {0}'}"
                                         FontSize="Small"
                                         HorizontalOptions="StartAndExpand">
+										<Label.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Label.FontFamily>
 									</Label>
 									<Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
                                         Text="{Binding Name, StringFormat='{0}'}"
 									    FontSize="Medium"
                                         HorizontalOptions="StartAndExpand">
+										<Label.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Label.FontFamily>
 									</Label>
 									<Label Grid.Column="2"
                                         Grid.Row="2"
                                         HorizontalTextAlignment="End"
                                         Text="{Binding Estado, StringFormat='Status: {0}'}"
                                         FontSize="Micro">
+										<Label.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Label.FontFamily>
 									</Label>
 									<Label Grid.Row="1"
                                         Grid.Column="2"
                                         Text="{Binding EndDay, StringFormat='End Day: {0:dd/MM/yyyy}'}"
                                         FontSize="Micro"
                                         HorizontalTextAlignment="End">
+										<Label.FontFamily>
+											<OnPlatform x:TypeArguments="x:String">
+												<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+											</OnPlatform>
+										</Label.FontFamily>
 									</Label>
 								</Grid>
 							</Frame>
@@ -131,11 +155,22 @@
 				</ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
-		<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding HasPropertyValueChanged}">
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
+			<!--<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9">-->
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+			</StackLayout>
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding HasPropertyValueChanged}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 			</StackLayout>
 		</StackLayout>
 	</Grid>

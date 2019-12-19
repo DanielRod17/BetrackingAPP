@@ -105,6 +105,7 @@ namespace BetrackingAPP.ViewModel
                     {
                         await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
                         HelpText = "";
+                        imgSrc = "";
                     }
                     else
                     {

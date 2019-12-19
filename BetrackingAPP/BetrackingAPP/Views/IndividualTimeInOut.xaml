@@ -4,251 +4,468 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-	xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
     mc:Ignorable="d"
 	xmlns:local="clr-namespace:BetrackingAPP"
 	x:Class="BetrackingAPP.Views.IndividualTimeInOut"
-	BackgroundColor="#f4f4f4">
+	xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+	xmlns:BetrackingAPP="clr-namespace:BetrackingAPP.Views"
+	android:TabbedPage.ToolbarPlacement="Bottom"
+	android:TabbedPage.BarItemColor="White"
+	android:TabbedPage.BarSelectedItemColor="#038cfc"
+    BarBackgroundColor="#15212f"
+    BarTextColor="White">
 	<!--Pages can be added as references or inline-->
-	<ContentPage Title="Detail" x:Name="Detail">
+	<ContentPage Title="Detail" x:Name="Detail" Icon="home.png" >
 		<ScrollView>
 			<StackLayout x:Name="stackPanel">
 				<Label Text="TIMECARD DETAIL"
-					FontSize="20"
+					FontSize="40"
+					CharacterSpacing="2"
 					TextColor="White"
+					Padding="20"
 					HeightRequest="100"
 					HorizontalTextAlignment="Center"
 					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f"/>
-				<ListView x:Name="TimecardDetail"
-                    ItemsSource="{Binding Info}"
-                    HasUnevenRows="True">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<ViewCell>
-								<Frame BackgroundColor="White"
-                                    HasShadow="False"
-                                    CornerRadius="5">
-									<Grid>
-										<Grid.RowDefinitions>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-											<RowDefinition Height="25"/>
-										</Grid.RowDefinitions>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="150"/>
-											<ColumnDefinition Width="*"/>
-										</Grid.ColumnDefinitions>
-										<Label Text="{Binding Assignment_Name}"/>
-										<Label Grid.Column="1"
-                                            Text="Week Hours"
-                                            FontAttributes="Bold"/>
-										<Image Source="calendar.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="1"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="1"
-                                            Text="Monday"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="1"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Mon}"/>
-										<Image Source="calendar.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="2"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="2"
-                                            Text="Tuesday"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="2"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Tue}"/>
-										<Image Source="calendar.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="3"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="3"
-                                            Text="Wednesday"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="3"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Wed}"/>
-										<Image Source="calendar.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="4"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="4"
-                                            Text="Thursday"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="4"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Thu}"/>
-										<Image Source="calendar.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="5"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="5"
-                                            Text="Friday"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="5"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Fri}"/>
-										<Image Source="calendar.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="6"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="6"
-                                            Text="Saturday"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="6"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Sat}"/>
-										<Image Source="calendar.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="7"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="7"
-                                            Text="Sunday"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="7"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Sun}"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="8"
-                                            Text="Total Hours"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="8"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding Total}"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="9"
-                                            Text="Notes"
-                                            FontAttributes="Bold"/>
-										<Image Source="notes.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="10"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="10"
-                                            Text="Monday Notes"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="10"
-                                            Text="{Binding MonNote}"/>
-										<Image Source="notes.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="11"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="11"
-                                            Text="Tuesday Notes"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="11"
-                                            Text="{Binding TueNote}"/>
-										<Image Source="notes.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="12"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="12"
-                                            Text="Wednesday Notes"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="12"
-                                            Text="{Binding WedNote}"/>
-										<Image Source="notes.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="13"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="13"
-                                            Text="Thursday Notes"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="13"
-                                            Text="{Binding ThuNote}"/>
-										<Image Source="notes.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="14"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="14"
-                                            Text="Friday Notes"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="14"
-                                            Text="{Binding FriNote}"/>
-										<Image Source="notes.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="15"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="15"
-                                            Text="Saturday Notes"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="15"
-                                            Text="{Binding SatNote}"/>
-										<Image Source="notes.png"
-                                            HeightRequest="10"
-                                            WidthRequest="10"
-                                            Grid.Column="0"
-                                            Grid.Row="16"/>
-										<Label Grid.Column="1"
-                                            Grid.Row="16"
-                                            Text="Sunday Notes"/>
-										<Label Grid.Column="2"
-                                            Grid.Row="16"
-                                            Text="{Binding SunNote}"/>
-									</Grid>
-								</Frame>
-							</ViewCell>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<Grid 
+					ColumnSpacing="10"
+					Padding="15" 
+					RowSpacing="10">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="35"/>
+						<RowDefinition Height="40"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="40"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="25"/>
+						<RowDefinition Height="1"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Column="0"
+						Grid.Row="0"
+						Grid.ColumnSpan="4"
+						FontSize="18"
+						Text="{Binding Assignment_Name}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Image Source="calendar.png"
+						Grid.Column="0"
+						Grid.Row="1"/>
+					<Label Grid.Column="1"
+						Grid.ColumnSpan="3"
+						Grid.Row="1"
+						CharacterSpacing="2"
+						Padding="15, 5, 0, 0"
+						Text="Week Hours"
+						FontSize="28"
+						FontAttributes="Bold">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="2"
+						FontAttributes="Bold"
+						Text="Monday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="1"
+						Grid.Row="2"
+						HorizontalTextAlignment="End"
+						Text="{Binding Mon_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="2"
+						Grid.Row="2"
+						FontAttributes="Bold"
+						Text="Tuesday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="3"
+						Grid.Row="2"
+						HorizontalTextAlignment="End"
+						Text="{Binding Tue_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="3"
+						FontAttributes="Bold"
+						Text="Wednesday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="1"
+						Grid.Row="3"
+						HorizontalTextAlignment="End"
+						Text="{Binding Wed_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="2"
+						Grid.Row="3"
+						FontAttributes="Bold"
+						Text="Thursday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="3"
+						Grid.Row="3"
+						HorizontalTextAlignment="End"
+						Text="{Binding Thu_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="4"
+						FontAttributes="Bold"
+						Text="Friday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="1"
+						Grid.Row="4"
+						HorizontalTextAlignment="End"
+						Text="{Binding Fri_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="2"
+						Grid.Row="4"
+						FontAttributes="Bold"
+						Text="Saturday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="3"
+						Grid.Row="4"
+						HorizontalTextAlignment="End"
+						Text="{Binding Sat_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="5"
+						FontAttributes="Bold"
+						Text="Sunday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="1"
+						Grid.Row="5"
+						HorizontalTextAlignment="End"
+						Text="{Binding Sun_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="6"
+						FontAttributes="Bold"
+						Text="Total Hours">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="3"
+						Grid.Row="6"
+						HorizontalTextAlignment="End"
+						Text="{Binding Total_Hours}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Image Source="notes.png"
+						Grid.Column="0"
+						Grid.Row="7"/>
+					<Label Grid.Column="1"
+						Grid.Row="7"
+						Grid.ColumnSpan="2"
+						CharacterSpacing="2"
+						Padding="15, 0, 0, 0"
+						Text="Week Notes"
+						FontSize="28"
+						FontAttributes="Bold">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="8"
+						Text="Monday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="9"
+						Text="{Binding Mon_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="10"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="11"
+						Text="Tuesday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="12"
+						Grid.ColumnSpan="4"
+						Text="{Binding Tue_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="13"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="14"
+						Text="Wednesday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="15"
+						Grid.ColumnSpan="4"
+						Text="{Binding Wed_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="16"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="17"
+						Text="Thursday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="18"
+						Grid.ColumnSpan="4"
+						Text="{Binding Thu_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="19"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="20"
+						Text="Friday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="21"
+						Grid.ColumnSpan="4"
+						Text="{Binding Fri_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="22"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="23"
+						Text="Saturday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="24"
+						Grid.ColumnSpan="4"
+						Text="{Binding Sat_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="25"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="26"
+						Text="Sunday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="27"
+						Text="{Binding Sun_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="28"
+						BackgroundColor="#15212f"/>
+				</Grid>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Title="Activity"
-        BackgroundColor="#f4f4f4">
+	<ContentPage Title="Activity" Icon="home.png" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<StackLayout x:Name="ActionsList">
 				<Label Text="TIMECARD ACTIVITY"
-					FontSize="20"
+					FontSize="40"
+					CharacterSpacing="2"
 					TextColor="White"
 					HeightRequest="100"
 					HorizontalTextAlignment="Center"
 					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f"/>
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 				<ListView
 					x:Name="TimecardsList"
 					ItemsSource="{Binding Actions}"
@@ -267,9 +484,23 @@
 									<StackLayout>
 										<Label Text="{Binding ActionName}"
 											FontSize="Medium"
-                                            FontAttributes="Bold"/>
-										<Label Text="{Binding ActionDate}"
-                                            FontSize="Medium"/>
+                                            FontAttributes="Bold">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+													<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label Text="{Binding ActionDate, StringFormat='{0:dd/MM/yyyy}'}" 
+                                            FontSize="Medium">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
 									</StackLayout>
 								</Frame>
 							</ViewCell>
@@ -279,16 +510,25 @@
 			</StackLayout>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Title="Update">
+	<ContentPage Title="Update" Icon="home.png" >
 		<ScrollView>
-			<StackLayout x:Name="UpdateList">
+			<Grid>
+				<StackLayout x:Name="UpdateList">
 				<Label Text="UPDATE INFORMATION"
-					FontSize="20"
+					FontSize="40"
+					CharacterSpacing="2"
 					TextColor="White"
 					HeightRequest="100"
 					HorizontalTextAlignment="Center"
 					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f"/>
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
@@ -306,6 +546,8 @@
 					<Image Grid.Column="0"
 						Grid.ColumnSpan="1"
 						Grid.Row="0"
+						HeightRequest="15"
+						WidthRequest="15"
 						Source="calendar.png"/>
 					<DatePicker Grid.Column="1"
 						Grid.Row="0"
@@ -313,7 +555,13 @@
 						Grid.ColumnSpan="6"
                         MinimumDate="01/01/2019"
 			            Date="{Binding FechaSeleccionada}"
-                        FontSize="Medium"/>
+                        FontSize="Medium">
+						<DatePicker.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							</OnPlatform>
+						</DatePicker.FontFamily>
+					</DatePicker>
 					<xfx:XfxComboBox Placeholder="Select an Assignment"
 						Grid.Column="0"
 						Grid.Row="1"
@@ -322,175 +570,357 @@
 					    ItemsSource="{Binding Assignments}"
 					    SortingAlgorithm="{Binding SortingAlgorithm}"
                         HorizontalTextAlignment="Center"
-                        WidthRequest="300"/>
+                        WidthRequest="300">
+						<xfx:XfxComboBox.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							</OnPlatform>
+						</xfx:XfxComboBox.FontFamily>
+					</xfx:XfxComboBox>
 				</Grid>
-				<local:RepeaterView 
-					x:Name="TimeOutList"
-					ItemsSource="{Binding Days}"
-					>
-					<local:RepeaterView.ItemTemplate>
-						<DataTemplate>
-							<ViewCell>
-								<Frame CornerRadius="5"
-									Padding="0"
-									Margin="1"
-									BackgroundColor="White"
-									HasShadow="False">
-									<Grid BackgroundColor="{Binding bgColor}">
-										<Grid.GestureRecognizers>
-											<TapGestureRecognizer Tapped="TimecardsList_ItemTapped"/>
-										</Grid.GestureRecognizers>
-										<Grid.RowDefinitions>
-											<RowDefinition Height="35"/>
-											<RowDefinition Height="{Binding DisplayInputs}"/>
-										</Grid.RowDefinitions>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
-										</Grid.ColumnDefinitions>
-										<Label TextColor="White" 
-                                            BackgroundColor="#15212f" 
-                                            Text="{Binding Numero}" 
-                                            Grid.Row="0" 
-                                            Grid.Column="0" 
-                                            Grid.ColumnSpan="1" 
-                                            HorizontalTextAlignment="Center"
-                                            VerticalTextAlignment="Center"
-                                            WidthRequest="40"/>
-										<Label Text="{Binding Day}" 
-                                            Grid.Row="0" 
-                                            Grid.Column="1"  
-                                            Grid.ColumnSpan="4" 
-                                            HorizontalTextAlignment="Start"
-                                            VerticalTextAlignment="Center"
-                                            Margin="20,0,0,0"/>
-										<Label Text="{Binding Valor}" 
-                                            Grid.Row="0" 
-                                            Grid.Column="5" 
-                                            Grid.ColumnSpan="2" 
-                                            HorizontalTextAlignment="End"
-                                            VerticalTextAlignment="Center"
-                                            Margin="0,0,20,0"/>
-										<StackLayout Grid.Row="1" 
-                                            Grid.Column="0" 
-                                            Grid.ColumnSpan="7">
-											<Grid>
-												<Grid.RowDefinitions>
-													<RowDefinition Height="{Binding InputHeight}"/>
-													<RowDefinition Height="{Binding InputHeight}"/>
-													<RowDefinition Height="{Binding InputHeight}"/>
-													<RowDefinition Height="{Binding Break1}"/>
-													<RowDefinition Height="{Binding Break1}"/>
-													<RowDefinition Height="{Binding Break2}"/>
-													<RowDefinition Height="{Binding Break2}"/>
-													<RowDefinition Height="{Binding Break3}"/>
-													<RowDefinition Height="{Binding Break3}"/>
-													<RowDefinition Height="{Binding InputHeight}"/>
-												</Grid.RowDefinitions>
-												<Grid.ColumnDefinitions>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-													<ColumnDefinition Width="*"/>
-												</Grid.ColumnDefinitions>
-												<Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"
-													Text="- Break" 
-													TextColor="White"
-													BackgroundColor="#15212f"
-													BorderRadius="2"
-													Clicked="Remove_Break"/>
-												<Button Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="3"
-													Text="+ Break" 
-													TextColor="White"
-													BackgroundColor="#15212f"
-													BorderRadius="2"
-													Clicked="Agregar_Break"/>
-												<Label Text="Time In" Grid.Row="1" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start" 
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
-													Time="{Binding TimeIn}"
-													Format="T"/>
-												<Label Text="Time Out" Grid.Row="2" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start" 
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
-													Time="{Binding TimeOut}"
-													Format="T"/>
+					<local:RepeaterView 
+						x:Name="TimeOutList"
+						ItemsSource="{Binding Days}">
+						<local:RepeaterView.ItemTemplate>
+							<DataTemplate>
+								<ViewCell>
+									<Frame CornerRadius="5"
+										Padding="0"
+										Margin="1"
+										HasShadow="False">
+										<Grid BackgroundColor="{Binding bgColor}">
+											<Grid.GestureRecognizers>
+												<TapGestureRecognizer Tapped="TimecardsList_ItemTapped"/>
+											</Grid.GestureRecognizers>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="35"/>
+												<RowDefinition Height="{Binding DisplayInputs}"/>
+											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="*"/>
+											</Grid.ColumnDefinitions>
+											<Label TextColor="White" 
+												BackgroundColor="#15212f" 
+												Text="{Binding Numero}" 
+												Grid.Row="0" 
+												Grid.Column="0"
+												CharacterSpacing="2"
+												Grid.ColumnSpan="1" 
+												HorizontalTextAlignment="Center"
+												VerticalTextAlignment="Center"
+												FontSize="Medium"
+												WidthRequest="40">
+												<Label.FontFamily>
+													<OnPlatform x:TypeArguments="x:String">
+														<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+														<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+													</OnPlatform>
+												</Label.FontFamily>
+											</Label>
+											<Label Text="{Binding Day}" 
+												Grid.Row="0" 
+												Grid.Column="1"  
+												Grid.ColumnSpan="4" 
+												HorizontalTextAlignment="Start"
+												VerticalTextAlignment="Center"
+												FontSize="Medium"
+												Margin="20,0,0,0">
+												<Label.FontFamily>
+													<OnPlatform x:TypeArguments="x:String">
+														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+														<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+													</OnPlatform>
+												</Label.FontFamily>
+											</Label>
+											<Label Text="{Binding Valor}" 
+												Grid.Row="0" 
+												Grid.Column="5" 
+												Grid.ColumnSpan="2" 
+												HorizontalTextAlignment="End"
+												VerticalTextAlignment="Center"
+												Margin="0,0,20,0">
+												<Label.FontFamily>
+													<OnPlatform x:TypeArguments="x:String">
+														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+														<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+													</OnPlatform>
+												</Label.FontFamily>
+											</Label>
+											<StackLayout Grid.Row="1" 
+												Grid.Column="0" 
+												Grid.ColumnSpan="7">
+												<Grid>
+													<Grid.RowDefinitions>
+														<RowDefinition Height="{Binding InputHeight}"/>
+														<RowDefinition Height="{Binding InputHeight}"/>
+														<RowDefinition Height="{Binding InputHeight}"/>
+														<RowDefinition Height="{Binding Break1}"/>
+														<RowDefinition Height="{Binding Break1}"/>
+														<RowDefinition Height="{Binding Break2}"/>
+														<RowDefinition Height="{Binding Break2}"/>
+														<RowDefinition Height="{Binding Break3}"/>
+														<RowDefinition Height="{Binding Break3}"/>
+														<RowDefinition Height="{Binding InputHeight}"/>
+													</Grid.RowDefinitions>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="*"/>
+													</Grid.ColumnDefinitions>
+													<Button Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"
+														Text="- Break" 
+														TextColor="White"
+														BackgroundColor="#15212f"
+														BorderRadius="2"
+														CharacterSpacing="2"
+														Clicked="Remove_Break">
+														<Button.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+																<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+															</OnPlatform>
+														</Button.FontFamily>
+													</Button>
+													<Button Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="3"
+														Text="+ Break" 
+														TextColor="White"
+														BackgroundColor="#15212f"
+														CharacterSpacing="2"
+														BorderRadius="2"
+														Clicked="Agregar_Break">
+														<Button.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+																<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+															</OnPlatform>
+														</Button.FontFamily>
+													</Button>
+													<Label Text="Time In" Grid.Row="1" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start" 
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
+														Time="{Binding TimeIn}"
+														Format="T">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<Label Text="Time Out" Grid.Row="2" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start" 
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
+														Time="{Binding TimeOut}"
+														Format="T">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
 
-												<!-- BREAK 1 -->
-												<Label Text="Break 1 Out" Grid.Row="3" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start" 
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5"
-													Format="T"
-													Time="{Binding Break1Out}"/>
-												<Label Text="Break 1 In" Grid.Row="4" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start" 
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"
-													Format="T"
-													Time="{Binding Break1In}"/>
-												<!-- BREAK 2 -->
-												<Label Text="Break 2 Out" Grid.Row="5" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start" 
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5"
-													Format="T"
-													Time="{Binding Break2Out}"/>
-												<Label Text="Break 2 In" Grid.Row="6" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start" 
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5"
-													Format="T"
-													Time="{Binding Break2In}"/>
-												<!-- BREAK 3 -->
-												<Label Text="Break 3 Out" Grid.Row="7" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start" 
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="5"
-													Format="T"
-													Time="{Binding Break3Out}"
-												/>
-												<Label Text="Break 3 In" Grid.Row="8" Grid.Column="1"
-													Grid.ColumnSpan="4"
-													HorizontalTextAlignment="Start"
-													VerticalTextAlignment="Center"/>
-												<TimePicker Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="5"
-													Format="T"
-													Time="{Binding Break3In}"/>
-												<!-- -->
-												<Entry Placeholder="Notes" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="7" 
-													Text="{Binding Nota}"
-													FontSize="Small"/>
-											</Grid>
-										</StackLayout>
-									</Grid>
-								</Frame>
-							</ViewCell>
-						</DataTemplate>
-					</local:RepeaterView.ItemTemplate>
-				</local:RepeaterView>
-			</StackLayout>
+													<!-- BREAK 1 -->
+													<Label Text="Break 1 Out" Grid.Row="3" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start" 
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5"
+														Format="T"
+														Time="{Binding Break1Out}">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<Label Text="Break 1 In" Grid.Row="4" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start" 
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"
+														Format="T"
+														Time="{Binding Break1In}">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<!-- BREAK 2 -->
+													<Label Text="Break 2 Out" Grid.Row="5" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start" 
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5"
+														Format="T"
+														Time="{Binding Break2Out}">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<Label Text="Break 2 In" Grid.Row="6" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start" 
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5"
+														Format="T"
+														Time="{Binding Break2In}">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<!-- BREAK 3 -->
+													<Label Text="Break 3 Out" Grid.Row="7" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start" 
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="5"
+														Format="T"
+														Time="{Binding Break3Out}"
+														>
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<Label Text="Break 3 In" Grid.Row="8" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start"
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="5"
+														Format="T"
+														Time="{Binding Break3In}">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<!-- -->
+													<Editor Placeholder="Notes" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="7" 
+														Text="{Binding Nota}"
+														HeightRequest="70"
+														FontSize="Small">
+														<Editor.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Editor.FontFamily>
+													</Editor>
+												</Grid>
+											</StackLayout>
+										</Grid>
+									</Frame>
+								</ViewCell>
+							</DataTemplate>
+						</local:RepeaterView.ItemTemplate>
+					</local:RepeaterView>
+				</StackLayout>
+				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
+					<StackLayout VerticalOptions="CenterAndExpand">
+						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+						<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+					</StackLayout>
+				</StackLayout>
+				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding HasPropertyValueChanged}">
+					<StackLayout VerticalOptions="CenterAndExpand">
+						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
+					</StackLayout>
+				</StackLayout>
+			</Grid>
 		</ScrollView>
 	</ContentPage>
 </TabbedPage>

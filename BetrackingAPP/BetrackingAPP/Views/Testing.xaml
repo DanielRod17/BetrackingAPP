@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+	xmlns:local="clr-namespace:BetrackingAPP"
+	xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+    x:Class="BetrackingAPP.Views.Testing">
+	<ScrollView>
+		<Grid>
+			<StackLayout x:Name="relatedPanel" BackgroundColor="#F4F4F4">
+				<Label Text="RELATED"
+						FontSize="30"
+						TextColor="White"
+						HeightRequest="90"
+						HorizontalTextAlignment="Center"
+						VerticalTextAlignment="Center"
+						BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<StackLayout Margin="15, 10, 15, 0">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+							<RowDefinition Height="45"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Label Text="{Binding Name, StringFormat='Travel: {0}'}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="Title">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Status" Grid.Column="0" Grid.Row="1" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding StatusName}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Project" Grid.Column="0" Grid.Row="2" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding ProjectName}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="From" Grid.Column="0" Grid.Row="3" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding FromDate, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="To"  Grid.Column="0" Grid.Row="4" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding ToDate, StringFormat='{0:dd/MM/yyyy}'}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Baggage"  Grid.Column="0" Grid.Row="5" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding BaggageExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Airfare"  Grid.Column="0" Grid.Row="6" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding AirfareExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Car Rental"  Grid.Column="0" Grid.Row="7" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding CarRentalExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Lodging"  Grid.Column="0" Grid.Row="8" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding LodgingExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Parking"  Grid.Column="0" Grid.Row="9" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding ParkingExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Gasoline"  Grid.Column="0" Grid.Row="10" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding GasolineExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Miscellaneous"  Grid.Column="0" Grid.Row="11" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding MiscExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Meals"  Grid.Column="0" Grid.Row="12" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding MealsExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Tools Supplies"  Grid.Column="0" Grid.Row="13" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding ToolsExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Change Fees"  Grid.Column="0" Grid.Row="14" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding ChangeExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Transportation"  Grid.Column="0" Grid.Row="15" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding TransportationExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Tolls"  Grid.Column="0" Grid.Row="16" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding TollExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Per Diem"  Grid.Column="0" Grid.Row="17" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding PerDiemExp, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Billable"  Grid.Column="0" Grid.Row="18" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding Billable, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Refundable"  Grid.Column="0" Grid.Row="19" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding Refundable, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="Total"  Grid.Column="0" Grid.Row="20" FontAttributes="Bold">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+						<Label Text="{Binding Total, StringFormat='${0} USD'}" Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="2">
+							<Label.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Label.FontFamily>
+						</Label>
+					</Grid>
+					<Button Text = "Submit Report"
+						BackgroundColor="#15212f"
+						IsVisible="{Binding HasPropertyValueChanged}"
+						TextColor="White"
+						FontSize="20">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
+				</StackLayout>
+			</StackLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+					<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+				</StackLayout>
+			</StackLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
+				</StackLayout>
+			</StackLayout>
+		</Grid>
+	</ScrollView>
+</ContentPage>

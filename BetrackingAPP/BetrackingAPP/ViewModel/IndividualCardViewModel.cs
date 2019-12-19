@@ -215,23 +215,22 @@ namespace BetrackingAPP.ViewModel
 
             GetAssignments(usuarioFrom);
 
-            Mon_Hours = "Monday: " + timecard.Mon;
-            Tue_Hours = "Tuesday: " + timecard.Tue;
-            Wed_Hours = "Wednesday: " + timecard.Wed;
-            Thu_Hours = "Thursday: " + timecard.Thu;
-            Fri_Hours = "Friday: " + timecard.Fri;
-            Sat_Hours = "Saturday: " + timecard.Sat;
-            Sun_Hours = "Sun: " + timecard.Sun;
-            Total_Hours = "Total Hours: " + timecard.suma.ToString();
+            Mon_Hours = timecard.Mon.ToString();
+            Tue_Hours = timecard.Tue.ToString();
+            Wed_Hours = timecard.Wed.ToString();
+            Thu_Hours = timecard.Thu.ToString();
+            Fri_Hours = timecard.Fri.ToString();
+            Sat_Hours = timecard.Sat.ToString();
+            Sun_Hours = timecard.Sun.ToString();
+            Total_Hours = timecard.suma.ToString();
 
-            Mon_Note = "Monday: " + timecard.MonNote;
-            Tue_Note = "Tuesday: " + timecard.TueNote;
-            Wed_Note = "Wednesday: " + timecard.WedNote;
-            Thu_Note = "Thursday: " + timecard.ThuNote;
-            Fri_Note = "Friday: " + timecard.FriNote;
-            Sat_Note = "Saturday: " + timecard.SatNote;
-            Sun_Note = "Sun: " + timecard.SunNote;
-            monday_info = "ROFL";
+            Mon_Note = timecard.MonNote;
+            Tue_Note = timecard.TueNote;
+            Wed_Note = timecard.WedNote;
+            Thu_Note = timecard.ThuNote;
+            Fri_Note = timecard.FriNote;
+            Sat_Note = timecard.SatNote;
+            Sun_Note = timecard.SunNote;
 
             Info = new ObservableCollection<Timecard> {
                timecard

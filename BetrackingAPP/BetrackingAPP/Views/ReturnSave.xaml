@@ -1,35 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
-             mc:Ignorable="d"
-             x:Class="BetrackingAPP.Views.ReturnSave">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+    mc:Ignorable="d"
+    x:Class="BetrackingAPP.Views.ReturnSave"
+	BackgroundColor="#E715212f">
     <ContentPage.Content>
-        <StackLayout
-			Margin="12"
-			Padding="24"
-			BackgroundColor="#FFFFFFFF"
-			HorizontalOptions="Center"
-			VerticalOptions="Center">
-			<Image Source="GreenCheck.png" WidthRequest="80" HeightRequest="100"/>
-			<Label 
-				TextColor="White"
-				VerticalOptions="CenterAndExpand" 
-				HorizontalOptions="CenterAndExpand"
-				x:Name="Motivo"/>
+		<Grid VerticalOptions="Center">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="100"></RowDefinition>
+				<RowDefinition Height="120"></RowDefinition>
+				<RowDefinition Height="40"></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			<Image Source="GreenCheck.png" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"/>
+			<Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"
+				Padding="20"
+				TextColor="#f4f4f4"
+				HorizontalTextAlignment="Center"
+				VerticalTextAlignment="Center"
+				FontSize="Large"
+				x:Name="Motivo">
+				<Label.FontFamily>
+					<OnPlatform x:TypeArguments="x:String">
+						<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+						<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+					</OnPlatform>
+				</Label.FontFamily>
+			</Label>
 			<Button Clicked="HidePopup"
 				Text="Close"
-				BackgroundColor="#15212f"
-				TextColor="White"
-			/>
-			<Button
+				BackgroundColor="#f4c53f"
+				TextColor="#f4f4f4"
+				FontSize="Large"
+				CharacterSpacing="2"
+				Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"
+			>
+				<Button.FontFamily>
+					<OnPlatform x:TypeArguments="x:String">
+						<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+					</OnPlatform>
+				</Button.FontFamily>
+			</Button>
+			<!--<Button
 				Clicked="GoBack"
 				Text="Go Back"
-				BackgroundColor="#15212f"
-				TextColor="White"
-			/>
-		</StackLayout>
+				BackgroundColor="#f4c53f"
+				TextColor="#f4f4f4"
+				FontSize="Large"
+				CharacterSpacing="2"
+				Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2">
+				<Button.FontFamily>
+					<OnPlatform x:TypeArguments="x:String">
+						<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+					</OnPlatform>
+				</Button.FontFamily>
+			</Button>-->
+		</Grid>
     </ContentPage.Content>
 </pages:PopupPage>

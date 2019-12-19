@@ -193,7 +193,15 @@ namespace BetrackingAPP.Views
 
             if (eu_timecard.Submitted == 0)
             {
-                var Button = new Button { Text = "Submit", BackgroundColor = Color.FromHex("#15212f") , TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
+                var Button = new Button
+                {
+                    Text = "Submit",
+                    BackgroundColor = Color.FromHex("#15212f"),
+                    TextColor = Color.FromHex("#FFFFFF"),
+                    FontSize = 24,
+                    Margin = 20,
+                    FontFamily = Device.RuntimePlatform == Device.Android ? "BebasNeue Bold.ttf#BebasNeue Bold" : null
+                };
                 Button.Clicked += delegate { SubmitTimecard(eu_timecard.ID, Button); };
                 stackPanel.Children.Add(Button);
             }
@@ -217,7 +225,15 @@ namespace BetrackingAPP.Views
             
             if (eu_timecard.Submitted == 0)
             {
-                var Button = new Button { Text = "Update", BackgroundColor = Color.FromHex("#15212f"), TextColor = Color.FromHex("#FFFFFF"), FontSize = 20 };
+                var Button = new Button
+                {
+                    Text = "Update",
+                    BackgroundColor = Color.FromHex("#15212f"),
+                    TextColor = Color.FromHex("#FFFFFF"),
+                    FontSize = 24,
+                    Margin = 20,
+                    FontFamily = Device.RuntimePlatform == Device.Android ? "BebasNeue Bold.ttf#BebasNeue Bold" : null
+                };
                 Button.Clicked += delegate { UpdateTimecard(eu_timecard.ID, Button, eu_timecard.AssignmentID); };
                 Stack.Children.Add(Button);
                 boton = Button;
@@ -231,9 +247,6 @@ namespace BetrackingAPP.Views
 
         private void TimecardsList_ItemTapped(object sender, EventArgs e)
         {
-            /*var vm = BindingContext as NewTimecardViewModel;
-            var day = e.Item as NewTimecardNormal;
-            vm.HideOrShowInputs(day);*/
             var vm = BindingContext as IndividualCardViewModel;
             var day = (sender as View).BindingContext as NewTimecardNormal;
             vm.HideOrShowInputs(day);

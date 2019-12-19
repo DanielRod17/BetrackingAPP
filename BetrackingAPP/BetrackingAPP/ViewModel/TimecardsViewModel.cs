@@ -132,7 +132,7 @@ namespace BetrackingAPP.ViewModel
                         _dateSearch = fecha;
                     }
                 }
-                LoadTimecards(usuario, _dateSearch);
+                _ = LoadTimecards(usuario, _dateSearch);
                 IsLoading = false;
                 return _dateSearch;
             }

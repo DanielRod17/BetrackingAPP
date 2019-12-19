@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace BetrackingAPP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabbedPage1 : TabbedPage
+    public partial class Testing : ContentPage
     {
-        public TabbedPage1()
+        public Testing()
         {
             InitializeComponent();
         }
