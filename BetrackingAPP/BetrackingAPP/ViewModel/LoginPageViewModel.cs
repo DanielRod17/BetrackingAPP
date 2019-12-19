@@ -46,10 +46,6 @@ namespace BetrackingAPP.ViewModel
         }
         private INavigation Navigation;
         static public User Usuario { get; set; }
-        internal async void CheckLogin()
-        {
-            await Navigation.PushAsync(new MainPage(Usuario));
-        }
         public Command MainPageCommand { get; set; }
         private User _dataServicio;
         public User usuarioBT
@@ -117,6 +113,7 @@ namespace BetrackingAPP.ViewModel
                             AppCenter.SetCustomProperties(properties);
                             App.Logedin = true;
                             await Navigation.PushAsync(new MainPage(usuarioBT));
+                            Navigation.RemovePage(Navigation.NavigationStack[0]);
                         }
                         else
                         {
@@ -202,6 +199,7 @@ namespace BetrackingAPP.ViewModel
                         AppCenter.SetCustomProperties(properties);
                         App.Logedin = true;
                         await Navigation.PushAsync(new MainPage(usuarioBT));
+                        Navigation.RemovePage(Navigation.NavigationStack[0]);
                         HasPropertyValueChanged = false;
                     }
                     else

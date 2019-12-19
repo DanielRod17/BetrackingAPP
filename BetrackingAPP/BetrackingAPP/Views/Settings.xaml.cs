@@ -33,8 +33,14 @@ namespace BetrackingAPP.Views
         {
             App.Logedin = false;
             Application.Current.Properties["ID"] = null;
-            await Navigation.PopAsync();
+
+            var totales = Navigation.NavigationStack.Count;
+
             await Navigation.PushAsync(new LoginPage(Usuario));
+            for (int i = 0; i < totales; i++)
+            {
+                Navigation.RemovePage(Navigation.NavigationStack[i]);
+            }
         }
 
         protected override void OnAppearing()

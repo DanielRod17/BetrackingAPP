@@ -25,7 +25,6 @@ namespace BetrackingAPP.Views
 
         protected override void OnAppearing()
         {
-            App.Logedin = false;
             this.BindingContext = new LoginPageViewModel(Navigation);
             base.OnAppearing();
         }
