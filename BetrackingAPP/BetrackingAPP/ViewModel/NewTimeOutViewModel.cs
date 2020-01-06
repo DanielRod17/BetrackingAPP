@@ -106,12 +106,10 @@ namespace BetrackingAPP.ViewModel
             SubmitTimecard = new Command(async () => await SometerTimecard());
             IsLoading = false;
         }
-
         public async void Test()
         {
             await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
         }
-
         public async Task GuardarTimecard()
         {
             IsLoading = true;
@@ -155,7 +153,6 @@ namespace BetrackingAPP.ViewModel
             }
             IsLoading = false;
         }
-
         public async Task SometerTimecard()
         {
             IsLoading = true;
@@ -208,7 +205,6 @@ namespace BetrackingAPP.ViewModel
                 Assignments.Add(assignment_item.Name);
             }
         }
-
         public void AgregarBreak(NewTimeOutCard day)
         {
             if (day.Break1 == 0)
@@ -295,7 +291,6 @@ namespace BetrackingAPP.ViewModel
                 }
             }
         }
-
         private void UpdateDays(NewTimeOutCard day)
         {
             var tempSeconds = day.TimeOut.TotalSeconds - day.TimeIn.TotalSeconds;

@@ -21,7 +21,6 @@ namespace BetrackingAPP.ViewModel
         .Where(x => x.ToLower().StartsWith(text.ToLower()))
         .OrderBy(x => x)
         .ToList();
-
         public DateTime _dateSearch = DateTime.Today;
         ObservableCollection<string> assignments = new ObservableCollection<string>();
         public ObservableCollection<string> Assignments { get { return assignments; } }
@@ -83,7 +82,6 @@ namespace BetrackingAPP.ViewModel
             }
         }
         public User User { get; set; }
-
         private bool _happened;
         public bool HasPropertyValueChanged
         {
@@ -201,9 +199,7 @@ namespace BetrackingAPP.ViewModel
         public string Sun_Note { get; set; }
         public string Assignment_Name { get; set; }
         public decimal Total_Hours { get; set; }
-
         public string monday_info { get; set; }
-
         private User usuario;
         private Timecard timecard;
         public ObservableCollection<Timecard> _info { get; set; }
@@ -233,7 +229,6 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged("Actions");
             }
         }
-
         //ObservableCollection<NewTimeOutCard> _dias;
         private ObservableCollection<NewTimeOutCard> _days;
         public ObservableCollection<NewTimeOutCard> Days {
@@ -247,10 +242,8 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public IndividualTimeInOutViewModel(User usuarioFrom, Timecard timecardFrom, DateTime _dateSearch)
         {
-
             usuario = usuarioFrom;
             User = usuario;
             timecard = timecardFrom;
@@ -311,41 +304,41 @@ namespace BetrackingAPP.ViewModel
             bool sunBreak1Enabled = false;
             bool sunBreak2Enabled = false;
             bool sunBreak3Enabled = false;
+            bool mon24 = false;
+            bool tue24 = false;
+            bool wed24 = false;
+            bool thu24 = false;
+            bool fri24 = false;
+            bool sat24 = false;
+            bool sun24 = false;
 
-            if (timecard.Mon != 0)
+            if (timecard.Mon != 0 && timecard.Mon_In == "00:00:00" && timecard.Mon_Out == "00:00:00")
             {
-                //monDisplay = 215;
-                //monDisplay = 35;
+                mon24 = true;
             }
-            if (timecard.Tue != 0)
+            if (timecard.Tue != 0 && timecard.Tue_In == "00:00:00" && timecard.Tue_Out == "00:00:00")
             {
-                //tueDisplay = 215;
-                //tueDisplay = 35;
+                tue24 = true;
             }
-            if (timecard.Wed != 0)
+            if (timecard.Wed != 0 && timecard.Wed_In == "00:00:00" && timecard.Wed_Out == "00:00:00")
             {
-                //wedDisplay = 215;
-                //wedDisplay = 35;
+                wed24 = true;
             }
-            if (timecard.Thu != 0)
+            if (timecard.Thu != 0 && timecard.Thu_In == "00:00:00" && timecard.Thu_Out == "00:00:00")
             {
-                //thuDisplay = 215;
-                //thuDisplay = 35;
+                thu24 = true;
             }
-            if (timecard.Fri != 0)
+            if (timecard.Fri != 0 && timecard.Fri_In == "00:00:00" && timecard.Fri_Out == "00:00:00")
             {
-                //friDisplay = 215;
-                //friDisplay = 35;
+                fri24 = true;
             }
-            if (timecard.Sat != 0)
+            if (timecard.Sat != 0 && timecard.Sat_In == "00:00:00" && timecard.Sat_Out == "00:00:00")
             {
-                //satDisplay = 215;
-                //satDisplay = 35;
+                sat24 = true;
             }
-            if (timecard.Sun != 0)
+            if (timecard.Sun != 0 && timecard.Sun_In == "00:00:00" && timecard.Sun_Out == "00:00:00")
             {
-                //sunDisplay = 215;
-                //sunDisplay = 35;
+                sun24 = true;
             }
 
 
@@ -484,13 +477,13 @@ namespace BetrackingAPP.ViewModel
             }
 
             Days = new ObservableCollection<NewTimeOutCard> {
-                new NewTimeOutCard() { Break1Enabled = monBreak1Enabled, Break2Enabled = monBreak2Enabled, Break3Enabled = monBreak3Enabled, Break1 = monBreak1, Break2 = monBreak2, Break3 = monBreak3, Day = "Mon", Numero = monNum, Valor = timecard.Mon, TimeIn = TimeSpan.Parse(timecard.Mon_In), TimeOut= TimeSpan.Parse(timecard.Mon_Out), Break1Out=TimeSpan.Parse(timecard.Mon_Meal_In), Break1In=TimeSpan.Parse(timecard.Mon_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Mon_Break1_In), Break2In=TimeSpan.Parse(timecard.Mon_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Mon_Break2_In), Break3In=TimeSpan.Parse(timecard.Mon_Break2_Out), Nota = timecard.MonNote, DisplayInputs = monDisplay },
-                new NewTimeOutCard() { Break1Enabled = tueBreak1Enabled, Break2Enabled = tueBreak2Enabled, Break3Enabled = tueBreak3Enabled, Break1 = tueBreak1, Break2 = tueBreak2, Break3 = tueBreak3, Day = "Tue", Numero = tueNum, Valor = timecard.Tue, TimeIn = TimeSpan.Parse(timecard.Tue_In), TimeOut= TimeSpan.Parse(timecard.Tue_Out), Break1Out=TimeSpan.Parse(timecard.Tue_Meal_In), Break1In=TimeSpan.Parse(timecard.Tue_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Tue_Break1_In), Break2In=TimeSpan.Parse(timecard.Tue_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Tue_Break2_In), Break3In=TimeSpan.Parse(timecard.Tue_Break2_Out), Nota = timecard.TueNote, DisplayInputs = tueDisplay },
-                new NewTimeOutCard() { Break1Enabled = wedBreak1Enabled, Break2Enabled = wedBreak2Enabled, Break3Enabled = wedBreak3Enabled, Break1 = wedBreak1, Break2 = wedBreak2, Break3 = wedBreak3, Day = "Wed", Numero = wedNum, Valor = timecard.Wed, TimeIn = TimeSpan.Parse(timecard.Wed_In), TimeOut= TimeSpan.Parse(timecard.Wed_Out), Break1Out=TimeSpan.Parse(timecard.Wed_Meal_In), Break1In=TimeSpan.Parse(timecard.Wed_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Wed_Break1_In), Break2In=TimeSpan.Parse(timecard.Wed_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Wed_Break2_In), Break3In=TimeSpan.Parse(timecard.Wed_Break2_Out), Nota = timecard.WedNote, DisplayInputs = wedDisplay },
-                new NewTimeOutCard() { Break1Enabled = thuBreak1Enabled, Break2Enabled = thuBreak2Enabled, Break3Enabled = thuBreak3Enabled, Break1 = thuBreak1, Break2 = thuBreak2, Break3 = thuBreak3, Day = "Thu", Numero = thuNum, Valor = timecard.Thu, TimeIn = TimeSpan.Parse(timecard.Thu_In), TimeOut= TimeSpan.Parse(timecard.Thu_Out), Break1Out=TimeSpan.Parse(timecard.Thu_Meal_In), Break1In=TimeSpan.Parse(timecard.Thu_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Thu_Break1_In), Break2In=TimeSpan.Parse(timecard.Thu_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Thu_Break2_In), Break3In=TimeSpan.Parse(timecard.Thu_Break2_Out), Nota = timecard.ThuNote, DisplayInputs = thuDisplay },
-                new NewTimeOutCard() { Break1Enabled = friBreak1Enabled, Break2Enabled = friBreak2Enabled, Break3Enabled = friBreak3Enabled, Break1 = friBreak1, Break2 = friBreak2, Break3 = friBreak3, Day = "Fri", Numero = friNum, Valor = timecard.Fri, TimeIn = TimeSpan.Parse(timecard.Fri_In), TimeOut= TimeSpan.Parse(timecard.Fri_Out), Break1Out=TimeSpan.Parse(timecard.Fri_Meal_In), Break1In=TimeSpan.Parse(timecard.Fri_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Fri_Break1_In), Break2In=TimeSpan.Parse(timecard.Fri_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Fri_Break2_In), Break3In=TimeSpan.Parse(timecard.Fri_Break2_Out), Nota = timecard.FriNote, DisplayInputs = friDisplay },
-                new NewTimeOutCard() { Break1Enabled = satBreak1Enabled, Break2Enabled = satBreak2Enabled, Break3Enabled = satBreak3Enabled, Break1 = satBreak1, Break2 = satBreak2, Break3 = satBreak3, Day = "Sat", Numero = satNum, Valor = timecard.Sat, TimeIn = TimeSpan.Parse(timecard.Sat_In), TimeOut= TimeSpan.Parse(timecard.Sat_Out), Break1Out=TimeSpan.Parse(timecard.Sat_Meal_In), Break1In=TimeSpan.Parse(timecard.Sat_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Sat_Break1_In), Break2In=TimeSpan.Parse(timecard.Sat_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Sat_Break2_In), Break3In=TimeSpan.Parse(timecard.Sat_Break2_Out), Nota = timecard.SatNote, DisplayInputs = satDisplay },
-                new NewTimeOutCard() { Break1Enabled = sunBreak1Enabled, Break2Enabled = sunBreak2Enabled, Break3Enabled = sunBreak3Enabled, Break1 = sunBreak1, Break2 = sunBreak2, Break3 = sunBreak3, Day = "Sun", Numero = fecha.Day, Valor = timecard.Sun, TimeIn = TimeSpan.Parse(timecard.Sun_In), TimeOut= TimeSpan.Parse(timecard.Sun_Out), Break1Out=TimeSpan.Parse(timecard.Sun_Meal_In), Break1In=TimeSpan.Parse(timecard.Sun_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Sun_Break1_In), Break2In=TimeSpan.Parse(timecard.Sun_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Sun_Break2_In), Break3In=TimeSpan.Parse(timecard.Sun_Break2_Out), Nota = timecard.SunNote, DisplayInputs = sunDisplay }
+                new NewTimeOutCard() { Is24 = mon24, Break1Enabled = monBreak1Enabled, Break2Enabled = monBreak2Enabled, Break3Enabled = monBreak3Enabled, Break1 = monBreak1, Break2 = monBreak2, Break3 = monBreak3, Day = "Mon", Numero = monNum, Valor = timecard.Mon, TimeIn = TimeSpan.Parse(timecard.Mon_In), TimeOut= TimeSpan.Parse(timecard.Mon_Out), Break1Out=TimeSpan.Parse(timecard.Mon_Meal_In), Break1In=TimeSpan.Parse(timecard.Mon_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Mon_Break1_In), Break2In=TimeSpan.Parse(timecard.Mon_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Mon_Break2_In), Break3In=TimeSpan.Parse(timecard.Mon_Break2_Out), Nota = timecard.MonNote, DisplayInputs = monDisplay },
+                new NewTimeOutCard() { Is24 = tue24, Break1Enabled = tueBreak1Enabled, Break2Enabled = tueBreak2Enabled, Break3Enabled = tueBreak3Enabled, Break1 = tueBreak1, Break2 = tueBreak2, Break3 = tueBreak3, Day = "Tue", Numero = tueNum, Valor = timecard.Tue, TimeIn = TimeSpan.Parse(timecard.Tue_In), TimeOut= TimeSpan.Parse(timecard.Tue_Out), Break1Out=TimeSpan.Parse(timecard.Tue_Meal_In), Break1In=TimeSpan.Parse(timecard.Tue_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Tue_Break1_In), Break2In=TimeSpan.Parse(timecard.Tue_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Tue_Break2_In), Break3In=TimeSpan.Parse(timecard.Tue_Break2_Out), Nota = timecard.TueNote, DisplayInputs = tueDisplay },
+                new NewTimeOutCard() { Is24 = wed24, Break1Enabled = wedBreak1Enabled, Break2Enabled = wedBreak2Enabled, Break3Enabled = wedBreak3Enabled, Break1 = wedBreak1, Break2 = wedBreak2, Break3 = wedBreak3, Day = "Wed", Numero = wedNum, Valor = timecard.Wed, TimeIn = TimeSpan.Parse(timecard.Wed_In), TimeOut= TimeSpan.Parse(timecard.Wed_Out), Break1Out=TimeSpan.Parse(timecard.Wed_Meal_In), Break1In=TimeSpan.Parse(timecard.Wed_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Wed_Break1_In), Break2In=TimeSpan.Parse(timecard.Wed_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Wed_Break2_In), Break3In=TimeSpan.Parse(timecard.Wed_Break2_Out), Nota = timecard.WedNote, DisplayInputs = wedDisplay },
+                new NewTimeOutCard() { Is24 = thu24, Break1Enabled = thuBreak1Enabled, Break2Enabled = thuBreak2Enabled, Break3Enabled = thuBreak3Enabled, Break1 = thuBreak1, Break2 = thuBreak2, Break3 = thuBreak3, Day = "Thu", Numero = thuNum, Valor = timecard.Thu, TimeIn = TimeSpan.Parse(timecard.Thu_In), TimeOut= TimeSpan.Parse(timecard.Thu_Out), Break1Out=TimeSpan.Parse(timecard.Thu_Meal_In), Break1In=TimeSpan.Parse(timecard.Thu_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Thu_Break1_In), Break2In=TimeSpan.Parse(timecard.Thu_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Thu_Break2_In), Break3In=TimeSpan.Parse(timecard.Thu_Break2_Out), Nota = timecard.ThuNote, DisplayInputs = thuDisplay },
+                new NewTimeOutCard() { Is24 = fri24, Break1Enabled = friBreak1Enabled, Break2Enabled = friBreak2Enabled, Break3Enabled = friBreak3Enabled, Break1 = friBreak1, Break2 = friBreak2, Break3 = friBreak3, Day = "Fri", Numero = friNum, Valor = timecard.Fri, TimeIn = TimeSpan.Parse(timecard.Fri_In), TimeOut= TimeSpan.Parse(timecard.Fri_Out), Break1Out=TimeSpan.Parse(timecard.Fri_Meal_In), Break1In=TimeSpan.Parse(timecard.Fri_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Fri_Break1_In), Break2In=TimeSpan.Parse(timecard.Fri_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Fri_Break2_In), Break3In=TimeSpan.Parse(timecard.Fri_Break2_Out), Nota = timecard.FriNote, DisplayInputs = friDisplay },
+                new NewTimeOutCard() { Is24 = sat24, Break1Enabled = satBreak1Enabled, Break2Enabled = satBreak2Enabled, Break3Enabled = satBreak3Enabled, Break1 = satBreak1, Break2 = satBreak2, Break3 = satBreak3, Day = "Sat", Numero = satNum, Valor = timecard.Sat, TimeIn = TimeSpan.Parse(timecard.Sat_In), TimeOut= TimeSpan.Parse(timecard.Sat_Out), Break1Out=TimeSpan.Parse(timecard.Sat_Meal_In), Break1In=TimeSpan.Parse(timecard.Sat_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Sat_Break1_In), Break2In=TimeSpan.Parse(timecard.Sat_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Sat_Break2_In), Break3In=TimeSpan.Parse(timecard.Sat_Break2_Out), Nota = timecard.SatNote, DisplayInputs = satDisplay },
+                new NewTimeOutCard() { Is24 = sun24, Break1Enabled = sunBreak1Enabled, Break2Enabled = sunBreak2Enabled, Break3Enabled = sunBreak3Enabled, Break1 = sunBreak1, Break2 = sunBreak2, Break3 = sunBreak3, Day = "Sun", Numero = fecha.Day, Valor = timecard.Sun, TimeIn = TimeSpan.Parse(timecard.Sun_In), TimeOut= TimeSpan.Parse(timecard.Sun_Out), Break1Out=TimeSpan.Parse(timecard.Sun_Meal_In), Break1In=TimeSpan.Parse(timecard.Sun_Meal_Out), Break2Out=TimeSpan.Parse(timecard.Sun_Break1_In), Break2In=TimeSpan.Parse(timecard.Sun_Break1_Out), Break3Out=TimeSpan.Parse(timecard.Sun_Break2_In), Break3In=TimeSpan.Parse(timecard.Sun_Break2_Out), Nota = timecard.SunNote, DisplayInputs = sunDisplay }
             };
 
             GetAssignments(usuarioFrom);
@@ -528,7 +521,6 @@ namespace BetrackingAPP.ViewModel
                 Assignments.Add(assignment_item.Name);
             }
         }
-
         public void GetActions(Timecard eu_timecard)
         {
             Actions = new ObservableCollection<Actions>();
@@ -536,7 +528,6 @@ namespace BetrackingAPP.ViewModel
             Actions.Add(new Actions { ActionName = "Submit Date:", ActionDate = eu_timecard.SubmitDate });
             Actions.Add(new Actions { ActionName = "Last Edit Date:", ActionDate = eu_timecard.LEditDate });
         }
-
         public async void SubmitTimecard(int ID)
         {
             HasPropertyValueChanged = true;
@@ -567,7 +558,6 @@ namespace BetrackingAPP.ViewModel
                 await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
         }
-
         public async void UpdateTimecard(int iD, int AssignmentID)
         {
             HasPropertyValueChanged = true;
@@ -607,7 +597,6 @@ namespace BetrackingAPP.ViewModel
             }
             HasPropertyValueChanged = false;
         }
-
         public async void LoadTimecard(int usuario, int timecard)
         {
             HasPropertyValueChanged = true;
@@ -800,7 +789,6 @@ namespace BetrackingAPP.ViewModel
 
             }
         }
-
         public void HideOrShowInputs(NewTimeOutCard day)
         {
             if (day != null)
@@ -852,7 +840,6 @@ namespace BetrackingAPP.ViewModel
                 Console.WriteLine("BIG ERRRRROOOOOOOOR: {0}", e.Source);
             }
         }
-
         public void AgregarBreak(NewTimeOutCard day)
         {
             if (day.Break1 == 0)
@@ -876,9 +863,7 @@ namespace BetrackingAPP.ViewModel
                     day.Break3Enabled = true;
                 }
             }
-            //UpdateDays(_oldDay);
         }
-
         public void QuitarBreak(NewTimeOutCard day)
         {
             if (day.Break3 == 45)

@@ -53,6 +53,29 @@ namespace BetrackingAPP.Models
         }
         public string Day { get; set; }
         public int Numero { get; set; }
+        private bool _is24 { get; set; }
+        public bool Is24
+        {
+            get
+            {
+                return _is24;
+            }
+            set
+            {
+                _is24 = value;
+                OnPropertyChanged();
+                if (_is24 == true)
+                {
+                    TimeIn = new TimeSpan(0, 0, 0);
+                    TimeOut = new TimeSpan(0, 0, 0);
+                    UpdateValor();
+                }
+                else
+                {
+                    UpdateValor();
+                }
+            }
+        }
         private int _inputHeight { get; set; }
         public int InputHeight
         {
@@ -208,7 +231,7 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-        private int _Break1 = 0;
+        private int _Break1 { get; set; }
         public int Break1 {
             get
             {
@@ -220,7 +243,7 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-        private int _Break2 = 0;
+        private int _Break2  { get; set; }
         public int Break2
         {
             get
@@ -233,7 +256,7 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
-        private int _Break3 = 0;
+        private int _Break3 { get; set; }
         public int Break3
         {
             get
@@ -248,10 +271,6 @@ namespace BetrackingAPP.Models
         }
         public void UpdateValor()
         {
-            /*if (TimeOut < TimeIn)
-            {
-                TimeOut = TimeSpan.FromSeconds(TimeIn.TotalSeconds + 32400);
-            }*/
 
             if (Break1 != 0)
             {
@@ -262,7 +281,7 @@ namespace BetrackingAPP.Models
                 if (Break1In < Break1Out)
                 {
                     Break1In = TimeSpan.FromSeconds(Break1Out.TotalSeconds + 60);
-                    if (TimeOut < Break1In)
+                    if (TimeOut < Break1In && ( Is24 == false && TimeOut != TimeIn ) )
                     {
                         TimeOut = TimeSpan.FromSeconds(Break1In.TotalSeconds + 60);
                     }
@@ -277,7 +296,7 @@ namespace BetrackingAPP.Models
                     {
                         Break2In = TimeSpan.FromSeconds(Break1Out.TotalSeconds + 60);
                     }
-                    if (TimeOut < Break2In)
+                    if (TimeOut < Break2In && (Is24 == false && TimeOut != TimeIn) )
                     {
                         TimeOut = TimeSpan.FromSeconds(Break2In.TotalSeconds + 60);
                     }
@@ -291,7 +310,7 @@ namespace BetrackingAPP.Models
                         {
                             Break3In = TimeSpan.FromSeconds(Break3Out.TotalSeconds + 60);
                         }
-                        if (TimeOut < Break3In)
+                        if (TimeOut < Break3In && (Is24 == false && TimeOut != TimeIn) )
                         {
                             TimeOut = TimeSpan.FromSeconds(Break3In.TotalSeconds + 60);
                         }
@@ -305,7 +324,11 @@ namespace BetrackingAPP.Models
                 //24 - ( HoraToVal($lineas[0]) - HoraToVal($lineas[1]) );
                 tempSeconds = 86400 - (TimeIn.TotalSeconds - TimeOut.TotalSeconds);
             }
-            else
+            else if(Is24 == true && TimeOut == TimeIn)
+            {
+                tempSeconds = 43200;
+            }
+            else if(TimeOut > TimeIn)
             {
                 tempSeconds = TimeOut.TotalSeconds - TimeIn.TotalSeconds;
             }
@@ -325,6 +348,10 @@ namespace BetrackingAPP.Models
 
             var tempSpan = TimeSpan.FromSeconds(tempSeconds);
             decimal hh = tempSpan.Hours;
+            if (Is24 == true && TimeOut == TimeIn)
+            {
+                hh = hh + 12;
+            }
             decimal mm = (decimal.Parse(tempSpan.Minutes.ToString()) / 60);
             var decimalVal = hh + mm;
             var decimalStr = decimalVal.ToString("0.##");

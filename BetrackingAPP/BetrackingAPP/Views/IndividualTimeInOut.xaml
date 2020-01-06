@@ -511,8 +511,8 @@
 		</ScrollView>
 	</ContentPage>
 	<ContentPage Title="Update" Icon="home.png" >
-		<ScrollView>
-			<Grid>
+		<Grid>
+			<ScrollView>
 				<StackLayout x:Name="UpdateList">
 				<Label Text="UPDATE INFORMATION"
 					FontSize="40"
@@ -660,6 +660,7 @@
 														<RowDefinition Height="{Binding InputHeight}"/>
 														<RowDefinition Height="{Binding InputHeight}"/>
 														<RowDefinition Height="{Binding InputHeight}"/>
+														<RowDefinition Height="{Binding InputHeight}"/>
 														<RowDefinition Height="{Binding Break1}"/>
 														<RowDefinition Height="{Binding Break1}"/>
 														<RowDefinition Height="{Binding Break2}"/>
@@ -751,30 +752,22 @@
 															</OnPlatform>
 														</TimePicker.FontFamily>
 													</TimePicker>
-
-													<!-- BREAK 1 -->
-													<Label Text="Break 1 Out" Grid.Row="3" Grid.Column="1"
+													<!-- 24 hours -->
+													<Label Text="24h Shift" Grid.Row="3" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
 														VerticalTextAlignment="Center">
-														<Label.FontFamily>
-															<OnPlatform x:TypeArguments="x:String">
-																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
-															</OnPlatform>
-														</Label.FontFamily>
-													</Label>
-													<TimePicker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5"
-														Format="T"
-														Time="{Binding Break1Out}">
-														<TimePicker.FontFamily>
-															<OnPlatform x:TypeArguments="x:String">
-																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
-															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
-													<Label Text="Break 1 In" Grid.Row="4" Grid.Column="1"
+															<Label.FontFamily>
+																<OnPlatform x:TypeArguments="x:String">
+																	<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																	<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																</OnPlatform>
+															</Label.FontFamily>
+														</Label>
+													<CheckBox Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5"  
+													IsChecked="{Binding Is24}" />
+													<!-- BREAK 1 -->
+													<Label Text="Break 1 Out" Grid.Row="4" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
 														VerticalTextAlignment="Center">
@@ -787,7 +780,7 @@
 													</Label>
 													<TimePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
-														Time="{Binding Break1In}">
+														Time="{Binding Break1Out}">
 														<TimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -795,8 +788,7 @@
 															</OnPlatform>
 														</TimePicker.FontFamily>
 													</TimePicker>
-													<!-- BREAK 2 -->
-													<Label Text="Break 2 Out" Grid.Row="5" Grid.Column="1"
+													<Label Text="Break 1 In" Grid.Row="5" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
 														VerticalTextAlignment="Center">
@@ -809,7 +801,7 @@
 													</Label>
 													<TimePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
-														Time="{Binding Break2Out}">
+														Time="{Binding Break1In}">
 														<TimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -817,7 +809,8 @@
 															</OnPlatform>
 														</TimePicker.FontFamily>
 													</TimePicker>
-													<Label Text="Break 2 In" Grid.Row="6" Grid.Column="1"
+													<!-- BREAK 2 -->
+													<Label Text="Break 2 Out" Grid.Row="6" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
 														VerticalTextAlignment="Center">
@@ -830,7 +823,7 @@
 													</Label>
 													<TimePicker Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
-														Time="{Binding Break2In}">
+														Time="{Binding Break2Out}">
 														<TimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -838,8 +831,7 @@
 															</OnPlatform>
 														</TimePicker.FontFamily>
 													</TimePicker>
-													<!-- BREAK 3 -->
-													<Label Text="Break 3 Out" Grid.Row="7" Grid.Column="1"
+													<Label Text="Break 2 In" Grid.Row="7" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
 														VerticalTextAlignment="Center">
@@ -852,8 +844,7 @@
 													</Label>
 													<TimePicker Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
-														Time="{Binding Break3Out}"
-														>
+														Time="{Binding Break2In}">
 														<TimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -861,9 +852,10 @@
 															</OnPlatform>
 														</TimePicker.FontFamily>
 													</TimePicker>
-													<Label Text="Break 3 In" Grid.Row="8" Grid.Column="1"
+													<!-- BREAK 3 -->
+													<Label Text="Break 3 Out" Grid.Row="8" Grid.Column="1"
 														Grid.ColumnSpan="4"
-														HorizontalTextAlignment="Start"
+														HorizontalTextAlignment="Start" 
 														VerticalTextAlignment="Center">
 														<Label.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
@@ -874,6 +866,27 @@
 													</Label>
 													<TimePicker Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
+														Time="{Binding Break3Out}">
+														<TimePicker.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</TimePicker.FontFamily>
+													</TimePicker>
+													<Label Text="Break 3 In" Grid.Row="9" Grid.Column="1"
+														Grid.ColumnSpan="4"
+														HorizontalTextAlignment="Start"
+														VerticalTextAlignment="Center">
+														<Label.FontFamily>
+															<OnPlatform x:TypeArguments="x:String">
+																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+															</OnPlatform>
+														</Label.FontFamily>
+													</Label>
+													<TimePicker Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="5"
+														Format="T"
 														Time="{Binding Break3In}">
 														<TimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
@@ -883,7 +896,7 @@
 														</TimePicker.FontFamily>
 													</TimePicker>
 													<!-- -->
-													<Editor Placeholder="Notes" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="7" 
+													<Editor Placeholder="Notes" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="7" 
 														Text="{Binding Nota}"
 														HeightRequest="70"
 														FontSize="Small">
@@ -903,6 +916,7 @@
 						</local:RepeaterView.ItemTemplate>
 					</local:RepeaterView>
 				</StackLayout>
+				</ScrollView>
 				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
 					<StackLayout VerticalOptions="CenterAndExpand">
 						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
@@ -921,6 +935,5 @@
 					</StackLayout>
 				</StackLayout>
 			</Grid>
-		</ScrollView>
 	</ContentPage>
 </TabbedPage>
