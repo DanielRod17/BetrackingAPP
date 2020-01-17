@@ -1013,15 +1013,11 @@ namespace BetrackingAPP.ViewModel
         public IDownloadFile File;
         async void DownloadFile(string URL)
         {
+            
             IsLoading = true;
             URL = "https://bepc.backnetwork.net/BEPCINC" + URL;
             File = CrossDownloadManager.Current.CreateDownloadFile(
                 URL
-            // If you need, you can add a dictionary of headers you need.
-            //, new Dictionary<string, string> {
-            //    { "Cookie", "LetMeDownload=1;" },
-            //    { "Authorization", "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==" }
-            //}
             );
             CrossDownloadManager.Current.Start(File, true);
             bool isDownloading = true;
@@ -1032,6 +1028,25 @@ namespace BetrackingAPP.ViewModel
             }
             await Application.Current.MainPage.DisplayAlert("Success", "File Downloaded!", "OK");
             IsLoading = false;
+            
+            //IsLoading = true;
+            /*HttpClient client = new HttpClient();
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("reporte", Reporte.ID.ToString()),
+                new KeyValuePair<string, string>("archivo", URL)
+            }); ;
+
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/DescargarFile.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+            }
+            else
+            {
+                IsLoading = false;
+            }*/
         }
         public async void DeleteFileAsync(File Arquivo)
         {

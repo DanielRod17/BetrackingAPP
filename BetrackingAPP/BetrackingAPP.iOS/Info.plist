@@ -17,6 +17,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app uses the camera to store receipts and other files</string>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>

@@ -812,7 +812,7 @@ namespace BetrackingAPP.ViewModel
                         day.Break3 = 45;
                     }
                     day.InputHeight = 45;
-                    day.bgColor = "#E1EAF7";
+                    day.bgColor = "#F4F4F4";
                 }
                 else
                 {

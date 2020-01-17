@@ -562,7 +562,7 @@
 							</OnPlatform>
 						</DatePicker.FontFamily>
 					</DatePicker>
-					<xfx:XfxComboBox Placeholder="Select an Assignment"
+					<local:XfxCustomized Placeholder="Select an Assignment"
 						Grid.Column="0"
 						Grid.Row="1"
 						Grid.ColumnSpan="7"
@@ -571,12 +571,12 @@
 					    SortingAlgorithm="{Binding SortingAlgorithm}"
                         HorizontalTextAlignment="Center"
                         WidthRequest="300">
-						<xfx:XfxComboBox.FontFamily>
+						<local:XfxCustomized.FontFamily>
 							<OnPlatform x:TypeArguments="x:String">
 								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 							</OnPlatform>
-						</xfx:XfxComboBox.FontFamily>
-					</xfx:XfxComboBox>
+						</local:XfxCustomized.FontFamily>
+					</local:XfxCustomized>
 				</Grid>
 					<local:RepeaterView 
 						x:Name="TimeOutList"
