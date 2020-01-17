@@ -152,12 +152,14 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
             IsLoading = false;
         }
@@ -196,12 +198,14 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
             IsLoading = false;
         }

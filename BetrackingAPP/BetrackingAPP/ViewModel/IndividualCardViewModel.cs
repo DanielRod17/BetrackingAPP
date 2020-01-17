@@ -119,20 +119,188 @@ namespace BetrackingAPP.ViewModel
             }
         }
         public Timecard Timecard { get; set; }
-        public string Mon_Hours { get; set; }
-        public string Tue_Hours { get; set; }
-        public string Wed_Hours { get; set; }
-        public string Thu_Hours { get; set; }
-        public string Fri_Hours { get; set; }
-        public string Sat_Hours { get; set; }
-        public string Sun_Hours { get; set; }
-        public string Mon_Note { get; set; }
-        public string Tue_Note { get; set; }
-        public string Wed_Note { get; set; }
-        public string Thu_Note { get; set; }
-        public string Fri_Note { get; set; }
-        public string Sat_Note { get; set; }
-        public string Sun_Note { get; set; }
+        private string _mon_hours { get; set; }
+        private string _tue_hours { get; set; }
+        private string _wed_hours { get; set; }
+        private string _thu_hours { get; set; }
+        private string _fri_hours { get; set; }
+        private string _sat_hours { get; set; }
+        private string _sun_hours { get; set; }
+        public string Mon_Hours 
+        {
+            get
+            {
+                return _mon_hours;
+            }
+            set
+            {
+                _mon_hours = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Tue_Hours
+        {
+            get
+            {
+                return _tue_hours;
+            }
+            set
+            {
+                _tue_hours = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Wed_Hours
+        {
+            get
+            {
+                return _wed_hours;
+            }
+            set
+            {
+                _wed_hours = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Thu_Hours
+        {
+            get
+            {
+                return _thu_hours;
+            }
+            set
+            {
+                _thu_hours = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Fri_Hours
+        {
+            get
+            {
+                return _fri_hours;
+            }
+            set
+            {
+                _fri_hours = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Sat_Hours
+        {
+            get
+            {
+                return _sat_hours;
+            }
+            set
+            {
+                _sat_hours = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Sun_Hours
+        {
+            get
+            {
+                return _sun_hours;
+            }
+            set
+            {
+                _sun_hours = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _mon_Note { get; set; }
+        private string _tue_Note { get; set; }
+        private string _wed_Note { get; set; }
+        private string _thu_Note { get; set; }
+        private string _fri_Note { get; set; }
+        private string _sat_Note { get; set; }
+        private string _sun_Note { get; set; }
+        public string Mon_Note
+        {
+            get
+            {
+                return _mon_Note;
+            }
+            set
+            {
+                _mon_Note = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Tue_Note
+        {
+            get
+            {
+                return _tue_Note;
+            }
+            set
+            {
+                _tue_Note = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Wed_Note
+        {
+            get
+            {
+                return _wed_Note;
+            }
+            set
+            {
+                _wed_Note = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Thu_Note
+        {
+            get
+            {
+                return _thu_Note;
+            }
+            set
+            {
+                _thu_Note = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Fri_Note
+        {
+            get
+            {
+                return _fri_Note;
+            }
+            set
+            {
+                _fri_Note = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Sat_Note
+        {
+            get
+            {
+                return _sat_Note;
+            }
+            set
+            {
+                _sat_Note = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Sun_Note
+        {
+            get
+            {
+                return _sun_Note;
+            }
+            set
+            {
+                _sun_Note = value;
+                OnPropertyChanged();
+            }
+        }
         public string Assignment_Name { get; set; }
         public string Total_Hours { get; set; }
         public string monday_info { get; set; }
@@ -239,7 +407,6 @@ namespace BetrackingAPP.ViewModel
             HasPropertyValueChanged = false;
 
         }
-
         public void GetAssignments(User usuario)
         {
             var Assignments_List = usuario.Assignments;
@@ -248,7 +415,6 @@ namespace BetrackingAPP.ViewModel
                 Assignments.Add(assignment_item.Name);
             }
         }
-
         public void GetActions(Timecard eu_timecard)
         {
             Actions = new ObservableCollection<Actions>();
@@ -256,7 +422,6 @@ namespace BetrackingAPP.ViewModel
             Actions.Add(new Actions { ActionName = "Submit Date:", ActionDate = eu_timecard.SubmitDate });
             Actions.Add(new Actions { ActionName = "Last Edit Date:", ActionDate = eu_timecard.LEditDate });
         }
-
         public async void SubmitTimecard(int ID)
         {
 
@@ -281,16 +446,17 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
             HasPropertyValueChanged = false;
         }
-
         public async void UpdateTimecard(int iD, int AssignmentID)
         {
             HasPropertyValueChanged = true;
@@ -308,7 +474,7 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("AssignmentName", AssignmentName),
                 new KeyValuePair<string, string>("date", FechaSeleccionada.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("info", yeison)
-            }); ;
+            });
 
             var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/UpdateMX.php", formContent);
             if (result.IsSuccessStatusCode)
@@ -322,16 +488,53 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
             HasPropertyValueChanged = false;
         }
+        public async void DeleteTimecard(int iD)
+        {
+            HasPropertyValueChanged = true;
+            HttpClient client = new HttpClient();
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("usuario", User.Id.ToString()),
+                new KeyValuePair<string, string>("Delete", "1"),
+                new KeyValuePair<string, string>("Timecard", iD.ToString()),
+                new KeyValuePair<string, string>("AssignmentName", AssignmentName),
+                new KeyValuePair<string, string>("date", FechaSeleccionada.Date.ToString("MM/dd/yyyy"))
+            });
 
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/DeleteTimecard.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                if (responseData == "Timecard Deleted!")
+                {
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(User, responseData));
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
+                }
+            }
+            else
+            {
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
+            }
+            HasPropertyValueChanged = false;
+        }
         public async void LoadTimecard(int usuario, int timecard)
         {
             HasPropertyValueChanged = true;
@@ -362,7 +565,24 @@ namespace BetrackingAPP.ViewModel
                     new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 0 },
                     new NewTimecardNormal() { Day = "Sun", Numero = sunNum, Valor = Timecard[0].Sun, Nota = Timecard[0].SunNote, DisplayInputs = 0 },
                 };
-                
+
+                Mon_Hours = Timecard[0].Mon.ToString();
+                Tue_Hours = Timecard[0].Tue.ToString();
+                Wed_Hours = Timecard[0].Wed.ToString();
+                Thu_Hours = Timecard[0].Thu.ToString();
+                Fri_Hours = Timecard[0].Fri.ToString();
+                Sat_Hours = Timecard[0].Sat.ToString();
+                Sun_Hours = Timecard[0].Sun.ToString();
+                Total_Hours = Timecard[0].suma.ToString();
+
+                Mon_Note = Timecard[0].MonNote;
+                Tue_Note = Timecard[0].TueNote;
+                Wed_Note = Timecard[0].WedNote;
+                Thu_Note = Timecard[0].ThuNote;
+                Fri_Note = Timecard[0].FriNote;
+                Sat_Note = Timecard[0].SatNote;
+                Sun_Note = Timecard[0].SunNote;
+
                 GetActions(Timecard[0]);
                 temp.RemoveAt(7);
                 Days = temp;

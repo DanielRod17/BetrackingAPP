@@ -194,7 +194,7 @@ namespace BetrackingAPP.ViewModel
                         expense_cat.DisplayAdd = 40;
                         foreach (Expense expenese in expense_cat.iExpenses)
                         {
-                            //expenese.bgColor = "#F4F4F4";
+                            expenese.bgColor = "#F4F4F4";
                         }
                     }
                     else
@@ -209,7 +209,7 @@ namespace BetrackingAPP.ViewModel
                     expense_cat.DisplayInputs = 0;
                     foreach (Expense expenese in expense_cat.iExpenses)
                     {
-                        //expenese.bgColor = "White";
+                        expenese.bgColor = "White";
                     }
                 }
             }

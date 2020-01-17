@@ -421,18 +421,20 @@ namespace BetrackingAPP.ViewModel
             {
                 var responseData = await result.Content.ReadAsStringAsync();
                 await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
-                if (responseData == "Timecard Saved!")
+                if (responseData == "Request Sent for approval")
                 {
-                    //await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
             IsLoading = false;
         }
@@ -1026,7 +1028,8 @@ namespace BetrackingAPP.ViewModel
                 await Task.Delay(500);
                 isDownloading = IsDownloading(File);
             }
-            await Application.Current.MainPage.DisplayAlert("Success", "File Downloaded!", "OK");
+            //await Application.Current.MainPage.DisplayAlert("Success", "File Downloaded!", "OK");
+            await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, "File Downloaded!"));
             IsLoading = false;
             
             //IsLoading = true;
@@ -1069,7 +1072,8 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
                 
             }
@@ -1495,12 +1499,14 @@ namespace BetrackingAPP.ViewModel
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
             IsLoading = false;
         }

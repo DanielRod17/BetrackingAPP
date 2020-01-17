@@ -749,20 +749,21 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
-                if (responseData == "Timecard Saved!")
+                if (responseData == "Report opened")
                 {
                     AssignmentName = "";
                     await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                 }
             }
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
         }
         public void GetAssignments(User usuario)
@@ -817,7 +818,8 @@ namespace BetrackingAPP.ViewModel
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
         }
         public async void ChangeCities(int v)

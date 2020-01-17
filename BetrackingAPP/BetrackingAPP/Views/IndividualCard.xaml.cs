@@ -16,6 +16,7 @@ namespace BetrackingAPP.Views
         public Timecard timecard_Reload { get; set; }
         public DateTime date_reload { get; set; }
         public Button boton { get; set; }
+        public Button Deleteboton { get; set; }
         public IndividualCard(Timecard eu_timecard = null, User usuario = null, DateTime _dateSearch = default)
         {
             switch (Device.RuntimePlatform)
@@ -204,6 +205,18 @@ namespace BetrackingAPP.Views
                 };
                 Button.Clicked += delegate { SubmitTimecard(eu_timecard.ID, Button); };
                 stackPanel.Children.Add(Button);
+
+                Button = new Button
+                {
+                    Text = "Delete",
+                    BackgroundColor = Color.FromHex("#15212f"),
+                    TextColor = Color.FromHex("#FFFFFF"),
+                    FontSize = 24,
+                    Margin = 20,
+                    FontFamily = Device.RuntimePlatform == Device.Android ? "BebasNeue Bold.ttf#BebasNeue Bold" : null
+                };
+                Button.Clicked += delegate { DeleteTimecard(eu_timecard.ID, Button); };
+                stackPanel.Children.Add(Button);
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //Actions List
@@ -238,6 +251,12 @@ namespace BetrackingAPP.Views
                 Stack.Children.Add(Button);
                 boton = Button;
             }
+        }
+
+        private void DeleteTimecard(int ID, Button button)
+        {
+            var vm = BindingContext as IndividualCardViewModel;
+            vm.DeleteTimecard(ID);
         }
         private void UpdateTimecard(int ID, Button button, int AssignmentID)
         {

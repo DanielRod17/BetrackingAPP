@@ -139,7 +139,6 @@ namespace BetrackingAPP.ViewModel
                 HasPropertyValueChanged = false;
             }
         }
-
         private static string CalculateSha1Hash(string input)
         {
             // step 1, calculate MD5 hash from input

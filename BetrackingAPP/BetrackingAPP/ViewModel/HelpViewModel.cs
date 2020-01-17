@@ -109,17 +109,20 @@ namespace BetrackingAPP.ViewModel
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                        //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                        await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
                     }
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                    //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
                 }
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Oops", "Enter a description of your issue", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Enter a description of your issue", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Enter a description of your issue"));
             }
             IsLoading = false;
         }
