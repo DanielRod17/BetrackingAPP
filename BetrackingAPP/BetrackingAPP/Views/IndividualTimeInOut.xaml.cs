@@ -33,12 +33,12 @@ namespace BetrackingAPP.Views
             timecard_Reload = eu_timecard;
             date_reload = _dateSearch;
             InitializeComponent();
-            BarBackgroundColor = Color.White;
-            BarTextColor = Color.Black;
+            //BarBackgroundColor = Color.White;
+            //BarTextColor = Color.Black;
             BindingContext = new IndividualTimeInOutViewModel(usuario, eu_timecard, _dateSearch);
             if (eu_timecard.Submitted == 0)
             {
-                var Button = new Button { 
+                /*var Button = new Button { 
                     Text = "Submit", 
                     BackgroundColor = Color.FromHex("#15212f"), 
                     TextColor = Color.FromHex("#FFFFFF"), 
@@ -48,15 +48,43 @@ namespace BetrackingAPP.Views
                 };
                 Button.Clicked += delegate { SubmitTimecard(eu_timecard.ID, Button); };
                 stackPanel.Children.Add(Button);
+
+                Button = new Button
+                {
+                    Text = "Delete",
+                    BackgroundColor = Color.FromHex("#15212f"),
+                    TextColor = Color.FromHex("#FFFFFF"),
+                    FontSize = 24,
+                    Margin = 20,
+                    FontFamily = Device.RuntimePlatform == Device.Android ? "BebasNeue Bold.ttf#BebasNeue Bold" : null
+                };
+                Button.Clicked += delegate { DeleteTimecard(eu_timecard.ID, Button); };
+                stackPanel.Children.Add(Button);*/
             }
-            CrearUpdateButtons(eu_timecard, usuario, _dateSearch);
+            //CrearUpdateButtons(eu_timecard, usuario, _dateSearch);
         }
-        private void SubmitTimecard(int ID, Button button)
+        private void SubmitTimecard(object sender, EventArgs e)
         {
-            var vm = BindingContext as IndividualTimeInOutViewModel;
+            _ = Someter();
+            /*var vm = BindingContext as IndividualCardViewModel;
             vm.SubmitTimecard(ID);
             button.IsVisible = false;
-            boton.IsVisible = false;
+            boton.IsVisible = false;*/
+        }
+        private async Task Someter()
+        {
+            var answer = await DisplayAlert("Submission", "Do you wan't to submit the timecard?", "Yes", "No");
+            if (answer)
+            {
+                var vm = BindingContext as IndividualTimeInOutViewModel;
+                vm.SubmitTimecard();
+            }
+        }
+        private void DeleteTimecard(object sender, EventArgs e)
+        {
+            _ = Borrar();
+            //var vm = BindingContext as IndividualCardViewModel;
+            //vm.DeleteTimecard(ID);
         }
         private async void ViewCell_Appearing(object sender, EventArgs e)
         {
@@ -72,7 +100,7 @@ namespace BetrackingAPP.Views
         }
         private void CrearUpdateButtons(Timecard eu_timecard, User usuario, DateTime fecha)
         {
-            var Stack = this.FindByName<StackLayout>("UpdateList");
+            /*var Stack = this.FindByName<StackLayout>("UpdateList");
 
             if (eu_timecard.Submitted == 0)
             {
@@ -87,7 +115,7 @@ namespace BetrackingAPP.Views
                 Button.Clicked += delegate { UpdateTimecard(eu_timecard.ID, Button, eu_timecard.AssignmentID); };
                 Stack.Children.Add(Button);
                 boton = Button;
-            }
+            }*/
         }
         private void TimecardsList_ItemTapped(object sender, EventArgs e)
         {
@@ -107,10 +135,25 @@ namespace BetrackingAPP.Views
             var day = (sender as View).BindingContext as NewTimeOutCard;
             vm.QuitarBreak(day);
         }
-        private void UpdateTimecard(int ID, Button button, int AssignmentID)
+        private void UpdateTimecard(object sender, EventArgs e)
+        {
+            _ = Actualizar();
+            //var vm = BindingContext as IndividualCardViewModel;
+            //vm.UpdateTimecard(ID, AssignmentID);
+        }
+        private async Task Actualizar()
         {
             var vm = BindingContext as IndividualTimeInOutViewModel;
-            vm.UpdateTimecard(ID, AssignmentID);
+            vm.UpdateTimecard();
+        }
+        private async Task Borrar()
+        {
+            var answer = await DisplayAlert("Delete", "Do you wan't to delete the timecard?", "Yes", "No");
+            if (answer)
+            {
+                var vm = BindingContext as IndividualTimeInOutViewModel;
+                vm.DeleteTimecard();
+            }
         }
     }
 }

@@ -21,7 +21,18 @@ namespace BetrackingAPP.ViewModel
     public class HomeViewModel : BaseViewModel
     {
         public User usuario;
-        public string Greeting { get; set; }
+        private string _greeting { get; set; }
+        public string Greeting {
+            get
+            {
+                return _greeting;
+            }
+            set
+            {
+                _greeting = value;
+                OnPropertyChanged();
+            }
+        }
         private bool _isLoading = false;
         public bool IsLoading
         {
@@ -60,10 +71,13 @@ namespace BetrackingAPP.ViewModel
             }
         }
         public HomeViewModel ViewModel { get; set; }
-        private List<Models.Notification> _notifications;
-        public List<Models.Notification> Notifications
+        private ObservableCollection<Notification> _notifications;
+        public ObservableCollection<Notification> Notifications
         {
-            get => _notifications;
+            get
+            {
+                return _notifications;
+            }
             set
             {
                 _notifications = value;
@@ -73,8 +87,23 @@ namespace BetrackingAPP.ViewModel
         public bool HasPropertyValueChanged { get; private set; }
         public HomeViewModel(User usuarioFrom)
         {
+            Notifications = null;
+            var tiempo = "";
+            if (DateTime.Now.Hour <= 12 && DateTime.Now.Hour >= 5)
+            {
+                tiempo = "Good Morning";
+}
+            else if (DateTime.Now.Hour <= 18)
+            {
+                tiempo = "Good Afternoon";
+            }
+            else
+            {
+                tiempo = "Good Evening";
+            }
             usuario = usuarioFrom;
-            Greeting = "Welcome,\n" + usuarioFrom.Firstname + " " + usuarioFrom.Lastname + "!";
+            Greeting = tiempo + "\n" + usuarioFrom.Firstname + " " + usuarioFrom.Lastname + "!";
+            _ = LoadNotifications(usuarioFrom);
         }
         public async Task LoadNotifications(User usuario)
         {
@@ -85,7 +114,23 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                Notifications = JsonConvert.DeserializeObject<List<Models.Notification>>(responseData);
+                Notifications = JsonConvert.DeserializeObject<ObservableCollection<Notification>>(responseData);
+                if (Notifications == null)
+                {
+                    Notifications = new ObservableCollection<Notification> {
+                        new Notification() {
+                            Title = "Welcome Back, " + usuario.Firstname + "!",
+                            Message = "There are no current notifications" ,
+                            From_Date = "",
+                            Color = "#f4c53f",
+                            cName = "System"
+                        }
+                    };
+                }
+                else
+                {
+                    Notifications = new ObservableCollection<Notification>();
+                }
             }
             IsLoading = false;
         }

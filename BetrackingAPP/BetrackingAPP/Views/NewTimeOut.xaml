@@ -4,27 +4,55 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
 	xmlns:local="clr-namespace:BetrackingAPP"
-	x:Class="BetrackingAPP.Views.NewTimeOut"
-	>
+	x:Class="BetrackingAPP.Views.NewTimeOut">
 	<Grid>
 		<ScrollView>
 			<StackLayout x:Name="TimeOutContainer">
-				<!--<Label Text="{Binding Fecha_timecard}"-->
-				<Label Text="{Binding Fecha_timecard}"
-					TextColor="White"
-					CharacterSpacing="2"
-					FontSize="36"
-					HeightRequest="80"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f">
-					<Label.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
-						</OnPlatform>
-					</Label.FontFamily>
-				</Label>
+				<Grid RowSpacing="0" ColumnSpacing="0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="50"></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Label Text="New Timecard"
+						Grid.Column="0"
+						Grid.ColumnSpan="3"
+						TextColor="#f4f4f4"
+						BackgroundColor="#15212f"
+						CharacterSpacing="2"
+						FontSize="32"
+						HeightRequest="80"
+						HorizontalTextAlignment="Center"
+						VerticalTextAlignment="Center">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Button Grid.Column="3"
+						Grid.ColumnSpan="2"
+						x:Name="Btn_Add" 
+						Text="Copy Previous Week"
+						Command="{Binding LoadPrevious}"
+						TextColor="White"
+						FontSize="13"
+						BackgroundColor="#15212f"
+						BorderRadius="1">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+								<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
+				</Grid>
 				<local:XfxCustomized Placeholder="Select an Assignment"
 					Text="{Binding AssignmentName}"
 					ItemsSource="{Binding Assignments}"
@@ -38,7 +66,23 @@
 						</OnPlatform>
 					</local:XfxCustomized.FontFamily>
 				</local:XfxCustomized>
+				<Label Text="{Binding Fecha_timecard}"
+						Grid.Column="0"
+						Grid.ColumnSpan="3"
+						TextColor="#15212f"
+						CharacterSpacing="2"
+						FontSize="24"
+						HorizontalTextAlignment="Center"
+						VerticalTextAlignment="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 				<local:RepeaterView 
+					Margin="15, 0, 15, 0"
 					x:Name="TimeOutList"
 					ItemsSource="{Binding Days}">
 					<local:RepeaterView.ItemTemplate>
@@ -388,8 +432,7 @@
 						BackgroundColor="#15212f"
 						BorderRadius="2"
 						Command="{Binding SaveTimecard}"
-						VerticalOptions="End" 
-					>
+						VerticalOptions="End">
 						<Button.FontFamily>
 							<OnPlatform x:TypeArguments="x:String">
 								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
@@ -405,8 +448,7 @@
 						BackgroundColor="#15212f"
 						BorderRadius="2"
 						Command="{Binding SubmitTimecard}"
-						VerticalOptions="End" 
-					>
+						VerticalOptions="End">
 						<Button.FontFamily>
 							<OnPlatform x:TypeArguments="x:String">
 								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />

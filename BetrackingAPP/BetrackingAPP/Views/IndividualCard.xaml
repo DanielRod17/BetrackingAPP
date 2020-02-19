@@ -15,510 +15,15 @@
     BarBackgroundColor="#15212f"
     BarTextColor="White">
 	<!--Pages can be added as references or inline-->
-	<ContentPage Title="Detail" x:Name="Detail" Icon="home.png" >
-		<ScrollView>
-			<StackLayout x:Name="stackPanel">
-				<Label Text="TIMECARD DETAIL"
-					FontSize="40"
-					CharacterSpacing="2"
-					TextColor="White"
-					Padding="20"
-					HeightRequest="100"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f">
-					<Label.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-						</OnPlatform>
-					</Label.FontFamily>
-				</Label>
-				<Grid 
-					ColumnSpacing="10"
-					Padding="15" 
-					RowSpacing="10">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="35"/>
-						<RowDefinition Height="40"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="40"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="25"/>
-						<RowDefinition Height="1"/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="*"/>
-					</Grid.ColumnDefinitions>
-					<Label Grid.Column="0"
-						Grid.Row="0"
-						Grid.ColumnSpan="4"
-						FontSize="18"
-						Text="{Binding Assignment_Name}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Image Source="calendar.png"
-						Grid.Column="0"
-						Grid.Row="1"/>
-					<Label Grid.Column="1"
-						Grid.ColumnSpan="3"
-						Grid.Row="1"
-						CharacterSpacing="2"
-						Padding="15, 5, 0, 0"
-						Text="Week Hours"
-						FontSize="28"
-						FontAttributes="Bold">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="2"
-						FontAttributes="Bold"
-						Text="Monday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="1"
-						Grid.Row="2"
-						HorizontalTextAlignment="End"
-						Text="{Binding Mon_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="2"
-						Grid.Row="2"
-						FontAttributes="Bold"
-						Text="Tuesday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="3"
-						Grid.Row="2"
-						HorizontalTextAlignment="End"
-						Text="{Binding Tue_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="3"
-						FontAttributes="Bold"
-						Text="Wednesday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="1"
-						Grid.Row="3"
-						HorizontalTextAlignment="End"
-						Text="{Binding Wed_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="2"
-						Grid.Row="3"
-						FontAttributes="Bold"
-						Text="Thursday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="3"
-						Grid.Row="3"
-						HorizontalTextAlignment="End"
-						Text="{Binding Thu_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="4"
-						FontAttributes="Bold"
-						Text="Friday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="1"
-						Grid.Row="4"
-						HorizontalTextAlignment="End"
-						Text="{Binding Fri_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="2"
-						Grid.Row="4"
-						FontAttributes="Bold"
-						Text="Saturday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="3"
-						Grid.Row="4"
-						HorizontalTextAlignment="End"
-						Text="{Binding Sat_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="5"
-						FontAttributes="Bold"
-						Text="Sunday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="1"
-						Grid.Row="5"
-						HorizontalTextAlignment="End"
-						Text="{Binding Sun_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="6"
-						FontAttributes="Bold"
-						Text="Total Hours">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="3"
-						Grid.Row="6"
-						HorizontalTextAlignment="End"
-						Text="{Binding Total_Hours}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Image Source="notes.png"
-						Grid.Column="0"
-						Grid.Row="7"/>
-					<Label Grid.Column="1"
-						Grid.Row="7"
-						Grid.ColumnSpan="2"
-						CharacterSpacing="2"
-						Padding="15, 0, 0, 0"
-						Text="Week Notes"
-						FontSize="28"
-						FontAttributes="Bold">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="8"
-						Text="Monday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="9"
-						Text="{Binding Mon_Note}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="10"
-						BackgroundColor="#15212f"/>
-					<Label Grid.Column="0"
-						Grid.Row="11"
-						Text="Tuesday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="12"
-						Grid.ColumnSpan="4"
-						Text="{Binding Tue_Note}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="13"
-						BackgroundColor="#15212f"/>
-					<Label Grid.Column="0"
-						Grid.Row="14"
-						Text="Wednesday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="15"
-						Grid.ColumnSpan="4"
-						Text="{Binding Wed_Note}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="16"
-						BackgroundColor="#15212f"/>
-					<Label Grid.Column="0"
-						Grid.Row="17"
-						Text="Thursday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="18"
-						Grid.ColumnSpan="4"
-						Text="{Binding Thu_Note}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="19"
-						BackgroundColor="#15212f"/>
-					<Label Grid.Column="0"
-						Grid.Row="20"
-						Text="Friday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="21"
-						Grid.ColumnSpan="4"
-						Text="{Binding Fri_Note}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="22"
-						BackgroundColor="#15212f"/>
-					<Label Grid.Column="0"
-						Grid.Row="23"
-						Text="Saturday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.Row="24"
-						Grid.ColumnSpan="4"
-						Text="{Binding Sat_Note}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="25"
-						BackgroundColor="#15212f"/>
-					<Label Grid.Column="0"
-						Grid.Row="26"
-						Text="Sunday">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="27"
-						Text="{Binding Sun_Note}">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<Label Grid.Column="0"
-						Grid.ColumnSpan="4"
-						Grid.Row="28"
-						BackgroundColor="#15212f"/>
-				</Grid>
-			</StackLayout>
-		</ScrollView>
-	</ContentPage>
-	<ContentPage Title="Activity" Icon="home.png" BackgroundColor="#f4f4f4">
-		<ScrollView>
-			<StackLayout x:Name="ActionsList">
-				<Label Text="TIMECARD ACTIVITY"
-					FontSize="40"
-					CharacterSpacing="2"
-					TextColor="White"
-					HeightRequest="100"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f">
-					<Label.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-						</OnPlatform>
-					</Label.FontFamily>
-				</Label>
-				<ListView
-					x:Name="TimecardsList"
-					ItemsSource="{Binding Actions}"
-					IsPullToRefreshEnabled="False" 
-					RowHeight="100"
-					SeparatorVisibility="None"
-					Margin="0, 0, 0, 0"
-					BackgroundColor="#f4f4f4">
-					<ListView.ItemTemplate>
-						<DataTemplate>
-							<ViewCell >
-								<Frame CornerRadius="5"
-									Margin="10, 5, 10, 0"
-									BackgroundColor="White"
-                                    HasShadow="False">
-									<StackLayout>
-										<Label Text="{Binding ActionName}"
-											FontSize="Medium"
-                                            FontAttributes="Bold">
-											<Label.FontFamily>
-												<OnPlatform x:TypeArguments="x:String">
-													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-													<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
-												</OnPlatform>
-											</Label.FontFamily>
-										</Label>
-										<Label Text="{Binding ActionDate, StringFormat='{0:dd/MM/yyyy}'}" 
-                                            FontSize="Medium">
-											<Label.FontFamily>
-												<OnPlatform x:TypeArguments="x:String">
-													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
-													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
-												</OnPlatform>
-											</Label.FontFamily>
-										</Label>
-									</StackLayout>
-								</Frame>
-							</ViewCell>
-						</DataTemplate>
-					</ListView.ItemTemplate>
-				</ListView>
-			</StackLayout>
-		</ScrollView>
-	</ContentPage>
-	<ContentPage Title="Update" Icon="home.png">
+	<ContentPage Icon="Notification.png" Title="Update">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="UpdateList">
 					<Label Text="UPDATE INFORMATION"
-						FontSize="40"
-						CharacterSpacing="2"
-						TextColor="White"
-						HeightRequest="100"
+						FontSize="34"
+						CharacterSpacing="1.5"
+						TextColor="#f4f4f4"
+						HeightRequest="70"
 						HorizontalTextAlignment="Center"
 						VerticalTextAlignment="Center"
 						BackgroundColor="#15212f">
@@ -541,30 +46,38 @@
 						</Grid.ColumnDefinitions>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="50"/>
+							<RowDefinition Height="1"/>
 							<RowDefinition Height="50"/>
 						</Grid.RowDefinitions>
 						<Image Grid.Column="0"
 							Grid.ColumnSpan="1"
 							Grid.Row="0"
 							HeightRequest="15"
+							Margin="15, 0, 0, 0"
 							WidthRequest="15"
 							Source="calendar.png"/>
-						<DatePicker Grid.Column="1"
-							Grid.Row="0"
-							x:Name="FechaTiemcard"
+						<Label Grid.Column="1"
 							Grid.ColumnSpan="6"
-							MinimumDate="01/01/2019"
-							Date="{Binding FechaSeleccionada}"
-							FontSize="Medium">
-							<DatePicker.FontFamily>
+							Grid.Row="0"
+							Text="{Binding DateString}"
+							VerticalTextAlignment="Center"
+							FontSize="20">
+							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 								</OnPlatform>
-							</DatePicker.FontFamily>
-						</DatePicker>
+							</Label.FontFamily>
+							<Label.GestureRecognizers>
+								<TapGestureRecognizer Command="{Binding OpenDatePicker}" />
+							</Label.GestureRecognizers>
+						</Label>
+						<BoxView Grid.Column="1"
+							Grid.Row="1"
+							Grid.ColumnSpan="6"
+							BackgroundColor="#15212f"/>
 						<local:XfxCustomized Placeholder="Select an Assignment"
 							Grid.Column="0"
-							Grid.Row="1"
+							Grid.Row="2"
 							Grid.ColumnSpan="7"
 							Text="{Binding AssignmentName}"
 							ItemsSource="{Binding Assignments}"
@@ -713,6 +226,58 @@
 							</DataTemplate>
 						</local:RepeaterView.ItemTemplate>
 					</local:RepeaterView>
+					<Grid Margin="10, 5, 10, 0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"></ColumnDefinition>
+							<ColumnDefinition Width="*"></ColumnDefinition>
+							<ColumnDefinition Width="*"></ColumnDefinition>
+						</Grid.ColumnDefinitions>
+						<Button BackgroundColor="#15212f"
+							TextColor="#f4f4f4"
+							Text="Update"
+							IsVisible="{Binding SubmittedCard}"
+							IsEnabled="{Binding SubmittedCard}"
+							Grid.Column="0"
+							Clicked="UpdateTimecard"
+							FontSize="20">
+							<Button.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Button.FontFamily>
+						</Button>
+						<Button BackgroundColor="#15212f"
+							TextColor="#f4f4f4"
+							Text="Submit"
+							IsVisible="{Binding SubmittedCard}"
+							IsEnabled="{Binding SubmittedCard}"
+							Clicked="SubmitTimecard"
+							Grid.Column="1"
+							FontSize="20">
+							<Button.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Button.FontFamily>
+						</Button>
+						<Button BackgroundColor="#15212f"
+							TextColor="#f4f4f4"
+							Text="Delete"
+							IsVisible="{Binding SubmittedCard}"
+							IsEnabled="{Binding SubmittedCard}"
+							Grid.Column="2"
+							Clicked="DeleteTimecard"
+							FontSize="20">
+							<Button.FontFamily>
+								<OnPlatform x:TypeArguments="x:String">
+									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								</OnPlatform>
+							</Button.FontFamily>
+						</Button>
+					</Grid>
 				</StackLayout>
 				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
 					<StackLayout VerticalOptions="CenterAndExpand">
@@ -732,6 +297,341 @@
 					</StackLayout>
 				</StackLayout>
 			</Grid>
+		</ScrollView>
+	</ContentPage>
+	<ContentPage Icon="Notification.png" Title="Detail" x:Name="Detail" >
+		<ScrollView>
+			<StackLayout x:Name="stackPanel">
+				<Label Text="TIMECARD DETAIL"
+					FontSize="34"
+					CharacterSpacing="1.5"
+					TextColor="#f4f4f4"
+					HeightRequest="70"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<Grid Margin="0, 5, 0, 0"
+					ColumnSpacing="10"
+					Padding="25" 
+					RowSpacing="5">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20"/>
+						<RowDefinition Height="20"/>
+						<RowDefinition Height="20"/>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="1"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Column="0"
+						Grid.Row="0"
+						Grid.ColumnSpan="4"
+						FontSize="18"
+						Text="{Binding Timecard_ID}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="1"
+						Grid.ColumnSpan="4"
+						FontSize="18"
+						Text="{Binding Assignment_Name}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="2"
+						Grid.ColumnSpan="4"
+						FontSize="18"
+						Text="{Binding Total_Hours, StringFormat='Total Hours: {0}'}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Image Source="notes.png"
+						Grid.Column="0"
+						Grid.Row="3"/>
+					<Label Grid.Column="1"
+						Grid.Row="3"
+						Grid.ColumnSpan="3"
+						CharacterSpacing="2"
+						Padding="10, 5, 0, 0"
+						Text="Week Notes"
+						FontSize="24"
+						FontAttributes="Bold">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="4"
+						Text="Monday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="5"
+						Text="{Binding Mon_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="6"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="7"
+						Text="Tuesday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="8"
+						Grid.ColumnSpan="4"
+						Text="{Binding Tue_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="9"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="10"
+						Text="Wednesday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="11"
+						Grid.ColumnSpan="4"
+						Text="{Binding Wed_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="12"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="13"
+						Text="Thursday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="14"
+						Grid.ColumnSpan="4"
+						Text="{Binding Thu_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="15"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="16"
+						Text="Friday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="17"
+						Grid.ColumnSpan="4"
+						Text="{Binding Fri_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="18"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="19"
+						Text="Saturday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.Row="20"
+						Grid.ColumnSpan="4"
+						Text="{Binding Sat_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="21"
+						BackgroundColor="#15212f"/>
+					<Label Grid.Column="0"
+						Grid.Row="22"
+						Text="Sunday">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="23"
+						Text="{Binding Sun_Note}">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Label Grid.Column="0"
+						Grid.ColumnSpan="4"
+						Grid.Row="24"
+						BackgroundColor="#15212f"/>
+				</Grid>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage>
+	<ContentPage Icon="Notification.png" Title="Activity" BackgroundColor="#f4f4f4">
+		<ScrollView>
+			<StackLayout x:Name="ActionsList">
+				<Label Text="TIMECARD ACTIVITY"
+					FontSize="34"
+					CharacterSpacing="1.5"
+					TextColor="#f4f4f4"
+					HeightRequest="70"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<ListView
+					x:Name="TimecardsList"
+					ItemsSource="{Binding Actions}"
+					IsPullToRefreshEnabled="False" 
+					RowHeight="100"
+					SeparatorVisibility="None"
+					Margin="0, 0, 0, 0"
+					BackgroundColor="#f4f4f4">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell >
+								<Frame CornerRadius="5"
+									Margin="10, 5, 10, 0"
+									BackgroundColor="White"
+                                    HasShadow="False">
+									<StackLayout>
+										<Label Text="{Binding ActionName}"
+											FontSize="Medium"
+                                            FontAttributes="Bold">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+													<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label Text="{Binding ActionDate, StringFormat='{0:dd/MM/yyyy}'}" 
+                                            FontSize="Medium">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+									</StackLayout>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
 		</ScrollView>
 	</ContentPage>
 </TabbedPage>

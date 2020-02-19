@@ -5,11 +5,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:app="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     mc:Ignorable="d"
+	xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
     x:Class="BetrackingAPP.Views.Timecards"
 	BackgroundColor="#f4f4f4">
 	<Grid>
 		<StackLayout>
-			<Grid>
+			<Grid RowSpacing="0" 
+				 Padding="15, 10, 0, 0">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
@@ -23,25 +25,39 @@
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="50"/>
+					<RowDefinition Height="1"/>
 				</Grid.RowDefinitions>
 				<Image Grid.Column="0"
 					Grid.ColumnSpan="1"
+					HeightRequest="5"
 					Source="calendar.png"/>
-				<DatePicker Grid.Column="1"
+				<Label Grid.Column="1"
 					Grid.ColumnSpan="6"
-                    MinimumDate="01/01/2019"
-			        Date="{Binding FechaSeleccionada}"
-                    FontSize="Medium"/>
+					Text="{Binding DateString}"
+					VerticalTextAlignment="Center"
+                    FontSize="20">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+					<Label.GestureRecognizers>
+						<TapGestureRecognizer Command="{Binding OpenDatePicker}" />
+					</Label.GestureRecognizers>
+				</Label>
+				<BoxView Grid.Column="1"
+					Grid.Row="1"
+					Grid.ColumnSpan="6"
+					BackgroundColor="#15212f"/>
 				<Button Grid.Column="7"
 					Grid.ColumnSpan="2"
 					x:Name="Btn_Add" 
-                    Text="ADD +"
+                    Text="Add +"
 					Command="{Binding NewTimecardCommand}"
                     TextColor="White"
-                    FontSize="Medium"
+                    FontSize="11"
                     BackgroundColor="#15212f"
-                    BorderRadius="1"
-                >
+                    BorderRadius="1">
 					<Button.FontFamily>
 						<OnPlatform x:TypeArguments="x:String">
 							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -51,23 +67,22 @@
 				</Button>
 			</Grid>
 			<StackLayout BackgroundColor="#15212f">
-				<Label Text="TIMECARDS"
+				<Label Text="Timecards"
 					FontSize="40"
-					CharacterSpacing="2"
+					CharacterSpacing="1.5"
 					TextColor="White"
 					HeightRequest="90"
 					HorizontalTextAlignment="Center"
 					VerticalTextAlignment="Center">
 					<Label.FontFamily>
 						<OnPlatform x:TypeArguments="x:String">
-							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 						</OnPlatform>
 					</Label.FontFamily>
 				</Label>
 			</StackLayout>
-			<ListView
-				x:Name="TimecardsList"
+			<ListView x:Name="TimecardsList"
 				ItemsSource="{Binding Timecards}"
 				SelectedItem="{Binding ShowTimecardDetails}"
 				IsPullToRefreshEnabled="true"
@@ -156,7 +171,6 @@
 			</ListView>
 		</StackLayout>
 		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding HasPropertyValueChanged}">
-			<!--<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9">-->
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
 				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">

@@ -23,36 +23,21 @@
 					</OnPlatform>
 				</Label.FontFamily>
 			</Label>
-			<Grid Margin="0, 10, 0, 0" ColumnSpacing="0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="50"/>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="40"/>
-				</Grid.RowDefinitions>
-				<StackLayout Grid.Column="1" Grid.Row="0"
-					Padding="20, 0">
-					<Image Source="notifications.png" VerticalOptions="Fill"/>
-				</StackLayout>
-				<Label Grid.Column="2"
-					Grid.ColumnSpan="3"
-					Grid.Row="0"
-					VerticalOptions="Center"
-					Text="Notifications"
-					FontAttributes="Bold"
-					HorizontalTextAlignment="Start"
-					FontSize="Title">
-					<Label.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-						</OnPlatform>
-					</Label.FontFamily>
-				</Label>
-			</Grid>
+			<Label Grid.Column="1"
+				Margin="0, 10, 0, 0"
+				Grid.ColumnSpan="4"
+				Grid.Row="0"
+				VerticalOptions="Center"
+				Text="Notifications"
+				FontAttributes="Bold"
+				HorizontalTextAlignment="Center"
+				FontSize="Title">
+				<Label.FontFamily>
+					<OnPlatform x:TypeArguments="x:String">
+						<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+					</OnPlatform>
+				</Label.FontFamily>
+			</Label>
 			<ListView
 				x:Name="HomepageList"
 				IsPullToRefreshEnabled="True" 
@@ -70,9 +55,10 @@
 								BackgroundColor="White"
 								HasShadow="False"
 								BorderColor="#f4f4f4">
-								<Grid ColumnSpacing="8">
+								<Grid ColumnSpacing="8"
+									RowSpacing="0">
 									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="5"/>
 										<ColumnDefinition Width="*"/>
 										<ColumnDefinition Width="*"/>
 										<ColumnDefinition Width="*"/>
@@ -103,7 +89,7 @@
 										Grid.Column="1"
 										Grid.ColumnSpan="4"
 										Text="{Binding Message}"
-										FontSize="Medium"
+										FontSize="13"
 										HorizontalOptions="StartAndExpand">
 										<Label.FontFamily>
 											<OnPlatform x:TypeArguments="x:String">
@@ -129,8 +115,7 @@
 				</ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
-		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
-			<!--<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9">-->
+		<!--<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
 				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
@@ -146,6 +131,6 @@
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 			</StackLayout>
-		</StackLayout>
+		</StackLayout>-->
 	</Grid>
 </ContentPage>

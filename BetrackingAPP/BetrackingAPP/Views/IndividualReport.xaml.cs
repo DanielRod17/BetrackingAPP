@@ -45,8 +45,8 @@ namespace BetrackingAPP.Views
             InitializeComponent();
             Usuario = usuario;
             Reporte = eu_report;
-            BarBackgroundColor = Color.White;
-            BarTextColor = Color.Black;
+            //BarBackgroundColor = Color.White;
+            //BarTextColor = Color.Black;
             BindingContext = new IndividualReportViewModel(usuario, eu_report);
             Cargado = true;
         }
@@ -62,7 +62,6 @@ namespace BetrackingAPP.Views
             var vm = BindingContext as IndividualReportViewModel;
             vm.AddExpenses(eu_report, usuario);
         }
-
         private void AddFiles(object sender, EventArgs e)
         {
             var eu_report = Reporte;
@@ -70,7 +69,6 @@ namespace BetrackingAPP.Views
             var vm = BindingContext as IndividualReportViewModel;
             vm.AddFiles(eu_report, usuario);
         }
-
         private void SubmitReport(object sender, EventArgs e)
         {
             var eu_report = Reporte;

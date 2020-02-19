@@ -17,71 +17,74 @@ namespace BetrackingAPP.ViewModel
 {
     public class IndividualTimeInOutViewModel : BaseViewModel, INotifyPropertyChanged
     {
+        private bool _submitted { get; set; }
+        public bool SubmittedCard
+        {
+            get
+            {
+                return _submitted;
+            }
+            set
+            {
+                _submitted = value;
+                OnPropertyChanged();
+            }
+        }
+        public Command OpenDatePicker { get; set; }
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
         .Where(x => x.ToLower().StartsWith(text.ToLower()))
         .OrderBy(x => x)
         .ToList();
         public DateTime _dateSearch = DateTime.Today;
+        private string _dateString { get; set; }
+        public string DateString
+        {
+            get
+            {
+                return _dateString;
+            }
+            set
+            {
+                _dateString = value;
+                OnPropertyChanged();
+            }
+        }
+
         ObservableCollection<string> assignments = new ObservableCollection<string>();
         public ObservableCollection<string> Assignments { get { return assignments; } }
         public DateTime FechaSeleccionada
         {
+            get
+            {
+                return _dateSearch;
+            }
             set
             {
-                OnPropertyChanged();
-
-                if (value.ToString() != "1/1/0001 12:00:00 AM")
+                if ((int)value.DayOfWeek != 0)
                 {
-                    if ((int)value.DayOfWeek != 0)
+                    if ((int)value.DayOfWeek == 1 || (int)value.DayOfWeek == 2)
                     {
-                        if ((int)value.DayOfWeek == 1 || (int)value.DayOfWeek == 2)
-                        {
-                            var fecha = value.AddDays(-((int)value.DayOfWeek));
-                            _dateSearch = fecha;
-                        }
-                        else
-                        {
-                            var fecha = value.AddDays(7 - (int)value.DayOfWeek);
-                            _dateSearch = fecha;
-                        }
+                        var fecha = value.AddDays(-((int)value.DayOfWeek));
+                        _dateSearch = fecha;
                     }
                     else
                     {
-                        _dateSearch = value;
+                        var fecha = value.AddDays(7 - (int)value.DayOfWeek);
+                        _dateSearch = fecha;
                     }
                 }
                 else
                 {
                     _dateSearch = value;
                 }
-            }
-            get
-            {
-                if (_dateSearch.ToString() != "1/1/0001 12:00:00 AM")
-                {
-                    if ((int)_dateSearch.DayOfWeek != 0)
-                    {
-                        if ((int)_dateSearch.DayOfWeek == 1 || (int)_dateSearch.DayOfWeek == 2)
-                        {
-                            var fecha = _dateSearch.AddDays(-((int)_dateSearch.DayOfWeek));
-                            _dateSearch = fecha;
-                        }
-                        else
-                        {
-                            var fecha = _dateSearch.AddDays(7 - (int)_dateSearch.DayOfWeek);
-                            _dateSearch = fecha;
-                        }
-                    }
-                    else
-                    {
-                        var fecha = _dateSearch;
-                        _dateSearch = fecha;
-                    }
-                }
-                return _dateSearch;
+
+                DateString = _dateSearch.ToShortDateString();
+                OnPropertyChanged();
+
             }
         }
         public User User { get; set; }
+        public string Timecard_ID { get; set; }
         private bool _happened;
         public bool HasPropertyValueChanged
         {
@@ -188,7 +191,7 @@ namespace BetrackingAPP.ViewModel
             {
                 _sunH = value;
                 OnPropertyChanged();
-            }            
+            }
         }
         public string Mon_Note { get; set; }
         public string Tue_Note { get; set; }
@@ -201,7 +204,19 @@ namespace BetrackingAPP.ViewModel
         public decimal Total_Hours { get; set; }
         public string monday_info { get; set; }
         private User usuario;
-        private Timecard timecard;
+        private Timecard _timecard{ get; set; }
+        public Timecard timecard
+        {
+            get
+            {
+                return _timecard;
+            }
+            set
+            {
+                _timecard = value;
+                OnPropertyChanged();
+            }
+        }
         public ObservableCollection<Timecard> _info { get; set; }
         public ObservableCollection<Timecard> Info
         {
@@ -244,9 +259,19 @@ namespace BetrackingAPP.ViewModel
         }
         public IndividualTimeInOutViewModel(User usuarioFrom, Timecard timecardFrom, DateTime _dateSearch)
         {
+            if (timecardFrom.Submitted == 0)
+            {
+                SubmittedCard = true;
+            }
+            else
+            {
+                SubmittedCard = false;
+            }
+            FechaSeleccionada = _dateSearch;
             usuario = usuarioFrom;
             User = usuario;
             timecard = timecardFrom;
+            Timecard_ID = timecard.TimecardID;
             var fecha = _dateSearch;
             int monNum = fecha.AddDays(-6).Day;
             int tueNum = fecha.AddDays(-5).Day;
@@ -511,8 +536,18 @@ namespace BetrackingAPP.ViewModel
                timecard
             };
             GetActions(timecard);
+            OpenDatePicker = new Command(async () => await OpenCalendar());
+            MessagingCenter.Subscribe<IndividualTimeInOutViewModel, DateTime>(this, "UpdateFechaIndInOut", (sender, value) =>
+            {
+                FechaSeleccionada = value;
+            });
         }
-
+        public async Task OpenCalendar()
+        {
+            HasPropertyValueChanged = true;
+            await Application.Current.MainPage.Navigation.PushPopupAsync(new Calendario(usuario, FechaSeleccionada, 2, timecard));
+            HasPropertyValueChanged = false;
+        }
         public void GetAssignments(User usuario)
         {
             var Assignments_List = usuario.Assignments;
@@ -528,8 +563,9 @@ namespace BetrackingAPP.ViewModel
             Actions.Add(new Actions { ActionName = "Submit Date:", ActionDate = eu_timecard.SubmitDate });
             Actions.Add(new Actions { ActionName = "Last Edit Date:", ActionDate = eu_timecard.LEditDate });
         }
-        public async void SubmitTimecard(int ID)
+        public async void SubmitTimecard()
         {
+            var ID = timecard.ID;
             HasPropertyValueChanged = true;
             HttpClient client = new HttpClient();
 
@@ -546,6 +582,7 @@ namespace BetrackingAPP.ViewModel
                 if (responseData == "Timecard Submitted!")
                 {
                     HasPropertyValueChanged = false;
+                    SubmittedCard = false;
                     await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(User, responseData));
                 }
                 else
@@ -558,8 +595,10 @@ namespace BetrackingAPP.ViewModel
                 await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
         }
-        public async void UpdateTimecard(int iD, int AssignmentID)
+        public async void UpdateTimecard()
         {
+            var iD = timecard.ID;
+            var AssignmentID = timecard.AssignmentID;
             HasPropertyValueChanged = true;
             var temp = Days;
             Days = null;
@@ -888,6 +927,43 @@ namespace BetrackingAPP.ViewModel
                 }
             }
             //UpdateDays(_oldDay);
+        }
+        public async void DeleteTimecard()
+        {
+            var iD = timecard.ID;
+            HasPropertyValueChanged = true;
+            HttpClient client = new HttpClient();
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("usuario", User.Id.ToString()),
+                new KeyValuePair<string, string>("Delete", "1"),
+                new KeyValuePair<string, string>("Timecard", iD.ToString()),
+                new KeyValuePair<string, string>("AssignmentName", AssignmentName),
+                new KeyValuePair<string, string>("date", FechaSeleccionada.Date.ToString("MM/dd/yyyy"))
+            });
+
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/DeleteTimecard.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                if (responseData == "Timecard Deleted!")
+                {
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(User, responseData));
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(responseData));
+                }
+            }
+            else
+            {
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
+            }
+            HasPropertyValueChanged = false;
         }
     }
 }

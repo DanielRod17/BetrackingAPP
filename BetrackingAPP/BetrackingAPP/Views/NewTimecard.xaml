@@ -5,32 +5,63 @@
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
 	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
 	xmlns:local="clr-namespace:BetrackingAPP"
-	x:Class="BetrackingAPP.Views.NewTimecard">
+	x:Class="BetrackingAPP.Views.NewTimecard"
+	BackgroundColor="#f8f8f8">
 	<Grid>
 		<ScrollView>
 			<StackLayout x:Name="TimecardContainer">
-				<Label Text="{Binding Fecha_timecard}"
-					TextColor="White"
-					CharacterSpacing="2"
-					FontSize="36"
-					HeightRequest="80"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f">
-					<Label.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
-						</OnPlatform>
-					</Label.FontFamily>
-				</Label>
+				<Grid RowSpacing="0" 
+					ColumnSpacing="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="70"></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Label Text="New Timecard"
+						Grid.Column="0"
+						Grid.ColumnSpan="3"
+						TextColor="#f4f4f4"
+						BackgroundColor="#15212f"
+						CharacterSpacing="1.5"
+						FontSize="30"
+						HorizontalTextAlignment="Center"
+						VerticalTextAlignment="Center">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+					<Button Grid.Column="3"
+						Grid.ColumnSpan="2"
+						x:Name="Btn_Add" 
+						Text="Copy Previous Week"
+						Command="{Binding LoadPrevious}"
+						TextColor="White"
+						FontSize="13"
+						BackgroundColor="#15212f"
+						BorderRadius="1">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+								<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
+				</Grid>
 				<local:XfxCustomized Placeholder="Select an Assignment"
 					Text="{Binding AssignmentName}"
 					ItemsSource="{Binding Assignments}"
 					SelectedItem=""
 					SortingAlgorithm="{Binding SortingAlgorithm}"
 					HorizontalTextAlignment="Start"
-					WidthRequest="300">
+					>
 					<local:XfxCustomized.FontFamily>
 						<OnPlatform x:TypeArguments="x:String">
 							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
@@ -38,6 +69,22 @@
 						</OnPlatform>
 					</local:XfxCustomized.FontFamily>
 				</local:XfxCustomized>
+				<Label Text="{Binding Fecha_timecard}"
+					Grid.Column="0"
+					Margin="0, -10, 0, 5"
+					Grid.ColumnSpan="3"
+					TextColor="#15212f"
+					CharacterSpacing="2"
+					FontSize="24"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 				<local:RepeaterView 
 					x:Name="TimecardsList"
 					ItemsSource="{Binding Days}">
@@ -174,9 +221,9 @@
 					</local:RepeaterView.ItemTemplate>
 				</local:RepeaterView>
 				<StackLayout
-					Margin="20, 20, 20, 0"
-					BackgroundColor="White"
-					VerticalOptions="End" >
+					Margin="30, 20, 30, 0"
+					BackgroundColor="#f4f4f4"
+					VerticalOptions="End">
 					<Button
 						Text="Save"
 						TextColor="White"

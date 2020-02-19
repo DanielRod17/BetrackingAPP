@@ -21,6 +21,20 @@ namespace BetrackingAPP.ViewModel
 {
     public class TimecardsViewModel : BaseViewModel
     {
+        private string _dateString { get; set; }
+        public string DateString
+        {
+            get
+            {
+                return _dateString;
+            }
+            set
+            {
+                _dateString = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _isRefreshing = false;
         public bool IsRefreshing
         {
@@ -46,6 +60,8 @@ namespace BetrackingAPP.ViewModel
             }
         }
         public Command NewTimecardCommand { get; set; }
+        public Command OpenDatePicker { get; set; }
+
         private bool _happened;
         public bool HasPropertyValueChanged
         {
@@ -57,6 +73,7 @@ namespace BetrackingAPP.ViewModel
             }
         }
         public string Firstname { get; set; }
+
         public User usuario;
         private bool inWork;
         private List<Models.Timecard> _timecards;
@@ -70,6 +87,7 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
+
         private DateTime _dateSearch = DateTime.Today;
         private bool IsLoading
         {
@@ -82,61 +100,37 @@ namespace BetrackingAPP.ViewModel
         }
         public DateTime FechaSeleccionada
         {
+            get
+            {
+                return _dateSearch;
+            }
             set
             {
-                if (value.ToString() != "1/1/0001 12:00:00 AM")
+                if ((int)value.DayOfWeek != 0)
                 {
-                    if ((int)value.DayOfWeek != 0)
+                    if ((int)value.DayOfWeek == 1 || (int)value.DayOfWeek == 2)
                     {
-                        if ((int)value.DayOfWeek == 1 || (int)value.DayOfWeek == 2)
-                        {
-                            var fecha = value.AddDays(-((int)value.DayOfWeek));
-                            _dateSearch = fecha;
-                        }
-                        else
-                        {
-                            var fecha = value.AddDays(7 - (int)value.DayOfWeek);
-                            _dateSearch = fecha;
-                        }
+                        var fecha = value.AddDays(-((int)value.DayOfWeek));
+                        _dateSearch = fecha;
                     }
                     else
                     {
-                        _dateSearch = value;
+                        var fecha = value.AddDays(7 - (int)value.DayOfWeek);
+                        _dateSearch = fecha;
                     }
                 }
                 else
                 {
                     _dateSearch = value;
                 }
-                OnPropertyChanged();
-            }
-            get {
-                if (_dateSearch.ToString() != "1/1/0001 12:00:00 AM")
-                {
-                    if ((int)_dateSearch.DayOfWeek != 0)
-                    {
-                        if ((int)_dateSearch.DayOfWeek == 1 || (int)_dateSearch.DayOfWeek == 2)
-                        {
-                            var fecha = _dateSearch.AddDays(-((int)_dateSearch.DayOfWeek));
-                            _dateSearch = fecha;
-                        }
-                        else
-                        {
-                            var fecha = _dateSearch.AddDays(7 - (int)_dateSearch.DayOfWeek);
-                            _dateSearch = fecha;
-                        }
-                    }
-                    else
-                    {
-                        var fecha = _dateSearch;
-                        _dateSearch = fecha;
-                    }
-                }
+
+                DateString = _dateSearch.ToShortDateString();
                 _ = LoadTimecards(usuario, _dateSearch);
-                IsLoading = false;
-                return _dateSearch;
+                OnPropertyChanged();
+
             }
         }
+
         private Timecard _selectedItem;
         public Timecard ShowTimecardDetails
         {
@@ -178,7 +172,17 @@ namespace BetrackingAPP.ViewModel
         public TimecardsViewModel(User usuarioFrom)
         {
             usuario = usuarioFrom;
+            DateString = "Select a Date";
             NewTimecardCommand = new Command(async () => await NavigateToNewTimecard());
+            OpenDatePicker = new Command(async () => await OpenCalendar());
+            MessagingCenter.Subscribe<TimecardsViewModel, DateTime>(this, "UpdateFecha", (sender, value) =>
+            {
+                Console.Write(sender);
+                Console.Write(value);
+                FechaSeleccionada = value;
+            });
+
+            FechaSeleccionada = DateTime.Now;
         }
         public async Task NavigateToNewTimecard()
         {
@@ -200,6 +204,12 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new NewTimeOut(Timecards, usuario, FechaSeleccionada));
             }
+            HasPropertyValueChanged = false;
+        }
+        public async Task OpenCalendar()
+        {
+            HasPropertyValueChanged = true;
+            await Application.Current.MainPage.Navigation.PushPopupAsync( new Calendario(usuario, FechaSeleccionada, 0, null), true );
             HasPropertyValueChanged = false;
         }
         public Command SearchCommand { get; set; }

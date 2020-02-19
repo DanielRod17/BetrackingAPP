@@ -19,6 +19,7 @@ namespace BetrackingAPP.ViewModel
     {
         public Command SaveTimecard { get; set; }
         public Command SubmitTimecard { get; set; }
+        public Command LoadPrevious { get; set; }
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
         .Where(x => x.ToLower().Contains(text.ToLower()))
         .OrderBy(x => x)
@@ -69,7 +70,19 @@ namespace BetrackingAPP.ViewModel
         public string Fecha_timecard { get; set; }
         ObservableCollection<string> assignments = new ObservableCollection<string>();
         public ObservableCollection<string> Assignments { get { return assignments; } }
-        public ObservableCollection<NewTimecardNormal> Days { get; set; }
+        private ObservableCollection<NewTimecardNormal> _days { get; set; }
+        public ObservableCollection<NewTimecardNormal> Days {
+            get
+            {
+                return _days;
+            }
+            set
+            {
+                _days = value;
+                OnPropertyChanged();
+            }
+        }
+
         private NewTimecardNormal _selectedItem;
         public NewTimecardNormal ShowDay
         {
@@ -102,7 +115,7 @@ namespace BetrackingAPP.ViewModel
             int thuNum = fecha.AddDays(-3).Day;
             int friNum = fecha.AddDays(-2).Day;
             int satNum = fecha.AddDays(-1).Day;
-            Fecha_timecard = "NEW TIMECARD\n" + fecha.Date.ToString("MM/dd/yyyy");
+            Fecha_timecard = fecha.Date.ToString("MM/dd/yyyy");
             Days = new ObservableCollection<NewTimecardNormal> {
                 new NewTimecardNormal() { Day = "Mon", Numero = monNum, Nota = "", DisplayInputs = 0, bgColor="White" },
                 new NewTimecardNormal() { Day = "Tue", Numero = tueNum, Nota = "", DisplayInputs = 0, bgColor="White" },
@@ -116,9 +129,48 @@ namespace BetrackingAPP.ViewModel
 
             SaveTimecard = new Command(async () => await GuardarTimecard());
             SubmitTimecard = new Command(async () => await SometerTimecard());
+            LoadPrevious = new Command(async () => await CargarPrevious());
             IsLoading = false;
         }
-
+        public async Task CargarPrevious()
+        {
+            IsLoading = true;
+            HttpClient client = new HttpClient();
+            var formContent = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("usuario", Usuario.Id.ToString()),
+                new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("MM/dd/yyyy")),
+            });
+            var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/CopyPrevious.php", formContent);
+            if (result.IsSuccessStatusCode)
+            {
+                var responseData = await result.Content.ReadAsStringAsync();
+                Timecard Previa = JsonConvert.DeserializeObject<Timecard>(responseData);
+                AssignmentName = Previa.Name;
+                int monNum = Fecha_Send.AddDays(-6).Day;
+                int tueNum = Fecha_Send.AddDays(-5).Day;
+                int wedNum = Fecha_Send.AddDays(-4).Day;
+                int thuNum = Fecha_Send.AddDays(-3).Day;
+                int friNum = Fecha_Send.AddDays(-2).Day;
+                int satNum = Fecha_Send.AddDays(-1).Day;
+                Console.WriteLine(responseData);
+                Days = new ObservableCollection<NewTimecardNormal> {
+                    new NewTimecardNormal() { Valor = Previa.Mon, Day = "Mon", Numero = monNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                    new NewTimecardNormal() { Valor = Previa.Tue, Day = "Tue", Numero = tueNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                    new NewTimecardNormal() { Valor = Previa.Wed, Day = "Wed", Numero = wedNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                    new NewTimecardNormal() { Valor = Previa.Thu, Day = "Thu", Numero = thuNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                    new NewTimecardNormal() { Valor = Previa.Fri, Day = "Fri", Numero = friNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                    new NewTimecardNormal() { Valor = Previa.Sat, Day = "Sat", Numero = satNum, Nota = "", DisplayInputs = 0, bgColor="White" },
+                    new NewTimecardNormal() { Valor = Previa.Sun, Day = "Sun", Numero = Fecha_Send.Day, Nota = "", DisplayInputs = 0, bgColor="White" }
+                };
+            }
+            else
+            {
+                //await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
+            }
+            IsLoading = false;
+        }
         public async Task GuardarTimecard()
         {
             IsLoading = true;
@@ -131,7 +183,7 @@ namespace BetrackingAPP.ViewModel
                 new KeyValuePair<string, string>("Assignment", AssignmentName),
                 new KeyValuePair<string, string>("date", Fecha_Send.Date.ToString("MM/dd/yyyy")),
                 new KeyValuePair<string, string>("info", yeison)
-            }); ;
+            });
 
             var result = await client.PostAsync("https://bepc.backnetwork.net/BEPCINC/api/SaveMX.php", formContent);
             if (result.IsSuccessStatusCode)
@@ -163,7 +215,6 @@ namespace BetrackingAPP.ViewModel
             }
             IsLoading = false;
         }
-
         public async Task SometerTimecard()
         {
             IsLoading = true;
@@ -183,7 +234,6 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                //await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
                 if (responseData == "Timecard Submitted!")
                 {
                     AssignmentName = "";
@@ -217,7 +267,6 @@ namespace BetrackingAPP.ViewModel
                 Assignments.Add(assignment_item.Name);
             }
         }
-
         public void HideOrShowInputs(NewTimecardNormal day)
         {
             if (day != null)
@@ -226,7 +275,7 @@ namespace BetrackingAPP.ViewModel
                 {
                     day.DisplayInputs = 100;
                     day.DisplayInputsNotes = 35;
-                    day.bgColor = "#F4F4F4";
+                    day.bgColor = "#F1F1F1";
                 }
                 else
                 {
@@ -236,7 +285,6 @@ namespace BetrackingAPP.ViewModel
                 }
             }
         }
-
         private void UpdateDays(NewTimecardNormal day)
         {
             var index = Days.IndexOf(day);

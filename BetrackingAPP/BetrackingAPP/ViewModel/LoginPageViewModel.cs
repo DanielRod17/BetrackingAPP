@@ -19,6 +19,19 @@ namespace BetrackingAPP.ViewModel
     public class LoginPageViewModel : INotifyPropertyChanged
     {
         //private bool _happened;
+        private bool _remember { get; set; }
+        public bool Remember
+        {
+            get
+            {
+                return _remember;
+            }
+            set
+            {
+                _remember = value;
+                OnPropertyChanged();
+            }
+        }
         private string _loadingText;
         public string LoadingText
         {
@@ -35,6 +48,18 @@ namespace BetrackingAPP.ViewModel
         public string sn { get; set; }
         public string hash { get; set; }
         private bool _happened;
+        private string _rightsText { get; set; }
+        public string RightsText { 
+            get
+            {
+                return _rightsText;
+            }
+            set
+            {
+                _rightsText = value;
+                OnPropertyChanged();
+            }
+        }
         public bool HasPropertyValueChanged
         {
             get => _happened;
@@ -59,6 +84,8 @@ namespace BetrackingAPP.ViewModel
         }
         public LoginPageViewModel(INavigation navigation)
         {
+            Remember = false;
+            RightsText = "Copyright © " + DateTime.Now.Year.ToString() + " | BEPC Incorporated | All Rights Reserved";
             HasPropertyValueChanged = false;
             Navigation = navigation;
             LoginCommand = new Command(async () => await NavigateToMainPage());
@@ -66,6 +93,7 @@ namespace BetrackingAPP.ViewModel
 
             if (Application.Current.Properties.ContainsKey("ID") && Application.Current.Properties["ID"] != null)
             {
+                Remember = true;
                 AutomaticLogin();
             }
         }
@@ -101,7 +129,11 @@ namespace BetrackingAPP.ViewModel
                             System.Diagnostics.Debug.WriteLine(mensageJson);
                             usuarioBT = mensageJson;
                             Usuario = usuarioBT;
-                            Application.Current.Properties["ID"] = Usuario.Id;
+                            if (Remember==true)
+                            {
+                                Application.Current.Properties["ID"] = Usuario.Id;
+                            }
+                            
                             var _payroll = "US";
                             if (usuarioBT.Payroll == "142")
                             {
@@ -114,10 +146,12 @@ namespace BetrackingAPP.ViewModel
                             App.Logedin = true;
                             await Navigation.PushAsync(new MainPage(usuarioBT));
                             Navigation.RemovePage(Navigation.NavigationStack[0]);
+                            HasPropertyValueChanged = false;
                         }
                         else
                         {
                             await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage(elemeneto[1].ToString()));
+                            HasPropertyValueChanged = false;
                             //await Application.Current.MainPage.DisplayAlert("Oops", elemeneto[1].ToString(), "OK");
                         }
                     }
@@ -149,7 +183,7 @@ namespace BetrackingAPP.ViewModel
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)
             {
-                sb.Append(hash[i].ToString("X"));
+                sb.Append(hash[i].ToString("X2"));
             }
             return sb.ToString();
         }
