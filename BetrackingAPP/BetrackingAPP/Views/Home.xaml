@@ -7,8 +7,8 @@
     x:Class="BetrackingAPP.Views.Home"
 	BackgroundColor="#f4f4f4">
 	<Grid>
-		<StackLayout x:Name="home1" VerticalOptions="Fill">
-			<Image Source="HomeBackground.jpg" Aspect="AspectFit" Margin="0,-100,0,0"/>
+		<StackLayout x:Name="home1">
+			<Image Source="HomeBackground.jpg" Aspect="AspectFit" Margin="0, -110, 0, 0"/>
 			<Label Text="{Binding Greeting}"
 				FontSize="35"
 				TextColor="White"
@@ -115,7 +115,7 @@
 				</ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
-		<!--<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
 				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
@@ -131,6 +131,6 @@
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 			</StackLayout>
-		</StackLayout>-->
+		</StackLayout>
 	</Grid>
 </ContentPage>

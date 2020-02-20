@@ -6,18 +6,27 @@
 	xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
 	xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
 	mc:Ignorable="d"
-	x:Class="BetrackingAPP.Views.NewReportUS">
+	x:Class="BetrackingAPP.Views.NewReportUS"
+	BackgroundColor="#f4f4f4">
     <Grid>
 		<ScrollView>
 			<StackLayout BackgroundColor="#f4f4f4">
-				<Label Text="NEW EXPENSES' REPORT"
-					FontSize="20"
-					TextColor="White"
-					HeightRequest="100"
-					HorizontalTextAlignment="Center"
-					VerticalTextAlignment="Center"
-					BackgroundColor="#15212f"/>
-				<Grid Margin="20, 20, 20, 0" RowSpacing="0">
+				<Label Text="NEW REPORT"
+                    FontSize="34"
+                    TextColor="White"
+                    HeightRequest="70"
+					BackgroundColor="#15212f"
+					CharacterSpacing="1.5"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<Grid Margin="20, 10, 20, 0" RowSpacing="0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="*"/>
 						<RowDefinition Height="*"/>
@@ -35,63 +44,94 @@
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
-					<Label
-                        Text="  Name" 
+					<Label Text="Name" 
                         Grid.Row="0"
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
+                        WidthRequest="40">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
 					<Entry Placeholder="Name" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" 
 						Text="{Binding Name}"
 						FontSize="Small"/>
-					<Label
-                        Text="  Assignment" 
+					<Label Text="Assignment" 
                         Grid.Row="1" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
+                        WidthRequest="40">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
 					<Picker Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" 
 						HorizontalOptions="FillAndExpand"
 						Title="Assignments"
 						ItemsSource="{Binding Assignments}"
-						SelectedItem="{Binding AssignmentName}"
-					/>
+						SelectedItem="{Binding AssignmentName}"/>
 					<Label
-                        Text="  Start Date" 
+                        Text="Start Date" 
                         Grid.Row="2" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
+                        WidthRequest="40">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
 					<DatePicker Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
 						Date="{Binding StartDate}"
                         MinimumDate="01/01/2019"
 						FontSize="Small"/>
 					<Label
-                        Text="  End Date" 
+                        Text="End Date" 
                         Grid.Row="3" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
+                        WidthRequest="40">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
 					<DatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
 						Date="{Binding EndDate}"
                         MinimumDate="01/01/2019"
 						FontSize="Small"/>
-					<Label 
-                        Text="  Status" 
+					<Label Text="Status" 
                         Grid.Row="4" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
                         HorizontalTextAlignment="Start"
                         VerticalTextAlignment="Center"
-                        WidthRequest="40"/>
+                        WidthRequest="40">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
 					<Picker Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
 						SelectedIndex="{Binding Status}" HorizontalOptions="FillAndExpand">
 						<Picker.Items>
@@ -100,16 +140,22 @@
 						</Picker.Items>
 					</Picker>
 				</Grid>
-				<Button 
-					Margin="40, 40, 40, 0"
+				<Button Margin="40, 40, 40, 0"
 					Text="Create Report" 
 					TextColor="White"
-					FontSize="14"
+					CharacterSpacing="1.2"
+					FontSize="30"
 					BackgroundColor="#15212f"
 					BorderRadius="2"
 					Command="{Binding CreateExpense}"
-					VerticalOptions="End"
-					/>
+					VerticalOptions="End">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
 			</StackLayout>
 		</ScrollView>
 		<!--<StackLayout AbsoluteLayout.LayoutFlags="All" 

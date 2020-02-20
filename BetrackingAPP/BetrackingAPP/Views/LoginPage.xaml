@@ -110,8 +110,7 @@
 					</Button.FontFamily>
 				</Button>
 			</Grid>
-			<Label
-				Margin="0, 20"
+			<Label Margin="0, 20"
 				Text="{Binding RightsText}" 
 				TextColor="#f4f4f4" 
 				FontSize="9" 

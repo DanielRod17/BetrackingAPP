@@ -9,9 +9,12 @@
     x:Class="BetrackingAPP.Views.Timecards"
 	BackgroundColor="#f4f4f4">
 	<Grid>
-		<StackLayout>
-			<Grid RowSpacing="0" 
-				 Padding="15, 10, 0, 0">
+		<StackLayout Margin="0"
+			Padding="0">
+			<Grid RowSpacing="0"
+				Margin="0"
+				BackgroundColor="#15212f"
+				Padding="15, 0, 0, 0">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
@@ -30,12 +33,14 @@
 				<Image Grid.Column="0"
 					Grid.ColumnSpan="1"
 					HeightRequest="5"
-					Source="calendar.png"/>
+					Source="Calendar2.png"/>
 				<Label Grid.Column="1"
 					Grid.ColumnSpan="6"
 					Text="{Binding DateString}"
 					VerticalTextAlignment="Center"
-                    FontSize="20">
+					BackgroundColor="#15212f"
+					TextColor="#f4f4f4"
+                    FontSize="16">
 					<Label.FontFamily>
 						<OnPlatform x:TypeArguments="x:String">
 							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -47,16 +52,17 @@
 				</Label>
 				<BoxView Grid.Column="1"
 					Grid.Row="1"
+					Margin="0"
 					Grid.ColumnSpan="6"
-					BackgroundColor="#15212f"/>
+					BackgroundColor="#f4f4f4"/>
 				<Button Grid.Column="7"
 					Grid.ColumnSpan="2"
 					x:Name="Btn_Add" 
                     Text="Add +"
 					Command="{Binding NewTimecardCommand}"
-                    TextColor="White"
-                    FontSize="11"
-                    BackgroundColor="#15212f"
+                    TextColor="#f4f4f4"
+                    FontSize="12"
+                    BackgroundColor="#f4c53f"
                     BorderRadius="1">
 					<Button.FontFamily>
 						<OnPlatform x:TypeArguments="x:String">
@@ -66,18 +72,19 @@
 					</Button.FontFamily>
 				</Button>
 			</Grid>
-			<StackLayout BackgroundColor="#15212f">
+			<StackLayout BackgroundColor="#15212f"
+				Margin="0, -6, 0, 0">
 				<Label Text="Timecards"
 					FontSize="40"
 					CharacterSpacing="1.5"
 					TextColor="White"
-					HeightRequest="90"
+					HeightRequest="98"
 					HorizontalTextAlignment="Center"
 					VerticalTextAlignment="Center">
 					<Label.FontFamily>
 						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
 						</OnPlatform>
 					</Label.FontFamily>
 				</Label>

@@ -6,7 +6,8 @@
 	xmlns:local="clr-namespace:BetrackingAPP"
     mc:Ignorable="d"
     x:Class="BetrackingAPP.Views.AddFiles"
-	x:Name="Page">
+	x:Name="Page"
+	BackgroundColor="#f4f4f4">
     <Grid>
 		<ScrollView>
 			<StackLayout>

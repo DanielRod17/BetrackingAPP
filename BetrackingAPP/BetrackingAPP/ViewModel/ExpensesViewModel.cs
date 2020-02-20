@@ -86,6 +86,7 @@ namespace BetrackingAPP.ViewModel
         }
         public async Task NavigateToNewReport()
         {
+            HasPropertyValueChanged = true;
             var bandera = 0;
             for (var i = 0; i < usuario.Assignments.Length; i++)
             {
@@ -106,7 +107,7 @@ namespace BetrackingAPP.ViewModel
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new NewReportUS(usuario));
             }
-
+            HasPropertyValueChanged = false;
         }
         public async Task GetTravels(User usuario)
         {

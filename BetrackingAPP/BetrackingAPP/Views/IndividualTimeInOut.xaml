@@ -13,9 +13,10 @@
 	android:TabbedPage.BarItemColor="White"
 	android:TabbedPage.BarSelectedItemColor="#038cfc"
     BarBackgroundColor="#15212f"
-    BarTextColor="White">
+    BarTextColor="White"
+	BackgroundColor="#f4f4f4">
 	<!--Pages can be added as references or inline-->
-	<ContentPage Title="Update" Icon="home.png" >
+	<ContentPage Title="Update" Icon="home.png" BackgroundColor="#f4f4f4" >
 		<Grid>
 			<ScrollView>
 				<StackLayout x:Name="UpdateList">
@@ -501,7 +502,7 @@
 			</StackLayout>
 		</Grid>
 	</ContentPage>
-	<ContentPage Title="Detail" x:Name="Detail" Icon="home.png" >
+	<ContentPage Title="Detail" x:Name="Detail" Icon="home.png" BackgroundColor="#f4f4f4" >
 		<ScrollView>
 			<StackLayout x:Name="stackPanel">
 				<Label Text="TIMECARD DETAIL"

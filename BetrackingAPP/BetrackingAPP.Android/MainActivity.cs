@@ -6,17 +6,15 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using ImageCircle.Forms.Plugin.Droid;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Pages;
 using Xfx;
 using Plugin.CurrentActivity;
-using FFImageLoading.Forms.Platform;
 using Plugin.Permissions;
 
 namespace BetrackingAPP.Droid
 {
-    [Activity(Label = "BetrackingAPP", Icon = "@mipmap/AndroidIcon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "BetrackingAPP", Icon = "@mipmap/AndroidIcon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         //private Bundle bundle;
@@ -39,7 +37,6 @@ namespace BetrackingAPP.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);

@@ -6,7 +6,8 @@
 	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
 	xmlns:local="clr-namespace:BetrackingAPP"
 	x:Class="BetrackingAPP.Views.AddExpenses"
-	x:Name="Page">
+	x:Name="Page"
+	BackgroundColor="#f4f4f4">
 	<Grid>
 		<ScrollView>
 			<StackLayout x:Name="ExpensesContainer">

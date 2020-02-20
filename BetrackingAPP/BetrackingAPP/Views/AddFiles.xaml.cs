@@ -48,7 +48,6 @@ namespace BetrackingAPP.Views
             InitializeComponent();
             BindingContext = new AddFilesViewModel(reporte, usuario);
         }
-
         private async void PickFile_Clicked(object sender, EventArgs e)
         {
             var filetypes = new string[] { "application/pdf" };
@@ -70,8 +69,6 @@ namespace BetrackingAPP.Views
                 }
             }
         }
-
-
         private async void PickPhoto_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
@@ -109,7 +106,10 @@ namespace BetrackingAPP.Views
             _mediaFile = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
                 Directory = "Sample",
-                Name = "myImage.jpg"
+                SaveToAlbum = true,
+                PhotoSize = PhotoSize.Medium,
+                AllowCropping = true,
+                Name = "BTExpensesImage.jpg"
             });
 
             if (_mediaFile == null)

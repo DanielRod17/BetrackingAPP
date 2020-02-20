@@ -13,7 +13,7 @@
 	android:TabbedPage.BarSelectedItemColor="#038cfc"
     BarBackgroundColor="#15212f"
     BarTextColor="White">
-	<ContentPage Icon="Notification.png"  Title="Detail" x:Name="Detail">
+	<ContentPage Icon="Notification.png"  Title="Detail" x:Name="Detail" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="detailPanel" BackgroundColor="#f4f4f4">
@@ -1284,7 +1284,7 @@
 			</Grid>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Summary" x:Name="Related">
+	<ContentPage Icon="Notification.png" Title="Summary" x:Name="Related" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="relatedPanel" BackgroundColor="#F4F4F4">
@@ -1690,7 +1690,7 @@
 			</Grid>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Expenses">
+	<ContentPage Icon="Notification.png" Title="Expenses" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="ExpensesList" BackgroundColor="#F4F4F4">
@@ -1843,7 +1843,7 @@
 			</Grid>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Files">
+	<ContentPage Icon="Notification.png" Title="Files" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="Files" BackgroundColor="#F4F4F4">

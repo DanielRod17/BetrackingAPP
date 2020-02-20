@@ -15,7 +15,7 @@
     BarBackgroundColor="#15212f"
     BarTextColor="White">
 	<!--Pages can be added as references or inline-->
-	<ContentPage Icon="Notification.png" Title="Update">
+	<ContentPage Icon="Notification.png" Title="Update" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="UpdateList">
@@ -299,7 +299,7 @@
 			</Grid>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Detail" x:Name="Detail" >
+	<ContentPage Icon="Notification.png" Title="Detail" x:Name="Detail" BackgroundColor="#f4f4f4" >
 		<ScrollView>
 			<StackLayout x:Name="stackPanel">
 				<Label Text="TIMECARD DETAIL"

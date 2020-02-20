@@ -4,13 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
 	xmlns:local="clr-namespace:BetrackingAPP"
-	x:Class="BetrackingAPP.Views.NewTimeOut">
+	x:Class="BetrackingAPP.Views.NewTimeOut"
+	BackgroundColor="#f4f4f4">
 	<Grid>
 		<ScrollView>
 			<StackLayout x:Name="TimeOutContainer">
 				<Grid RowSpacing="0" ColumnSpacing="0">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="50"></RowDefinition>
+						<RowDefinition Height="70"></RowDefinition>
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"></ColumnDefinition>
@@ -24,9 +25,8 @@
 						Grid.ColumnSpan="3"
 						TextColor="#f4f4f4"
 						BackgroundColor="#15212f"
-						CharacterSpacing="2"
-						FontSize="32"
-						HeightRequest="80"
+						CharacterSpacing="1.5"
+						FontSize="30"
 						HorizontalTextAlignment="Center"
 						VerticalTextAlignment="Center">
 						<Label.FontFamily>
@@ -41,9 +41,9 @@
 						x:Name="Btn_Add" 
 						Text="Copy Previous Week"
 						Command="{Binding LoadPrevious}"
-						TextColor="White"
+						TextColor="#f4f4f4"
 						FontSize="13"
-						BackgroundColor="#15212f"
+						BackgroundColor="#f4f4f4"
 						BorderRadius="1">
 						<Button.FontFamily>
 							<OnPlatform x:TypeArguments="x:String">
@@ -82,7 +82,7 @@
 					</Label.FontFamily>
 				</Label>
 				<local:RepeaterView 
-					Margin="15, 0, 15, 0"
+					Margin="10, 0, 10, 0"
 					x:Name="TimeOutList"
 					ItemsSource="{Binding Days}">
 					<local:RepeaterView.ItemTemplate>

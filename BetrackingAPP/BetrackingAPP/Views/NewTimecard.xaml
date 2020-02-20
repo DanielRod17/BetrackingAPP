@@ -11,7 +11,7 @@
 		<ScrollView>
 			<StackLayout x:Name="TimecardContainer">
 				<Grid RowSpacing="0" 
-					ColumnSpacing="1">
+					ColumnSpacing="0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="70"></RowDefinition>
 					</Grid.RowDefinitions>
@@ -43,9 +43,9 @@
 						x:Name="Btn_Add" 
 						Text="Copy Previous Week"
 						Command="{Binding LoadPrevious}"
-						TextColor="White"
+						TextColor="#f4f4f4"
 						FontSize="13"
-						BackgroundColor="#15212f"
+						BackgroundColor="#f4f4f4"
 						BorderRadius="1">
 						<Button.FontFamily>
 							<OnPlatform x:TypeArguments="x:String">
@@ -86,6 +86,7 @@
 					</Label.FontFamily>
 				</Label>
 				<local:RepeaterView 
+					Margin="10, 0, 10, 0"
 					x:Name="TimecardsList"
 					ItemsSource="{Binding Days}">
 					<local:RepeaterView.ItemTemplate>
