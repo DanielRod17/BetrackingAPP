@@ -65,12 +65,12 @@ namespace BetrackingAPP.Views
         private void BETracking_Policy(object sender, EventArgs e)
         {
             //Device.OpenUri(new Uri("https://www.bepcinc.com/privacy-and-terms"));
-            Launcher.OpenAsync("https://www.bepcinc.com/privacy-and-terms");
+            Launcher.OpenAsync("https://52840b2d-10d4-472e-8343-b77dcb77c887.filesusr.com/ugd/17c3bf_3ac57d22aa71435a8e092faeab264e45.pdf");
         }
         private void BETracking_Terms(object sender, EventArgs e)
         {
             //Device.OpenUri(new Uri("https://www.bepcinc.com/privacy-and-terms"));
-            Launcher.OpenAsync("https://www.bepcinc.com/privacy-and-terms");
+            Launcher.OpenAsync("https://52840b2d-10d4-472e-8343-b77dcb77c887.filesusr.com/ugd/17c3bf_3ac57d22aa71435a8e092faeab264e45.pdf");
         }
     }
 }

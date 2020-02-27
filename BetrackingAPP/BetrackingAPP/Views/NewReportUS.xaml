@@ -142,7 +142,7 @@
 					Text="Create Report" 
 					TextColor="White"
 					CharacterSpacing="1.2"
-					FontSize="30"
+					FontSize="24"
 					BackgroundColor="#15212f"
 					BorderRadius="2"
 					Command="{Binding CreateExpense}"

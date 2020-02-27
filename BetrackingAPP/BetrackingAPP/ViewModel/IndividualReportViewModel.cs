@@ -420,10 +420,10 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                await Application.Current.MainPage.DisplayAlert("Oops", responseData, "OK");
                 if (responseData == "Request Sent for approval")
                 {
                     await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, responseData));
+                    HasPropertyValueChanged = false;
                 }
                 else
                 {
