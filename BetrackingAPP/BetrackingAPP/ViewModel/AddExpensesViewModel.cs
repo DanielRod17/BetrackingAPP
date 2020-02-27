@@ -139,15 +139,20 @@ namespace BetrackingAPP.ViewModel
         }
         public void AgregarExpense(int expenese)
         {
-            var x = ExpensesList[expenese-1].iExpenses;
-            x.Add(new Expense() { TravelID = Reporte.ID, Category = 0, Name = "", Quantity = "", Currency = 0, Billable = 1, Refundable = 0, Attachments = "", DOF = 0.00m, SalesForceID = null, CategoryName = "Baggage Fees", DescriptionOn = false, ValorFinal = 0.00m, RefundableOn = false, MxOn = false });
+            /*var x = ExpensesList[expenese-1].iExpenses;
+            x.Add(new Expense() { TravelID = Reporte.ID, Category = 0, Name = "", Quantity = "", Currency = 0, Billable = 1, Refundable = 0, Attachments = "", DOF = 0.00m, SalesForceID = null, CategoryName = "Baggage Fees", DescriptionOn = false, ExpenseDate = DateTime.Now, ValorFinal = 0.00m, RefundableOn = false, MxOn = false });
             ExpensesList[expenese-1].iExpenses = null;
             ExpensesList[expenese-1].iExpenses = x;
             ExpensesList[expenese - 1].DisplayAdd = 40;
-            ExpensesList[expenese - 1].DisplayInputs += 340;
+            ExpensesList[expenese - 1].DisplayInputs += 320;
             var pop = ExpensesList[expenese - 1];
             ExpensesList.RemoveAt(expenese - 1);
             ExpensesList.Insert(expenese - 1, pop);
+            ExpensesList[expenese].UpdateInfo();*/
+            var x = new Expense() { TravelID = Reporte.ID, bgColor = "#ebebeb", Category = 0, Name = "", Quantity = "", Currency = 0, Billable = 1, Refundable = 0, Attachments = "", DOF = 0.00m, SalesForceID = null, CategoryName = "Baggage Fees", DescriptionOn = false, ExpenseDate = DateTime.Now, ValorFinal = 0.00m, RefundableOn = false, MxOn = false };
+            ExpensesList[expenese - 1].iExpenses.Insert(0, x);
+            ExpensesList[expenese - 1].DisplayAdd = 40;
+            ExpensesList[expenese - 1].DisplayInputs += 325;
             ExpensesList[expenese].UpdateInfo();
 
             /*var r = ExpensesList;
@@ -157,18 +162,23 @@ namespace BetrackingAPP.ViewModel
         public void BorrarExpense(Expense item)
         {
             var index_lista = 0;
+            var joj = 0;
             foreach (ExpensesList listilla in ExpensesList)
             {
                 var index = listilla.iExpenses.IndexOf(item);
+                joj = index;
                 index_lista = ExpensesList.IndexOf(listilla);
-                if (index != -1)
+                if (index > -1)
                 {
                     listilla.iExpenses.RemoveAt(index);
-                    listilla.DisplayInputs -= 340;
+                    listilla.DisplayInputs -= 325;
                     break;
                 }
             }
-            ExpensesList[index_lista].UpdateInfo();
+            if (joj > 0)
+            {
+                ExpensesList[index_lista].UpdateInfo();
+            }
             /*ExpensesList[index_lista].TotalExpenses = ExpensesList[index_lista].iExpenses.Count;
             ExpensesList[index_lista].TotalMoney = 0;
             foreach (Expense expense_item in ExpensesList[index_lista].iExpenses)
@@ -178,6 +188,7 @@ namespace BetrackingAPP.ViewModel
         }
         private void EmpujarExpense(int v, Expense item)
         {
+            item.bgColor = "#ebebeb";
             var Category_List = ExpensesList[v - 1];
             var tempList = Category_List.iExpenses;
             tempList.Add(item);
@@ -194,14 +205,15 @@ namespace BetrackingAPP.ViewModel
                         expense_cat.DisplayAdd = 40;
                         foreach (Expense expenese in expense_cat.iExpenses)
                         {
-                            expenese.bgColor = "#F4F4F4";
+                            expenese.bgColor = "#EBEBEB";
                         }
                     }
                     else
                     {
                         expense_cat.DisplayAdd = 0;
                     }
-                    expense_cat.DisplayInputs = ( (expense_cat.iExpenses.Count) * 337 );
+                    expense_cat.DisplayInputs = ( (expense_cat.iExpenses.Count) * 325);
+                    expense_cat.bgColor = "#EBEBEB";
                 }
                 else
                 {
@@ -211,6 +223,7 @@ namespace BetrackingAPP.ViewModel
                     {
                         expenese.bgColor = "White";
                     }
+                    expense_cat.bgColor = "White";
                 }
             }
             expense_cat.UpdateInfo();

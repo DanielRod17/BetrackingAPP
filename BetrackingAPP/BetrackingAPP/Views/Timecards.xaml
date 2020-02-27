@@ -103,7 +103,7 @@
 					<DataTemplate>
 						<ViewCell Appearing="ViewCell_Appearing">
 							<Frame CornerRadius="4"
-							   Margin="10,2,10,0"
+							   Margin="10, 2, 10, 0"
 							   BackgroundColor="White"
                                HasShadow="False"
                                BorderColor="#e4e4e4">

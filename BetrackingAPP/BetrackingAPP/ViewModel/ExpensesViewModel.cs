@@ -28,8 +28,8 @@ namespace BetrackingAPP.ViewModel
             set
             {
                 _expensesName = value;
-                Filtrar(_expensesName);
                 OnPropertyChanged();
+                Filtrar(value);
             }
         }
         private bool _isRefreshing = false;

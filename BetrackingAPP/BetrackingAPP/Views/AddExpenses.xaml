@@ -24,17 +24,16 @@
 						</OnPlatform>
 					</Label.FontFamily>
 				</Label>
-				<local:RepeaterView 
+				<local:RepeaterView Margin="5, 0, 5, 0"
 					ItemsSource="{Binding ExpensesList}">
 					<local:RepeaterView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
-								<Frame CornerRadius="5"
+								<Frame CornerRadius="5" HasShadow="False"
 									Padding="0"
-									Margin="1"
-									BackgroundColor="White"
-									HasShadow="False">
-									<Grid>
+									Margin="1">
+									<Grid RowSpacing="0"
+										 BackgroundColor="{Binding bgColor}">
 										<Grid.GestureRecognizers>
 											<TapGestureRecognizer Tapped="Expense_Item_Tapped"/>
 										</Grid.GestureRecognizers>
@@ -57,14 +56,15 @@
 											Text="{Binding TotalExpenses}" 
 											Grid.Row="0" 
 											Grid.Column="0" 
+											FontSize="14"
 											Grid.ColumnSpan="1" 
 											HorizontalTextAlignment="Center"
 											VerticalTextAlignment="Center"
 											WidthRequest="40">
 											<Label.FontFamily>
 												<OnPlatform x:TypeArguments="x:String">
-													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-													<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 												</OnPlatform>
 											</Label.FontFamily>
 										</Label>
@@ -74,6 +74,7 @@
 											Grid.ColumnSpan="3" 
 											HorizontalTextAlignment="Start"
 											VerticalTextAlignment="Center"
+											FontSize="14"
 											Margin="20,0,0,0">
 											<Label.FontFamily>
 												<OnPlatform x:TypeArguments="x:String">
@@ -86,9 +87,10 @@
 											Grid.Row="0" 
 											Grid.Column="4" 
 											Grid.ColumnSpan="3" 
+											FontSize="14"
 											HorizontalTextAlignment="End"
 											VerticalTextAlignment="Center"
-											Margin="0,0,20,0">
+											Margin="0, 0, 20, 0">
 											<Label.FontFamily>
 												<OnPlatform x:TypeArguments="x:String">
 													<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
@@ -108,20 +110,19 @@
 												</OnPlatform>
 											</Button.FontFamily>
 										</Button>
-										<ListView 
-											Grid.Row="2" 
+										<ListView Grid.Row="2" 
 											Grid.Column="0" 
 											Grid.ColumnSpan="7"
 											ItemsSource="{Binding iExpenses}"
-											HasUnevenRows="True">
+											HasUnevenRows="true">
 											<ListView.ItemTemplate>
 												<DataTemplate>
 													<ViewCell>
 														<Frame CornerRadius="5"
 															Padding="0"
 															Margin="1"
-															BackgroundColor="White"
-															HasShadow="False">
+															HeightRequest="320"
+															HasShadow="false">
 															<Grid ColumnSpacing="0" BackgroundColor="{Binding bgColor}">
 																<Grid.RowDefinitions>
 																	<RowDefinition Height="45"/>
@@ -147,107 +148,107 @@
 																	<ColumnDefinition Width="*"/>
 																</Grid.ColumnDefinitions>
 																<Label Text="Expense Date" Grid.Row="0" Grid.Column="1"
+																	Margin="0, 1, 0, 0"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
 																	VerticalTextAlignment="Center">
 																	<Label.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
-																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
 																	</Label.FontFamily>
 																</Label>
-																<DatePicker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="5"
+																<local:CustomDatePicker Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="5"
+																	Margin="0, 2, 0, 0"
 																	MinimumDate="01/01/2019"
 																	Date="{Binding ExpenseDate}">
-																	<DatePicker.FontFamily>
+																	<local:CustomDatePicker.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
 																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
-																	</DatePicker.FontFamily>
-																</DatePicker>
+																	</local:CustomDatePicker.FontFamily>
+																</local:CustomDatePicker>
 																<Label Text="Description" Grid.Row="1" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
 																	VerticalTextAlignment="Center">
 																	<Label.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
-																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
 																	</Label.FontFamily>
 																</Label>
-																<Entry Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
+																<local:LoginInput Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
 																	Placeholder="Description"
 																	Text="{Binding Name}">
-																	<Entry.FontFamily>
+																	<local:LoginInput.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
 																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
-																	</Entry.FontFamily>
-																</Entry>
-																<Label Text="Quantity" Grid.Row="2" Grid.Column="1"
+																	</local:LoginInput.FontFamily>
+																</local:LoginInput>
+																<Label Text="Amount" Grid.Row="2" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
 																	VerticalTextAlignment="Center">
 																	<Label.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
-																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
 																	</Label.FontFamily>
 																</Label>
-																<Entry Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
-																	Placeholder="Quantity"
+																<local:LoginInput Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
+																	Placeholder="Amount"
 																	Keyboard="Numeric"
 																	Text="{Binding Quantity, StringFormat='{0:F2}'}">
-																	<Entry.FontFamily>
+																	<local:LoginInput.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
 																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
-																	</Entry.FontFamily>
-																</Entry>
-																<!-- BREAK 2 -->
+																	</local:LoginInput.FontFamily>
+																</local:LoginInput>
 																<Label Text="Currency" Grid.Row="3" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
 																	VerticalTextAlignment="Center">
 																	<Label.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
-																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
 																	</Label.FontFamily>
 																</Label>
-																<Picker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5" 
+																<local:CustomPicker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5" 
 																	SelectedIndex="{Binding CurrencyPicker}" HorizontalOptions="FillAndExpand">
-																		<Picker.FontFamily>
+																	<local:CustomPicker.FontFamily>
 																			<OnPlatform x:TypeArguments="x:String">
 																				<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																			</OnPlatform>
-																		</Picker.FontFamily>
-																	<Picker.Items>
+																		</local:CustomPicker.FontFamily>
+																	<local:CustomPicker.Items>
 																		<x:String>USD</x:String>
 																		<x:String>MXN</x:String>
-																	</Picker.Items>
-																</Picker>
+																	</local:CustomPicker.Items>
+																</local:CustomPicker>
 																<Label Text="Refundable" Grid.Row="4" Grid.Column="1"
 																	Grid.ColumnSpan="4"
 																	HorizontalTextAlignment="Start" 
 																	VerticalTextAlignment="Center">
 																	<Label.FontFamily>
 																		<OnPlatform x:TypeArguments="x:String">
-																			<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-																			<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+																			<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+																			<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 																		</OnPlatform>
 																	</Label.FontFamily>
 																</Label>
 																<CheckBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"  
 																	IsChecked="{Binding RefundableOn}" />
-																<!-- BREAK 3 -->
 																<Button Text="DELETE" Grid.Row="5" Grid.Column="2"
 																	TextColor="White"
 																	BackgroundColor="#15212f"
@@ -273,7 +274,7 @@
 						</DataTemplate>
 					</local:RepeaterView.ItemTemplate>
 				</local:RepeaterView>
-				<Button Text="SAVE" 
+				<Button Text="Save" 
 					TextColor="White"
 					CharacterSpacing="2"
 					FontSize="18"
@@ -282,8 +283,8 @@
 					Command="{Binding GuardarExpenses}">
 					<Button.FontFamily>
 						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
+							<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 						</OnPlatform>
 					</Button.FontFamily>
 				</Button>

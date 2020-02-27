@@ -20,11 +20,11 @@
     <!--<item name="android:windowFullscreen">true</item>-->
     <!--<color name="android:launcher_background">#15212f</color>
     <color name="android:splash_background">#15212f</color>-->
-    <item name="android:windowBackground">@drawable/elsplash</item>
+    <!--<item name="android:windowBackground">@drawable/elsplash</item>-->
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <!-- <item name="colorAccent">#FF4081</item>-->
-    <item name="colorAccent">#15216b</item><!-- this one -->
+    <item name="colorAccent">#15212f</item><!-- this one -->
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>

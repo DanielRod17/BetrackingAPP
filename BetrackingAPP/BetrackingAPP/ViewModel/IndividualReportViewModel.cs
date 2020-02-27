@@ -75,7 +75,7 @@ namespace BetrackingAPP.ViewModel
                 OnPropertyChanged();
             }
         }
-        ObservableCollection<Expense> expenses = new ObservableCollection<Expense>();
+        private ObservableCollection<Expense> expenses { get; set; }
         public ObservableCollection<Expense> ExpensesList
         {
             get
@@ -271,7 +271,7 @@ namespace BetrackingAPP.ViewModel
         ///////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////
 
-        private ObservableCollection<File> files = new ObservableCollection<File>();
+        private ObservableCollection<File> files { get; set; }
         public ObservableCollection<File> FilesList
         {
             get
@@ -1103,6 +1103,7 @@ namespace BetrackingAPP.ViewModel
         {
             //////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////
+            
             Reporte = reportFrom;
             Usuario = usuarioFrom;
             var bandera = 0;
@@ -1183,6 +1184,7 @@ namespace BetrackingAPP.ViewModel
                 IsTentative = false;
             }
             UpdateReport = new Command(async () => await ActualizarReporte());
+            IsLoading = false;
         }
         public void GetAssignments(User usuario)
         {
@@ -1229,12 +1231,12 @@ namespace BetrackingAPP.ViewModel
             Country_To = Reporte.country_to_name;
             Return_Country_From = Reporte.rcountry_from_name;
             Return_Country_To = Reporte.rcountry_to_name;    
-            await Task.Delay(2000);
+            //await Task.Delay(2000);
             State_From = Reporte.state_from_name;
             State_To = Reporte.state_to_name;
             Return_State_From = Reporte.rstate_from_name;
             Return_State_To = Reporte.rstate_to_name;
-            await Task.Delay(1500);
+            //await Task.Delay(1500);
             City_From = Reporte.city_from_name;
             City_To = Reporte.city_to_name;
             Return_City_From = Reporte.rcity_from_name;
@@ -1266,6 +1268,7 @@ namespace BetrackingAPP.ViewModel
             ToDate = Reporte.ToDate;
             //files = new ObservableCollection<File>();
             ExpensesList = new ObservableCollection<Expense>();
+            FilesList = new ObservableCollection<File>();
             foreach (File file_item in Files_List)
             {
                 FilesList.Add(file_item);
@@ -1332,7 +1335,7 @@ namespace BetrackingAPP.ViewModel
         }
         public async void ChangeStates(int v)
         {
-            string country_val = "";
+            /*string country_val = "";
             if (v == 1)
             {
                 country_val = Country_From;
@@ -1375,11 +1378,11 @@ namespace BetrackingAPP.ViewModel
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
-            }
+            }*/
         }
         public async void ChangeCities(int v)
         {
-            string state_val = "";
+            /*string state_val = "";
             if (v == 1)
             {
                 state_val = State_From;
@@ -1422,12 +1425,12 @@ namespace BetrackingAPP.ViewModel
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
-            }
+            }*/
         }
         public async void AddExpenses(Reports reporte, User usuario)
         {
             IsLoading = true;
-            await App.Current.MainPage.Navigation.PushAsync(new AddExpenses(reporte, usuario));
+            await App.Current.MainPage.Navigation.PushAsync(new AddExpenses(Reporte, usuario));
             IsLoading = false;
         }
         public async void AddFiles(Reports reporte, User usuario)

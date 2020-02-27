@@ -50,7 +50,7 @@ namespace BetrackingAPP.Views
         {
             var user_input = this.FindByName<Grid>("Grid_Container");
             //user_input.Margin.Top = 10;
-            user_input.TranslationY = -100;
+            user_input.TranslationY = -90;
         }
         private new void Unfocused(object sender, FocusEventArgs e)
         {

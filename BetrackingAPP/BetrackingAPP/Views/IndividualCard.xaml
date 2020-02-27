@@ -13,9 +13,9 @@
 	android:TabbedPage.BarItemColor="White"
 	android:TabbedPage.BarSelectedItemColor="#038cfc"
     BarBackgroundColor="#15212f"
-    BarTextColor="White">
+    BarTextColor="#f4f4f4">
 	<!--Pages can be added as references or inline-->
-	<ContentPage Icon="Notification.png" Title="Update" BackgroundColor="#f4f4f4">
+	<ContentPage Icon="UpdateAPP.png" Title="Update" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="UpdateList">
@@ -34,7 +34,8 @@
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<Grid>
+					<Grid RowSpacing="0"
+						Margin="0">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
@@ -53,7 +54,7 @@
 							Grid.ColumnSpan="1"
 							Grid.Row="0"
 							HeightRequest="15"
-							Margin="15, 0, 0, 0"
+							Margin="20, 0, 0, 0"
 							WidthRequest="15"
 							Source="calendar.png"/>
 						<Label Grid.Column="1"
@@ -61,7 +62,7 @@
 							Grid.Row="0"
 							Text="{Binding DateString}"
 							VerticalTextAlignment="Center"
-							FontSize="20">
+							FontSize="16">
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -82,7 +83,7 @@
 							Text="{Binding AssignmentName}"
 							ItemsSource="{Binding Assignments}"
 							SortingAlgorithm="{Binding SortingAlgorithm}"
-							HorizontalTextAlignment="Center"
+							VerticalTextAlignment="Center"
 							WidthRequest="300">
 							<local:XfxCustomized.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
@@ -91,17 +92,16 @@
 							</local:XfxCustomized.FontFamily>
 						</local:XfxCustomized>
 					</Grid>
-					<local:RepeaterView 
-						x:Name="UpdatessList"
+					<local:RepeaterView Margin="5, 0, 5, 0" x:Name="UpdatessList"
 						ItemsSource="{Binding Days}">
 						<local:RepeaterView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
-									<Frame CornerRadius="5"
+									<Frame CornerRadius="5" HasShadow="False"
 										Padding="0"
-										Margin="1"
-										HasShadow="False">
-										<Grid BackgroundColor="{Binding bgColor}">
+										Margin="1">
+										<Grid BackgroundColor="{Binding bgColor}"
+											RowSpacing="0">
 											<Grid.GestureRecognizers>
 												<TapGestureRecognizer Tapped="TimecardsList_ItemTapped"/>
 											</Grid.GestureRecognizers>
@@ -122,7 +122,7 @@
 												BackgroundColor="#15212f" 
 												Text="{Binding Numero}"
 												CharacterSpacing="2"
-												FontSize="Medium"
+												FontSize="14"
 												Grid.Row="0" 
 												Grid.Column="0" 
 												Grid.ColumnSpan="1" 
@@ -131,8 +131,8 @@
 												WidthRequest="40">
 												<Label.FontFamily>
 													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-														<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+														<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 													</OnPlatform>
 												</Label.FontFamily>
 											</Label>
@@ -142,7 +142,7 @@
 												Grid.ColumnSpan="4" 
 												HorizontalTextAlignment="Start"
 												VerticalTextAlignment="Center"
-												FontSize="Medium"
+												FontSize="14"
 												Margin="20,0,0,0">
 												<Label.FontFamily>
 													<OnPlatform x:TypeArguments="x:String">
@@ -195,29 +195,29 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<Entry Placeholder="Hours" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" 
+													<local:LoginInput Placeholder="Hours" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" 
 														FontSize="Small" 
 														HeightRequest="{Binding DisplayInputsNotes}"
 														Text="{Binding Valor}"
 														Keyboard="Numeric">
-														<Entry.FontFamily>
+														<local:LoginInput.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</Entry.FontFamily>
-													</Entry>
-													<Entry Placeholder="Notes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" 
+														</local:LoginInput.FontFamily>
+													</local:LoginInput>
+													<local:LoginInput Placeholder="Notes" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" 
 														Text="{Binding Nota}"
 														HeightRequest="{Binding DisplayInputsNotes}"
 														FontSize="Small">
-														<Entry.FontFamily>
+														<local:LoginInput.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</Entry.FontFamily>
-													</Entry>
+														</local:LoginInput.FontFamily>
+													</local:LoginInput>
 												</Grid>
 											</StackLayout>
 										</Grid>
@@ -299,7 +299,7 @@
 			</Grid>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Detail" x:Name="Detail" BackgroundColor="#f4f4f4" >
+	<ContentPage Icon="DetailsApp.png" Title="Detail" x:Name="Detail" BackgroundColor="#f4f4f4" >
 		<ScrollView>
 			<StackLayout x:Name="stackPanel">
 				<Label Text="TIMECARD DETAIL"
@@ -572,7 +572,7 @@
 			</StackLayout>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Activity" BackgroundColor="#f4f4f4">
+	<ContentPage Icon="informationAPP.png" Title="Activity" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<StackLayout x:Name="ActionsList">
 				<Label Text="TIMECARD ACTIVITY"

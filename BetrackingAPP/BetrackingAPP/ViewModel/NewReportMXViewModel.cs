@@ -701,6 +701,7 @@ namespace BetrackingAPP.ViewModel
         }
         public async Task CrearReporte()
         {
+            HasPropertyValueChanged = true;
             HttpClient client = new HttpClient();
 
             var formContent = new FormUrlEncodedContent(new[]
@@ -752,7 +753,8 @@ namespace BetrackingAPP.ViewModel
                 if (responseData == "Report opened")
                 {
                     AssignmentName = "";
-                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario));
+                    await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, "Expenses' Report Created!"));
+                    await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 else
                 {
@@ -765,6 +767,7 @@ namespace BetrackingAPP.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Oops", "Something went wrong :(", "OK");
                 await Application.Current.MainPage.Navigation.PushPopupAsync(new ErrorPage("Something went wrong :("));
             }
+            HasPropertyValueChanged = false;
         }
         public void GetAssignments(User usuario)
         {

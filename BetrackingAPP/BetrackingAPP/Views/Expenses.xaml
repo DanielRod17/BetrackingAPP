@@ -4,6 +4,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+	xmlns:local="clr-namespace:BetrackingAPP"
     x:Class="BetrackingAPP.Views.Expenses"
 	BackgroundColor="#f4f4f4">
 	<Grid>
@@ -24,7 +25,19 @@
 					<RowDefinition Height="50"/>
 					<RowDefinition Height="1"/>
 				</Grid.RowDefinitions>
-				<SearchBar Grid.Column="0"
+				<local:LoginInput Grid.Column="1"
+					Grid.ColumnSpan="6"
+					Placeholder="Search Reports"
+					VerticalTextAlignment="Center"
+                    FontSize="16"
+					Text="{Binding ExpensesName}">
+					<local:LoginInput.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</local:LoginInput.FontFamily>
+				</local:LoginInput>
+				<!--<SearchBar Grid.Column="0"
 					Grid.ColumnSpan="7"
 					Placeholder="Search Reports"
 					TextColor="#f4f4f4"
@@ -45,7 +58,7 @@
 					HeightRequest="1"
 					Margin="0, 49, 0, 0"
 					Grid.ColumnSpan="6"
-					BackgroundColor="#f4f4f4"/>
+					BackgroundColor="#f4f4f4"/>-->
 				<StackLayout Padding="20, 17, 0, 0">
 					<Image Source="magnif.png"/>
 				</StackLayout>

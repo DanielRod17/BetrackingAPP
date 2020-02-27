@@ -13,7 +13,7 @@
 	android:TabbedPage.BarSelectedItemColor="#038cfc"
     BarBackgroundColor="#15212f"
     BarTextColor="White">
-	<ContentPage Icon="Notification.png"  Title="Detail" x:Name="Detail" BackgroundColor="#f4f4f4">
+	<!--<ContentPage Icon="DetailsApp.png"  Title="Detail" x:Name="Detail" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="detailPanel" BackgroundColor="#f4f4f4">
@@ -29,7 +29,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -91,7 +90,6 @@
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
-						<!-- Inputs -->
 						<Label TextColor="Black" 
 							BackgroundColor="#f4f4f4" 
 							Text="Assignment"
@@ -105,7 +103,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -115,7 +112,6 @@
 							SelectedItem="{Binding AssignmentName}">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -133,7 +129,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -141,7 +136,6 @@
 						Text="{Binding Name}">
 							<Entry.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Entry.FontFamily>
@@ -159,7 +153,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -167,7 +160,6 @@
 							SelectedIndex="{Binding ReportType}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -189,7 +181,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -197,7 +188,6 @@
 							SelectedIndex="{Binding Type_of_travel}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -220,7 +210,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -228,7 +217,6 @@
 							SelectedIndex="{Binding Flight}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -237,7 +225,6 @@
 								<x:String>Not Required</x:String>
 							</Picker.Items>
 						</Picker>
-						<!--  FROM -->
 						<Label TextColor="#15212f" 
 							BackgroundColor="#f4f4f4"
 							FontAttributes="Bold"
@@ -252,7 +239,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -269,7 +255,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -278,7 +263,6 @@
 							Date ="{Binding FromDate}">
 							<DatePicker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</DatePicker.FontFamily>
@@ -296,7 +280,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -304,7 +287,6 @@
 							SelectedIndex="{Binding From_Departure}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -327,7 +309,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -335,7 +316,6 @@
 							SelectedItem="{Binding Country_From}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -357,7 +337,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -382,7 +361,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -407,7 +385,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -416,12 +393,10 @@
 							MinimumDate="01/01/2019">
 							<DatePicker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</DatePicker.FontFamily>
 						</DatePicker>
-						<!-- DESTINATION-->
 						<Label TextColor="Black" 
 							BackgroundColor="#f4f4f4"
 							Text="DESTINATION" 
@@ -436,7 +411,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -453,7 +427,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -463,7 +436,6 @@
 							FontSize="Small">
 							<DatePicker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</DatePicker.FontFamily>
@@ -481,7 +453,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -489,7 +460,6 @@
 							SelectedIndex="{Binding To_Departure}" HorizontalOptions="FillAndExpand" >
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -512,7 +482,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -520,7 +489,6 @@
 							SelectedItem="{Binding Country_To}" HorizontalOptions="FillAndExpand" >
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -542,7 +510,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -550,7 +517,6 @@
 							SelectedItem="{Binding State_To}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -568,7 +534,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -576,7 +541,6 @@
 							SelectedItem="{Binding City_To}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -594,7 +558,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -602,7 +565,6 @@
 							SelectedIndex="{Binding Seating_preference}" HorizontalOptions="FillAndExpand" >
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -612,7 +574,6 @@
 								<x:String>Window Seat</x:String>
 							</Picker.Items>
 						</Picker>
-						<!-- RETURN INFORMATION -->
 						<Label TextColor="Black" 
 							BackgroundColor="#f4f4f4"
 							Text="RETURN INFORMATION"
@@ -626,7 +587,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -643,7 +603,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -651,7 +610,6 @@
 							SelectedItem="{Binding Return_Country_From}" HorizontalOptions="FillAndExpand" >
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -673,7 +631,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -681,7 +638,6 @@
 							SelectedItem="{Binding Return_State_From}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -699,7 +655,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -707,7 +662,6 @@
 							SelectedItem="{Binding Return_City_From}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -725,7 +679,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -733,7 +686,6 @@
 							SelectedItem="{Binding Return_Country_To}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -755,7 +707,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -763,7 +714,6 @@
 							SelectedItem="{Binding Return_State_To}" HorizontalOptions="FillAndExpand" >
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -781,7 +731,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -789,12 +738,10 @@
 							SelectedItem="{Binding Return_City_To}" HorizontalOptions="FillAndExpand" >
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
 						</Picker>
-						<!--HOTEL RESERVATION-->
 						<Label TextColor="Black" 
 							BackgroundColor="#f4f4f4"
 							Text="HOTEL RESERVATION" 
@@ -808,7 +755,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -825,7 +771,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -835,7 +780,6 @@
 							FontSize="Small">
 							<DatePicker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</DatePicker.FontFamily>
@@ -853,7 +797,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -863,7 +806,6 @@
 							FontSize="Small">
 							<DatePicker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</DatePicker.FontFamily>
@@ -881,7 +823,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -889,7 +830,6 @@
 							SelectedIndex="{Binding Smoking}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -911,7 +851,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -919,12 +858,10 @@
 							Placeholder="Special Needs" Text="{Binding Special_Needs}" >
 							<Entry.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Entry.FontFamily>
 						</Entry>
-						<!--GROUND TRANSPORTATION-->
 						<Label TextColor="Black" 
 							BackgroundColor="#f4f4f4"
 							Text="GROUND TRANSPORTATION"
@@ -938,7 +875,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -955,7 +891,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -963,7 +898,6 @@
 							SelectedIndex="{Binding Ground_Method}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -986,7 +920,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -994,12 +927,10 @@
 							Placeholder="Emerald Club Number" Text="{Binding Emerald_Club_Number}" >
 							<Entry.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Entry.FontFamily>
 						</Entry>
-						<!--IF RENTAL CAR-->
 						<Label TextColor="Black" 
 							BackgroundColor="#f4f4f4"
 							Text="IF RENTAL CAR" 
@@ -1013,7 +944,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1030,7 +960,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1040,7 +969,6 @@
 							FontSize="Small">
 							<DatePicker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</DatePicker.FontFamily>
@@ -1058,7 +986,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1066,7 +993,6 @@
 							SelectedIndex="{Binding Car_Rental_Time}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -1089,7 +1015,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1097,7 +1022,6 @@
 							SelectedIndex="{Binding Car_Size_Preference}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -1118,7 +1042,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1128,7 +1051,6 @@
 							FontSize="Small">
 							<DatePicker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</DatePicker.FontFamily>
@@ -1146,7 +1068,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1154,7 +1075,6 @@
 							SelectedIndex="{Binding Car_Rental_Return_Time}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -1177,7 +1097,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1185,7 +1104,6 @@
 							Placeholder="Reason Request" Text="{Binding Reason_Request}" >
 							<Entry.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Entry.FontFamily>
@@ -1203,7 +1121,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1211,7 +1128,6 @@
 							Placeholder="Emergency Contact" Text="{Binding Emergency_Contact}">
 							<Entry.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Entry.FontFamily>
@@ -1229,7 +1145,6 @@
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Label.FontFamily>
 						</Label>
@@ -1237,7 +1152,6 @@
 						SelectedIndex="{Binding Status}" HorizontalOptions="FillAndExpand">
 							<Picker.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
-									<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>-->
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>
 								</OnPlatform>
 							</Picker.FontFamily>
@@ -1258,7 +1172,6 @@
 							<Button.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold"/>
-									<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular"/>-->
 								</OnPlatform>
 							</Button.FontFamily>
 						</Button>
@@ -1283,8 +1196,158 @@
 				</StackLayout>
 			</Grid>
 		</ScrollView>
+	</ContentPage>-->
+	<ContentPage Icon="ExpensesAPP.png" Title="Expenses" BackgroundColor="#f4f4f4">
+		<Grid>
+			<StackLayout x:Name="ExpensesList" BackgroundColor="#F4F4F4">
+				<Label Text="EXPENSES"
+					CharacterSpacing="1.5"
+					FontSize="34"
+					TextColor="White"
+					HeightRequest="70"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<ListView x:Name="TimecardsList"
+					ItemsSource="{Binding ExpensesList}"
+					RowHeight="160"
+					SeparatorVisibility="None"
+					BackgroundColor="#f4f4f4">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell >
+								<Frame CornerRadius="5"
+									BackgroundColor="White"
+									HasShadow="False"
+									Margin="10,2,10,0"
+									BorderColor="#e4e4e4">
+									<Grid Margin="0, 5, 0, 0"
+										RowSpacing="5">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="26"></RowDefinition>
+											<RowDefinition Height="*"></RowDefinition>
+											<RowDefinition Height="*"></RowDefinition>
+											<RowDefinition Height="*"></RowDefinition>
+											<RowDefinition Height="*"></RowDefinition>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*"></ColumnDefinition>
+											<ColumnDefinition Width="*"></ColumnDefinition>
+											<ColumnDefinition Width="*"></ColumnDefinition>
+											<ColumnDefinition Width="*"></ColumnDefinition>
+										</Grid.ColumnDefinitions>
+										<Label Text="{Binding CategoryName}"
+											Grid.Column="0"
+											Grid.ColumnSpan="4"
+											Grid.Row="0"
+											FontSize="24">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label Text="{Binding ExpenseDate, StringFormat='Date: {0:dd/MM/yyyy}'}" 
+											Grid.Column="0"
+											Grid.ColumnSpan="4"
+											Grid.Row="1">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label Text="{Binding ValorFinal, StringFormat='Qty: ${0} USD'}"
+											Grid.Column="0"
+											Grid.ColumnSpan="2"
+											Grid.Row="2">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label IsVisible="{Binding MxOn}"
+											Text="{Binding Quantity, StringFormat='${0} MXN'}"
+											Grid.Column="2"
+											Grid.ColumnSpan="2"
+											Grid.Row="2">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label IsVisible="{Binding DescriptionOn}"
+											Text="{Binding Name, StringFormat='Description: {0}'}" 
+											Grid.Column="0"
+											Grid.ColumnSpan="4"
+											Grid.Row="3">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label IsVisible="{Binding RefundableOn}"
+											Grid.Column="0"
+											Grid.ColumnSpan="4"
+											Grid.Row="4"
+											Text="Refundable">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+									</Grid>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<Button Text="Add/Edit Expenses"
+					BackgroundColor="#15212f"
+					Clicked="AddExpenses"
+					CharacterSpacing="1.2"
+					IsVisible="{Binding HasPropertyValueChanged}"
+					TextColor="White"
+					Margin="10, 0, 10, 10"
+					FontSize="20">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+			</StackLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+					<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+						<Label.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+							</OnPlatform>
+						</Label.FontFamily>
+					</Label>
+				</StackLayout>
+			</StackLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
+				</StackLayout>
+			</StackLayout>
+		</Grid>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Summary" x:Name="Related" BackgroundColor="#f4f4f4">
+	<ContentPage Icon="informationAPP.png" Title="Summary" x:Name="Related" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<Grid>
 				<StackLayout x:Name="relatedPanel" BackgroundColor="#F4F4F4">
@@ -1690,284 +1753,125 @@
 			</Grid>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Expenses" BackgroundColor="#f4f4f4">
-		<ScrollView>
-			<Grid>
-				<StackLayout x:Name="ExpensesList" BackgroundColor="#F4F4F4">
-					<Label Text="EXPENSES"
-						CharacterSpacing="1.5"
-						FontSize="34"
-						TextColor="White"
-						HeightRequest="70"
-						HorizontalTextAlignment="Center"
-						VerticalTextAlignment="Center"
-						BackgroundColor="#15212f">
+	<ContentPage Icon="filesAPP.png" Title="Files" BackgroundColor="#f4f4f4">
+		<Grid>
+			<StackLayout x:Name="Files" BackgroundColor="#F4F4F4">
+				<Label Text="Files"
+					CharacterSpacing="1.5"
+					FontSize="34"
+					TextColor="White"
+					HeightRequest="70"
+					HorizontalTextAlignment="Center"
+					VerticalTextAlignment="Center"
+					BackgroundColor="#15212f">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
+				<ListView x:Name="FilesList"
+					ItemsSource="{Binding FilesList}"
+					RowHeight="230"
+					SeparatorVisibility="None"
+					BackgroundColor="#f4f4f4">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell >
+								<Frame CornerRadius="5"
+									Margin="10,2,10,0"
+									BackgroundColor="White"
+									HasShadow="False"
+									BorderColor="#e4e4e4">
+									<StackLayout>
+										<Label Text="{Binding Name}" FontSize="Large">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label Text="{Binding Date, StringFormat='Date: {0}'}">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Label Text="{Binding Size, StringFormat='Size: {0}'}">
+											<Label.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+												</OnPlatform>
+											</Label.FontFamily>
+										</Label>
+										<Button Command="{Binding Path=BindingContext.DownloadCommand, Source={x:Reference Page}}"
+											CommandParameter="{Binding URL}"
+											Text="Download"
+											CharacterSpacing="1.2"
+											TextColor="White"
+											FontSize="18"
+											BackgroundColor="#15212f"
+											BorderRadius="5">
+											<Button.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+												</OnPlatform>
+											</Button.FontFamily>
+										</Button>
+										<Button Command="{Binding Path=BindingContext.DeleteFileCommand, Source={x:Reference Page}}"
+											CommandParameter="{Binding .}"
+											Text="Delete" 
+											CharacterSpacing="1.2"
+											TextColor="White"
+											FontSize="18"
+											BackgroundColor="#15212f"
+											BorderRadius="5">
+											<Button.FontFamily>
+												<OnPlatform x:TypeArguments="x:String">
+													<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+												</OnPlatform>
+											</Button.FontFamily>
+										</Button>
+									</StackLayout>
+								</Frame>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+				<Button Text="Add Files"
+					BackgroundColor="#15212f"
+					Clicked="AddFiles"
+					IsVisible="{Binding HasPropertyValueChanged}"
+					TextColor="White"
+					CharacterSpacing="1.2"
+					Margin="10, 0, 10, 10"
+					FontSize="20">
+					<Button.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+						</OnPlatform>
+					</Button.FontFamily>
+				</Button>
+			</StackLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
+					<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
 						<Label.FontFamily>
 							<OnPlatform x:TypeArguments="x:String">
-								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+								<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<ListView x:Name="TimecardsList"
-						ItemsSource="{Binding ExpensesList}"
-						RowHeight="160"
-						SeparatorVisibility="None"
-						BackgroundColor="#f4f4f4">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<ViewCell >
-									<Frame CornerRadius="5"
-										BackgroundColor="White"
-										HasShadow="False"
-										Margin="10,2,10,0"
-										BorderColor="#e4e4e4">
-										<Grid Margin="0, 5, 0, 0"
-											RowSpacing="5">
-											<Grid.RowDefinitions>
-												<RowDefinition Height="26"></RowDefinition>
-												<RowDefinition Height="*"></RowDefinition>
-												<RowDefinition Height="*"></RowDefinition>
-												<RowDefinition Height="*"></RowDefinition>
-												<RowDefinition Height="*"></RowDefinition>
-											</Grid.RowDefinitions>
-											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="*"></ColumnDefinition>
-												<ColumnDefinition Width="*"></ColumnDefinition>
-												<ColumnDefinition Width="*"></ColumnDefinition>
-												<ColumnDefinition Width="*"></ColumnDefinition>
-											</Grid.ColumnDefinitions>
-											<Label Text="{Binding CategoryName}"
-												Grid.Column="0"
-												Grid.ColumnSpan="4"
-												Grid.Row="0"
-												FontSize="24">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Label Text="{Binding ExpenseDate, StringFormat='Date: {0:dd/MM/yyyy}'}" 
-												Grid.Column="0"
-												Grid.ColumnSpan="4"
-												Grid.Row="1">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Label Text="{Binding ValorFinal, StringFormat='Qty: ${0} USD'}"
-												Grid.Column="0"
-												Grid.ColumnSpan="2"
-												Grid.Row="2">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Label IsVisible="{Binding MxOn}"
-												Text="{Binding Quantity, StringFormat='${0} MXN'}"
-												Grid.Column="2"
-												Grid.ColumnSpan="2"
-												Grid.Row="2">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Label IsVisible="{Binding DescriptionOn}"
-												Text="{Binding Name, StringFormat='Description: {0}'}" 
-												Grid.Column="0"
-												Grid.ColumnSpan="4"
-												Grid.Row="3">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Label IsVisible="{Binding RefundableOn}"
-												Grid.Column="0"
-												Grid.ColumnSpan="4"
-												Grid.Row="4"
-												Text="Refundable">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-										</Grid>
-									</Frame>
-								</ViewCell>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
-					<Button
-						Text="Add Expenses"
-						BackgroundColor="#15212f"
-						Clicked="AddExpenses"
-						CharacterSpacing="1.2"
-						IsVisible="{Binding HasPropertyValueChanged}"
-						TextColor="White"
-						Margin="10, 0, 10, 10"
-						FontSize="20">
-						<Button.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Button.FontFamily>
-					</Button>
 				</StackLayout>
-				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
-					<StackLayout VerticalOptions="CenterAndExpand">
-						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-						<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
-							<Label.FontFamily>
-								<OnPlatform x:TypeArguments="x:String">
-									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-								</OnPlatform>
-							</Label.FontFamily>
-						</Label>
-					</StackLayout>
+			</StackLayout>
+			<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+				<StackLayout VerticalOptions="CenterAndExpand">
+					<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
 				</StackLayout>
-				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
-					<StackLayout VerticalOptions="CenterAndExpand">
-						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
-					</StackLayout>
-				</StackLayout>
-			</Grid>
-		</ScrollView>
-	</ContentPage>
-	<ContentPage Icon="Notification.png" Title="Files" BackgroundColor="#f4f4f4">
-		<ScrollView>
-			<Grid>
-				<StackLayout x:Name="Files" BackgroundColor="#F4F4F4">
-					<Label Text="Files"
-							CharacterSpacing="1.5"
-							FontSize="34"
-							TextColor="White"
-							HeightRequest="70"
-							HorizontalTextAlignment="Center"
-							VerticalTextAlignment="Center"
-							BackgroundColor="#15212f">
-						<Label.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Label.FontFamily>
-					</Label>
-					<ListView
-						x:Name="FilesList"
-						ItemsSource="{Binding FilesList}"
-						RowHeight="210"
-						SeparatorVisibility="None"
-						BackgroundColor="#f4f4f4">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<ViewCell >
-									<Frame CornerRadius="5"
-										Margin="10,2,10,0"
-										BackgroundColor="White"
-										HasShadow="False"
-										BorderColor="#e4e4e4">
-										<StackLayout>
-											<Label Text="{Binding Name}" FontSize="Large">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Label Text="{Binding Date, StringFormat='Date: {0}'}">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Label Text="{Binding Size, StringFormat='Size: {0}'}">
-												<Label.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-													</OnPlatform>
-												</Label.FontFamily>
-											</Label>
-											<Button
-												Command="{Binding Path=BindingContext.DownloadCommand, Source={x:Reference Page}}"
-												CommandParameter="{Binding URL}"
-												Text="Download"
-												CharacterSpacing="1.2"
-												TextColor="White"
-												FontSize="18"
-												BackgroundColor="#15212f"
-												BorderRadius="5">
-												<Button.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-													</OnPlatform>
-												</Button.FontFamily>
-											</Button>
-											<Button
-												Command="{Binding Path=BindingContext.DeleteFileCommand, Source={x:Reference Page}}"
-												CommandParameter="{Binding .}"
-												Text="Delete" 
-												CharacterSpacing="1.2"
-												TextColor="White"
-												FontSize="18"
-												BackgroundColor="#15212f"
-												BorderRadius="5">
-												<Button.FontFamily>
-													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-													</OnPlatform>
-												</Button.FontFamily>
-											</Button>
-										</StackLayout>
-									</Frame>
-								</ViewCell>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
-					<Button
-						Text="Add Files"
-						BackgroundColor="#15212f"
-						Clicked="AddFiles"
-						IsVisible="{Binding HasPropertyValueChanged}"
-						TextColor="White"
-						CharacterSpacing="1.2"
-						Margin="10, 0, 10, 10"
-						FontSize="20">
-						<Button.FontFamily>
-							<OnPlatform x:TypeArguments="x:String">
-								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-							</OnPlatform>
-						</Button.FontFamily>
-					</Button>
-				</StackLayout>
-				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
-					<StackLayout VerticalOptions="CenterAndExpand">
-						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-						<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
-							<Label.FontFamily>
-								<OnPlatform x:TypeArguments="x:String">
-									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
-								</OnPlatform>
-							</Label.FontFamily>
-						</Label>
-					</StackLayout>
-				</StackLayout>
-				<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
-					<StackLayout VerticalOptions="CenterAndExpand">
-						<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
-					</StackLayout>
-				</StackLayout>
-			</Grid>
-		</ScrollView>
+			</StackLayout>
+		</Grid>
 	</ContentPage>
 </TabbedPage>

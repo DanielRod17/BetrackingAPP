@@ -16,7 +16,7 @@
     BarTextColor="White"
 	BackgroundColor="#f4f4f4">
 	<!--Pages can be added as references or inline-->
-	<ContentPage Title="Update" Icon="home.png" BackgroundColor="#f4f4f4" >
+	<ContentPage Title="Update" Icon="UpdateAPP.png" BackgroundColor="#f4f4f4" >
 		<Grid>
 			<ScrollView>
 				<StackLayout x:Name="UpdateList">
@@ -35,7 +35,8 @@
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<Grid>
+					<Grid RowSpacing="0"
+						Margin="0">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
@@ -54,7 +55,7 @@
 							Grid.ColumnSpan="1"
 							Grid.Row="0"
 							HeightRequest="15"
-							Margin="15, 0, 0, 0"
+							Margin="20, 0, 0, 0"
 							WidthRequest="15"
 							Source="calendar.png"/>
 						<Label Grid.Column="1"
@@ -62,7 +63,7 @@
 							Grid.Row="0"
 							Text="{Binding DateString}"
 							VerticalTextAlignment="Center"
-							FontSize="20">
+							FontSize="16">
 							<Label.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
 									<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
@@ -83,7 +84,7 @@
 							Text="{Binding AssignmentName}"
 							ItemsSource="{Binding Assignments}"
 							SortingAlgorithm="{Binding SortingAlgorithm}"
-							HorizontalTextAlignment="Center"
+							VerticalTextAlignment="Center"
 							WidthRequest="300">
 							<local:XfxCustomized.FontFamily>
 								<OnPlatform x:TypeArguments="x:String">
@@ -92,17 +93,16 @@
 							</local:XfxCustomized.FontFamily>
 						</local:XfxCustomized>
 					</Grid>
-					<local:RepeaterView 
-						x:Name="TimeOutList"
+					<local:RepeaterView Margin="5, 0, 5, 0" x:Name="TimeOutList"
 						ItemsSource="{Binding Days}">
 						<local:RepeaterView.ItemTemplate>
 							<DataTemplate>
 								<ViewCell>
-									<Frame CornerRadius="5"
+									<Frame CornerRadius="5" HasShadow="False"
 										Padding="0"
-										Margin="1"
-										HasShadow="False">
-										<Grid BackgroundColor="{Binding bgColor}">
+										Margin="1">
+										<Grid BackgroundColor="{Binding bgColor}"
+											RowSpacing="0">
 											<Grid.GestureRecognizers>
 												<TapGestureRecognizer Tapped="TimecardsList_ItemTapped"/>
 											</Grid.GestureRecognizers>
@@ -132,8 +132,8 @@
 												WidthRequest="40">
 												<Label.FontFamily>
 													<OnPlatform x:TypeArguments="x:String">
-														<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-														<!--<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />-->
+														<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
+														<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 													</OnPlatform>
 												</Label.FontFamily>
 											</Label>
@@ -169,7 +169,7 @@
 											<StackLayout Grid.Row="1" 
 												Grid.Column="0" 
 												Grid.ColumnSpan="7">
-												<Grid>
+												<Grid RowSpacing="2">
 													<Grid.RowDefinitions>
 														<RowDefinition Height="{Binding InputHeight}"/>
 														<RowDefinition Height="{Binding InputHeight}"/>
@@ -235,16 +235,16 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5"
 														Time="{Binding TimeIn}"
 														Format="T">
-														<TimePicker.FontFamily>
+														<local:CustomTimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
+														</local:CustomTimePicker.FontFamily>
+													</local:CustomTimePicker>
 													<Label Text="Time Out" Grid.Row="2" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
@@ -256,16 +256,16 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5"
 														Time="{Binding TimeOut}"
 														Format="T">
-														<TimePicker.FontFamily>
+														<local:CustomTimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
+														</local:CustomTimePicker.FontFamily>
+													</local:CustomTimePicker>
 													<!-- 24 hours -->
 													<Label Text="24h Shift" Grid.Row="3" Grid.Column="1"
 														Grid.ColumnSpan="4"
@@ -279,7 +279,7 @@
 														</Label.FontFamily>
 													</Label>
 													<CheckBox Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="5"  
-													IsChecked="{Binding Is24}" />
+														IsChecked="{Binding Is24}"/>
 													<!-- BREAK 1 -->
 													<Label Text="Break 1 Out" Grid.Row="4" Grid.Column="1"
 														Grid.ColumnSpan="4"
@@ -292,16 +292,16 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
 														Time="{Binding Break1Out}">
-														<TimePicker.FontFamily>
+														<local:CustomTimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
+														</local:CustomTimePicker.FontFamily>
+													</local:CustomTimePicker>
 													<Label Text="Break 1 In" Grid.Row="5" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
@@ -313,7 +313,7 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
 														Time="{Binding Break1In}">
 														<TimePicker.FontFamily>
@@ -322,7 +322,7 @@
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
 														</TimePicker.FontFamily>
-													</TimePicker>
+													</local:CustomTimePicker>
 													<!-- BREAK 2 -->
 													<Label Text="Break 2 Out" Grid.Row="6" Grid.Column="1"
 														Grid.ColumnSpan="4"
@@ -335,16 +335,16 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
 														Time="{Binding Break2Out}">
-														<TimePicker.FontFamily>
+														<local:CustomTimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
+														</local:CustomTimePicker.FontFamily>
+													</local:CustomTimePicker>
 													<Label Text="Break 2 In" Grid.Row="7" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start" 
@@ -356,16 +356,16 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
 														Time="{Binding Break2In}">
-														<TimePicker.FontFamily>
+														<local:CustomTimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
+														</local:CustomTimePicker.FontFamily>
+													</local:CustomTimePicker>
 													<!-- BREAK 3 -->
 													<Label Text="Break 3 Out" Grid.Row="8" Grid.Column="1"
 														Grid.ColumnSpan="4"
@@ -378,16 +378,16 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
 														Time="{Binding Break3Out}">
-														<TimePicker.FontFamily>
+														<local:CustomTimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
+														</local:CustomTimePicker.FontFamily>
+													</local:CustomTimePicker>
 													<Label Text="Break 3 In" Grid.Row="9" Grid.Column="1"
 														Grid.ColumnSpan="4"
 														HorizontalTextAlignment="Start"
@@ -399,28 +399,28 @@
 															</OnPlatform>
 														</Label.FontFamily>
 													</Label>
-													<TimePicker Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="5"
+													<local:CustomTimePicker Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="5"
 														Format="T"
 														Time="{Binding Break3In}">
-														<TimePicker.FontFamily>
+														<local:CustomTimePicker.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</TimePicker.FontFamily>
-													</TimePicker>
+														</local:CustomTimePicker.FontFamily>
+													</local:CustomTimePicker>
 													<!-- -->
-													<Editor Placeholder="Notes" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="7" 
+													<local:LoginInput Placeholder="Notes" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="9" 
 														Text="{Binding Nota}"
 														HeightRequest="70"
 														FontSize="Small">
-														<Editor.FontFamily>
+														<local:LoginInput.FontFamily>
 															<OnPlatform x:TypeArguments="x:String">
 																<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
 																<!--<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />-->
 															</OnPlatform>
-														</Editor.FontFamily>
-													</Editor>
+														</local:LoginInput.FontFamily>
+													</local:LoginInput>
 												</Grid>
 											</StackLayout>
 										</Grid>
@@ -502,7 +502,7 @@
 			</StackLayout>
 		</Grid>
 	</ContentPage>
-	<ContentPage Title="Detail" x:Name="Detail" Icon="home.png" BackgroundColor="#f4f4f4" >
+	<ContentPage Title="Detail" x:Name="Detail" Icon="DetailsApp.png" BackgroundColor="#f4f4f4" >
 		<ScrollView>
 			<StackLayout x:Name="stackPanel">
 				<Label Text="TIMECARD DETAIL"
@@ -775,7 +775,7 @@
 			</StackLayout>
 		</ScrollView>
 	</ContentPage>
-	<ContentPage Title="Activity" Icon="home.png" BackgroundColor="#f4f4f4">
+	<ContentPage Title="Activity" Icon="informationAPP.png" BackgroundColor="#f4f4f4">
 		<ScrollView>
 			<StackLayout x:Name="ActionsList">
 				<Label Text="TIMECARD ACTIVITY"

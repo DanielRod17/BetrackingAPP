@@ -6,6 +6,7 @@
 	xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
 	xmlns:app="clr-namespace:Xfx.Controls.Example;assembly=Xfx.Controls.Example"
 	mc:Ignorable="d"
+	xmlns:local="clr-namespace:BetrackingAPP"
 	x:Class="BetrackingAPP.Views.NewReportUS"
 	BackgroundColor="#f4f4f4">
     <Grid>
@@ -26,7 +27,9 @@
 						</OnPlatform>
 					</Label.FontFamily>
 				</Label>
-				<Grid Margin="20, 10, 20, 0" RowSpacing="0">
+				<Grid RowSpacing="2"
+					Margin="20, 10, 20, 0"
+					BackgroundColor="#f4f4f4">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="*"/>
 						<RowDefinition Height="*"/>
@@ -58,9 +61,8 @@
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<Entry Placeholder="Name" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" 
-						Text="{Binding Name}"
-						FontSize="Small"/>
+					<local:LoginInput Placeholder="Name" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" 
+						Text="{Binding Name}"/>
 					<Label Text="Assignment" 
                         Grid.Row="1" 
                         Grid.Column="0" 
@@ -75,13 +77,12 @@
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<Picker Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" 
+					<local:CustomPicker Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" 
 						HorizontalOptions="FillAndExpand"
 						Title="Assignments"
 						ItemsSource="{Binding Assignments}"
 						SelectedItem="{Binding AssignmentName}"/>
-					<Label
-                        Text="Start Date" 
+					<Label Text="Start Date" 
                         Grid.Row="2" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
@@ -95,12 +96,10 @@
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<DatePicker Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
+					<local:CustomDatePicker Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
 						Date="{Binding StartDate}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
-					<Label
-                        Text="End Date" 
+                        MinimumDate="01/01/2019"/>
+					<Label Text="End Date" 
                         Grid.Row="3" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="3" 
@@ -114,10 +113,9 @@
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<DatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
+					<local:CustomDatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
 						Date="{Binding EndDate}"
-                        MinimumDate="01/01/2019"
-						FontSize="Small"/>
+                        MinimumDate="01/01/2019"/>
 					<Label Text="Status" 
                         Grid.Row="4" 
                         Grid.Column="0" 
@@ -132,13 +130,13 @@
 							</OnPlatform>
 						</Label.FontFamily>
 					</Label>
-					<Picker Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
+					<local:CustomPicker Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
 						SelectedIndex="{Binding Status}" HorizontalOptions="FillAndExpand">
-						<Picker.Items>
+						<local:CustomPicker.Items>
 							<x:String>Open</x:String>
 							<x:String>Tentative</x:String>
-						</Picker.Items>
-					</Picker>
+						</local:CustomPicker.Items>
+					</local:CustomPicker>
 				</Grid>
 				<Button Margin="40, 40, 40, 0"
 					Text="Create Report" 
@@ -158,12 +156,22 @@
 				</Button>
 			</StackLayout>
 		</ScrollView>
-		<!--<StackLayout AbsoluteLayout.LayoutFlags="All" 
-			AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#032143" Opacity="0.8" IsVisible="{Binding IsLoading}">
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">
 			<StackLayout VerticalOptions="CenterAndExpand">
 				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="60" WidthRequest="60"/>
-				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+				<Label Text="Loading..." FontSize="19" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="Center">
+					<Label.FontFamily>
+						<OnPlatform x:TypeArguments="x:String">
+							<On Platform="Android" Value="Questrial-Regular.ttf#Questrial-Regular" />
+						</OnPlatform>
+					</Label.FontFamily>
+				</Label>
 			</StackLayout>
-		</StackLayout>-->
+		</StackLayout>
+		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 0, 0" BackgroundColor="Transparent" IsVisible="{Binding IsLoading}">
+			<StackLayout VerticalOptions="CenterAndExpand">
+				<ActivityIndicator IsRunning="True" Color="#f6d43b" HeightRequest="40" WidthRequest="40" Margin="0, -26, 0, 0" RotationX="180"/>
+			</StackLayout>
+		</StackLayout>
 	</Grid>
 </ContentPage>

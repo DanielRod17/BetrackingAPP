@@ -275,7 +275,7 @@ namespace BetrackingAPP.ViewModel
                 {
                     day.DisplayInputs = 100;
                     day.DisplayInputsNotes = 35;
-                    day.bgColor = "#F1F1F1";
+                    day.bgColor = "#EBEBEB";
                 }
                 else
                 {

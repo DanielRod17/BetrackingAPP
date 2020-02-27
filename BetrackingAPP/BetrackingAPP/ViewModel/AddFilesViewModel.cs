@@ -205,8 +205,8 @@ namespace BetrackingAPP.ViewModel
                 byte[] byteArray = Encoding.ASCII.GetBytes(archivo.Contents);
                 //byteArray = System.IO.File.ReadAllBytes(archivo.Archivo.FilePath);
                 MemoryStream stream = new MemoryStream(byteArray);
-                content.Add(new StreamContent(archivo.Contenido),
-                //content.Add(new StreamContent(File.Open(archivo.Archivo.FilePath, FileMode.Open)),
+                //content.Add(new StreamContent(archivo.Contenido),
+                content.Add(new StreamContent(stream),
                     $"\"{archivo.Archivo.FileName}\"",
                     $"\"{archivo.Archivo.FilePath}\"");
                 arrayList.Add(archivo.FileName);

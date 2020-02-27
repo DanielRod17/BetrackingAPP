@@ -25,8 +25,7 @@
 						</OnPlatform>
 					</Label.FontFamily>
 				</Label>
-				<ListView
-					Margin="40, 0, 40, 0"
+				<ListView Margin="10, 0, 10, 0"
 					x:Name="MediasList"
 					ItemsSource="{Binding Medias}"
 					HeightRequest="{Binding MediasSize}"
@@ -40,17 +39,16 @@
 									BackgroundColor="White"
 									HasShadow="False">
 									<StackLayout>
-										<Image 
-											WidthRequest="400"
+										<Image WidthRequest="400"
 											HeightRequest="220"
 											Source="{Binding Path}"/>
-										<Label Text="{Binding FileName}"/>
+										<Label Margin="10, 0, 0, 0" Text="{Binding FileName}"/>
 										<Button Text="Delete" 
 											TextColor="White"
 											FontSize="14"
-											Margin="15, 0, 0, 15"
 											BackgroundColor="#15212f"
 											BorderRadius="2"
+											Margin="10"
 											Command="{Binding Path=BindingContext.DeleteMedia, Source={x:Reference Page}}"
 											CommandParameter="{Binding .}"/>
 									</StackLayout>
@@ -59,8 +57,7 @@
 						</DataTemplate>
 					</ListView.ItemTemplate>
 				</ListView>
-				<ListView
-					Margin="40, 0, 40, 0"
+				<ListView Margin="10, 0, 10, 0"
 					HeightRequest="{Binding ArchivosSize}"
 					ItemsSource="{Binding Archivos}"
 					HasUnevenRows="true">
@@ -73,16 +70,16 @@
 									 BackgroundColor="White"
 									 HasShadow="False">
 									<StackLayout>
-										<Image 
-										   WidthRequest="400"
+										<Image WidthRequest="400"
 										   HeightRequest="220"
 										   Source="{Binding Path}"/>
-										<Label Text="{Binding FileName}"/>
+										<Label Margin="10, 0, 0, 0" Text="{Binding FileName}"/>
 										<Button Text="Delete" 
 											TextColor="White"
 											FontSize="14"
 											BackgroundColor="#15212f"
 											BorderRadius="2"
+											Margin="10"
 											Command="{Binding Path=BindingContext.DeleteFile, Source={x:Reference Page}}"
 											CommandParameter="{Binding .}"/>
 									</StackLayout>
@@ -91,60 +88,76 @@
 						</DataTemplate>
 					</ListView.ItemTemplate>
 				</ListView>
-				<Button Text="Pick File" 
-					TextColor="White"
-					CharacterSpacing="2"
-					FontSize="18"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Margin="15, 0, 15, 0"
-					Clicked="PickFile_Clicked">
-					<Button.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-						</OnPlatform>
-					</Button.FontFamily>
-				</Button>
-				<Button Text="Pick Photo" 
-					TextColor="White"
-					Margin="15, 0, 15, 0"
-					CharacterSpacing="2"
-					FontSize="18"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Clicked="PickPhoto_Clicked">
-					<Button.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-						</OnPlatform>
-					</Button.FontFamily>
-				</Button>
-				<Button Text="Take Photo" 
-					TextColor="White"
-					FontSize="18"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Margin="15, 0, 15, 0"
-					Clicked="TakePhoto_Clicked">
-					<Button.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-						</OnPlatform>
-					</Button.FontFamily>
-				</Button>
-				<Button Text="Upload!" 
-					TextColor="White"
-					FontSize="24"
-					Margin="15, 0, 15, 15"
-					BackgroundColor="#15212f"
-					BorderRadius="2"
-					Clicked="UploadFile_Clicked">
-					<Button.FontFamily>
-						<OnPlatform x:TypeArguments="x:String">
-							<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
-						</OnPlatform>
-					</Button.FontFamily>
-				</Button>
+				<Grid Margin="10">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="50"></RowDefinition>
+						<RowDefinition Height="50"></RowDefinition>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Button Text="+ File"
+						TextColor="#f4f4f4"
+						CharacterSpacing="2"
+						FontSize="18"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Grid.Column="0"
+						Grid.Row="0"
+						Clicked="PickFile_Clicked">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
+					<Button Text="+ Image"
+						TextColor="#f4f4f4"
+						Grid.Column="1"
+						Grid.Row="0"
+						CharacterSpacing="2"
+						FontSize="18"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Clicked="PickPhoto_Clicked">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
+					<Button TextColor="#f4f4f4"
+						Text="Camera"
+						FontSize="18"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Grid.Column="2"
+						Grid.Row="0"
+						Clicked="TakePhoto_Clicked">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
+					<Button Text="Upload!" 
+						TextColor="White"
+						FontSize="24"
+						Grid.Column="0"
+						Grid.ColumnSpan="3"
+						Grid.Row="1"
+						BackgroundColor="#15212f"
+						BorderRadius="2"
+						Clicked="UploadFile_Clicked">
+						<Button.FontFamily>
+							<OnPlatform x:TypeArguments="x:String">
+								<On Platform="Android" Value="BebasNeue Bold.ttf#BebasNeue Bold" />
+							</OnPlatform>
+						</Button.FontFamily>
+					</Button>
+				</Grid>
 			</StackLayout>
 		</ScrollView>
 		<StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="#15212f" Opacity="0.9" IsVisible="{Binding IsLoading}">

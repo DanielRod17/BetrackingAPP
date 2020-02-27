@@ -143,10 +143,11 @@ namespace BetrackingAPP.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 var responseData = await result.Content.ReadAsStringAsync();
-                if (responseData == "Yes")
+                if (responseData == "Report opened")
                 {
                     AssignmentName = "";
                     await Application.Current.MainPage.Navigation.PushPopupAsync(new ReturnSave(Usuario, "Expenses' Report Created!"));
+                    await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 else
                 {

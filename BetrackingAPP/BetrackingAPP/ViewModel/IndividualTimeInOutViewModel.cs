@@ -834,7 +834,7 @@ namespace BetrackingAPP.ViewModel
             {
                 if (day.DisplayInputs == 0)
                 {
-                    day.DisplayInputs = 235;
+                    day.DisplayInputs = 255;
                     if (day.Break1Enabled == true)
                     {
                         day.DisplayInputs += 90;
@@ -851,7 +851,7 @@ namespace BetrackingAPP.ViewModel
                         day.Break3 = 45;
                     }
                     day.InputHeight = 45;
-                    day.bgColor = "#F4F4F4";
+                    day.bgColor = "#ebebeb";
                 }
                 else
                 {

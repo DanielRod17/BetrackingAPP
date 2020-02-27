@@ -65,6 +65,18 @@ namespace BetrackingAPP.Models
                 OnPropertyChanged();
             }
         }
+        private string _bgColor { get; set; }
+        public string bgColor { 
+            get
+            {
+                return _bgColor;
+            }
+            set
+            {
+                _bgColor = value;
+                OnPropertyChanged();
+            }
+        }
         private ObservableCollection<Expense> _iexpenses { get; set; }
         public ObservableCollection<Expense> iExpenses
         {
@@ -86,11 +98,14 @@ namespace BetrackingAPP.Models
         {
             TotalExpenses = iExpenses.Count;
             TotalMoney = 0;
-            foreach (Expense expense_item in iExpenses)
+            if ( iExpenses.Count > 0 )
             {
-                if (!string.IsNullOrEmpty(expense_item.Quantity))
+                foreach (Expense expense_item in iExpenses)
                 {
-                    TotalMoney += expense_item.ValorFinal;
+                    if (!string.IsNullOrEmpty(expense_item.Quantity))
+                    {
+                        TotalMoney += expense_item.ValorFinal;
+                    }
                 }
             }
         }
